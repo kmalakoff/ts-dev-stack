@@ -7,9 +7,10 @@
     "tsds": "./bin/ts-dev-stack.js"
   },
   "scripts": {
-    "deploy": "np",
+    "deploy": "np --no-yarn",
     "format": "prettier --write .",
     "lint": "eslint .",
+    "predeploy": "npm run lint && npm run format && depcheck --config .config/.depcheckrc.json && sortpack",
     "test": "mocha-compat test/spec/**/*.test.js --no-timeouts",
     "test:engines": "nvu engines --desc npm run test"
   },
@@ -86,9 +87,5 @@
   "type": "commonjs",
   "engines": {
     "node": ">=0.8"
-  },
-  "np": {
-    "testScript": "test:node",
-    "yarn": false
   }
 }
