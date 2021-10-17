@@ -81,6 +81,13 @@ describe("cli", function () {
         done();
       });
     });
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip("version", function (done) {
+      spawn(CLI, ["version"], { stdout: "string", cwd: DATA_DIR }, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
   });
 
   describe("unhappy path", function () {
