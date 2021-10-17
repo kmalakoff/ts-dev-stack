@@ -1,0 +1,19 @@
+{
+  "env": {
+    "esm": {
+      "presets": ["@babel/typescript", ["@babel/env", { "modules": false, "targets": { "node": "current" } }]],
+      "plugins": ["add-import-extension"]
+    },
+    "cjs": {
+      "presets": ["@babel/typescript", ["@babel/env", { "modules": "cjs" }]],
+      "plugins": ["add-module-exports"]
+    },
+    "umd": {
+      "presets": ["@babel/typescript", "@babel/env"]
+    },
+    "test-legacy": {
+      "presets": ["@babel/typescript", ["@babel/env", { "modules": "cjs" }]],
+      "ignore": ["**/*.d.ts"]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.config/
+.github/
+.tmp/
+.vscode/
+docs/
+coverage/
+test/
+.eslintignore
+.prettierignore

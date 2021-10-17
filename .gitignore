@@ -1,0 +1,5 @@
+.DS_Store
+.tmp/
+node_modules/
+test/data/**/coverage
+test/data/**/docs

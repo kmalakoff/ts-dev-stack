@@ -1,0 +1,6 @@
+dist/
+docs/
+node_modules/
+coverage/
+test/data/
+.tmp/

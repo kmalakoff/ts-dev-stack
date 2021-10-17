@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "types": ["mocha", "chai", "node"]
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"]
+}

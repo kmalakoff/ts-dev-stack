@@ -1,0 +1,21 @@
+{
+  "extends": "../.depcheckrc.json",
+  "ignores": [
+    "@babel/*",
+    "babel-*",
+    "@rollup/*",
+    "@types/*",
+    "c8",
+    "camelcase",
+    "chai",
+    "eslint",
+    "gh-pages",
+    "karma*",
+    "mocha",
+    "rollup*",
+    "ts-*",
+    "typedoc*",
+    "typescript",
+    "webpack"
+  ]
+}
