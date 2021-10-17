@@ -44,6 +44,7 @@ describe("cli", function () {
         done();
       });
     });
+    // eslint-disable-next-line mocha/no-skipped-tests
     it.skip("deploy", function (done) {
       spawn(CLI, ["deploy"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
