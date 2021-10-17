@@ -1,7 +1,7 @@
 {
   "env": {
     "esm": {
-      "presets": ["@babel/typescript", ["@babel/env", { "modules": false, "targets": { "node": "current" } }]],
+      "presets": ["@babel/typescript", ["@babel/env", { "modules": false, "targets": { "node": "10" } }]],
       "plugins": ["add-import-extension"]
     },
     "cjs": {
