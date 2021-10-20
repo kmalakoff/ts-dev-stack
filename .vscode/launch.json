@@ -18,7 +18,7 @@
       "request": "launch",
       "name": "cli",
       "program": "${workspaceFolder}/bin/ts-dev-stack.js",
-      "args": ["build"],
+      "args": ["test:engines"],
       "cwd": "${workspaceFolder}/test/data/fetch-http-message",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"

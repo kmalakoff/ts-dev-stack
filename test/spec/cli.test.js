@@ -70,7 +70,7 @@ describe("cli", function () {
       });
     });
     it("test:engines", function (done) {
-      spawn(CLI, ["test:engines", "--keep"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
+      spawn(CLI, ["test:engines"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
