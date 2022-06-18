@@ -6,7 +6,6 @@
     "@rollup/*",
     "@types/*",
     "c8",
-    "camelcase",
     "chai",
     "eslint",
     "gh-pages",

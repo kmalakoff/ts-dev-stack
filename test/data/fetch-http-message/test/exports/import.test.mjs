@@ -1,4 +1,4 @@
-import { assert } from "chai";
+import assert from "assert";
 import fetchMessage from "fetch-http-message";
 
 const url = "https://test.com/";
