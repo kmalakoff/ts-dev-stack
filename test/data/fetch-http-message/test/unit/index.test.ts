@@ -1,4 +1,4 @@
-import { assert } from "chai";
+import assert from "assert";
 import fetchMessage, { HeadersObject } from "fetch-http-message";
 
 const url = "https://test.com/";
@@ -90,14 +90,14 @@ describe("fetch-http-message", function () {
       assert.equal(message, [`POST ${url} HTTP/1.1`, "", "post-body"].join("\r\n"));
     });
 
-    typeof Blob === "undefined" ||
-      it("Blob body", function () {
-        const message = fetchMessage(url, {
-          method: "POST",
-          body: new Blob([JSON.stringify({ test: true })], { type: "application/json" }),
-        });
-        assert.equal(message, [`POST ${url} HTTP/1.1`, "", '{"test":true}'].join("\r\n"));
-      });
+    // typeof Blob === "undefined" ||
+    //   it("Blob body", function () {
+    //     const message = fetchMessage(url, {
+    //       method: "POST",
+    //       body: new Blob([JSON.stringify({ test: true })], { type: "application/json" }),
+    //     });
+    //     assert.equal(message, [`POST ${url} HTTP/1.1`, "", '{"test":true}'].join("\r\n"));
+    //   });
 
     typeof Buffer === "undefined" ||
       it("Buffer body", function () {
