@@ -28,7 +28,7 @@ describe("cli", function () {
 
     it("build", function (done) {
       spawn(CLI, ["build"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
-        assert.ok(!err);
+          assert.ok(!err);
         done();
       });
     });
