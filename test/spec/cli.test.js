@@ -26,6 +26,13 @@ describe("cli", function () {
     });
     if (major < 12) return;
 
+    it("link", function (done) {
+      spawn(CLI, ["link"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+
     it("build", function (done) {
       spawn(CLI, ["build"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
