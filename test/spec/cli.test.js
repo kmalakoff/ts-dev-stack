@@ -10,8 +10,14 @@ var major = +process.versions.node.split(".")[0];
 
 describe("cli", function () {
   describe("happy path", function () {
-    major < 10 ||
+    major < 14 ||
       it("build:dist", function (done) {
+        // process.chdir(DATA_DIR)
+        // require('../../lib/build')([], {}, function(err) {
+        //   console.log(err);
+        //   assert.ok(!err);
+        //   done();
+        // })
         spawn(CLI, ["build:dist"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
           assert.ok(!err);
           done();
@@ -19,12 +25,18 @@ describe("cli", function () {
       });
 
     it("test:node", function (done) {
+      // process.chdir(DATA_DIR)
+      // require('../../lib/test')([], {}, function(err) {
+      //   console.log(err);
+      //   assert.ok(!err);
+      //   done();
+      // })
       spawn(CLI, ["test:node"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
     });
-    if (major < 12) return;
+    if (major < 14) return;
 
     it("link", function (done) {
       spawn(CLI, ["link"], { stdout: "inherit", cwd: DATA_DIR }, function (err) {
