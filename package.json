@@ -1,7 +1,7 @@
 {
   "name": "ts-dev-stack",
   "description": "Development stack for TypeScript libraries",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "license": "MIT",
   "bin": {
     "tsds": "./bin/ts-dev-stack.js"
@@ -19,7 +19,12 @@
     "url": "git@github.com:kmalakoff/ts-dev-stack.git"
   },
   "files": [
-    "lib"
+    "lib",
+    ".babelrc.json",
+    ".eslintrc.json",
+    ".depcheckrc.json",
+    ".prettierrc.json",
+    "tsconfig.json"
   ],
   "keywords": [
     "babel",
