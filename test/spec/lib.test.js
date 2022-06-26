@@ -17,7 +17,7 @@ describe('lib', function () {
     major < 14 ||
       it('build:dist', function (done) {
         process.chdir(DATA_DIR);
-        require(path.join(LIB, 'build'))(['src/index.tsx'], {}, function (err) {
+        require(path.join(LIB, 'build'))([], {}, function (err) {
           assert.ok(!err);
           done();
         });
@@ -45,7 +45,7 @@ describe('lib', function () {
 
   it('build', function (done) {
     process.chdir(DATA_DIR);
-    require(path.join(LIB, 'build'))(['src/index.tsx'], {}, function (err) {
+    require(path.join(LIB, 'build'))([], {}, function (err) {
       assert.ok(!err);
       done();
     });
@@ -53,7 +53,7 @@ describe('lib', function () {
 
   it('docs', function (done) {
     process.chdir(DATA_DIR);
-    require(path.join(LIB, 'build', 'docs'))(['src/index.tsx'], {}, function (err) {
+    require(path.join(LIB, 'build', 'docs'))([], {}, function (err) {
       assert.ok(!err);
       done();
     });
