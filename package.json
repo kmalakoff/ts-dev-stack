@@ -53,7 +53,7 @@
     "cross-spawn-cb": "^0.4.1",
     "depcheck": "^1.4.3",
     "env-path-key": "^0.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-mocha": "^10.0.5",
     "exit": "^0.1.2",
