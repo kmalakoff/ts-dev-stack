@@ -1,4 +1,0 @@
-{
-  "extends": "../../../.depcheckrc.json",
-  "ignores": ["parser-multipart"]
-}
