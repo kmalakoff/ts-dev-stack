@@ -69,9 +69,9 @@ describe('lib', function () {
   // });
 
   // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('deploy', function (done) {
+  it.only('deploy', function (done) {
     process.chdir(DATA_DIR);
-    require(path.join(LIB, 'deploy'))([], {}, function (err) {
+    require(path.join(LIB, 'deploy'))([], {'no-publish': true}, function (err) {
       assert.ok(!err);
       done();
     });
