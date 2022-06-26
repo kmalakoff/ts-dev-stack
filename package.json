@@ -1,7 +1,7 @@
 {
   "name": "ts-dev-stack",
   "description": "Development stack for TypeScript libraries",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "bin": {
     "tsds": "./bin/ts-dev-stack.js"
@@ -89,5 +89,8 @@
   "type": "commonjs",
   "engines": {
     "node": ">=0.8"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3"
   }
 }
