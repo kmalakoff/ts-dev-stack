@@ -1,18 +1,30 @@
 {
   "env": {
     "esm": {
-      "presets": ["@babel/typescript", ["@babel/env", { "modules": false, "targets": { "node": "10" } }]],
+      "presets": [
+        ["@babel/preset-react", { "flow": false, "typescript": true }],
+        ["@babel/typescript", { "isTSX": true, "allExtensions": true }],
+        ["@babel/env", { "modules": false, "targets": { "node": "10" } }]
+      ],
       "plugins": ["add-import-extension"]
     },
     "cjs": {
-      "presets": ["@babel/typescript", ["@babel/env", { "modules": "cjs" }]],
+      "presets": [
+        ["@babel/preset-react", { "flow": false, "typescript": true }],
+        ["@babel/typescript", { "isTSX": true, "allExtensions": true }],
+        ["@babel/env", { "modules": "cjs" }]
+      ],
       "plugins": ["add-module-exports"]
     },
     "umd": {
-      "presets": ["@babel/typescript", "@babel/env"]
+      "presets": [["@babel/preset-react", { "flow": false, "typescript": true }], ["@babel/typescript", { "isTSX": true, "allExtensions": true }], "@babel/env"]
     },
     "test-legacy": {
-      "presets": ["@babel/typescript", ["@babel/env", { "modules": "cjs" }]],
+      "presets": [
+        ["@babel/preset-react", { "flow": false, "typescript": true }],
+        ["@babel/typescript", { "isTSX": true, "allExtensions": true }],
+        ["@babel/env", { "modules": "cjs" }]
+      ],
       "ignore": ["**/*.d.ts"]
     }
   }
