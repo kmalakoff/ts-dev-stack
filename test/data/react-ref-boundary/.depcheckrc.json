@@ -1,0 +1,14 @@
+{
+  "extends": "./node_modules/ts-dev-stack/.depcheckrc.json",
+  "ignores": [
+    "react-ref-boundary",
+    "@types/*",
+    "@typescript-eslint/*",
+    "eslint-*",
+    "jest-*",
+    "metro-*",
+    "cross-env",
+    "jest",
+    "react-dom"
+  ]
+}
