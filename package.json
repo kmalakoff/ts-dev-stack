@@ -1,7 +1,7 @@
 {
   "name": "ts-dev-stack",
   "description": "Development stack for TypeScript libraries",
-  "version": "0.2.6",
+  "version": "0.2.5",
   "license": "MIT",
   "bin": {
     "tsds": "./bin/ts-dev-stack.js"
@@ -18,9 +18,6 @@
     "type": "git",
     "url": "git@github.com:kmalakoff/ts-dev-stack.git"
   },
-  "files": [
-    "lib"
-  ],
   "keywords": [
     "babel",
     "c8",

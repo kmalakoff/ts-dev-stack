@@ -4,9 +4,6 @@ updates:
     directory: '/'
     schedule:
       interval: daily
-    ignore:
-      - dependency-name: "assert"
-      - dependency-name: "rimraf"
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
