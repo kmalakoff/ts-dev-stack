@@ -1,0 +1,10 @@
+{
+  "extends": "./node_modules/ts-dev-stack/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "types": ["mocha", "node"],
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"]
+}
