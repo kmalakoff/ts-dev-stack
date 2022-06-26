@@ -89,5 +89,8 @@
   "type": "commonjs",
   "engines": {
     "node": ">=0.8"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3"
   }
 }
