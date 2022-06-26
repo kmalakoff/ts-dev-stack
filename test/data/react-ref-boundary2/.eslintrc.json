@@ -1,0 +1,6 @@
+{
+  "extends": "./node_modules/ts-dev-stack/.eslintrc.json",
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
+}
