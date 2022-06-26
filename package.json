@@ -18,6 +18,9 @@
     "type": "git",
     "url": "git@github.com:kmalakoff/ts-dev-stack.git"
   },
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "babel",
     "c8",
