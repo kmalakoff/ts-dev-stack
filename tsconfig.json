@@ -5,6 +5,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
+    "jsx": "react",
     "types": ["mocha", "chai"]
   }
 }

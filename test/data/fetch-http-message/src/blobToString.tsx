@@ -3,7 +3,7 @@
 export default function blobToString(b: Blob): string {
   const u = URL.createObjectURL(b);
   const x = new XMLHttpRequest();
-  x.open("GET", u, false);
+  x.open('GET', u, false);
   x.send();
   URL.revokeObjectURL(u);
   return x.responseText;
