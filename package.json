@@ -1,7 +1,7 @@
 {
   "name": "ts-dev-stack",
   "description": "Development stack for TypeScript libraries",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "license": "MIT",
   "bin": {
     "tsds": "./bin/ts-dev-stack.js"
@@ -35,11 +35,13 @@
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
     "@babel/register": "^7.17.7",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
@@ -89,8 +91,5 @@
   "type": "commonjs",
   "engines": {
     "node": ">=0.8"
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.3"
   }
 }
