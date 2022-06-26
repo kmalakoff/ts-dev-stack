@@ -76,7 +76,7 @@
     "queue-cb": "^1.1.6",
     "rimraf": "^2.7.1",
     "rollup": "^2.75.7",
-    "rollup-plugin-node-externals": "^3.1.2",
+    "rollup-plugin-node-externals": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "sortpack": "^2.2.4",
     "ts-loader": "^9.3.1",
