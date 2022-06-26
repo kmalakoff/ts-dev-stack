@@ -19,7 +19,12 @@
     "url": "git@github.com:kmalakoff/ts-dev-stack.git"
   },
   "files": [
-    "lib"
+    "lib",
+    ".babelrc.json",
+    ".eslintrc.json",
+    ".depcheckrc.json",
+    ".prettierrc.json",
+    "tsconfig.json"
   ],
   "keywords": [
     "babel",
