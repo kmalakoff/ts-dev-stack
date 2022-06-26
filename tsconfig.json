@@ -6,6 +6,6 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "jsx": "react",
-    "types": ["mocha", "chai"]
+    "types": ["mocha"]
   }
 }

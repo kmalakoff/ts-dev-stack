@@ -1,4 +1,4 @@
 {
   "extends": "../.depcheckrc.json",
-  "ignores": ["@babel/*", "babel-*", "@rollup/*", "@types/*", "c8", "chai", "eslint", "gh-pages", "karma*", "mocha", "rollup*", "ts-*", "typedoc*", "typescript", "webpack"]
+  "ignores": ["@babel/*", "babel-*", "@rollup/*", "@types/*", "c8", "eslint", "gh-pages", "karma*", "mocha", "rollup*", "ts-*", "typedoc*", "typescript", "webpack"]
 }
