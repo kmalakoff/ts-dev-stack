@@ -17,7 +17,7 @@ describe('lib', function () {
     major < 14 ||
       it('build:dist', function (done) {
         process.chdir(DATA_DIR);
-        require(path.join(LIB, 'build'))([], {}, function (err) {
+        require(path.join(LIB, 'build', 'js'))([], {}, function (err) {
           assert.ok(!err);
           done();
         });
