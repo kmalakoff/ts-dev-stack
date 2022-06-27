@@ -1,4 +1,4 @@
-import blobToString from './blobToString';
+import blobToString from './blobToString.js';
 
 export interface HeadersObject {
   [key: string]: string;
