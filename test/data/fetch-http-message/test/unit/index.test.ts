@@ -1,4 +1,4 @@
-import '../lib/polyfill.cjs';
+import '../lib/polyfill.js';
 import assert from 'assert';
 import fetchMessage, { HeadersObject } from 'fetch-http-message';
 
