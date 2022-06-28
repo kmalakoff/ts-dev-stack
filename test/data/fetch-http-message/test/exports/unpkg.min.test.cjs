@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const assert = require('assert');
 const fetchMessage = require('fetch-http-message/dist/umd/fetch-http-message.min.js');
 

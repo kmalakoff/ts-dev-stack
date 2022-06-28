@@ -1,4 +1,5 @@
-import blobToString from './blobToString.js';
+// @ts-ignore
+import blobToString from './blobToString.ts';
 
 export interface HeadersObject {
   [key: string]: string;
