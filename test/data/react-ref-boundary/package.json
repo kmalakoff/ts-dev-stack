@@ -24,7 +24,6 @@
   "files": [
     "dist"
   ],
-  "source": "src/index.tsx",
   "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
@@ -74,5 +73,11 @@
   "engines": {
     "node": ">=12"
   },
-  "unpkg": "dist/umd/react-ref-boundary.js"
+  "unpkg": "dist/umd/react-ref-boundary.js",
+  "tsds": {
+    "source": "src/index.tsx",
+    "globals": {
+      "react": "React"
+    }
+  }
 }
