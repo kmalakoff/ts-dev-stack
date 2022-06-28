@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 var assert = require('assert');
 var path = require('path');
 var spawn = require('cross-spawn-cb');
@@ -16,8 +15,8 @@ describe('cli', function () {
 
   describe('happy path', function () {
     major < 14 ||
-      it('build:dist', function (done) {
-        spawn(CLI, ['build:dist'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+      it('build:js', function (done) {
+        spawn(CLI, ['build:js'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
           assert.ok(!err);
           done();
         });

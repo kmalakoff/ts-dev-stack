@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsds build:dist",
+    "build": "tsds build:js",
     "deploy": "tsds deploy",
     "format": "tsds format",
     "lint": "tsds lint",
@@ -66,5 +66,8 @@
   },
   "type": "module",
   "types": "dist/esm/index.d.ts",
-  "unpkg": "dist/umd/fetch-http-message.js"
+  "unpkg": "dist/umd/fetch-http-message.js",
+  "tsds": {
+    "source": "src/index.ts"
+  }
 }
