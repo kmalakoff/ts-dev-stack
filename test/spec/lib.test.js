@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 var assert = require('assert');
 var path = require('path');
 var linkTSDV = require('../lib/link-ts-dev-stack');
 
 var LIB = path.join(__dirname, '..', '..', 'lib');
 var DATA_DIR = path.resolve(__dirname, '..', 'data', 'react-ref-boundary');
+// var DATA_DIR = path.resolve(__dirname, '..', 'data', 'fetch-http-message');
 
 var major = +process.versions.node.split('.')[0];
 
@@ -15,7 +15,7 @@ describe('lib', function () {
 
   describe('happy path', function () {
     major < 14 ||
-      it('build:dist', function (done) {
+      it('build:js', function (done) {
         process.chdir(DATA_DIR);
         require(path.join(LIB, 'build', 'js'))([], {}, function (err) {
           assert.ok(!err);
