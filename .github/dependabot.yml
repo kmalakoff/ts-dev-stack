@@ -10,7 +10,7 @@ updates:
       - dependency-name: '@swc/core'
       - dependency-name: 'rimraf'
       - dependency-name: 'rollup-plugin-node-externals'
-x  - package-ecosystem: 'github-actions'
+  - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       # Check for updates to GitHub Actions every weekday
