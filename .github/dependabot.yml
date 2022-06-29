@@ -5,11 +5,12 @@ updates:
     schedule:
       interval: daily
     ignore:
-      - dependency-name: 'assert'
-      - dependency-name: 'rimraf'
-      - dependency-name: 'mkdirp'
       - dependency-name: '@swc/core'
-  - package-ecosystem: 'github-actions'
+      - dependency-name: 'assert'
+      - dependency-name: '@swc/core'
+      - dependency-name: 'rimraf'
+      - dependency-name: 'rollup-plugin-node-externals'
+x  - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       # Check for updates to GitHub Actions every weekday
