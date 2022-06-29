@@ -8,6 +8,7 @@ updates:
       - dependency-name: 'assert'
       - dependency-name: 'rimraf'
       - dependency-name: 'mkdirp'
+      - dependency-name: '@swc/core'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
