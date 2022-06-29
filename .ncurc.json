@@ -1,6 +1,7 @@
 {
   "upgrade": true,
   "reject": [
-    "mkdirp"
+    "mkdirp",
+    "@swc/core"
   ]
 }
