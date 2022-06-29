@@ -1,7 +1,10 @@
 {
   "upgrade": true,
   "reject": [
+    "@swc/core",
+    "assert",
     "mkdirp",
-    "@swc/core"
+    "rimraf",
+    "rollup-plugin-node-externals"
   ]
 }
