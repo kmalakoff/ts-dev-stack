@@ -51,7 +51,7 @@
   ],
   "devDependencies": {
     "@types/node": "^18.0.0",
-    "ts-dev-stack": "^0.2.4"
+    "ts-dev-stack": "^0.4.1"
   },
   "engines": {
     "node": ">=0.8"
