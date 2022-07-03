@@ -1,9 +1,15 @@
 {
-  "extends": "./node_modules/ts-dev-stack/tsconfig.json",
   "compilerOptions": {
     "lib": ["es2015", "dom"],
     "types": ["jest", "node"],
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "allowJs": true,
     "jsx": "react"
   },
   "exclude": ["node_modules", "dist"],
