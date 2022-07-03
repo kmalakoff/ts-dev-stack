@@ -7,14 +7,8 @@ For an example, check out [parser-multipart](https://github.com/kmalakoff/parser
 # Example 1: CLI
 
 ```
-# build dist and docs
+# build
 $ tsds build
-
-# build dist
-$ tsds build:js
-
-# build docs
-$ tsds build:docs
 
 # run coverage tests (default on "test/unit/*.test.*" only) using c8
 $ tsds coverage:node
