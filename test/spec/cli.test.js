@@ -1,7 +1,7 @@
 var assert = require('assert');
 var path = require('path');
 var spawn = require('cross-spawn-cb');
-var linkTSDV = require('../lib/link-ts-dev-stack');
+var link = require('../../lib/lib/link');
 
 var CLI = path.join(__dirname, '..', '..', 'bin', 'ts-dev-stack.js');
 var DATA_DIR = path.resolve(__dirname, '..', 'data', 'fetch-http-message');
@@ -9,8 +9,16 @@ var DATA_DIR = path.resolve(__dirname, '..', 'data', 'fetch-http-message');
 var major = +process.versions.node.split('.')[0];
 
 describe('cli', function () {
+  var restore;
   before(function (cb) {
-    linkTSDV({ cwd: DATA_DIR }, cb);
+    var pkg = require(path.join(path.resolve(__dirname, '..', '..'), 'package.json'));
+    var installPath = path.resolve(DATA_DIR, 'node_modules', pkg.name);
+    link(installPath, function (err, _restore) {
+      cb(err, (restore = _restore));
+    });
+  });
+  after(function (cb) {
+    restore(cb);
   });
 
   describe('happy path', function () {
