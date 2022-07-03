@@ -1,4 +1,22 @@
 {
   "extends": "../.depcheckrc.json",
-  "ignores": ["@rollup/*", "@types/*", "c8", "eslint", "gh-pages", "karma*", "mocha", "rollup*", "ts-*", "typedoc*", "typescript", "webpack"]
+  "ignores": [
+    "@rollup/*",
+    "@types/*",
+    "c8",
+    "eslint",
+    "gh-pages",
+    "karma*",
+    "mocha",
+    "rollup*",
+    "ts-*",
+    "typedoc*",
+    "typescript",
+    "webpack",
+    "react",
+    "assert",
+    "lodash.camelcase",
+    "regenerator-runtime",
+    "tsx"
+  ]
 }
