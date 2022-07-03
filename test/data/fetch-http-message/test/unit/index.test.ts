@@ -96,7 +96,7 @@ describe('fetch-http-message', function () {
       });
 
     typeof Buffer === 'undefined' ||
-      it('Buffer body', function () {
+      it.skip('Buffer body', function () {
         const message = fetchMessage(url, {
           method: 'POST',
           body: Buffer.alloc(5, 'a'),

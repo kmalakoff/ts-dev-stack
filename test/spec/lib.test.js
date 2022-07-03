@@ -15,111 +15,97 @@ describe('lib', function () {
 
   describe('happy path', function () {
     major < 14 ||
-      it('build:js', function (done) {
+      it('build', function (done) {
         process.chdir(DATA_DIR);
-        require(path.join(LIB, 'build', 'js'))([], {}, function (err) {
+        require(path.join(LIB, 'build'))([], {}, function (err) {
           assert.ok(!err);
           done();
         });
       });
 
     // TODO: support jest
-    // it('test:dist', function (done) {
-    //   process.chdir(DATA_DIR);
-    //   require(path.join(LIB, 'test'))([], {}, function (err) {
-    //     assert.ok(!err);
-    //     done();
-    //   });
-    // });
-  });
-  if (major < 14) return;
-
-  // TODO: add tests
-  it('link', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'link'))([], {}, function (err) {
-      assert.ok(!err);
-      done();
+    it.skip('test:node', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'test', 'mocha'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
-  });
+    if (major < 14) return;
 
-  it('build', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'build'))([], {}, function (err) {
-      assert.ok(!err);
-      done();
+    // TODO: add tests
+    it('link', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'link'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
-  });
 
-  it('docs', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'build', 'docs'))([], {}, function (err) {
-      assert.ok(!err);
-      done();
+    it('docs', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'build', 'docs'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
-  });
 
-  // TODO: support jest
-  // it('coverage:node', function (done) {
-  //   process.chdir(DATA_DIR);
-  //   require(path.join(LIB, 'quality', 'c8'))([], {}, function (err) {
-  //     assert.ok(!err);
-  //     done();
-  //   });
-  // });
+    // TODO: support jest
+    it.skip('coverage:node', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'quality', 'c8'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
 
-  // TODO: get deploy tests to work with 'no-publish'
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('deploy', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'deploy'))([], { 'no-publish': true }, function (err) {
-      assert.ok(!err);
-      done();
+    // TODO: get deploy tests to work with 'no-publish'
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('deploy', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'deploy'))([], { 'no-publish': true }, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
-  });
-  it('format', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'quality', 'format'))([], {}, function (err) {
-      assert.ok(!err);
-      done();
+    it('format', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'quality', 'format'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
-  });
-  it('lint', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'quality', 'lint'))([], {}, function (err) {
-      assert.ok(!err);
-      done();
+    it('lint', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'quality', 'lint'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
-  });
-  // TODO: support jest
-  // it('test', function (done) {
-  //   process.chdir(DATA_DIR);
-  //   require(path.join(LIB, 'test'))([], {}, function (err) {
-  //     assert.ok(!err);
-  //     done();
-  //   });
-  // });
+    // TODO: support jest
+    it.skip('test', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'test'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
 
-  // it('test:engines', function (done) {
-  //   process.chdir(DATA_DIR);
-  //   require(path.join(LIB, 'test', 'engines'))([], {}, function (err) {
-  //     assert.ok(!err);
-  //     done();
-  //   });
-  // });
-  // it('test:browser', function (done) {
-  //   process.chdir(DATA_DIR);
-  //   require(path.join(LIB, 'test', 'karma'))([], {}, function (err) {
-  //     assert.ok(!err);
-  //     done();
-  //   });
-  // });
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('version', function (done) {
-    process.chdir(DATA_DIR);
-    require(path.join(LIB, 'deploy', 'version'))([], {}, function (err) {
-      assert.ok(!err);
-      done();
+    it.skip('test:browser', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'test', 'karma'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+
+    // eslint-disable-next-line mocha/no-skipped-tests
+    it.skip('version', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'deploy', 'version'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
     });
   });
 });
