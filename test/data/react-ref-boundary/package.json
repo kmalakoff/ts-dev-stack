@@ -75,8 +75,9 @@
   "unpkg": "dist/umd/react-ref-boundary.js",
   "tsds": {
     "source": "src/index.tsx",
-    "globals": {
-      "react": "React"
-    }
+    "targets": [
+      "cjs",
+      "esm"
+    ]
   }
 }

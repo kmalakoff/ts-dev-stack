@@ -15,8 +15,8 @@ describe('cli', function () {
 
   describe('happy path', function () {
     major < 14 ||
-      it('build:js', function (done) {
-        spawn(CLI, ['build:js'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+      it('build', function (done) {
+        spawn(CLI, ['build'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
           assert.ok(!err);
           done();
         });
@@ -37,18 +37,6 @@ describe('cli', function () {
       });
     });
 
-    it('build', function (done) {
-      spawn(CLI, ['build'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
-        assert.ok(!err);
-        done();
-      });
-    });
-    it('build:docs', function (done) {
-      spawn(CLI, ['build:docs'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
-        assert.ok(!err);
-        done();
-      });
-    });
     it('coverage:node', function (done) {
       spawn(CLI, ['coverage:node'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
@@ -77,12 +65,6 @@ describe('cli', function () {
     });
     it('test', function (done) {
       spawn(CLI, ['test'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
-        assert.ok(!err);
-        done();
-      });
-    });
-    it('test:engines', function (done) {
-      spawn(CLI, ['test:engines'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
