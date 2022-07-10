@@ -52,8 +52,8 @@ describe('cli', function () {
       });
     });
 
-    it('coverage:node', function (done) {
-      spawn(CLI, ['coverage:node'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+    it('coverage', function (done) {
+      spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
