@@ -8,7 +8,7 @@ var DATA_DIR = path.resolve(__dirname, '..', 'data', 'react-dom-event');
 
 var major = +process.versions.node.split('.')[0];
 
-describe.only('lib', function () {
+describe('lib', function () {
   var restore;
   before(function (cb) {
     var pkg = require(path.join(path.resolve(__dirname, '..', '..'), 'package.json'));
@@ -65,7 +65,7 @@ describe.only('lib', function () {
       });
     });
 
-    it('coverage:node', function (done) {
+    it('coverage', function (done) {
       process.chdir(DATA_DIR);
       require(path.join(LIB, 'test', 'c8'))([], {}, function (err) {
         assert.ok(!err);
