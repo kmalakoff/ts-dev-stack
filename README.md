@@ -11,7 +11,7 @@ For an example, check out [parser-multipart](https://github.com/kmalakoff/parser
 $ tsds build
 
 # run coverage tests (default on "test/unit/*.test.*" only) using c8
-$ tsds coverage:node
+$ tsds coverage
 
 # deploy library using np
 $ tsds deploy
