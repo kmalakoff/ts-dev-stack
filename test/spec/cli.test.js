@@ -45,6 +45,13 @@ describe('cli', function () {
       });
     });
 
+    it('unlink', function (done) {
+      spawn(CLI, ['unlink'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+
     it('coverage:node', function (done) {
       spawn(CLI, ['coverage:node'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
