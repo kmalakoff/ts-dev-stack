@@ -3,12 +3,12 @@ var path = require('path');
 var link = require('../../lib/lib/link');
 
 var LIB = path.join(__dirname, '..', '..', 'lib');
-var DATA_DIR = path.resolve(__dirname, '..', 'data', 'react-ref-boundary');
+var DATA_DIR = path.resolve(__dirname, '..', 'data', 'react-dom-event');
 // var DATA_DIR = path.resolve(__dirname, '..', 'data', 'fetch-http-message');
 
 var major = +process.versions.node.split('.')[0];
 
-describe('lib', function () {
+describe.only('lib', function () {
   var restore;
   before(function (cb) {
     var pkg = require(path.join(path.resolve(__dirname, '..', '..'), 'package.json'));
@@ -41,10 +41,17 @@ describe('lib', function () {
     });
     if (major < 14) return;
 
-    // TODO: add tests
     it('link', function (done) {
       process.chdir(DATA_DIR);
       require(path.join(LIB, 'link'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+
+    it('unlink', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'unlink'))([], {}, function (err) {
         assert.ok(!err);
         done();
       });
@@ -58,10 +65,9 @@ describe('lib', function () {
       });
     });
 
-    // TODO: support jest
-    it.skip('coverage:node', function (done) {
+    it('coverage:node', function (done) {
       process.chdir(DATA_DIR);
-      require(path.join(LIB, 'quality', 'c8'))([], {}, function (err) {
+      require(path.join(LIB, 'test', 'c8'))([], {}, function (err) {
         assert.ok(!err);
         done();
       });
@@ -91,7 +97,7 @@ describe('lib', function () {
       });
     });
     // TODO: support jest
-    it.skip('test', function (done) {
+    it('test', function (done) {
       process.chdir(DATA_DIR);
       require(path.join(LIB, 'test'))([], {}, function (err) {
         assert.ok(!err);
@@ -99,7 +105,7 @@ describe('lib', function () {
       });
     });
 
-    it.skip('test:browser', function (done) {
+    it('test:browser', function (done) {
       process.chdir(DATA_DIR);
       require(path.join(LIB, 'test', 'karma'))([], {}, function (err) {
         assert.ok(!err);

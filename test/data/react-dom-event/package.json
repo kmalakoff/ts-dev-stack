@@ -1,0 +1,66 @@
+{
+  "name": "react-dom-event",
+  "version": "0.1.3",
+  "description": "React context for subscribing to all DOM user interaction events",
+  "keywords": [
+    "react-native-web",
+    "react",
+    "native",
+    "web",
+    "dom",
+    "outside",
+    "click",
+    "press",
+    "touch",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
+  "files": [
+    "dist"
+  ],
+  "tsds": {
+    "source": "src/index.tsx",
+    "globals": {
+      "react": "React"
+    }
+  },
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "types": "dist/types/index.d.ts",
+  "repository": "kmalakoff/react-dom-event",
+  "scripts": {
+    "build": "tsds build",
+    "deploy": "tsds deploy",
+    "format": "tsds format",
+    "lint": "tsds lint",
+    "test": "tsds test:node && tsds test:browser",
+    "test:engines": "nvu engines npm test",
+    "version": "tsds version"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.4",
+    "@types/react": "18.0.15",
+    "jsdom": "^15.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native-web": "0.18.4",
+    "ts-dev-stack": "^0.6.6"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "unpkg": "dist/umd/react-dom-event.js"
+}
