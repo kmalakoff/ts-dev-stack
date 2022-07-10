@@ -31,7 +31,6 @@ describe('lib', function () {
         });
       });
 
-    // TODO: support jest
     it.skip('test:node', function (done) {
       process.chdir(DATA_DIR);
       require(path.join(LIB, 'test', 'mocha'))([], {}, function (err) {
