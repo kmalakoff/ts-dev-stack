@@ -23,9 +23,8 @@ describe('cli', function () {
 
   describe('happy path', function () {
     major < 14 ||
-      it.only('build', function (done) {
+      it('build', function (done) {
         spawn(CLI, ['build'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
-          console.log('err.stderr', err, err.stderr)
           assert.ok(!err);
           done();
         });
