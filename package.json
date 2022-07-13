@@ -69,7 +69,7 @@
     "mkdirp": "^0.5.6",
     "mocha": "^10.0.0",
     "mocha-compat": "^3.5.5",
-    "node-version-call": "^0.2.1",
+    "node-version-call": "^0.2.2",
     "node-version-use": "^0.2.6",
     "np": "^7.6.2",
     "npm": "^8.13.2",
