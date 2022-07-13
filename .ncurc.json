@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["@swc/core", "assert", "pirates", "mkdirp", "rimraf", "rollup-plugin-node-externals", "lodash.camelcase", "regenerator-runtime", "react"]
+  "reject": ["@swc/core", "assert", "pirates", "mkdirp", "rimraf", "rollup-plugin-node-externals", "lodash.camelcase", "regenerator-runtime", "react", "jsdom", "react-native-web"]
 }
