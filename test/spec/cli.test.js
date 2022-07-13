@@ -93,7 +93,7 @@ describe('cli', function () {
     });
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('version', function (done) {
-      spawn(CLI, ['version'], { stdout: 'string', cwd: DATA_DIR }, function (err) {
+      spawn(CLI, ['version'], { encoding: 'utf8', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
