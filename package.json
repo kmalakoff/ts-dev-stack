@@ -47,7 +47,7 @@
     "assert": "^1.5.0",
     "c8": "^7.11.3",
     "call-once-fn": "^1.0.0",
-    "cross-spawn-cb": "^0.6.0",
+    "cross-spawn-cb": "^0.6.2",
     "depcheck": "^1.4.3",
     "env-path-key": "^0.3.0",
     "eslint": "^8.19.0",
