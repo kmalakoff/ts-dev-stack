@@ -1,30 +1,7 @@
 {
   "name": "ts-dev-stack",
-  "description": "Development stack for TypeScript libraries",
   "version": "0.6.12",
-  "license": "MIT",
-  "bin": {
-    "tsds": "./bin/ts-dev-stack.js"
-  },
-  "scripts": {
-    "deploy": "np --no-yarn",
-    "format": "prettier --write .",
-    "lint": "eslint .",
-    "predeploy": "npm run lint && npm run format && depcheck --config .config/.depcheckrc.json && sortpack",
-    "test": "mocha-compat test/spec/**/*.test.js --no-timeouts",
-    "test:engines": "nvu engines --desc npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:kmalakoff/ts-dev-stack.git"
-  },
-  "files": [
-    "lib",
-    ".eslintrc.json",
-    ".depcheckrc.json",
-    ".prettierrc.json",
-    "tsconfig.json"
-  ],
+  "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
     "dev",
@@ -37,6 +14,30 @@
     "test",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kmalakoff/ts-dev-stack.git"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "tsds": "./bin/ts-dev-stack.js"
+  },
+  "files": [
+    "lib",
+    ".eslintrc.json",
+    ".depcheckrc.json",
+    ".prettierrc.json",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "predeploy": "npm run lint && npm run format && depcheck --config .config/.depcheckrc.json && sort-package-json",
+    "deploy": "np --no-yarn",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "test": "mocha-compat test/spec/**/*.test.js --no-timeouts",
+    "test:engines": "nvu engines npm test"
+  },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@swc/core": "1.2.205",
@@ -57,7 +58,6 @@
     "fs-iterator": "^4.1.1",
     "getopts-compat": "^2.2.5",
     "gh-pages": "^4.0.0",
-    "install": "^0.13.0",
     "just-extend": "^6.0.1",
     "karma": "^6.4.0",
     "karma-chrome-launcher": "^3.1.1",
@@ -69,8 +69,8 @@
     "mkdirp": "^0.5.6",
     "mocha": "^10.0.0",
     "mocha-compat": "^3.5.5",
-    "node-version-call": "^0.2.4",
-    "node-version-use": "^0.3.0",
+    "node-version-call": "^0.2.7",
+    "node-version-use": "^0.3.1",
     "np": "^7.6.2",
     "os-shim": "^0.1.3",
     "path-string-prepend": "^0.2.0",
@@ -83,7 +83,7 @@
     "rollup-plugin-node-externals": "^3.1.2",
     "rollup-plugin-terser": "^7.0.2",
     "short-hash": "^1.0.0",
-    "sortpack": "^2.3.0",
+    "sort-package-json": "^1.57.0",
     "ts-constants": "^0.1.0",
     "ts-loader": "^9.3.1",
     "ts-node": "^10.9.1",
@@ -93,10 +93,6 @@
     "typescript": "^4.7.4",
     "webpack": "^5.73.0"
   },
-  "type": "commonjs",
-  "engines": {
-    "node": ">=0.8"
-  },
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "jsdom": "^15.2.1",
@@ -104,5 +100,8 @@
     "react-dom": "^18.2.0",
     "react-dom-event": "^0.1.3",
     "react-native-web": "^0.18.4"
+  },
+  "engines": {
+    "node": ">=0.8"
   }
 }
