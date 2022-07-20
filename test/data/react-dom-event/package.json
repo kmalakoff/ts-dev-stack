@@ -14,20 +14,10 @@
     "touch",
     "typescript"
   ],
+  "repository": "kmalakoff/react-dom-event",
   "license": "MIT",
   "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
-  "files": [
-    "dist"
-  ],
-  "tsds": {
-    "source": "src/index.tsx",
-    "globals": {
-      "react": "React"
-    }
-  },
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
@@ -36,15 +26,20 @@
     },
     "./*": "./*"
   },
+  "main": "dist/cjs/index.js",
+  "unpkg": "dist/umd/react-dom-event.js",
+  "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
-  "repository": "kmalakoff/react-dom-event",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsds build",
     "deploy": "tsds deploy",
     "format": "tsds format",
     "lint": "tsds lint",
     "test": "tsds test:node && tsds test:browser",
-    "test:engines": "nvu engines npm test",
+    "test:engines": "tsds test:browser && nvu engines tsds test:node",
     "version": "tsds version"
   },
   "devDependencies": {
@@ -54,7 +49,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native-web": "0.18.4",
-    "ts-dev-stack": "^0.6.11"
+    "ts-dev-stack": "^0.6.12"
   },
   "peerDependencies": {
     "react": "*"
@@ -62,5 +57,10 @@
   "engines": {
     "node": ">=12"
   },
-  "unpkg": "dist/umd/react-dom-event.js"
+  "tsds": {
+    "source": "src/index.tsx",
+    "globals": {
+      "react": "React"
+    }
+  }
 }
