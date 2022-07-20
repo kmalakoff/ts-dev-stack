@@ -52,6 +52,13 @@ describe('cli', function () {
       });
     });
 
+    it('docs', function (done) {
+      spawn(CLI, ['docs'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+
     it('coverage', function (done) {
       spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
