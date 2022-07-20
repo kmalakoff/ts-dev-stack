@@ -1,35 +1,7 @@
 {
   "name": "fetch-http-message",
-  "description": "Generate an http message string using the fetch API",
   "version": "0.1.5",
-  "author": {
-    "email": "kmalakoff@gmail.com",
-    "name": "Kevin Malakoff",
-    "url": "https://github.com/kmalakoff"
-  },
-  "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsds build",
-    "deploy": "tsds deploy",
-    "format": "tsds format",
-    "lint": "tsds lint",
-    "test": "tsds test:node && tsds test:browser",
-    "test:engines": "tsds test:engines",
-    "version": "tsds version"
-  },
-  "homepage": "https://github.com/kmalakoff/fetch-http-message#README.md",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kmalakoff/fetch-http-message.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kmalakoff/fetch-http-message/issues"
-  },
+  "description": "Generate an http message string using the fetch API",
   "keywords": [
     "apis",
     "batch",
@@ -49,13 +21,21 @@
     "parts",
     "typescript"
   ],
-  "devDependencies": {
-    "@types/node": "^18.0.6",
-    "ts-dev-stack": "^0.6.11"
+  "homepage": "https://github.com/kmalakoff/fetch-http-message#README.md",
+  "bugs": {
+    "url": "https://github.com/kmalakoff/fetch-http-message/issues"
   },
-  "engines": {
-    "node": ">=0.8"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kmalakoff/fetch-http-message.git"
   },
+  "license": "MIT",
+  "author": {
+    "name": "Kevin Malakoff",
+    "email": "kmalakoff@gmail.com",
+    "url": "https://github.com/kmalakoff"
+  },
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
@@ -64,9 +44,29 @@
     },
     "./*": "./*"
   },
-  "type": "module",
-  "types": "dist/esm/index.d.ts",
+  "main": "dist/cjs/index.js",
   "unpkg": "dist/umd/fetch-http-message.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsds build",
+    "deploy": "tsds deploy",
+    "format": "tsds format",
+    "lint": "tsds lint",
+    "test": "tsds test:node && tsds test:browser",
+    "test:engines": "tsds test:browser && nvu engines tsds test:node",
+    "version": "tsds version"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "ts-dev-stack": "^0.6.12"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
   "tsds": {
     "source": "src/index.ts"
   }
