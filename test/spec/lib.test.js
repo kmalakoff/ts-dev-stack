@@ -58,7 +58,7 @@ describe('lib', function () {
 
     it('docs', function (done) {
       process.chdir(DATA_DIR);
-      require(path.join(LIB, 'build', 'docs'))([], {}, function (err) {
+      require(path.join(LIB, 'docs'))([], {}, function (err) {
         assert.ok(!err);
         done();
       });
