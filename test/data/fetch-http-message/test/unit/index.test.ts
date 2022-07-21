@@ -40,7 +40,11 @@ describe('fetch-http-message', function () {
 
     it('multiple headers and body', function () {
       const headers = { header1: 'value 1', header2: 'value 2' };
-      const message = fetchMessage(url, { method: 'PATCH', headers, body: 'post-body' });
+      const message = fetchMessage(url, {
+        method: 'PATCH',
+        headers,
+        body: 'post-body',
+      });
       assert.equal(message, [`PATCH ${url} HTTP/1.1`, 'header1: value 1', 'header2: value 2', '', 'post-body'].join('\r\n'));
     });
   });
@@ -59,7 +63,11 @@ describe('fetch-http-message', function () {
         const headers = new Headers();
         headers.set('header1', 'value 1');
         headers.set('header2', 'value 2');
-        const message = fetchMessage(url, { method: 'PATCH', headers, body: 'post-body' });
+        const message = fetchMessage(url, {
+          method: 'PATCH',
+          headers,
+          body: 'post-body',
+        });
         assert.equal(message, [`PATCH ${url} HTTP/1.1`, 'header1: value 1', 'header2: value 2', '', 'post-body'].join('\r\n'));
       });
     });
@@ -90,7 +98,9 @@ describe('fetch-http-message', function () {
       it('Blob body', function () {
         const message = fetchMessage(url, {
           method: 'POST',
-          body: new Blob([JSON.stringify({ test: true })], { type: 'application/json' }),
+          body: new Blob([JSON.stringify({ test: true })], {
+            type: 'application/json',
+          }),
         });
         assert.equal(message, [`POST ${url} HTTP/1.1`, '', '{"test":true}'].join('\r\n'));
       });
@@ -134,7 +144,10 @@ describe('fetch-http-message', function () {
 
     it('headers override', function () {
       const headers1 = { x: 'value 1', y: 'value 2' } as HeadersObject;
-      const headers2 = { header1: 'value 1', header2: 'value 2' } as HeadersObject;
+      const headers2 = {
+        header1: 'value 1',
+        header2: 'value 2',
+      } as HeadersObject;
       const message = fetchMessage({ url, method: 'GET', headers: headers1 }, { method: 'PATCH', headers: headers2, body: 'post-body' });
       assert.equal(message, [`PATCH ${url} HTTP/1.1`, 'header1: value 1', 'header2: value 2', '', 'post-body'].join('\r\n'));
     });

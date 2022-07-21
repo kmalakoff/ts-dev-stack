@@ -27,7 +27,10 @@ describe('newline-iterator', function () {
     it('no breaks', function () {
       const string = 'somestringcombination';
       const iterator = newlineIterator(string);
-      assert.deepEqual(iterator.next(), { value: 'somestringcombination', done: false });
+      assert.deepEqual(iterator.next(), {
+        value: 'somestringcombination',
+        done: false,
+      });
       assert.deepEqual(iterator.next(), { value: undefined, done: true });
     });
   });

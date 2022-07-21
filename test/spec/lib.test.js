@@ -4,8 +4,11 @@ var spawn = require('cross-spawn-cb');
 var link = require('../../lib/lib/link');
 
 var LIB = path.join(__dirname, '..', '..', 'lib');
-var DATA_DIRS = [path.resolve(__dirname, '..', 'data', 'react-dom-event'), path.resolve(__dirname, '..', 'data', 'fetch-http-message'), path.resolve(__dirname, '..', 'data', 'newline-iterator')];
-DATA_DIRS.pop(); // remove newline-iterator until monorepo works
+var DATA_DIRS = [
+  path.resolve(__dirname, '..', 'data', 'react-dom-event'),
+  path.resolve(__dirname, '..', 'data', 'fetch-http-message'),
+  // path.resolve(__dirname, '..', 'data', 'newline-iterator')
+];
 
 var major = +process.versions.node.split('.')[0];
 
@@ -13,6 +16,7 @@ function addTests(DATA_DIR) {
   describe(path.basename(DATA_DIR), function () {
     var restore;
     before(function (cb) {
+      console.log('before', DATA_DIR);
       var pkg = require(path.join(path.resolve(__dirname, '..', '..'), 'package.json'));
       var installPath = path.resolve(DATA_DIR, 'node_modules', pkg.name);
       link(installPath, function (err, _restore) {
@@ -20,6 +24,7 @@ function addTests(DATA_DIR) {
       });
     });
     after(function (cb) {
+      console.log('after', DATA_DIR);
       restore(cb);
     });
 
