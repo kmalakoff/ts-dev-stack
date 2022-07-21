@@ -1,0 +1,4 @@
+{
+  "extends": "./node_modules/ts-dev-stack/.depcheckrc.json",
+  "ignores": ["newline-iterator", "@types/*", "@typescript-eslint/*", "eslint-*"]
+}
