@@ -1,5 +1,6 @@
 var assert = require('assert');
 var path = require('path');
+var spawn = require('cross-spawn-cb');
 var link = require('../../lib/lib/link');
 
 var LIB = path.join(__dirname, '..', '..', 'lib');
@@ -31,13 +32,13 @@ describe('lib', function () {
         });
       });
 
-    it.skip('test:node', function (done) {
-      process.chdir(DATA_DIR);
-      require(path.join(LIB, 'test', 'mocha'))([], {}, function (err) {
+    it('test:engines', function (done) {
+      spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
     });
+
     if (major < 14) return;
 
     it('link', function (done) {
@@ -95,10 +96,19 @@ describe('lib', function () {
         done();
       });
     });
+
     // TODO: support jest
     it('test', function (done) {
       process.chdir(DATA_DIR);
       require(path.join(LIB, 'test'))([], {}, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+
+    it('test:node', function (done) {
+      process.chdir(DATA_DIR);
+      require(path.join(LIB, 'test', 'mocha'))([], {}, function (err) {
         assert.ok(!err);
         done();
       });
