@@ -30,12 +30,13 @@ describe('cli', function () {
         });
       });
 
-    it('test:node', function (done) {
-      spawn(CLI, ['test:node'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+    it('test:engines', function (done) {
+      spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
     });
+
     if (major < 14) return;
 
     it('link', function (done) {
@@ -65,6 +66,7 @@ describe('cli', function () {
         done();
       });
     });
+
     // TODO: get deploy tests to work with 'no-publish'
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('deploy', function (done) {
@@ -87,6 +89,12 @@ describe('cli', function () {
     });
     it('test', function (done) {
       spawn(CLI, ['test'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+        assert.ok(!err);
+        done();
+      });
+    });
+    it('test:node', function (done) {
+      spawn(CLI, ['test:node'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
         assert.ok(!err);
         done();
       });
