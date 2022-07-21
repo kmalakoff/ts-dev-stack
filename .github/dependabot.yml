@@ -7,9 +7,13 @@ updates:
     ignore:
       - dependency-name: '@swc/core'
       - dependency-name: 'assert'
-      - dependency-name: '@swc/core'
+      - dependency-name: 'lodash.camelcase'
+      - dependency-name: 'mkdirp'
+      - dependency-name: 'pirates'
       - dependency-name: 'rimraf'
+      - dependency-name: 'rollup'
       - dependency-name: 'rollup-plugin-node-externals'
+      - dependency-name: 'ts-node'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
