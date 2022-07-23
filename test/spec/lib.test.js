@@ -1,40 +1,41 @@
 var assert = require('assert');
 var path = require('path');
 var spawn = require('cross-spawn-cb');
-var link = require('../../lib/lib/link');
+
+var data = require('../lib/data');
 
 var LIB = path.join(__dirname, '..', '..', 'lib');
-var DATA_DIRS = [path.resolve(__dirname, '..', 'data', 'react-dom-event'), path.resolve(__dirname, '..', 'data', 'fetch-http-message'), path.resolve(__dirname, '..', 'data', 'newline-iterator')];
-DATA_DIRS.pop(); // remove newline-iterator until monorepo works
+var GITS = [
+  // 'https://github.com/kmalakoff/fetch-http-message.git',
+  'https://github.com/kmalakoff/newline-iterator.git',
+  'https://github.com/kmalakoff/react-dom-event.git',
+];
 
 var major = +process.versions.node.split('.')[0];
 
-function addTests(DATA_DIR) {
-  describe(path.basename(DATA_DIR), function () {
-    var restore;
+function addTests(git) {
+  describe(path.basename(git, path.extname(git)), function () {
+    var packagePath = null;
     before(function (cb) {
-      var pkg = require(path.join(path.resolve(__dirname, '..', '..'), 'package.json'));
-      var installPath = path.resolve(DATA_DIR, 'node_modules', pkg.name);
-      link(installPath, function (err, _restore) {
-        cb(err, (restore = _restore));
+      data(git, {}, function (err, _packagePath) {
+        if (err) return cb(err);
+        packagePath = _packagePath;
+        process.chdir(packagePath); // TODO: get rid of this and figure out why it is needed
+        cb();
       });
-    });
-    after(function (cb) {
-      restore(cb);
     });
 
     describe('happy path', function () {
       major < 14 ||
         it('build', function (done) {
-          process.chdir(DATA_DIR);
-          require(path.join(LIB, 'build'))([], {}, function (err) {
+          require(path.join(LIB, 'build'))([], { cwd: packagePath }, function (err) {
             assert.ok(!err);
             done();
           });
         });
 
       it('test:engines', function (done) {
-        spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: DATA_DIR }, function (err) {
+        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
@@ -43,90 +44,83 @@ function addTests(DATA_DIR) {
       if (major < 14) return;
 
       it('link', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'link'))([], {}, function (err) {
+        require(path.join(LIB, 'link'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
       });
 
       it('unlink', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'unlink'))([], {}, function (err) {
+        require(path.join(LIB, 'unlink'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
       });
 
-      it('docs', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'docs'))([], {}, function (err) {
-          assert.ok(!err);
-          done();
+      major < 14 ||
+        it.skip('docs', function (done) {
+          require(path.join(LIB, 'docs'))([], { cwd: packagePath }, function (err) {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
 
-      it('coverage', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'test', 'c8'))([], {}, function (err) {
-          assert.ok(!err);
-          done();
+      major < 14 ||
+        it('coverage', function (done) {
+          require(path.join(LIB, 'test', 'c8'))([], { cwd: packagePath }, function (err) {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
 
       // TODO: get deploy tests to work with 'no-publish'
       // eslint-disable-next-line mocha/no-skipped-tests
       it.skip('deploy', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'deploy'))([], { 'no-publish': true }, function (err) {
+        require(path.join(LIB, 'deploy'))([], { 'no-publish': true, cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
       });
-      it('format', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'quality', 'format'))([], {}, function (err) {
-          assert.ok(!err);
-          done();
+      major < 14 ||
+        it.skip('format', function (done) {
+          require(path.join(LIB, 'quality', 'format'))([], { cwd: packagePath }, function (err) {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
-      it('lint', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'quality', 'lint'))([], {}, function (err) {
-          assert.ok(!err);
-          done();
+      major < 14 ||
+        it.skip('lint', function (done) {
+          require(path.join(LIB, 'quality', 'lint'))([], { cwd: packagePath }, function (err) {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
 
-      // TODO: support jest
       it('test', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'test'))([], {}, function (err) {
+        require(path.join(LIB, 'test'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
       });
 
       it('test:node', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'test', 'mocha'))([], {}, function (err) {
+        require(path.join(LIB, 'test', 'mocha'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
       });
 
-      it('test:browser', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'test', 'karma'))([], {}, function (err) {
-          assert.ok(!err);
-          done();
+      major < 14 ||
+        it('test:browser', function (done) {
+          require(path.join(LIB, 'test', 'karma'))([], { cwd: packagePath }, function (err) {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
 
       // eslint-disable-next-line mocha/no-skipped-tests
       it.skip('version', function (done) {
-        process.chdir(DATA_DIR);
-        require(path.join(LIB, 'deploy', 'version'))([], {}, function (err) {
+        require(path.join(LIB, 'deploy', 'version'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
         });
@@ -136,7 +130,7 @@ function addTests(DATA_DIR) {
 }
 
 describe('lib', function () {
-  for (var i = 0; i < DATA_DIRS.length; i++) {
-    addTests(DATA_DIRS[i]);
+  for (var i = 0; i < GITS.length; i++) {
+    addTests(GITS[i]);
   }
 });
