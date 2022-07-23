@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: '/'
+    directory: '/packages/ts-dev-stack'
     schedule:
       interval: daily
     ignore:
@@ -14,6 +14,7 @@ updates:
       - dependency-name: 'rollup'
       - dependency-name: 'rollup-plugin-node-externals'
       - dependency-name: 'ts-node'
+      - dependency-name: 'regenerator-runtime'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:

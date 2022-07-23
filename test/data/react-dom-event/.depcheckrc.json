@@ -1,4 +1,0 @@
-{
-  "extends": "./node_modules/ts-dev-stack/.depcheckrc.json",
-  "ignores": ["react-dom-event", "@types/*", "@typescript-eslint/*", "eslint-*"]
-}
