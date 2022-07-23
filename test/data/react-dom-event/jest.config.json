@@ -1,9 +1,0 @@
-{
-  "preset": "react-native",
-  "testEnvironment": "node",
-  "testMatch": ["**/?(*.)test.(j|t|cj|mj)s?(x)"],
-  "modulePathIgnorePatterns": ["<rootDir>/dist/"],
-  "transform": {},
-  "coverageReporters": ["text", "json"],
-  "collectCoverageFrom": ["dist/cjs/*"]
-}
