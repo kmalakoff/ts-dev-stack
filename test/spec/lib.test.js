@@ -27,7 +27,7 @@ function addTests(git) {
 
     describe('happy path', function () {
       major < 14 ||
-        it('build', function (done) {
+        it.only('build', function (done) {
           require(path.join(LIB, 'build'))([], { cwd: packagePath }, function (err) {
             assert.ok(!err);
             done();
