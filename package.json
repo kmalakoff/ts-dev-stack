@@ -87,7 +87,6 @@
     "ts-constants": "^0.1.0",
     "ts-loader": "^9.3.1",
     "ts-node": "10.8.2",
-    "tsx": "^3.8.0",
     "typedoc": "^0.23.9",
     "typedoc-plugin-rename-defaults": "^0.6.4",
     "typescript": "^4.7.4",

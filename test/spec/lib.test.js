@@ -14,7 +14,7 @@ var GITS = [
 var major = +process.versions.node.split('.')[0];
 
 function addTests(git) {
-  describe(path.basename(git, path.extname(git)), function () {
+  describe.only(path.basename(git, path.extname(git)), function () {
     var packagePath = null;
     before(function (cb) {
       data(git, {}, function (err, _packagePath) {
@@ -27,14 +27,14 @@ function addTests(git) {
 
     describe('happy path', function () {
       major < 14 ||
-        it.only('build', function (done) {
+        it('build', function (done) {
           require(path.join(LIB, 'build'))([], { cwd: packagePath }, function (err) {
             assert.ok(!err);
             done();
           });
         });
 
-      it('test:engines', function (done) {
+      it.only('test:engines', function (done) {
         spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
@@ -103,7 +103,7 @@ function addTests(git) {
         });
       });
 
-      it('test:node', function (done) {
+      it.only('test:node', function (done) {
         require(path.join(LIB, 'test', 'mocha'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
