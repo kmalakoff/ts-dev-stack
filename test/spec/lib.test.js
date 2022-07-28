@@ -34,7 +34,7 @@ function addTests(git) {
           });
         });
 
-      it.only('test:engines', function (done) {
+      it('test:engines', function (done) {
         spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, function (err) {
           assert.ok(!err);
           done();
