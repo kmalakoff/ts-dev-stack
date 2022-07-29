@@ -9,7 +9,8 @@ jobs:
     strategy:
       matrix:
         node: ['latest']
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        # os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [=windows-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
