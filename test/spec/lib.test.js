@@ -5,19 +5,16 @@ var spawn = require('cross-spawn-cb');
 var data = require('../lib/data');
 
 var LIB = path.join(__dirname, '..', '..', 'lib');
-var GITS = [
-  // 'https://github.com/kmalakoff/fetch-http-message.git',
-  'https://github.com/kmalakoff/newline-iterator.git',
-  'https://github.com/kmalakoff/react-dom-event.git',
-];
+var GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/newline-iterator.git', 'https://github.com/kmalakoff/react-dom-event.git'];
 
 var major = +process.versions.node.split('.')[0];
 
 function addTests(git) {
-  describe(path.basename(git, path.extname(git)), function () {
+  // eslint-disable-next-line mocha/no-exclusive-tests
+  describe.only(path.basename(git, path.extname(git)), function () {
     var packagePath = null;
     before(function (cb) {
-      data(git, {}, function (err, _packagePath) {
+      data(git, { clean: false }, function (err, _packagePath) {
         if (err) return cb(err);
         packagePath = _packagePath;
         process.chdir(packagePath); // TODO: get rid of this and figure out why it is needed
@@ -40,8 +37,6 @@ function addTests(git) {
           done();
         });
       });
-
-      if (major < 14) return;
 
       it('link', function (done) {
         require(path.join(LIB, 'link'))([], { cwd: packagePath }, function (err) {
