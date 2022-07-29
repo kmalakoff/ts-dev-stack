@@ -35,19 +35,19 @@ module.exports = function data(git, options, callback) {
     }
     // exists - reset git
     else {
-      // queue.defer(spawn.bind(null, 'git', ['clean', '-fd'], { stdio: 'inherit', cwd: packagePath }));
-      // queue.defer(spawn.bind(null, 'git', ['reset', '--hard', 'HEAD'], { stdio: 'inherit', cwd: packagePath }));
-      // queue.defer(spawn.bind(null, 'git', ['pull', '--rebase'], { stdio: 'inherit', cwd: packagePath }));
+      queue.defer(spawn.bind(null, 'git', ['clean', '-fd'], { stdio: 'inherit', cwd: packagePath }));
+      queue.defer(spawn.bind(null, 'git', ['reset', '--hard', 'HEAD'], { stdio: 'inherit', cwd: packagePath }));
+      queue.defer(spawn.bind(null, 'git', ['pull', '--rebase'], { stdio: 'inherit', cwd: packagePath }));
     }
-    // queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install'], { stdio: 'inherit', cwd: packagePath }));
+    queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install'], { stdio: 'inherit', cwd: packagePath }));
 
-    // // link package
-    // queue.defer(fs.rename.bind(null, tsdsPackagePath, tsdsPackagePath + '.tsds'));
-    // queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..'), tsdsPackagePath, 'dir'));
+    // link package
+    queue.defer(fs.rename.bind(null, tsdsPackagePath, tsdsPackagePath + '.tsds'));
+    queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..'), tsdsPackagePath, 'dir'));
 
-    // // link bin
-    // queue.defer(fs.rename.bind(null, tsdsBinPath, tsdsBinPath + '.tsds'));
-    // queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..', 'bin', 'ts-dev-stack.js'), tsdsBinPath, 'file'));
+    // link bin
+    queue.defer(fs.rename.bind(null, tsdsBinPath, tsdsBinPath + '.tsds'));
+    queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..', 'bin', 'ts-dev-stack.js'), tsdsBinPath, 'file'));
 
     queue.await(function (err) {
       console.log('------------------');
