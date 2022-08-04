@@ -1,14 +1,10 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:mocha/recommended", "prettier"],
+  "extends": "./config/.eslintrc.json",
   "env": {
     "mocha": true,
     "node": true
   },
   "rules": {
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
     "mocha/no-skipped-tests": "off",
     "mocha/no-setup-in-describe": "off"
   }
