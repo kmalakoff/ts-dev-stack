@@ -25,11 +25,8 @@ $ tsds lint
 # run tests on current version of node and browser
 $ tsds test
 
-# run tests on all versions of node in engines
-$ tsds test:engines
-
 # run tests on current version of node
-$ tsds test:engines
+$ tsds test:node
 
 # run tests on browser only
 $ tsds test:browser
