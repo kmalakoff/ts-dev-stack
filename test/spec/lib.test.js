@@ -4,12 +4,8 @@ var spawn = require('cross-spawn-cb');
 
 var data = require('../lib/data');
 
-var LIB = path.join(__dirname, '..', '..', 'lib');
-var GITS = [
-  // 'https://github.com/kmalakoff/fetch-http-message.git',
-  'https://github.com/kmalakoff/newline-iterator.git',
-  'https://github.com/kmalakoff/react-dom-event.git',
-];
+var LIB = path.resolve(__dirname, '..', '..', 'lib');
+var GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/newline-iterator.git', 'https://github.com/kmalakoff/react-dom-event.git'];
 
 var major = +process.versions.node.split('.')[0];
 
