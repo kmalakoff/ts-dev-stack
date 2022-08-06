@@ -17,7 +17,6 @@
     "node-version-use",
     "assert",
     "lodash.camelcase",
-    "regenerator-runtime",
-    "tsx"
+    "regenerator-runtime"
   ]
 }

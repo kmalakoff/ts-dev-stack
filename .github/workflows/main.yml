@@ -10,8 +10,7 @@ jobs:
     strategy:
       matrix:
         node: ['latest']
-        # os: [ubuntu-latest, windows-latest, macos-latest]
-        os: [=windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -24,5 +23,5 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
-      - run: npm run test
+      - run: nvu lts npm test
       - run: npm run test:engines
