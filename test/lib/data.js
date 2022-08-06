@@ -40,7 +40,6 @@ module.exports = function data(git, options, callback) {
       queue.defer(spawn.bind(null, 'git', ['pull', '--rebase'], { stdio: 'inherit', cwd: packagePath }));
     }
     queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install'], { stdio: 'inherit', cwd: packagePath }));
-    queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install', 'ts-swc-loaders'], { stdio: 'inherit', cwd: packagePath }));
 
     // link package
     queue.defer(fs.rename.bind(null, tsdsPackagePath, tsdsPackagePath + '.tsds'));
