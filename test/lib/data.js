@@ -43,6 +43,7 @@ module.exports = function data(git, options, callback) {
 
     // link package
     queue.defer(fs.rename.bind(null, tsdsPackagePath, tsdsPackagePath + '.tsds'));
+    queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..'), tsdsPackagePath, 'dir'));
 
     // link bin
     queue.defer(fs.rename.bind(null, tsdsBinPath, tsdsBinPath + '.tsds'));
