@@ -20,7 +20,8 @@
       "recommended": true,
       "complexity": {
         "noForEach": "off",
-        "useArrowFunction": "off"
+        "useArrowFunction": "off",
+        "useOptionalChain": "off"
       },
       "correctness": {
         "noUnusedVariables": "warn",
