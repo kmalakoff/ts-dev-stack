@@ -1,22 +1,3 @@
 {
-  "extends": "./config/.depcheckrc.json",
-  "ignores": [
-    "@rollup/*",
-    "@types/*",
-    "c8",
-    "eslint",
-    "gh-pages",
-    "karma*",
-    "mocha",
-    "rollup*",
-    "ts-*",
-    "typedoc*",
-    "typescript",
-    "webpack",
-    "react",
-    "node-version-use",
-    "assert",
-    "lodash.camelcase",
-    "regenerator-runtime"
-  ]
+  "ignores": ["@rollup/*", "@types/*", "c8", "eslint", "gh-pages", "karma*", "mocha", "rollup*", "ts-*", "typedoc*", "typescript", "webpack", "react", "node-version-use", "assert", "lodash.camelcase", "regenerator-runtime", "yargs"]
 }
