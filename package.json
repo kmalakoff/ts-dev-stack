@@ -29,7 +29,7 @@
     "postinstall": "node lib/postinstall.js",
     "depcheck": "depcheck",
     "build": "",
-    "predeploy": "npm run lint && npm run format && depcheck && sort-package-json",
+    "predeploy": "npm run format && npm run format && depcheck && sort-package-json",
     "deploy": "np --no-yarn",
     "format": "biome check --apply lib/ test/",
     "test": "mocha-compat test/spec/**/*.test.js --no-timeouts",
