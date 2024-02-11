@@ -1,15 +1,15 @@
-var Queue = require('queue-cb');
-var spawn = require('../lib/spawn');
-var predeploy = require('./predeploy');
-var postdeploy = require('./postdeploy');
+const Queue = require('queue-cb');
+const spawn = require('../lib/spawn');
+const predeploy = require('./predeploy');
+const postdeploy = require('./postdeploy');
 
 module.exports = function deploy(args, options, cb) {
-  var npArgs = [];
+  const npArgs = [];
   if (options['no-publish']) npArgs.push('--no-publish');
   if (options.preview) npArgs.push('--preview');
   if (!options.yarn) npArgs.push('--no-yarn');
 
-  var queue = new Queue(1);
+  const queue = new Queue(1);
   queue.defer(predeploy.bind(null, args, options));
   queue.defer(spawn.bind(null, 'np', npArgs, {}));
   queue.defer(postdeploy.bind(null, args, options));

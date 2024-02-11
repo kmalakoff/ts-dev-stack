@@ -2,22 +2,22 @@
 // biome-ignore lint/performance/noDelete: <explanation>
 delete process.env.NODE_OPTIONS;
 
-var assert = require('assert');
-var path = require('path');
-var spawn = require('cross-spawn-cb');
+const assert = require('assert');
+const path = require('path');
+const spawn = require('cross-spawn-cb');
 
-var data = require('../lib/data');
+const data = require('../lib/data');
 
-var devStack = require('ts-dev-stack');
-var GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
+const devStack = require('ts-dev-stack');
+const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
 
-var major = +process.versions.node.split('.')[0];
+const major = +process.versions.node.split('.')[0];
 
 function addTests(git) {
-  describe(path.basename(git, path.extname(git)), function () {
-    var packagePath = null;
-    before(function (cb) {
-      data(git, {}, function (err, _packagePath) {
+  describe(path.basename(git, path.extname(git)), () => {
+    let packagePath = null;
+    before((cb) => {
+      data(git, {}, (err, _packagePath) => {
         if (err) return cb(err);
         packagePath = _packagePath;
         process.chdir(packagePath); // TODO: get rid of this and figure out why it is needed
@@ -25,17 +25,17 @@ function addTests(git) {
       });
     });
 
-    describe('happy path', function () {
+    describe('happy path', () => {
       major < 14 ||
-        it('build', function (done) {
-          devStack.build([], { cwd: packagePath }, function (err) {
+        it('build', (done) => {
+          devStack.build([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
-      it('test:engines', function (done) {
-        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, function (err) {
+      it('test:engines', (done) => {
+        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
@@ -43,75 +43,75 @@ function addTests(git) {
 
       if (major < 14) return;
 
-      it('link', function (done) {
-        devStack.link([], { cwd: packagePath }, function (err) {
+      it('link', (done) => {
+        devStack.link([], { cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
-      it('unlink', function (done) {
-        devStack.unlink([], { cwd: packagePath }, function (err) {
+      it('unlink', (done) => {
+        devStack.unlink([], { cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
       major < 14 ||
-        it.skip('docs', function (done) {
-          devStack.docs([], { cwd: packagePath }, function (err) {
+        it.skip('docs', (done) => {
+          devStack.docs([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
       major < 14 ||
-        it('coverage', function (done) {
-          devStack.coverage([], { cwd: packagePath }, function (err) {
+        it('coverage', (done) => {
+          devStack.coverage([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
       // TODO: get deploy tests to work with 'no-publish'
-      it.skip('deploy', function (done) {
-        devStack.deploy([], { 'no-publish': true, cwd: packagePath }, function (err) {
+      it.skip('deploy', (done) => {
+        devStack.deploy([], { 'no-publish': true, cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
       major < 14 ||
-        it.skip('format', function (done) {
-          devStack.format([], { cwd: packagePath }, function (err) {
+        it.skip('format', (done) => {
+          devStack.format([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
-      it('test', function (done) {
-        devStack.test([], { cwd: packagePath }, function (err) {
+      it('test', (done) => {
+        devStack.test([], { cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
-      it('test:node', function (done) {
-        devStack['test:node']([], { cwd: packagePath }, function (err) {
+      it('test:node', (done) => {
+        devStack['test:node']([], { cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
       major < 14 ||
-        it('test:browser', function (done) {
-          devStack['test:browser']([], { cwd: packagePath }, function (err) {
+        it('test:browser', (done) => {
+          devStack['test:browser']([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
-      it.skip('version', function (done) {
-        devStack.deploy(['version'], { cwd: packagePath }, function (err) {
+      it.skip('version', (done) => {
+        devStack.deploy(['version'], { cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
@@ -120,8 +120,8 @@ function addTests(git) {
   });
 }
 
-describe('lib', function () {
-  for (var i = 0; i < GITS.length; i++) {
+describe('lib', () => {
+  for (let i = 0; i < GITS.length; i++) {
     addTests(GITS[i]);
   }
 });
