@@ -1,8 +1,8 @@
-var getopts = require('getopts-compat');
-var exit = require('exit');
-var assign = require('just-extend');
+const getopts = require('getopts-compat');
+const exit = require('exit');
+const assign = require('just-extend');
 
-var commands = {
+const commands = {
   build: require('./build'),
   coverage: require('./test/c8'),
   deploy: require('./deploy'),
@@ -18,20 +18,20 @@ var commands = {
 
 module.exports = function cli(argv, name) {
   if (argv.length === 0) {
-    console.log('Command missing' + name + ' ' + argv.join(','));
+    console.log(`Command missing${name} ${argv.join(',')}`);
     return exit(-1);
   }
 
-  var command = commands[argv[0]];
+  const command = commands[argv[0]];
   if (!command) {
-    console.log('Unrecognized command: ' + argv.join(' '));
+    console.log(`Unrecognized command: ${argv.join(' ')}`);
     return exit(-1);
   }
 
-  var options = getopts(argv.slice(1), assign({ stopEarly: true }, command.options || {}));
-  var args = argv.slice(0, 1).concat(options._);
+  const options = getopts(argv.slice(1), assign({ stopEarly: true }, command.options || {}));
+  const args = argv.slice(0, 1).concat(options._);
 
-  command(args.slice(1), options, function (err) {
+  command(args.slice(1), options, (err) => {
     if (err) {
       console.log(err.message);
       return exit(err.code || -1);
