@@ -2,117 +2,117 @@
 // biome-ignore lint/performance/noDelete: <explanation>
 delete process.env.NODE_OPTIONS;
 
-var assert = require('assert');
-var path = require('path');
-var spawn = require('cross-spawn-cb');
+const assert = require('assert');
+const path = require('path');
+const spawn = require('cross-spawn-cb');
 
-var data = require('../lib/data');
+const data = require('../lib/data');
 
-var CLI = path.resolve(__dirname, '..', '..', 'bin', 'ts-dev-stack.js');
-var GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
+const CLI = path.resolve(__dirname, '..', '..', 'bin', 'ts-dev-stack.js');
+const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 
-var major = +process.versions.node.split('.')[0];
+const major = +process.versions.node.split('.')[0];
 
 function addTests(git) {
-  describe(path.basename(git, path.extname(git)), function () {
-    var packagePath = null;
-    before(function (cb) {
-      data(git, {}, function (err, _packagePath) {
+  describe(path.basename(git, path.extname(git)), () => {
+    let packagePath = null;
+    before((cb) => {
+      data(git, {}, (err, _packagePath) => {
         if (err) return cb(err);
         packagePath = _packagePath;
         cb();
       });
     });
 
-    describe('happy path', function () {
+    describe('happy path', () => {
       major < 14 ||
-        it('build', function (done) {
-          spawn(CLI, ['build'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+        it('build', (done) => {
+          spawn(CLI, ['build'], { stdout: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
-      it('test:engines', function (done) {
-        spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it('test:engines', (done) => {
+        spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
-      it('link', function (done) {
-        spawn(CLI, ['link'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it('link', (done) => {
+        spawn(CLI, ['link'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
-      it('unlink', function (done) {
-        spawn(CLI, ['unlink'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it('unlink', (done) => {
+        spawn(CLI, ['unlink'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
 
       major < 14 ||
-        it('docs', function (done) {
-          spawn(CLI, ['docs'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+        it('docs', (done) => {
+          spawn(CLI, ['docs'], { stdout: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
       major < 14 ||
-        it('coverage', function (done) {
-          spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+        it('coverage', (done) => {
+          spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
 
       // TODO: get deploy tests to work with 'no-publish'
-      it.skip('deploy', function (done) {
-        spawn(CLI, ['deploy', '--no-publish'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it.skip('deploy', (done) => {
+        spawn(CLI, ['deploy', '--no-publish'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
       major < 14 ||
-        it.skip('format', function (done) {
-          spawn(CLI, ['format'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+        it.skip('format', (done) => {
+          spawn(CLI, ['format'], { stdout: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
-      it('test', function (done) {
-        spawn(CLI, ['test'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it('test', (done) => {
+        spawn(CLI, ['test'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
-      it('test:node', function (done) {
-        spawn(CLI, ['test:node'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it('test:node', (done) => {
+        spawn(CLI, ['test:node'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
-      it('test:browser', function (done) {
-        spawn(CLI, ['test:browser'], { stdout: 'inherit', cwd: packagePath }, function (err) {
+      it('test:browser', (done) => {
+        spawn(CLI, ['test:browser'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
-      it.skip('version', function (done) {
-        spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, function (err) {
+      it.skip('version', (done) => {
+        spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
       });
     });
 
-    describe('unhappy path', function () {
-      it('missing command', function (done) {
-        spawn(CLI, [], { stdout: 'inherit' }, function (err) {
+    describe('unhappy path', () => {
+      it('missing command', (done) => {
+        spawn(CLI, [], { stdout: 'inherit' }, (err) => {
           assert.ok(!!err);
           done();
         });
@@ -121,8 +121,8 @@ function addTests(git) {
   });
 }
 
-describe('cli', function () {
-  for (var i = 0; i < GITS.length; i++) {
+describe('cli', () => {
+  for (let i = 0; i < GITS.length; i++) {
     addTests(GITS[i]);
   }
 });
