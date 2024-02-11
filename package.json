@@ -1,8 +1,17 @@
 {
   "name": "ts-dev-stack",
-  "version": "0.8.10",
+  "version": "0.9.0",
   "description": "Development stack for TypeScript libraries",
-  "keywords": ["c8", "dev", "development", "mocha", "rollup", "stack", "test", "typescript"],
+  "keywords": [
+    "c8",
+    "dev",
+    "development",
+    "mocha",
+    "rollup",
+    "stack",
+    "test",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:kmalakoff/ts-dev-stack.git"
@@ -12,7 +21,10 @@
   "bin": {
     "tsds": "./bin/ts-dev-stack.js"
   },
-  "files": ["lib", "config"],
+  "files": [
+    "lib",
+    "config"
+  ],
   "scripts": {
     "postinstall": "node lib/postinstall.js",
     "depcheck": "depcheck",
