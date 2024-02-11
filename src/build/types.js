@@ -23,16 +23,21 @@ module.exports = function types(_args, options, cb) {
   }
 
   rimraf(dest, function () {
+    var files = [];
     var iterator = new Iterator(srcFolder);
     iterator.forEach(
       function (entry, callback) {
         if (!entry.stats.isFile()) return callback();
         if (!matcher(entry.fullPath)) return callback();
-        var args = [entry.fullPath, '--declaration', '--emitDeclarationOnly', '--outDir', dest].concat(tsArgs);
-        spawn('tsc', args, { cwd: cwd }, callback);
+        files.push(entry.fullPath);
+        callback();
       },
       { callbacks: true, concurrency: 1024 },
-      cb
+      function (err) {
+        if (err) return cb(err);
+        var args = files.concat(['--declaration', '--emitDeclarationOnly', '--outDir', dest]).concat(tsArgs);
+        spawn('tsc', args, { cwd: cwd }, cb);
+      }
     );
   });
 };

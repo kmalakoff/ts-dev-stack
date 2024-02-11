@@ -1,3 +1,7 @@
+// remove NODE_OPTIONS from ts-dev-stack
+// biome-ignore lint/performance/noDelete: <explanation>
+delete process.env.NODE_OPTIONS;
+
 var assert = require('assert');
 var path = require('path');
 var spawn = require('cross-spawn-cb');
