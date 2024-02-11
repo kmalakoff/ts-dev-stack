@@ -1,13 +1,13 @@
-var Queue = require('queue-cb');
-var spawn = require('../lib/spawn');
+const Queue = require('queue-cb');
+const spawn = require('../lib/spawn');
 
-var build = require('../build');
-var format = require('../quality/format');
+const build = require('../build');
+const format = require('../quality/format');
 
 module.exports = function predeploy(args, options, cb) {
-  var cwd = options.cwd || process.cwd();
+  const cwd = options.cwd || process.cwd();
 
-  var queue = new Queue(1);
+  const queue = new Queue(1);
   queue.defer(format.bind(null, args, options));
   queue.defer(build.bind(null, args, options));
   queue.defer(spawn.bind(null, 'git', ['add', 'build'], { cwd: cwd }));
