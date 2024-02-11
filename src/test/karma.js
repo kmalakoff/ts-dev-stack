@@ -1,17 +1,17 @@
-var path = require('path');
-var Queue = require('queue-cb');
-var link = require('../link');
-var spawn = require('../lib/spawn');
+const path = require('path');
+const Queue = require('queue-cb');
+const link = require('../link');
+const spawn = require('../lib/spawn');
 
 module.exports = function karma(args, options, cb) {
-  link(args, options, function (_err, restore) {
-    var queue = new Queue(1);
-    queue.defer(function (cb) {
-      var tests = args.length ? args[0] : 'test/**/*.test.*';
+  link(args, options, (_err, restore) => {
+    const queue = new Queue(1);
+    queue.defer((cb) => {
+      const tests = args.length ? args[0] : 'test/**/*.test.*';
       spawn('karma', ['start', path.join(__dirname, '..', '..', '..', 'assets', 'karma.conf.cjs'), tests], {}, cb);
     });
-    queue.await(function (err) {
-      restore(function (err2) {
+    queue.await((err) => {
+      restore((err2) => {
         cb(err || err2);
       });
     });
