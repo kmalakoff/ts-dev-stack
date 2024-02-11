@@ -5,7 +5,7 @@ var spawn = require('cross-spawn-cb');
 var data = require('../lib/data');
 
 var LIB = path.resolve(__dirname, '..', '..', 'lib');
-var GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/newline-iterator.git', 'https://github.com/kmalakoff/react-dom-event.git'];
+var GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/newline-iterator.git', 'https://github.com/kmalakoff/parser-multipart.git'];
 
 var major = +process.versions.node.split('.')[0];
 
@@ -70,7 +70,6 @@ function addTests(git) {
         });
 
       // TODO: get deploy tests to work with 'no-publish'
-      // eslint-disable-next-line mocha/no-skipped-tests
       it.skip('deploy', function (done) {
         require(path.join(LIB, 'deploy'))([], { 'no-publish': true, cwd: packagePath }, function (err) {
           assert.ok(!err);
@@ -80,13 +79,6 @@ function addTests(git) {
       major < 14 ||
         it.skip('format', function (done) {
           require(path.join(LIB, 'quality', 'format'))([], { cwd: packagePath }, function (err) {
-            assert.ok(!err);
-            done();
-          });
-        });
-      major < 14 ||
-        it.skip('lint', function (done) {
-          require(path.join(LIB, 'quality', 'lint'))([], { cwd: packagePath }, function (err) {
             assert.ok(!err);
             done();
           });
@@ -114,7 +106,6 @@ function addTests(git) {
           });
         });
 
-      // eslint-disable-next-line mocha/no-skipped-tests
       it.skip('version', function (done) {
         require(path.join(LIB, 'deploy', 'version'))([], { cwd: packagePath }, function (err) {
           assert.ok(!err);
