@@ -19,9 +19,6 @@ $ tsds deploy
 # format library using prettier
 $ tsds format
 
-# lint library using eslint
-$ tsds lint
-
 # run tests on current version of node and browser
 $ tsds test
 

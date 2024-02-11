@@ -67,7 +67,6 @@ function addTests(git) {
         });
 
       // TODO: get deploy tests to work with 'no-publish'
-      // eslint-disable-next-line mocha/no-skipped-tests
       it.skip('deploy', function (done) {
         spawn(CLI, ['deploy', '--no-publish'], { stdout: 'inherit', cwd: packagePath }, function (err) {
           assert.ok(!err);
@@ -77,13 +76,6 @@ function addTests(git) {
       major < 14 ||
         it.skip('format', function (done) {
           spawn(CLI, ['format'], { stdout: 'inherit', cwd: packagePath }, function (err) {
-            assert.ok(!err);
-            done();
-          });
-        });
-      major < 14 ||
-        it.skip('lint', function (done) {
-          spawn(CLI, ['lint'], { stdout: 'inherit', cwd: packagePath }, function (err) {
             assert.ok(!err);
             done();
           });
@@ -106,7 +98,6 @@ function addTests(git) {
           done();
         });
       });
-      // eslint-disable-next-line mocha/no-skipped-tests
       it.skip('version', function (done) {
         spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, function (err) {
           assert.ok(!err);
