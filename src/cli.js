@@ -18,14 +18,12 @@ var commands = {
 
 module.exports = function cli(argv, name) {
   if (argv.length === 0) {
-    // biome-ignore lint/style/useTemplate: <explanation>
     console.log('Command missing' + name + ' ' + argv.join(','));
     return exit(-1);
   }
 
   var command = commands[argv[0]];
   if (!command) {
-    // biome-ignore lint/style/useTemplate: <explanation>
     console.log('Unrecognized command: ' + argv.join(' '));
     return exit(-1);
   }

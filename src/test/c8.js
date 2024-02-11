@@ -2,8 +2,8 @@ var path = require('path');
 var rimraf = require('rimraf');
 var Queue = require('queue-cb');
 
-var link = require('../../link');
-var spawn = require('../../lib/spawn');
+var link = require('../link');
+var spawn = require('../lib/spawn');
 
 module.exports = function c8(_args, _options, cb) {
   link(_args, _options, function (err, restore) {
@@ -16,7 +16,7 @@ module.exports = function c8(_args, _options, cb) {
       });
     });
     queue.defer(function (cb) {
-      var args = ['--config', path.join(__dirname, 'c8rc.json')];
+      var args = ['--config', path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json')];
       args.push('mocha');
       args = args.concat(_args.length ? _args.slice(-1) : ['test/unit/*.test.*']);
       spawn('c8', args, { env: { NODE_OPTIONS: '--loader ts-swc-loaders' } }, cb);

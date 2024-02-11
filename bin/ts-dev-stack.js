@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('../lib/cli')(process.argv.slice(2), 'tsds');
+require('../dist/cjs/cli')(process.argv.slice(2), 'tsds');

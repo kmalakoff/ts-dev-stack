@@ -1,4 +1,4 @@
-var extensions = require('../../lib/extensions');
+var extensions = require('../dist/cjs/lib/extensions');
 
 var preprocessors = extensions.reduce(function (memo, ext) {
   memo['test/**/*' + ext] = ['webpack', 'sourcemap'];
