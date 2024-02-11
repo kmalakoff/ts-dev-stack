@@ -6,7 +6,7 @@ function removeLink(installPath, cb) {
     fs.unlink(installPath, cb);
 }
 module.exports = function unlink(installPath, cb) {
-    var movedPath = path.join(path.dirname(installPath), path.basename(installPath) + ".tsds");
+    var movedPath = path.join(path.dirname(installPath), "".concat(path.basename(installPath), ".tsds"));
     var queue = new Queue(1);
     queue.defer(removeLink.bind(null, installPath));
     queue.defer(fs.rename.bind(null, movedPath, installPath));

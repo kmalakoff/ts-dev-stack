@@ -1,21 +1,21 @@
-var path = require('path');
-var fs = require('fs');
-var Queue = require('queue-cb');
-var mkdirp = require('mkdirp');
-var unlink = require('./unlink');
+const path = require('path');
+const fs = require('fs');
+const Queue = require('queue-cb');
+const mkdirp = require('mkdirp');
+const unlink = require('./unlink');
 
 function saveLink(installPath, cb) {
-  var movedPath = path.join(path.dirname(installPath), path.basename(installPath) + '.tsds');
-  var queue = new Queue(1);
+  const movedPath = path.join(path.dirname(installPath), `${path.basename(installPath)}.tsds`);
+  const queue = new Queue(1);
   queue.defer(fs.rename.bind(null, installPath, movedPath));
   queue.defer(createLink.bind(null, installPath));
   queue.await(cb);
 }
 
 function createLink(installPath, cb) {
-  var queue = new Queue(1);
-  queue.defer(function (cb) {
-    mkdirp(path.dirname(installPath), function () {
+  const queue = new Queue(1);
+  queue.defer((cb) => {
+    mkdirp(path.dirname(installPath), () => {
       cb();
     });
   });
@@ -29,25 +29,25 @@ function removeLink(installPath, cb) {
 
 module.exports = function link(installPath, cb) {
   try {
-    fs.lstat(installPath, function (_, lstat) {
+    fs.lstat(installPath, (_, lstat) => {
       // new
       if (!lstat) {
-        createLink(installPath, function (err) {
+        createLink(installPath, (err) => {
           err ? cb(err) : cb(null, removeLink.bind(null, installPath));
         });
       }
 
       // exists so move it
       else if (lstat.isDirectory()) {
-        saveLink(installPath, function (err) {
+        saveLink(installPath, (err) => {
           err ? cb(err) : cb(null, unlink.bind(null, installPath));
         });
       }
 
       // replace
       else {
-        removeLink(installPath, function () {
-          createLink(installPath, function (err) {
+        removeLink(installPath, () => {
+          createLink(installPath, (err) => {
             err ? cb(err) : cb(null, removeLink.bind(null, installPath));
           });
         });

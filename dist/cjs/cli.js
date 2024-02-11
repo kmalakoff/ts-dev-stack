@@ -17,12 +17,12 @@ var commands = {
 };
 module.exports = function cli(argv, name) {
     if (argv.length === 0) {
-        console.log("Command missing" + name + " " + argv.join(","));
+        console.log("Command missing".concat(name, " ").concat(argv.join(",")));
         return exit(-1);
     }
     var command = commands[argv[0]];
     if (!command) {
-        console.log("Unrecognized command: " + argv.join(" "));
+        console.log("Unrecognized command: ".concat(argv.join(" ")));
         return exit(-1);
     }
     var options = getopts(argv.slice(1), assign({

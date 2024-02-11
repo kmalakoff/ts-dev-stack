@@ -43,7 +43,7 @@ module.exports = function compileFile(entry, options, callback) {
             mkdirp(path.dirname(path.join(options.dest, relname + ext)), function() {
                 var outQueue = new Queue();
                 outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, relname + ext), output.code, "utf8"));
-                !options.sourceMaps || outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, relname + ext + ".map"), output.map, "utf8"));
+                !options.sourceMaps || outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, "".concat(relname + ext, ".map")), output.map, "utf8"));
                 outQueue.await(callback);
             });
         } catch (err) {

@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function uuid() {
-    return new Date().getTime() + "-" + Math.floor(Math.random() * 100000);
+    return "".concat(new Date().getTime(), "-").concat(Math.floor(Math.random() * 100000));
 };
 
 if ((typeof exports.default === 'function' || (typeof exports.default === 'object' && exports.default !== null)) && typeof exports.default.__esModule === 'undefined') {
