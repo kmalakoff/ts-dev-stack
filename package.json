@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -25,14 +25,15 @@
   },
   "files": [
     "dist",
-    "assets"
+    "assets",
+    "scripts"
   ],
   "scripts": {
     "build": "tsds build",
     "depcheck": "depcheck",
     "deploy": "tsds deploy",
     "format": "biome check --apply-unsafe src/ test/",
-    "postinstall": "node bin/postinstall.js",
+    "postinstall": "node scripts/postinstall.js",
     "test": "tsds test:node --timeout=40000",
     "test:engines": "npm test",
     "version": "tsds version"
