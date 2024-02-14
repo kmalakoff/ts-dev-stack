@@ -1,10 +1,10 @@
-var path = require('path');
-var getTS = require('get-tsconfig-compat');
+const path = require('path');
+const getTS = require('get-tsconfig-compat');
 
-var transformSync = require('ts-swc-loaders/lib/transformSync.js');
+const transformSync = require('ts-swc-loaders/lib/transformSync.js');
 // var createMatcher = require('ts-swc-loaders/lib/createMatcher.js');
 
-var config = getTS.getTsconfig(path.resolve(process.cwd(), 'tsconfig.json'));
+const config = getTS.getTsconfig(path.resolve(process.cwd(), 'tsconfig.json'));
 config.config.compilerOptions.target = 'ES5';
 
 // var matcher = createMatcher(config);

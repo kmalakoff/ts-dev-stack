@@ -8,18 +8,6 @@ module.exports = function predeploy(args, options, cb) {
     var queue = new Queue(1);
     queue.defer(format.bind(null, args, options));
     queue.defer(build.bind(null, args, options));
-    queue.defer(spawn.bind(null, "git", [
-        "add",
-        "build"
-    ], {
-        cwd: cwd
-    }));
-    queue.defer(spawn.bind(null, "git", [
-        "add",
-        "build"
-    ], {
-        cwd: cwd
-    }));
     queue.defer(spawn.bind(null, "sort-package-json", [], {
         cwd: cwd
     }));

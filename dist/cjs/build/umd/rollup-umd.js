@@ -19,19 +19,19 @@ var deps = assign.apply(null, DEPS.map(function(x) {
 }));
 var globals = pkg.tsds ? pkg.tsds.globals || {} : {};
 Object.keys(deps).forEach(function(x) {
-    if (globals[x] === undefined) console.log("umd dependency " + x + 'is missing. Add a "tsds": { "globals": { "${x}": "SomeName" } } to your package.json');
+    if (globals[x] === undefined) console.log("umd dependency ".concat(x, 'is missing. Add a "tsds": { "globals": { "${x}": "SomeName" } } to your package.json'));
 });
 module.exports = {
     output: [
         {
-            file: path.resolve(process.cwd(), "dist", "umd", pkg.name + ".js"),
+            file: path.resolve(process.cwd(), "dist", "umd", "".concat(pkg.name, ".js")),
             format: "umd",
             sourcemap: true,
             name: camelcase(pkg.name),
             globals: globals
         },
         {
-            file: path.resolve(process.cwd(), "dist", "umd", pkg.name + ".min.js"),
+            file: path.resolve(process.cwd(), "dist", "umd", "".concat(pkg.name, ".min.js")),
             format: "umd",
             name: camelcase(pkg.name),
             sourcemap: true,

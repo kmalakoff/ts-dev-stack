@@ -16,7 +16,7 @@ module.exports = function types(_args, options, cb) {
     var tsArgs = [];
     for(var key in config.config.compilerOptions){
         var value = config.config.compilerOptions[key];
-        tsArgs.push("--" + key);
+        tsArgs.push("--".concat(key));
         tsArgs.push(Array.isArray(value) ? value.join(",") : value);
     }
     rimraf(dest, function() {
