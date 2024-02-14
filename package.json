@@ -21,7 +21,7 @@
   "main": "dist/cjs/index.js",
   "types": "dist/types/index.d.ts",
   "bin": {
-    "tsds": "bin/ts-dev-stack.js"
+    "tsds": "bin/cli.js"
   },
   "files": [
     "dist",
@@ -32,9 +32,9 @@
     "depcheck": "depcheck",
     "deploy": "tsds deploy",
     "format": "biome check --apply-unsafe src/ test/",
-    "postinstall": "node assets/postinstall.js",
+    "postinstall": "node bin/postinstall.js",
     "test": "tsds test:node --timeout=40000",
-    "test:engines": "nvu engines tsds test:node --timeout=40000",
+    "test:engines": "npm test",
     "version": "tsds version"
   },
   "dependencies": {
@@ -84,7 +84,8 @@
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.17",
-    "ts-dev-stack": "^0.9.6"
+    "node-version-use": "^0.4.7",
+    "ts-dev-stack": "^0.9.7"
   },
   "engines": {
     "node": ">=0.8"
