@@ -47,10 +47,10 @@ module.exports = function data(git, options, callback) {
 
     // link bin
     queue.defer(fs.rename.bind(null, tsdsBinPath, `${tsdsBinPath}.tsds`));
-    queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..', 'bin', 'ts-dev-stack.js'), tsdsBinPath, 'file'));
+    queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..', 'bin', 'cli.js'), tsdsBinPath, 'file'));
 
     // patch yargs
-    queue.defer(spawn.bind(null, 'node', [path.resolve(__dirname, '..', '..', 'assets', 'postinstall.js')], { stdio: 'inherit', cwd: packagePath }));
+    queue.defer(spawn.bind(null, 'node', [path.resolve(__dirname, '..', '..', 'bin', 'postinstall.js')], { stdio: 'inherit', cwd: packagePath }));
 
     queue.await((err) => {
       console.log('------------------');
