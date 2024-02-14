@@ -8,7 +8,7 @@ const spawn = require('cross-spawn-cb');
 
 const data = require('../lib/data');
 
-const CLI = path.resolve(__dirname, '..', '..', 'bin', 'ts-dev-stack.js');
+const CLI = path.resolve(__dirname, '..', '..', 'bin', 'cli.js');
 const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 
 const major = +process.versions.node.split('.')[0];
