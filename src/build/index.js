@@ -1,14 +1,14 @@
-var Queue = require('queue-cb');
-var cjs = require('./cjs');
-var esm = require('./esm');
-var umd = require('./umd');
-var types = require('./types');
-var targets = require('../lib/targets');
+const Queue = require('queue-cb');
+const cjs = require('./cjs');
+const esm = require('./esm');
+const umd = require('./umd');
+const types = require('./types');
+const targets = require('../lib/targets');
 
 module.exports = function build(args, options, cb) {
-  var targs = targets(options);
+  const targs = targets(options);
 
-  var queue = new Queue(1);
+  const queue = new Queue(1);
   targs.indexOf('cjs') < 0 || queue.defer(cjs.bind(null, args, options));
   targs.indexOf('esm') < 0 || queue.defer(esm.bind(null, args, options));
   targs.indexOf('umd') < 0 || queue.defer(umd.bind(null, args, options));
