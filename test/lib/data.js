@@ -50,7 +50,7 @@ module.exports = function data(git, options, callback) {
     queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..', 'bin', 'cli.js'), tsdsBinPath, 'file'));
 
     // patch yargs
-    queue.defer(spawn.bind(null, 'node', [path.resolve(__dirname, '..', '..', 'bin', 'postinstall.js')], { stdio: 'inherit', cwd: packagePath }));
+    queue.defer(spawn.bind(null, 'node', [path.resolve(__dirname, '..', '..', 'scripts', 'postinstall.js')], { stdio: 'inherit', cwd: packagePath }));
 
     queue.await((err) => {
       console.log('------------------');
