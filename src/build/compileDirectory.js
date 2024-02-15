@@ -2,7 +2,7 @@ const path = require('path');
 const Iterator = require('fs-iterator');
 const assign = require('just-extend');
 const getTS = require('get-tsconfig-compat');
-const createMatcher = require('ts-swc-loaders/lib/createMatcher.js');
+const { createMatcher } = require('ts-swc-loaders');
 
 const source = require('../lib/source');
 const compileFile = require('./compileFile');

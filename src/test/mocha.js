@@ -1,6 +1,5 @@
-const _path = require('path');
 const Queue = require('queue-cb');
-const spawnArgs = require('ts-swc-loaders/lib/spawnArgs.js');
+const { spawnArgs } = require('ts-swc-loaders');
 
 const link = require('../link');
 const spawn = require('../lib/spawn');
