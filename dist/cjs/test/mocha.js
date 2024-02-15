@@ -1,7 +1,6 @@
 "use strict";
-var _path = require("path");
 var Queue = require("queue-cb");
-var spawnArgs = require("ts-swc-loaders/lib/spawnArgs.js");
+var spawnArgs = require("ts-swc-loaders").spawnArgs;
 var link = require("../link");
 var spawn = require("../lib/spawn");
 var major = +process.versions.node.split(".")[0];
