@@ -5,7 +5,7 @@ const once = require('call-once-fn');
 const assign = require('just-extend');
 const mkdirp = require('mkdirp');
 
-const transformSync = require('ts-swc-loaders/lib/transformSync.js');
+const { transformSync } = require('ts-swc-loaders');
 
 const regexDependencies = require('./regexDependencies');
 const regexESM = regexDependencies(true);
