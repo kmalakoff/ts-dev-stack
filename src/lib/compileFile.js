@@ -36,17 +36,17 @@ module.exports = function compileFile(entry, options, callback) {
 
       const output = transformSync(contents, entry.basename, config);
       const relname = entry.path.replace(/\.[^/.]+$/, '');
-      const ext = options.type === 'esm' ? '.mjs' : '.js';
+      let ext = path.extname(entry.path);
 
       // patch .mjs imports
       if (options.type === 'esm') {
         output.code = output.code.replace(/\.(js|ts|tsx|mts)';/g, ".mjs';");
         output.code = output.code.replace(/\.(cts)';/g, ".cjs';");
-      }
-      // patch .js imports
-      else {
+        ext = ext === '.cjs' ? ext.replace(/\.(cts)/, '.cjs') : ext.replace(/\.(js|ts|tsx|mts)/, '.mjs');
+      } else {
         output.code = output.code.replace(/\.(mjs|cjs|ts|tsx|mts|cts)"\)/g, '.js")');
         output.code += interopClientDefaultExport;
+        ext = ext.replace(/\.(mjs|cjs|ts|tsx|mts|cts)/, '.js');
       }
 
       mkdirp(path.dirname(path.join(options.dest, relname + ext)), () => {
