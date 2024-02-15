@@ -31,14 +31,16 @@ module.exports = function compileFile(entry, options, callback) {
             }
             var output = transformSync(contents, entry.basename, config);
             var relname = entry.path.replace(/\.[^/.]+$/, "");
-            var ext = options.type === "esm" ? ".mjs" : ".js";
+            var ext = path.extname(entry.path);
             // patch .mjs imports
             if (options.type === "esm") {
                 output.code = output.code.replace(/\.(js|ts|tsx|mts)';/g, ".mjs';");
                 output.code = output.code.replace(/\.(cts)';/g, ".cjs';");
+                ext = ext === ".cjs" ? ext.replace(/\.(cts)/, ".js") : ext.replace(/\.(js|ts|tsx|mts)/, ".js");
             } else {
                 output.code = output.code.replace(/\.(mjs|cjs|ts|tsx|mts|cts)"\)/g, '.js")');
                 output.code += interopClientDefaultExport;
+                ext = ext.replace(/\.(mjs|cjs|ts|tsx|mts|cts)/, ".js");
             }
             mkdirp(path.dirname(path.join(options.dest, relname + ext)), function() {
                 var outQueue = new Queue();
