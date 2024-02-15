@@ -3,7 +3,7 @@ var path = require("path");
 var fs = require("fs");
 var Queue = require("queue-cb");
 var mkdirp = require("mkdirp");
-var unlink = require("./unlink");
+var unlink = require("../unlink/unlink");
 function saveLink(installPath, cb) {
     var movedPath = path.join(path.dirname(installPath), "".concat(path.basename(installPath), ".tsds"));
     var queue = new Queue(1);

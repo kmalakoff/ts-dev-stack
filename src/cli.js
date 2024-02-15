@@ -6,7 +6,7 @@ const commands = {
   build: require('./build'),
   coverage: require('./test/c8'),
   deploy: require('./deploy'),
-  docs: require('./docs'),
+  docs: require('./docs/ndex'),
   format: require('./quality/format'),
   link: require('./link'),
   test: require('./test'),

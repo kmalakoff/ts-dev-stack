@@ -3,7 +3,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const Queue = require('queue-cb');
 const assign = require('just-extend');
-const compileDirectory = require('../lib/compileDirectory');
+const compileDirectory = require('./compileDirectory');
 
 module.exports = function cjs(_args, options, cb) {
   const cwd = options.cwd || process.cwd();

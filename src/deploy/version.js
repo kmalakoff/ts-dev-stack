@@ -1,7 +1,7 @@
 const Queue = require('queue-cb');
 const spawn = require('../lib/spawn');
 
-const docs = require('../docs');
+const docs = require('../docs/ndex');
 
 module.exports = function version(_args, _options, cb) {
   const queue = new Queue(1);

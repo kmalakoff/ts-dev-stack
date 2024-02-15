@@ -1,7 +1,7 @@
 "use strict";
 var Queue = require("queue-cb");
 var spawn = require("../lib/spawn");
-var docs = require("../docs");
+var docs = require("../docs/ndex");
 module.exports = function version(_args, _options, cb) {
     var queue = new Queue(1);
     queue.defer(docs.bind(null, _args, _options));

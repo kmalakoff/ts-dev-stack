@@ -10,6 +10,8 @@ const data = require('../lib/data');
 
 const devStack = require('ts-dev-stack');
 const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
+// const GITS = ['https://github.com/kmalakoff/react-dom-event.git'];
+// const GITS = ['https://github.com/kmalakoff/react-native-event.git'];
 
 const major = +process.versions.node.split('.')[0];
 

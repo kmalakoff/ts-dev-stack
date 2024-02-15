@@ -6,6 +6,66 @@ var once = require("call-once-fn");
 var assign = require("just-extend");
 var mkdirp = require("mkdirp");
 var transformSync = require("ts-swc-loaders/lib/transformSync.js");
+var regexDependencies = require("./regexDependencies");
+var regexESM = regexDependencies(true);
+var regexCJS = regexDependencies();
+var importReplaceMJS = [
+    ".js",
+    ".ts",
+    ".tsx",
+    ".mts"
+];
+var importReplaceCJS = [
+    ".cts"
+];
+var requireReplaceJS = [
+    ".mjs",
+    ".cjs",
+    ".ts",
+    ".tsx",
+    ".mts",
+    ".cts"
+];
+function makeReplacements(code, regex, extensions, extension) {
+    var _loop = function() {
+        var dependency = match[1] || match[2] || match[3] || match[4];
+        var ext = extensions.find(function(x) {
+            return dependency.slice(-x.length) === x;
+        });
+        if (ext) matches.push({
+            ext: ext,
+            match: match,
+            dependency: dependency
+        });
+        match = regex.exec(code);
+    };
+    var matches = [];
+    var match = regex.exec(code);
+    while(match)_loop();
+    matches = matches.reverse();
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = matches[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var match1 = _step.value;
+            var start = match1.match.index + match1.match[0].indexOf(match1.dependency) + match1.dependency.indexOf(match1.ext);
+            code = code.substring(0, start) + extension + code.substring(start + match1.ext.length);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+    return code;
+}
 // https://github.com/vercel/next.js/blob/20b63e13ab2631d6043277895d373aa31a1b327c/packages/next/taskfile-swc.js#L118-L125
 var interopClientDefaultExport = [
     "",
@@ -34,13 +94,14 @@ module.exports = function compileFile(entry, options, callback) {
             var ext = path.extname(entry.path);
             // patch .mjs imports
             if (options.type === "esm") {
-                output.code = output.code.replace(/\.(js|ts|tsx|mts)';/g, ".mjs';");
-                output.code = output.code.replace(/\.(cts)';/g, ".cjs';");
-                ext = ext === ".cjs" ? ext.replace(/\.(cts)/, ".js") : ext.replace(/\.(js|ts|tsx|mts)/, ".js");
+                ext = importReplaceMJS.indexOf(ext) >= 0 ? ".mjs" : ext;
+                output.code = makeReplacements(output.code, regexESM, importReplaceMJS, ".mjs");
+                ext = importReplaceCJS.indexOf(ext) >= 0 ? ".cjs" : ext;
+                output.code = makeReplacements(output.code, regexESM, importReplaceCJS, ".cjs");
             } else {
-                output.code = output.code.replace(/\.(mjs|cjs|ts|tsx|mts|cts)"\)/g, '.js")');
+                ext = requireReplaceJS.indexOf(ext) >= 0 ? ".js" : ext;
+                output.code = makeReplacements(output.code, regexCJS, requireReplaceJS, ".js");
                 output.code += interopClientDefaultExport;
-                ext = ext.replace(/\.(mjs|cjs|ts|tsx|mts|cts)/, ".js");
             }
             mkdirp(path.dirname(path.join(options.dest, relname + ext)), function() {
                 var outQueue = new Queue();
