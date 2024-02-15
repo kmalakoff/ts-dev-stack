@@ -4,8 +4,8 @@ const assign = require('just-extend');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const Queue = require('queue-cb');
-const spawn = require('./lib/spawn');
-const source = require('./lib/source');
+const spawn = require('../lib/spawn');
+const source = require('../lib/source');
 
 module.exports = function docs(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
