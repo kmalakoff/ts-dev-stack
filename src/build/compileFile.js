@@ -7,6 +7,32 @@ const mkdirp = require('mkdirp');
 
 const transformSync = require('ts-swc-loaders/lib/transformSync.js');
 
+const regexDependencies = require('./regexDependencies');
+const regexESM = regexDependencies(true);
+const regexCJS = regexDependencies();
+
+const importReplaceMJS = ['.js', '.ts', '.tsx', '.mts'];
+const importReplaceCJS = ['.cts'];
+const requireReplaceJS = ['.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts'];
+
+function makeReplacements(code, regex, extensions, extension) {
+  let matches = [];
+  let match = regex.exec(code);
+  while (match) {
+    const dependency = match[1] || match[2] || match[3] || match[4];
+    const ext = extensions.find((x) => dependency.slice(-x.length) === x);
+    if (ext) matches.push({ ext, match, dependency });
+    match = regex.exec(code);
+  }
+
+  matches = matches.reverse();
+  for (const match of matches) {
+    const start = match.match.index + match.match[0].indexOf(match.dependency) + match.dependency.indexOf(match.ext);
+    code = code.substring(0, start) + extension + code.substring(start + match.ext.length);
+  }
+  return code;
+}
+
 // https://github.com/vercel/next.js/blob/20b63e13ab2631d6043277895d373aa31a1b327c/packages/next/taskfile-swc.js#L118-L125
 const interopClientDefaultExport = [
   '',
@@ -40,13 +66,14 @@ module.exports = function compileFile(entry, options, callback) {
 
       // patch .mjs imports
       if (options.type === 'esm') {
-        output.code = output.code.replace(/\.(js|ts|tsx|mts)';/g, ".mjs';");
-        output.code = output.code.replace(/\.(cts)';/g, ".cjs';");
-        ext = ext === '.cjs' ? ext.replace(/\.(cts)/, '.cjs') : ext.replace(/\.(js|ts|tsx|mts)/, '.mjs');
+        ext = importReplaceMJS.indexOf(ext) >= 0 ? '.mjs' : ext;
+        output.code = makeReplacements(output.code, regexESM, importReplaceMJS, '.mjs');
+        ext = importReplaceCJS.indexOf(ext) >= 0 ? '.cjs' : ext;
+        output.code = makeReplacements(output.code, regexESM, importReplaceCJS, '.cjs');
       } else {
-        output.code = output.code.replace(/\.(mjs|cjs|ts|tsx|mts|cts)"\)/g, '.js")');
+        ext = requireReplaceJS.indexOf(ext) >= 0 ? '.js' : ext;
+        output.code = makeReplacements(output.code, regexCJS, requireReplaceJS, '.js');
         output.code += interopClientDefaultExport;
-        ext = ext.replace(/\.(mjs|cjs|ts|tsx|mts|cts)/, '.js');
       }
 
       mkdirp(path.dirname(path.join(options.dest, relname + ext)), () => {
