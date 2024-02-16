@@ -13,9 +13,14 @@ module.exports = function mocha(_args, options, cb) {
     const queue = new Queue(1);
     queue.defer((cb) => {
       const mocha = major >= 12 ? 'mocha' : 'mocha-compat';
-      const cmd = path.resolve(`./node_modules/.bin/${mocha}`);
+      const cmd = path.resolve(`./node_modules/${mocha}/bin/_${mocha}`);
       let args = ['--watch-extensions', 'ts,tsx'];
-      if (options.timeout) args = args.concat(['--timeout', options.timeout]);
+      for (const key in options) {
+        if (key === '_') continue;
+        if (options[key] === true) args.push(`--${key}`);
+        else if (options[key] === false) args.push(`--no-${key}`);
+        else args = args.concat([key, options[key]]);
+      }
       args = args.concat(_args.length ? _args.slice(-1) : ['test/**/*.test.*']);
       const argsSpawn = spawnArgs(type, cmd, args, {});
       spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
