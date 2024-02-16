@@ -8,13 +8,13 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
-var _rolluppluginnodeexternals = /*#__PURE__*/ _interop_require_default(require("rollup-plugin-node-externals"));
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _pluginnoderesolve = /*#__PURE__*/ _interop_require_default(require("@rollup/plugin-node-resolve"));
 var _pluginterser = /*#__PURE__*/ _interop_require_default(require("@rollup/plugin-terser"));
-var _lodashcamelcase = /*#__PURE__*/ _interop_require_default(require("lodash.camelcase"));
 var _justextend = /*#__PURE__*/ _interop_require_default(require("just-extend"));
+var _lodashcamelcase = /*#__PURE__*/ _interop_require_default(require("lodash.camelcase"));
+var _rolluppluginnodeexternals = /*#__PURE__*/ _interop_require_default(require("rollup-plugin-node-externals"));
 var _swc = /*#__PURE__*/ _interop_require_default(require("./swc.js"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {

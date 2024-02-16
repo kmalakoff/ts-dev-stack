@@ -1,10 +1,10 @@
-import path from 'path';
 import fs from 'fs';
-import externals from 'rollup-plugin-node-externals';
+import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
-import camelcase from 'lodash.camelcase';
 import assign from 'just-extend';
+import camelcase from 'lodash.camelcase';
+import externals from 'rollup-plugin-node-externals';
 import swc from './swc.mjs';
 const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 const DEPS = [
