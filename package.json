@@ -33,7 +33,7 @@
     "depcheck": "depcheck",
     "deploy": "tsds deploy",
     "format": "biome check --apply-unsafe src/ test/",
-    "test": "tsds test:node --no-timeout",
+    "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": "tsds version"
   },
@@ -82,7 +82,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.19",
-    "ts-dev-stack": "^0.12.2"
+    "ts-dev-stack": "^0.12.3"
   },
   "engines": {
     "node": ">=0.8"
