@@ -16,7 +16,7 @@ module.exports = function mocha(_args, options, cb) {
                 "--watch-extensions",
                 "ts,tsx"
             ];
-            if (options.timeout) args.push([
+            if (options.timeout) args = args.concat([
                 "--timeout",
                 options.timeout
             ]);
