@@ -23,7 +23,7 @@ module.exports = function c8(_args, options, cb) {
       // TODO: get spawn working for c8
       const cmd = path.resolve('./node_modules/.bin/c8');
       let args = ['--no-warnings=ExperimentalWarning', cmd, '--config', path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json'), 'mocha', '--watch-extensions', 'ts,tsx'];
-      args = args.concat(_args.length ? _args.slice(-1) : ['test/unit/*.test.*']);
+      args = args.concat(_args.length ? _args.slice(-1) : ['test/**/*.test.*']);
       spawn('node', args, { env: { NODE_OPTIONS: '--no-warnings=ExperimentalWarning --loader ts-swc-loaders' } }, cb);
       // const argsSpawn = spawnArgs(type, cmd, args, {});
       // spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
