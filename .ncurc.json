@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["assert", "c8", "lodash.camelcase", "mkdirp", "mocha", "rimraf", "regenerator-runtime"]
+  "reject": ["assert", "mkdirp", "mocha", "rimraf"]
 }

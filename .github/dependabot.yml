@@ -6,14 +6,9 @@ updates:
       interval: daily
     ignore:
       - dependency-name: 'assert'
-      - dependency-name: 'lodash.camelcase'
       - dependency-name: 'mkdirp'
       - dependency-name: 'pirates'
       - dependency-name: 'rimraf'
-      - dependency-name: 'rollup'
-      - dependency-name: 'rollup-plugin-node-externals'
-      - dependency-name: 'ts-node'
-      - dependency-name: 'regenerator-runtime'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
