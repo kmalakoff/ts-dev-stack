@@ -36,7 +36,7 @@ module.exports = function types(_args, options, cb) {
       (err) => {
         if (err) return cb(err);
         const args = files.concat(['--declaration', '--emitDeclarationOnly', '--outDir', dest]).concat(tsArgs);
-        spawn('tsc', args, { cwd: cwd }, cb);
+        spawn('tsc', args, { cwd }, cb);
       }
     );
   });

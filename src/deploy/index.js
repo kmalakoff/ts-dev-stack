@@ -1,7 +1,7 @@
 const Queue = require('queue-cb');
 const spawn = require('../lib/spawn');
-const predeploy = require('./predeploy');
-const postdeploy = require('./postdeploy');
+const predeploy = require('./pre');
+const postdeploy = require('./post');
 
 module.exports = function deploy(args, options, cb) {
   const npArgs = [];
