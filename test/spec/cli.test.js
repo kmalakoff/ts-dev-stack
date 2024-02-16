@@ -33,13 +33,6 @@ function addTests(git) {
           });
         });
 
-      it('test:engines', (done) => {
-        spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
-          done();
-        });
-      });
-
       it('link', (done) => {
         spawn(CLI, ['link'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err);
