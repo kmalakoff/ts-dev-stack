@@ -1,8 +1,8 @@
 "use strict";
 var Queue = require("queue-cb");
 var spawn = require("../lib/spawn");
-var predeploy = require("./predeploy");
-var postdeploy = require("./postdeploy");
+var predeploy = require("./pre");
+var postdeploy = require("./post");
 module.exports = function deploy(args, options, cb) {
     var npArgs = [];
     if (options["no-publish"]) npArgs.push("--no-publish");
