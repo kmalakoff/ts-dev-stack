@@ -1,3 +1,4 @@
+const path = require('path');
 const Queue = require('queue-cb');
 const { spawnArgs } = require('ts-swc-loaders');
 
@@ -7,15 +8,16 @@ const spawn = require('../lib/spawn');
 const major = +process.versions.node.split('.')[0];
 const type = major >= 12 ? 'module' : 'commonjs';
 
-module.exports = function mocha(args, options, cb) {
-  link(args, options, (_err, restore) => {
+module.exports = function mocha(_args, options, cb) {
+  link(_args, options, (_err, restore) => {
     const queue = new Queue(1);
     queue.defer((cb) => {
-      const tests = args && args.length ? args[0] : 'test/**/*.test.*';
-      const mochaOptions = options.timeout ? ['--timeout', options.timeout] : [];
       const mocha = major >= 12 ? 'mocha' : 'mocha-compat';
-      const cmd = require.resolve(`${mocha}/bin/_${mocha}`);
-      const argsSpawn = spawnArgs(type, cmd, mochaOptions.concat(['--watch-extensions', 'ts,tsx', tests]), {});
+      const cmd = path.resolve(`./node_modules/.bin/${mocha}`);
+      let args = ['--watch-extensions', 'ts,tsx'];
+      if (options.timeout) args.push(['--timeout', options.timeout]);
+      args = args.concat(_args.length ? _args.slice(-1) : ['test/unit/*.test.*']);
+      const argsSpawn = spawnArgs(type, cmd, args, {});
       spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
     });
     queue.await((err) => {
