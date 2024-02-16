@@ -106,14 +106,14 @@ function addTests(git) {
 
       // typedoc doesn't seem to take the parameters
       major < 14 ||
-        it.skip('docs', (done) => {
+        it('docs', (done) => {
           devStack.docs([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
         });
       major < 14 ||
-        it.skip('version', (done) => {
+        it('version', (done) => {
           devStack.version([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
