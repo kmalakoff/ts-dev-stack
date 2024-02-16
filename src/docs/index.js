@@ -18,10 +18,10 @@ module.exports = function docs(_args, options, cb) {
 
     queue.defer((cb) => {
       const tsConfig = require(path.join(cwd, 'tsconfig.json'));
-      tsConfig.include = (tsConfig.include || []).filter((x) => x.indexOf('test') !== 0)
+      tsConfig.include = (tsConfig.include || []).filter((x) => x.indexOf('test') !== 0);
       fs.writeFile(tsConfigDocsPath, JSON.stringify(tsConfig), 'utf8', cb);
     });
-    
+
     queue.defer(spawn.bind(null, 'typedoc', ['--tsconfig', tsConfigDocsPath, '--includeVersion', src], { cwd }));
     queue.defer(fs.unlink.bind(null, tsConfigDocsPath));
     queue.await(cb);

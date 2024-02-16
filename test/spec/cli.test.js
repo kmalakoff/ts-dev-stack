@@ -48,15 +48,6 @@ function addTests(git) {
       });
 
       major < 14 ||
-        // typedoc doesn't seem to take the parameters
-        it.skip('docs', (done) => {
-          spawn(CLI, ['docs'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-            assert.ok(!err);
-            done();
-          });
-        });
-
-      major < 14 ||
         it('coverage', (done) => {
           spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err);
@@ -90,12 +81,22 @@ function addTests(git) {
           done();
         });
       });
-      it('version', (done) => {
-        spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, (err) => {
-          assert.ok(!err);
-          done();
+
+      // typedoc doesn't seem to take the parameters
+      major < 14 ||
+        it.skip('docs', (done) => {
+          spawn(CLI, ['docs'], { stdout: 'inherit', cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
+      major < 14 ||
+        it('version', (done) => {
+          spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
+        });
     });
 
     describe('unhappy path', () => {

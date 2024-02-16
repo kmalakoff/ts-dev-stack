@@ -52,15 +52,6 @@ function addTests(git) {
       });
 
       major < 14 ||
-        // typedoc doesn't seem to take the parameters
-        it.skip('docs', (done) => {
-          devStack.docs([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
-            done();
-          });
-        });
-
-      major < 14 ||
         it('coverage', (done) => {
           devStack.coverage([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
@@ -113,12 +104,21 @@ function addTests(git) {
         });
       });
 
-      it('version', (done) => {
-        devStack.version([], { cwd: packagePath }, (err) => {
-          assert.ok(!err);
-          done();
+      // typedoc doesn't seem to take the parameters
+      major < 14 ||
+        it.skip('docs', (done) => {
+          devStack.docs([], { cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
+      major < 14 ||
+        it.skip('version', (done) => {
+          devStack.version([], { cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
+        });
     });
   });
 }
