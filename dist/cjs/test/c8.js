@@ -29,7 +29,7 @@ module.exports = function c8(_args, options, cb) {
                 "ts,tsx"
             ];
             args = args.concat(_args.length ? _args.slice(-1) : [
-                "test/unit/*.test.*"
+                "test/**/*.test.*"
             ]);
             spawn("node", args, {
                 env: {

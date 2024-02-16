@@ -21,7 +21,7 @@ module.exports = function mocha(_args, options, cb) {
                 options.timeout
             ]);
             args = args.concat(_args.length ? _args.slice(-1) : [
-                "test/unit/*.test.*"
+                "test/**/*.test.*"
             ]);
             var argsSpawn = spawnArgs(type, cmd, args, {});
             spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
