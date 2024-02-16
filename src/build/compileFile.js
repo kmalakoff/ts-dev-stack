@@ -11,7 +11,7 @@ const regexDependencies = require('./regexDependencies');
 const regexESM = regexDependencies(true);
 const regexCJS = regexDependencies();
 
-const importReplaceMJS = ['.js', '.ts', '.tsx', '.mts'];
+const importReplaceMJS = ['.js', '.ts', '.tsx', '.mts', '.mjs'];
 const importReplaceCJS = ['.cts'];
 const requireReplaceJS = ['.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts'];
 

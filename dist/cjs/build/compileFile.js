@@ -13,7 +13,8 @@ var importReplaceMJS = [
     ".js",
     ".ts",
     ".tsx",
-    ".mts"
+    ".mts",
+    ".mjs"
 ];
 var importReplaceCJS = [
     ".cts"

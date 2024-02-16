@@ -1,6 +1,6 @@
 declare const _exports: {
     build: (args: any, options: any, cb: any) => void;
-    coverage: (_args: any, _options: any, cb: any) => void;
+    coverage: (_args: any, options: any, cb: any) => void;
     deploy: {
         (args: any, options: any, cb: any): void;
         options: {
@@ -16,7 +16,7 @@ declare const _exports: {
     link: (_args: any, options: any, cb: any) => any;
     test: (args: any, options: any, cb: any) => void;
     'test:node': {
-        (args: any, options: any, cb: any): void;
+        (_args: any, options: any, cb: any): void;
         options: {
             alias: {
                 temp: string;
