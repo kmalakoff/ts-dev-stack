@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["assert", "c8", "lodash.camelcase", "mkdirp", "mocha", "rimraf", "rollup", "rollup-plugin-node-externals", "@rollup/plugin-node-resolve", "ts-node", "regenerator-runtime"]
+  "reject": ["assert", "c8", "lodash.camelcase", "mkdirp", "mocha", "rimraf", "regenerator-runtime"]
 }
