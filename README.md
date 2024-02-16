@@ -10,7 +10,7 @@ For an example, check out [parser-multipart](https://github.com/kmalakoff/parser
 # build
 $ tsds build
 
-# run coverage tests (default on "test/unit/*.test.*" only) using c8
+# run coverage tests (default on "test/**/*.test.*" only) using c8
 $ tsds coverage
 
 # deploy library using np
