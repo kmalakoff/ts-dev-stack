@@ -21,7 +21,7 @@ module.exports = function c8(_args, options, cb) {
     });
     queue.defer((cb) => {
       // TODO: get spawn working for c8
-      const cmd = path.resolve('./node_modules/.bin/c8');
+      const cmd = path.resolve('./node_modules/c8/bin/c8.js');
       let args = ['--no-warnings=ExperimentalWarning', cmd, '--config', path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json'), 'mocha', '--watch-extensions', 'ts,tsx'];
       args = args.concat(_args.length ? _args.slice(-1) : ['test/**/*.test.*']);
       spawn('node', args, { env: { NODE_OPTIONS: '--no-warnings=ExperimentalWarning --loader ts-swc-loaders' } }, cb);
