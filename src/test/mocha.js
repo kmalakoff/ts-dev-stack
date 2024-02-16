@@ -15,7 +15,7 @@ module.exports = function mocha(_args, options, cb) {
       const mocha = major >= 12 ? 'mocha' : 'mocha-compat';
       const cmd = path.resolve(`./node_modules/.bin/${mocha}`);
       let args = ['--watch-extensions', 'ts,tsx'];
-      if (options.timeout) args.push(['--timeout', options.timeout]);
+      if (options.timeout) args = args.concat(['--timeout', options.timeout]);
       args = args.concat(_args.length ? _args.slice(-1) : ['test/unit/*.test.*']);
       const argsSpawn = spawnArgs(type, cmd, args, {});
       spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
