@@ -18,6 +18,8 @@ module.exports = function data(git, options, callback) {
   const tsdsPackagePath = path.resolve(packagePath, 'node_modules', 'ts-dev-stack');
   const tsdsBinPath = path.resolve(packagePath, 'node_modules', '.bin', 'tsds');
 
+  // return callback(null, packagePath);
+
   console.log('------------------');
   console.log(`Preparing: ${packagePath}`);
 
@@ -48,9 +50,6 @@ module.exports = function data(git, options, callback) {
     // link bin
     queue.defer(fs.rename.bind(null, tsdsBinPath, `${tsdsBinPath}.tsds`));
     queue.defer(fs.symlink.bind(null, path.resolve(__dirname, '..', '..', 'bin', 'cli.js'), tsdsBinPath, 'file'));
-
-    // patch yargs
-    queue.defer(spawn.bind(null, 'node', [path.resolve(__dirname, '..', '..', 'scripts', 'postinstall.js')], { stdio: 'inherit', cwd: packagePath }));
 
     queue.await((err) => {
       console.log('------------------');
