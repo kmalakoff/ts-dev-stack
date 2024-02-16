@@ -17,7 +17,7 @@ const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://gi
 const major = +process.versions.node.split('.')[0];
 
 function addTests(git) {
-  describe(path.basename(git, path.extname(git)), () => {
+  describe.only(path.basename(git, path.extname(git)), () => {
     let packagePath = null;
     before((cb) => {
       data(git, {}, (err, _packagePath) => {
@@ -52,14 +52,6 @@ function addTests(git) {
       });
 
       major < 14 ||
-        it.skip('docs', (done) => {
-          devStack.docs([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
-            done();
-          });
-        });
-
-      major < 14 ||
         it('coverage', (done) => {
           devStack.coverage([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
@@ -67,17 +59,17 @@ function addTests(git) {
           });
         });
 
-      // TODO: get deploy tests to work with 'no-publish'
-      it.skip('deploy', (done) => {
-        devStack.deploy([], { 'no-publish': true, cwd: packagePath }, (err) => {
-          assert.ok(!err);
-          done();
+      major < 14 ||
+        it('format', (done) => {
+          devStack.format([], { cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
 
       major < 14 ||
-        it.skip('format', (done) => {
-          devStack.format([], { cwd: packagePath }, (err) => {
+        it('predeploy', (done) => {
+          devStack.predeploy([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });
@@ -112,12 +104,21 @@ function addTests(git) {
         });
       });
 
-      it.skip('version', (done) => {
-        devStack.deploy(['version'], { cwd: packagePath }, (err) => {
-          assert.ok(!err);
-          done();
+      // typedoc doesn't seem to take the parameters
+      major < 14 ||
+        it.skip('docs', (done) => {
+          devStack.docs([], { cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
         });
-      });
+      major < 14 ||
+        it.skip('version', (done) => {
+          devStack.version([], { cwd: packagePath }, (err) => {
+            assert.ok(!err);
+            done();
+          });
+        });
     });
   });
 }
