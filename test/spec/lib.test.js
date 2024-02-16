@@ -37,15 +37,6 @@ function addTests(git) {
           });
         });
 
-      it('test:engines', (done) => {
-        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
-          done();
-        });
-      });
-
-      if (major < 14) return;
-
       it('link', (done) => {
         devStack.link([], { cwd: packagePath }, (err) => {
           assert.ok(!err);
@@ -83,6 +74,7 @@ function addTests(git) {
           done();
         });
       });
+
       major < 14 ||
         it.skip('format', (done) => {
           devStack.format([], { cwd: packagePath }, (err) => {
@@ -112,6 +104,13 @@ function addTests(git) {
             done();
           });
         });
+
+      it('test:engines', (done) => {
+        spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: packagePath }, (err) => {
+          assert.ok(!err);
+          done();
+        });
+      });
 
       it.skip('version', (done) => {
         devStack.deploy(['version'], { cwd: packagePath }, (err) => {

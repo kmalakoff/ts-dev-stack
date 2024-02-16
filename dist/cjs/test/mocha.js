@@ -11,15 +11,20 @@ module.exports = function mocha(_args, options, cb) {
         var queue = new Queue(1);
         queue.defer(function(cb) {
             var mocha = major >= 12 ? "mocha" : "mocha-compat";
-            var cmd = path.resolve("./node_modules/.bin/".concat(mocha));
+            var cmd = path.resolve("./node_modules/".concat(mocha, "/bin/_").concat(mocha));
             var args = [
                 "--watch-extensions",
                 "ts,tsx"
             ];
-            if (options.timeout) args = args.concat([
-                "--timeout",
-                options.timeout
-            ]);
+            for(var key in options){
+                if (key === "_") continue;
+                if (options[key] === true) args.push("--".concat(key));
+                else if (options[key] === false) args.push("--no-".concat(key));
+                else args = args.concat([
+                    key,
+                    options[key]
+                ]);
+            }
             args = args.concat(_args.length ? _args.slice(-1) : [
                 "test/**/*.test.*"
             ]);

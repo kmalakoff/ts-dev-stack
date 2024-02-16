@@ -18,7 +18,7 @@ module.exports = function c8(_args, options, cb) {
         });
         queue.defer(function(cb) {
             // TODO: get spawn working for c8
-            var cmd = path.resolve("./node_modules/.bin/c8");
+            var cmd = path.resolve("./node_modules/c8/bin/c8.js");
             var args = [
                 "--no-warnings=ExperimentalWarning",
                 cmd,
