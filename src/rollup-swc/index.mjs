@@ -1,12 +1,12 @@
-const externals = require('rollup-plugin-node-externals');
-const resolve = require('@rollup/plugin-node-resolve').default;
-const terser = require('rollup-plugin-terser');
-const swc = require('./swc');
-const camelcase = require('lodash.camelcase');
-const assign = require('just-extend');
+import path from 'path';
+import fs from 'fs';
+import externals from 'rollup-plugin-node-externals';
+import resolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
+import camelcase from 'lodash.camelcase';
+import assign from 'just-extend';
+import swc from './swc.mjs';
 
-const path = require('path');
-const fs = require('fs');
 const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 
 const DEPS = ['', 'dependencies', 'optionalDependencies', 'peerDependencies'];
@@ -20,7 +20,7 @@ Object.keys(deps).forEach((x) => {
   if (globals[x] === undefined) console.log(`umd dependency ${x}is missing. Add a "tsds": { "globals": { "\${x}": "SomeName" } } to your package.json`);
 });
 
-module.exports = {
+export default {
   output: [
     {
       file: path.resolve(process.cwd(), 'dist', 'umd', `${pkg.name}.js`),
@@ -34,7 +34,7 @@ module.exports = {
       format: 'umd',
       name: camelcase(pkg.name),
       sourcemap: true,
-      plugins: [terser.terser()],
+      plugins: [terser()],
       globals: globals,
     },
   ],
