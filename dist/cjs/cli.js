@@ -2,19 +2,7 @@
 var getopts = require("getopts-compat");
 var exit = require("exit");
 var assign = require("just-extend");
-var commands = {
-    build: require("./build"),
-    coverage: require("./test/c8"),
-    deploy: require("./deploy"),
-    docs: require("./docs/ndex"),
-    format: require("./quality/format"),
-    link: require("./link"),
-    test: require("./test"),
-    "test:node": require("./test/mocha"),
-    "test:browser": require("./test/karma"),
-    unlink: require("./unlink"),
-    version: require("./deploy/version")
-};
+var commands = require("./index");
 module.exports = function cli(argv, name) {
     if (argv.length === 0) {
         console.log("Command missing".concat(name, " ").concat(argv.join(",")));

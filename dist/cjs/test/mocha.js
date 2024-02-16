@@ -1,5 +1,4 @@
 "use strict";
-var path = require("path");
 var Queue = require("queue-cb");
 var spawnArgs = require("ts-swc-loaders").spawnArgs;
 var link = require("../link");
@@ -11,7 +10,7 @@ module.exports = function mocha(_args, options, cb) {
         var queue = new Queue(1);
         queue.defer(function(cb) {
             var mocha = major >= 12 ? "mocha" : "mocha-compat";
-            var cmd = path.resolve("./node_modules/".concat(mocha, "/bin/_").concat(mocha));
+            var cmd = require.resolve("".concat(mocha, "/bin/_").concat(mocha));
             var args = [
                 "--watch-extensions",
                 "ts,tsx"
@@ -21,7 +20,7 @@ module.exports = function mocha(_args, options, cb) {
                 if (options[key] === true) args.push("--".concat(key));
                 else if (options[key] === false) args.push("--no-".concat(key));
                 else args = args.concat([
-                    key,
+                    "--".concat(key),
                     options[key]
                 ]);
             }

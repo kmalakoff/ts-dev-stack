@@ -14,6 +14,7 @@ declare const _exports: {
     docs: (_args: any, options: any, cb: any) => void;
     format: (_args: any, options: any, cb: any) => void;
     link: (_args: any, options: any, cb: any) => any;
+    predeploy: (args: any, options: any, cb: any) => void;
     test: (args: any, options: any, cb: any) => void;
     'test:node': {
         (_args: any, options: any, cb: any): void;

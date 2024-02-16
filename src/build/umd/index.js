@@ -17,7 +17,7 @@ module.exports = function umd(_args, options, cb) {
   options.dest = path.join(cwd, 'dist', 'umd');
   rimraf(options.dest, () => {
     const queue = new Queue(1);
-    queue.defer(spawn.bind(null, 'rollup', ['--config', path.join(__dirname, 'rollup-umd.js'), '--input', src], { cwd: cwd }));
+    queue.defer(spawn.bind(null, 'rollup', ['--config', path.join(__dirname, 'rollup-umd.js'), '--input', src], { cwd }));
     queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
     queue.await(cb);
   });
