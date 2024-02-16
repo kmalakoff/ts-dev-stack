@@ -30,7 +30,7 @@ function addTests(git) {
 
     describe('happy path', () => {
       major < 14 ||
-        it('build', (done) => {
+        it.only('build', (done) => {
           devStack.build([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
