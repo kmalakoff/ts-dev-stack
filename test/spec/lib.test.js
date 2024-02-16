@@ -17,7 +17,7 @@ const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://gi
 const major = +process.versions.node.split('.')[0];
 
 function addTests(git) {
-  describe.only(path.basename(git, path.extname(git)), () => {
+  describe(path.basename(git, path.extname(git)), () => {
     let packagePath = null;
     before((cb) => {
       data(git, {}, (err, _packagePath) => {
@@ -30,7 +30,7 @@ function addTests(git) {
 
     describe('happy path', () => {
       major < 14 ||
-        it.only('build', (done) => {
+        it('build', (done) => {
           devStack.build([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
