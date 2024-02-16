@@ -4,8 +4,8 @@ const rimraf = require('rimraf');
 const assign = require('just-extend');
 const Queue = require('queue-cb');
 
-const spawn = require('../../lib/spawn');
-const source = require('../../lib/source');
+const spawn = require('../lib/spawn');
+const source = require('../lib/source');
 
 module.exports = function umd(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
@@ -17,7 +17,7 @@ module.exports = function umd(_args, options, cb) {
   options.dest = path.join(cwd, 'dist', 'umd');
   rimraf(options.dest, () => {
     const queue = new Queue(1);
-    queue.defer(spawn.bind(null, 'rollup', ['--config', path.join(__dirname, 'rollup-umd.js'), '--input', src], { cwd }));
+    queue.defer(spawn.bind(null, 'rollup', ['--config', path.resolve(__dirname, '..', '..', 'esm', 'rollup-swc', 'index.mjs'), '--input', src], { cwd }));
     queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
     queue.await(cb);
   });
