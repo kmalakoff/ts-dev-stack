@@ -76,14 +76,13 @@
     "ts-loader": "^9.5.1",
     "ts-swc-loaders": "^0.3.4",
     "typedoc": "^0.25.8",
-    "typedoc-plugin-rename-defaults": "^0.7.0",
     "typescript": "^5.3.3",
     "webpack": "^5.90.2"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.19",
-    "ts-dev-stack": "^0.12.1"
+    "ts-dev-stack": "^0.12.2"
   },
   "engines": {
     "node": ">=0.8"
