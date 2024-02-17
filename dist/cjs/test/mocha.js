@@ -27,8 +27,14 @@ module.exports = function mocha(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 "test/**/*.test.*"
             ]);
-            var argsSpawn = spawnArgs(type, cmd, args, {});
-            spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
+            var spawnParams = spawnArgs(type, {});
+            if (spawnParams.options.NODE_OPTIONS || spawnParams.args[0] === "--require") {
+                spawn(cmd, spawnParams.args.concat(args), spawnParams.options, cb);
+            } else {
+                spawn("node", spawnParams.args.concat([
+                    cmd
+                ]).concat(args), spawnParams.options, cb);
+            }
         });
         queue.await(function(err) {
             restore(function(err2) {
