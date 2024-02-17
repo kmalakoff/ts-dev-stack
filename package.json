@@ -74,7 +74,7 @@
     "short-hash": "^1.0.0",
     "sort-package-json": "^2.7.0",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^0.3.4",
+    "ts-swc-loaders": "^0.4.0",
     "typedoc": "^0.25.8",
     "typescript": "^5.3.3",
     "webpack": "^5.90.2"
