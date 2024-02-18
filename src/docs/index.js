@@ -1,9 +1,9 @@
 const path = require('path');
-const fs = require('fs');
+const _fs = require('fs');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const Queue = require('queue-cb');
-const assign = require('just-extend');
+const _assign = require('just-extend');
 const spawn = require('../lib/spawn');
 const source = require('../lib/source');
 
