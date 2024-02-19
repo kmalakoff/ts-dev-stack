@@ -2,12 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
 const Queue = require('queue-cb');
-const assign = require('just-extend');
 const compileDirectory = require('./compileDirectory');
 
 module.exports = function esm(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
-  options = assign({}, options);
+  options = { ...options };
   options.type = 'esm';
   options.sourceMaps = true;
   options.dest = path.join(cwd, 'dist', 'esm');

@@ -1,15 +1,17 @@
 const path = require('path');
 const rimraf = require('rimraf');
 const Queue = require('queue-cb');
-// const { spawnArgs } = require('ts-swc-loaders');
+const { spawnParams } = require('ts-swc-loaders');
 
 const link = require('../link');
 const spawn = require('../lib/spawn');
 
-// const major = +process.versions.node.split('.')[0];
-// const type = major >= 12 ? 'module' : 'commonjs';
+const major = +process.versions.node.split('.')[0];
+const type = major < 12 ? 'commonjs' : 'module';
 
 module.exports = function c8(_args, options, cb) {
+  const cwd = options.cwd || process.cwd();
+
   link(_args, options, (err, restore) => {
     if (err) return cb(err);
 
@@ -20,13 +22,15 @@ module.exports = function c8(_args, options, cb) {
       });
     });
     queue.defer((cb) => {
-      // TODO: get spawn working for c8
       const cmd = require.resolve('c8/bin/c8');
-      let args = ['--no-warnings=ExperimentalWarning', cmd, '--config', path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json'), 'mocha', '--watch-extensions', 'ts,tsx'];
+      let args = ['--config', path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json'), 'mocha', '--watch-extensions', 'ts,tsx'];
       args = args.concat(_args.length ? _args.slice(-1) : ['test/**/*.test.*']);
-      spawn('node', args, { env: { NODE_OPTIONS: '--no-warnings=ExperimentalWarning --loader ts-swc-loaders' } }, cb);
-      // const argsSpawn = spawnArgs(type, cmd, args, {});
-      // spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
+      const params = spawnParams(type, { cwd });
+      if (params.options.NODE_OPTIONS || params.args[0] === '--require') {
+        spawn(cmd, params.args.concat(args), params.options, cb);
+      } else {
+        spawn('node', params.args.concat([cmd]).concat(args), params.options, cb);
+      }
     });
     queue.await((err) => {
       restore((err2) => {
