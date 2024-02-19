@@ -1,6 +1,5 @@
 const getopts = require('getopts-compat');
 const exit = require('exit');
-const assign = require('just-extend');
 const commands = require('./index');
 
 module.exports = function cli(argv, name) {
@@ -15,7 +14,7 @@ module.exports = function cli(argv, name) {
     return exit(-1);
   }
 
-  const options = getopts(argv.slice(1), assign({ stopEarly: true }, command.options || {}));
+  const options = getopts(argv.slice(1), { stopEarly: true, ...(command.options || {}) });
   const args = argv.slice(0, 1).concat(options._);
 
   command(args.slice(1), options, (err) => {

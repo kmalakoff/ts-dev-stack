@@ -1,15 +1,16 @@
 "use strict";
 var Queue = require("queue-cb");
-var spawnArgs = require("ts-swc-loaders").spawnArgs;
+var spawnParams = require("ts-swc-loaders").spawnParams;
 var link = require("../link");
 var spawn = require("../lib/spawn");
 var major = +process.versions.node.split(".")[0];
-var type = major >= 12 ? "module" : "commonjs";
+var type = major < 12 ? "commonjs" : "module";
 module.exports = function mocha(_args, options, cb) {
     link(_args, options, function(_err, restore) {
         var queue = new Queue(1);
         queue.defer(function(cb) {
-            var mocha = major >= 12 ? "mocha" : "mocha-compat";
+            var cwd = options.cwd || process.cwd();
+            var mocha = major < 12 ? "mocha-compat" : "mocha";
             var cmd = require.resolve("".concat(mocha, "/bin/_").concat(mocha));
             var args = [
                 "--watch-extensions",
@@ -27,13 +28,15 @@ module.exports = function mocha(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 "test/**/*.test.*"
             ]);
-            var spawnParams = spawnArgs(type, {});
-            if (spawnParams.options.NODE_OPTIONS || spawnParams.args[0] === "--require") {
-                spawn(cmd, spawnParams.args.concat(args), spawnParams.options, cb);
+            var params = spawnParams(type, {
+                cwd: cwd
+            });
+            if (params.options.NODE_OPTIONS || params.args[0] === "--require") {
+                spawn(cmd, params.args.concat(args), params.options, cb);
             } else {
-                spawn("node", spawnParams.args.concat([
+                spawn("node", params.args.concat([
                     cmd
-                ]).concat(args), spawnParams.options, cb);
+                ]).concat(args), params.options, cb);
             }
         });
         queue.await(function(err) {
@@ -48,4 +51,4 @@ module.exports.options = {
         temp: "t"
     }
 };
-/* CJS INTEROP */ if (exports.__esModule && exports.default) { module.exports = exports.default; for (var key in exports) module.exports[key] = exports[key]; }
+/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }

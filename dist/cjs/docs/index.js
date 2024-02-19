@@ -4,7 +4,6 @@ var _fs = require("fs");
 var rimraf = require("rimraf");
 var mkdirp = require("mkdirp");
 var Queue = require("queue-cb");
-var _assign = require("just-extend");
 var spawn = require("../lib/spawn");
 var source = require("../lib/source");
 module.exports = function docs(_args, options, cb) {
@@ -22,4 +21,4 @@ module.exports = function docs(_args, options, cb) {
         queue.await(cb);
     });
 };
-/* CJS INTEROP */ if (exports.__esModule && exports.default) { module.exports = exports.default; for (var key in exports) module.exports[key] = exports[key]; }
+/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }

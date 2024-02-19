@@ -1,6 +1,5 @@
 const path = require('path');
 const Iterator = require('fs-iterator');
-const assign = require('just-extend');
 const getTS = require('get-tsconfig-compat');
 const { createMatcher } = require('ts-swc-loaders');
 const source = require('../lib/source');
@@ -11,9 +10,10 @@ module.exports = function compileDirectory(options, cb) {
     const srcFolder = path.dirname(path.resolve(cwd, src));
     const config = getTS.getTsconfig(path.resolve(cwd, 'tsconfig.json'));
     const matcher = createMatcher(config);
-    options = assign({}, options, {
-        config: config
-    });
+    options = {
+        ...options,
+        config
+    };
     const iterator = new Iterator(srcFolder);
     iterator.forEach((entry, callback)=>{
         if (!entry.stats.isFile()) return callback();

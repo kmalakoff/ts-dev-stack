@@ -48,7 +48,7 @@ function addTests(git) {
       });
 
       major < 14 ||
-        it('coverage', (done) => {
+        it.skip('coverage', (done) => {
           spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();

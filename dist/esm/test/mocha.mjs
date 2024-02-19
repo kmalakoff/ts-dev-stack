@@ -1,14 +1,15 @@
 const Queue = require('queue-cb');
-const { spawnArgs } = require('ts-swc-loaders');
+const { spawnParams } = require('ts-swc-loaders');
 const link = require('../link');
 const spawn = require('../lib/spawn');
 const major = +process.versions.node.split('.')[0];
-const type = major >= 12 ? 'module' : 'commonjs';
+const type = major < 12 ? 'commonjs' : 'module';
 module.exports = function mocha(_args, options, cb) {
     link(_args, options, (_err, restore)=>{
         const queue = new Queue(1);
         queue.defer((cb)=>{
-            const mocha = major >= 12 ? 'mocha' : 'mocha-compat';
+            const cwd = options.cwd || process.cwd();
+            const mocha = major < 12 ? 'mocha-compat' : 'mocha';
             const cmd = require.resolve(`${mocha}/bin/_${mocha}`);
             let args = [
                 '--watch-extensions',
@@ -26,13 +27,15 @@ module.exports = function mocha(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 'test/**/*.test.*'
             ]);
-            const spawnParams = spawnArgs(type, {});
-            if (spawnParams.options.NODE_OPTIONS || spawnParams.args[0] === '--require') {
-                spawn(cmd, spawnParams.args.concat(args), spawnParams.options, cb);
+            const params = spawnParams(type, {
+                cwd
+            });
+            if (params.options.NODE_OPTIONS || params.args[0] === '--require') {
+                spawn(cmd, params.args.concat(args), params.options, cb);
             } else {
-                spawn('node', spawnParams.args.concat([
+                spawn('node', params.args.concat([
                     cmd
-                ]).concat(args), spawnParams.options, cb);
+                ]).concat(args), params.options, cb);
             }
         });
         queue.await((err)=>{

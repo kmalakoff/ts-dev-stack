@@ -2,12 +2,13 @@
 var path = require("path");
 var rimraf = require("rimraf");
 var Queue = require("queue-cb");
-// const { spawnArgs } = require('ts-swc-loaders');
+var spawnParams = require("ts-swc-loaders").spawnParams;
 var link = require("../link");
 var spawn = require("../lib/spawn");
-// const major = +process.versions.node.split('.')[0];
-// const type = major >= 12 ? 'module' : 'commonjs';
+var major = +process.versions.node.split(".")[0];
+var type = major < 12 ? "commonjs" : "module";
 module.exports = function c8(_args, options, cb) {
+    var cwd = options.cwd || process.cwd();
     link(_args, options, function(err, restore) {
         if (err) return cb(err);
         var queue = new Queue(1);
@@ -17,11 +18,8 @@ module.exports = function c8(_args, options, cb) {
             });
         });
         queue.defer(function(cb) {
-            // TODO: get spawn working for c8
             var cmd = require.resolve("c8/bin/c8");
             var args = [
-                "--no-warnings=ExperimentalWarning",
-                cmd,
                 "--config",
                 path.join(__dirname, "..", "..", "..", "assets", "c8rc.json"),
                 "mocha",
@@ -31,13 +29,16 @@ module.exports = function c8(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 "test/**/*.test.*"
             ]);
-            spawn("node", args, {
-                env: {
-                    NODE_OPTIONS: "--no-warnings=ExperimentalWarning --loader ts-swc-loaders"
-                }
-            }, cb);
-        // const argsSpawn = spawnArgs(type, cmd, args, {});
-        // spawn(argsSpawn[0], argsSpawn[1], argsSpawn[2], cb);
+            var params = spawnParams(type, {
+                cwd: cwd
+            });
+            if (params.options.NODE_OPTIONS || params.args[0] === "--require") {
+                spawn(cmd, params.args.concat(args), params.options, cb);
+            } else {
+                spawn("node", params.args.concat([
+                    cmd
+                ]).concat(args), params.options, cb);
+            }
         });
         queue.await(function(err) {
             restore(function(err2) {
@@ -46,4 +47,4 @@ module.exports = function c8(_args, options, cb) {
         });
     });
 };
-/* CJS INTEROP */ if (exports.__esModule && exports.default) { module.exports = exports.default; for (var key in exports) module.exports[key] = exports[key]; }
+/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }

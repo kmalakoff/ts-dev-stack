@@ -1,9 +1,36 @@
 "use strict";
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
+function _object_spread(target) {
+    for(var i = 1; i < arguments.length; i++){
+        var source = arguments[i] != null ? arguments[i] : {};
+        var ownKeys = Object.keys(source);
+        if (typeof Object.getOwnPropertySymbols === "function") {
+            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
+                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+            }));
+        }
+        ownKeys.forEach(function(key) {
+            _define_property(target, key, source[key]);
+        });
+    }
+    return target;
+}
 var path = require("path");
 var fs = require("fs");
 var Queue = require("queue-cb");
 var once = require("call-once-fn");
-var assign = require("just-extend");
 var mkdirp = require("mkdirp");
 var transformSync = require("ts-swc-loaders").transformSync;
 var regexDependencies = require("./regexDependencies");
@@ -77,9 +104,9 @@ module.exports = function compileFile(entry, options, callback) {
             var config = options.config;
             // overrides for cjs
             if (options.type === "cjs") {
-                config = assign({}, config);
-                config.config = assign({}, config.config);
-                config.config.compilerOptions = assign({}, config.config.compilerOptions);
+                config = _object_spread({}, config);
+                config.config = _object_spread({}, config.config || {});
+                config.config.compilerOptions = _object_spread({}, config.config.compilerOptions || {});
                 config.config.compilerOptions.module = "CommonJS";
                 config.config.compilerOptions.target = "ES5";
             }
@@ -108,4 +135,4 @@ module.exports = function compileFile(entry, options, callback) {
         }
     });
 };
-/* CJS INTEROP */ if (exports.__esModule && exports.default) { module.exports = exports.default; for (var key in exports) module.exports[key] = exports[key]; }
+/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }

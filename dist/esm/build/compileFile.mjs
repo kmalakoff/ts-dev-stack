@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const Queue = require('queue-cb');
 const once = require('call-once-fn');
-const assign = require('just-extend');
 const mkdirp = require('mkdirp');
 const { transformSync } = require('ts-swc-loaders');
 const regexDependencies = require('./regexDependencies');
@@ -56,9 +55,15 @@ module.exports = function compileFile(entry, options, callback) {
             let config = options.config;
             // overrides for cjs
             if (options.type === 'cjs') {
-                config = assign({}, config);
-                config.config = assign({}, config.config);
-                config.config.compilerOptions = assign({}, config.config.compilerOptions);
+                config = {
+                    ...config
+                };
+                config.config = {
+                    ...config.config || {}
+                };
+                config.config.compilerOptions = {
+                    ...config.config.compilerOptions || {}
+                };
                 config.config.compilerOptions.module = 'CommonJS';
                 config.config.compilerOptions.target = 'ES5';
             }
