@@ -61,7 +61,7 @@ module.exports = function spawn(cmd, args, options, cb) {
     var env = _object_spread_props(_object_spread({}, process.env), {
         env: options.env || {}
     });
-    env[PATH_KEY] = prepend(env[PATH_KEY] || "", path.resolve(__dirname, "..", "..", "..", "..", "node_modules", ".bin"));
+    env[PATH_KEY] = prepend(env[PATH_KEY] || "", path.resolve(__dirname, "..", "..", "..", "..", "..", "node_modules", ".bin"));
     env[PATH_KEY] = prepend(env[PATH_KEY] || "", path.resolve(cwd, "node_modules", ".bin"));
     crossSpawn(cmd, args, {
         stdio: "inherit",
