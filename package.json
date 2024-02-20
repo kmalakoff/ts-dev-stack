@@ -73,7 +73,7 @@
     "short-hash": "^1.0.0",
     "sort-package-json": "^2.7.0",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^0.7.0",
+    "ts-swc-loaders": "^0.7.1",
     "typedoc": "^0.25.8",
     "typescript": "^5.3.3",
     "webpack": "^5.90.3"
@@ -81,7 +81,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.19",
-    "ts-dev-stack": "^0.14.4"
+    "ts-dev-stack": "^0.14.5"
   },
   "engines": {
     "node": ">=0.8"
