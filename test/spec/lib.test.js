@@ -83,7 +83,7 @@ function addTests(git) {
       });
 
       it('test:node', (done) => {
-        devStack['test:node']([], { cwd: packagePath }, (err) => {
+        devStack.testNode([], { cwd: packagePath }, (err) => {
           assert.ok(!err);
           done();
         });
@@ -91,7 +91,7 @@ function addTests(git) {
 
       major < 14 ||
         it('test:browser', (done) => {
-          devStack['test:browser']([], { cwd: packagePath }, (err) => {
+          devStack.testBrowser([], { cwd: packagePath }, (err) => {
             assert.ok(!err);
             done();
           });

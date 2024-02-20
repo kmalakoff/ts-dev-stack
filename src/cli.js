@@ -1,6 +1,8 @@
 const getopts = require('getopts-compat');
 const exit = require('exit');
-const commands = require('./index');
+const commands = require('./index.mjs');
+commands['test:node'] = commands.testNode;
+commands['test:browser'] = commands.testBrowser;
 
 module.exports = function cli(argv, name) {
   if (argv.length === 0) {
@@ -16,7 +18,6 @@ module.exports = function cli(argv, name) {
 
   const options = getopts(argv.slice(1), { stopEarly: true, ...(command.options || {}) });
   const args = argv.slice(0, 1).concat(options._);
-
   command(args.slice(1), options, (err) => {
     if (err) {
       console.log(err.message);
