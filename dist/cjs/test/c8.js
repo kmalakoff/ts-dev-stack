@@ -2,12 +2,16 @@
 var path = require("path");
 var rimraf = require("rimraf");
 var Queue = require("queue-cb");
-var spawnParams = require("ts-swc-loaders").spawnParams;
 var link = require("../link");
 var spawn = require("../lib/spawn");
+var optionsToArgs = require("../lib/optionsToArgs");
 var major = +process.versions.node.split(".")[0];
-var type = major < 12 ? "commonjs" : "module";
+var mochaName = major < 12 ? "mocha-compat" : "mocha";
+var binC8 = null;
+var binMocha = null;
 module.exports = function c8(_args, options, cb) {
+    if (!binC8) binC8 = require.resolve("c8/bin/c8");
+    if (!binMocha) binMocha = require.resolve("".concat(mochaName, "/bin/_").concat(mochaName));
     var cwd = options.cwd || process.cwd();
     link(_args, options, function(err, restore) {
         if (err) return cb(err);
@@ -18,27 +22,23 @@ module.exports = function c8(_args, options, cb) {
             });
         });
         queue.defer(function(cb) {
-            var cmd = require.resolve("c8/bin/c8");
             var args = [
+                binC8,
                 "--config",
-                path.join(__dirname, "..", "..", "..", "assets", "c8rc.json"),
-                "mocha",
+                path.join(__dirname, "..", "..", "..", "assets", "c8rc.json")
+            ];
+            args = args.concat([
+                binMocha,
                 "--watch-extensions",
                 "ts,tsx"
-            ];
+            ]);
+            args = args.concat(optionsToArgs(options));
             args = args.concat(_args.length ? _args.slice(-1) : [
                 "test/**/*.test.*"
             ]);
-            var params = spawnParams(type, {
+            spawn("ts-swc", args, {
                 cwd: cwd
-            });
-            if (params.options.NODE_OPTIONS || params.args[0] === "--require") {
-                spawn(cmd, params.args.concat(args), params.options, cb);
-            } else {
-                spawn("node", params.args.concat([
-                    cmd
-                ]).concat(args), params.options, cb);
-            }
+            }, cb);
         });
         queue.await(function(err) {
             restore(function(err2) {

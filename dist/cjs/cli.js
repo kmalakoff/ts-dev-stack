@@ -29,7 +29,9 @@ function _object_spread(target) {
 }
 var getopts = require("getopts-compat");
 var exit = require("exit");
-var commands = require("./index");
+var commands = require("./index.js");
+commands["test:node"] = commands.testNode;
+commands["test:browser"] = commands.testBrowser;
 module.exports = function cli(argv, name) {
     if (argv.length === 0) {
         console.log("Command missing".concat(name, " ").concat(argv.join(",")));

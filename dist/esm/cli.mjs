@@ -1,6 +1,8 @@
 const getopts = require('getopts-compat');
 const exit = require('exit');
-const commands = require('./index');
+const commands = require('./index.mjs');
+commands['test:node'] = commands.testNode;
+commands['test:browser'] = commands.testBrowser;
 module.exports = function cli(argv, name) {
     if (argv.length === 0) {
         console.log(`Command missing${name} ${argv.join(',')}`);
