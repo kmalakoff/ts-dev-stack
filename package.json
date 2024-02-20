@@ -81,7 +81,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.19",
-    "ts-dev-stack": "^0.14.9"
+    "ts-dev-stack": "^0.15.0"
   },
   "engines": {
     "node": ">=0.8"
