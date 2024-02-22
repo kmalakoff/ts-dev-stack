@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
