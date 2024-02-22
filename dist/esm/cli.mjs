@@ -19,7 +19,7 @@ module.exports = function cli(argv, name) {
     });
     const args = argv.slice(0, 1).concat(options._);
     command(args.slice(1), options, (err)=>{
-        if (err) {
+        if (err && err.message.indexOf('ExperimentalWarning') < 0) {
             console.log(err.message);
             return exit(err.code || -1);
         }
