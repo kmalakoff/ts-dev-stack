@@ -51,20 +51,20 @@ function _object_spread_props(target, source) {
     }
     return target;
 }
-var path = require("path");
-var crossSpawn = require("cross-spawn-cb");
-var pathKey = require("env-path-key");
-var prepend = require("path-string-prepend");
+var path = require('node:path');
+var crossSpawn = require('cross-spawn-cb');
+var pathKey = require('env-path-key');
+var prepend = require('path-string-prepend');
 module.exports = function spawn(cmd, args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var PATH_KEY = pathKey(options);
     var env = _object_spread_props(_object_spread({}, process.env), {
         env: options.env || {}
     });
-    env[PATH_KEY] = prepend(env[PATH_KEY] || "", path.resolve(__dirname, "..", "..", "..", "..", "..", "node_modules", ".bin"));
-    env[PATH_KEY] = prepend(env[PATH_KEY] || "", path.resolve(cwd, "node_modules", ".bin"));
+    env[PATH_KEY] = prepend(env[PATH_KEY] || '', path.resolve(__dirname, '..', '..', '..', '..', '..', 'node_modules', '.bin'));
+    env[PATH_KEY] = prepend(env[PATH_KEY] || '', path.resolve(cwd, 'node_modules', '.bin'));
     crossSpawn(cmd, args, {
-        stdio: "inherit",
+        stdio: 'inherit',
         cwd: cwd,
         env: env
     }, cb);

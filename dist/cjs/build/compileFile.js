@@ -27,32 +27,32 @@ function _object_spread(target) {
     }
     return target;
 }
-var path = require("path");
-var fs = require("fs");
-var Queue = require("queue-cb");
-var once = require("call-once-fn");
-var mkdirp = require("mkdirp");
-var transformSync = require("ts-swc-loaders").transformSync;
-var regexDependencies = require("./regexDependencies");
+var path = require('node:path');
+var fs = require('node:fs');
+var Queue = require('queue-cb');
+var once = require('call-once-fn');
+var mkdirp = require('mkdirp');
+var transformSync = require('ts-swc-loaders').transformSync;
+var regexDependencies = require('./regexDependencies');
 var regexESM = regexDependencies(true);
 var regexCJS = regexDependencies();
 var importReplaceMJS = [
-    ".js",
-    ".ts",
-    ".tsx",
-    ".mts",
-    ".mjs"
+    '.js',
+    '.ts',
+    '.tsx',
+    '.mts',
+    '.mjs'
 ];
 var importReplaceCJS = [
-    ".cts"
+    '.cts'
 ];
 var requireReplaceJS = [
-    ".mjs",
-    ".cjs",
-    ".ts",
-    ".tsx",
-    ".mts",
-    ".cts"
+    '.mjs',
+    '.cjs',
+    '.ts',
+    '.tsx',
+    '.mts',
+    '.cts'
 ];
 function makeReplacements(code, regex, extensions, extension) {
     var _loop = function() {
@@ -97,37 +97,37 @@ function makeReplacements(code, regex, extensions, extension) {
 // https://github.com/vercel/next.js/blob/20b63e13ab2631d6043277895d373aa31a1b327c/packages/next/taskfile-swc.js#L118-L125
 var interopClientDefaultExport = "/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }";
 module.exports = function compileFile(entry, options, callback) {
-    fs.readFile(entry.fullPath, "utf8", function(err, contents) {
+    fs.readFile(entry.fullPath, 'utf8', function(err, contents) {
         if (err) return callback(err);
         callback = once(callback);
         try {
             var config = options.config;
             // overrides for cjs
-            if (options.type === "cjs") {
+            if (options.type === 'cjs') {
                 config = _object_spread({}, config);
                 config.config = _object_spread({}, config.config || {});
                 config.config.compilerOptions = _object_spread({}, config.config.compilerOptions || {});
-                config.config.compilerOptions.module = "CommonJS";
-                config.config.compilerOptions.target = "ES5";
+                config.config.compilerOptions.module = 'CommonJS';
+                config.config.compilerOptions.target = 'ES5';
             }
             var output = transformSync(contents, entry.basename, config);
-            var relname = entry.path.replace(/\.[^/.]+$/, "");
+            var relname = entry.path.replace(/\.[^/.]+$/, '');
             var ext = path.extname(entry.path);
             // patch .mjs imports
-            if (options.type === "esm") {
-                ext = importReplaceMJS.indexOf(ext) >= 0 ? ".mjs" : ext;
-                output.code = makeReplacements(output.code, regexESM, importReplaceMJS, ".mjs");
-                ext = importReplaceCJS.indexOf(ext) >= 0 ? ".cjs" : ext;
-                output.code = makeReplacements(output.code, regexESM, importReplaceCJS, ".cjs");
+            if (options.type === 'esm') {
+                ext = importReplaceMJS.indexOf(ext) >= 0 ? '.mjs' : ext;
+                output.code = makeReplacements(output.code, regexESM, importReplaceMJS, '.mjs');
+                ext = importReplaceCJS.indexOf(ext) >= 0 ? '.cjs' : ext;
+                output.code = makeReplacements(output.code, regexESM, importReplaceCJS, '.cjs');
             } else {
-                ext = requireReplaceJS.indexOf(ext) >= 0 ? ".js" : ext;
-                output.code = makeReplacements(output.code, regexCJS, requireReplaceJS, ".js");
+                ext = requireReplaceJS.indexOf(ext) >= 0 ? '.js' : ext;
+                output.code = makeReplacements(output.code, regexCJS, requireReplaceJS, '.js');
                 output.code += interopClientDefaultExport;
             }
             mkdirp(path.dirname(path.join(options.dest, relname + ext)), function() {
                 var outQueue = new Queue();
-                outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, relname + ext), output.code, "utf8"));
-                !options.sourceMaps || outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, "".concat(relname + ext, ".map")), output.map, "utf8"));
+                outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, relname + ext), output.code, 'utf8'));
+                !options.sourceMaps || outQueue.defer(fs.writeFile.bind(null, path.join(options.dest, "".concat(relname + ext, ".map")), output.map, 'utf8'));
                 outQueue.await(callback);
             });
         } catch (err) {

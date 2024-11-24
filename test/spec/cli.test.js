@@ -3,7 +3,7 @@
 delete process.env.NODE_OPTIONS;
 
 const assert = require('assert');
-const path = require('path');
+const path = require('node:path');
 const spawn = require('cross-spawn-cb');
 
 const data = require('../lib/data');

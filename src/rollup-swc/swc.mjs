@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import getTS from 'get-tsconfig-compat';
 import { createMatcher, transformSync } from 'ts-swc-loaders';
 

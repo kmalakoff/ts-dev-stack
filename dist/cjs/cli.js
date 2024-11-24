@@ -27,19 +27,19 @@ function _object_spread(target) {
     }
     return target;
 }
-var getopts = require("getopts-compat");
-var exit = require("exit");
-var commands = require("./index.js");
-commands["test:node"] = commands.testNode;
-commands["test:browser"] = commands.testBrowser;
+var getopts = require('getopts-compat');
+var exit = require('exit');
+var commands = require('./index.js');
+commands['test:node'] = commands.testNode;
+commands['test:browser'] = commands.testBrowser;
 module.exports = function cli(argv, name) {
     if (argv.length === 0) {
-        console.log("Command missing".concat(name, " ").concat(argv.join(",")));
+        console.log("Command missing".concat(name, " ").concat(argv.join(',')));
         return exit(-1);
     }
     var command = commands[argv[0]];
     if (!command) {
-        console.log("Unrecognized command: ".concat(argv.join(" ")));
+        console.log("Unrecognized command: ".concat(argv.join(' ')));
         return exit(-1);
     }
     var options = getopts(argv.slice(1), _object_spread({
@@ -47,7 +47,7 @@ module.exports = function cli(argv, name) {
     }, command.options || {}));
     var args = argv.slice(0, 1).concat(options._);
     command(args.slice(1), options, function(err) {
-        if (err && err.message.indexOf("ExperimentalWarning") < 0) {
+        if (err && err.message.indexOf('ExperimentalWarning') < 0) {
             console.log(err.message);
             return exit(err.code || -1);
         }

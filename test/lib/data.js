@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const Queue = require('queue-cb');
 const spawn = require('cross-spawn-cb');
 const access = require('fs-access-compat');
 
-const tmpdir = require('os').tmpdir || require('os-shim').tmpdir;
+const tmpdir = require('node:os').tmpdir || require('os-shim').tmpdir;
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const shortHash = require('short-hash');
