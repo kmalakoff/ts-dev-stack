@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 const Queue = require('queue-cb');
 const link = require('../link');
 const spawn = require('../lib/spawn');
