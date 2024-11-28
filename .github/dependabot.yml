@@ -7,8 +7,6 @@ updates:
     ignore:
       - dependency-name: 'assert'
       - dependency-name: 'mkdirp'
-      - dependency-name: 'pirates'
-      - dependency-name: 'rimraf'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
