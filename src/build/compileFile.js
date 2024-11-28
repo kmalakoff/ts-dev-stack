@@ -1,5 +1,5 @@
-const path = require('node:path');
-const fs = require('node:fs');
+const path = require('path');
+const fs = require('fs');
 const Queue = require('queue-cb');
 const once = require('call-once-fn');
 const mkdirp = require('mkdirp');
