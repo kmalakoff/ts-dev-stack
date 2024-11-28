@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const Iterator = require('fs-iterator');
 const getTS = require('get-tsconfig-compat');
 const { createMatcher } = require('ts-swc-loaders');

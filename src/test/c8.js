@@ -1,7 +1,7 @@
-const path = require('path');
-const rimraf = require('rimraf');
+const path = require('node:path');
 const Queue = require('queue-cb');
 
+const rimraf = require('../lib/rimraf');
 const link = require('../link');
 const spawn = require('../lib/spawn');
 const optionsToArgs = require('../lib/optionsToArgs');

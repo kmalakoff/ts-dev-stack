@@ -32,7 +32,7 @@
     "build": "tsds build",
     "depcheck": "depcheck",
     "deploy": "tsds deploy",
-    "format": "biome check --apply-unsafe src/ test/",
+    "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": "tsds version"
@@ -67,21 +67,20 @@
     "path-string-prepend": "^0.2.2",
     "queue-cb": "^1.2.1",
     "regenerator-runtime": "^0.14.1",
-    "rimraf": "2.7.1",
-    "rollup": "^4.27.3",
+    "rollup": "^4.27.4",
     "rollup-plugin-node-externals": "^7.1.3",
     "short-hash": "^1.0.0",
-    "sort-package-json": "^2.11.0",
+    "sort-package-json": "^2.12.0",
     "ts-loader": "^9.5.1",
     "ts-swc-loaders": "^0.10.0",
-    "typedoc": "^0.27.0-beta.1",
+    "typedoc": "^0.27.1",
     "typescript": "^5.7.2",
     "webpack": "^5.96.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.9.3",
-    "ts-dev-stack": "^0.15.8"
+    "@types/node": "^22.10.1",
+    "ts-dev-stack": "^0.16.0"
   },
   "engines": {
     "node": ">=0.8"
