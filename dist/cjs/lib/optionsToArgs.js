@@ -2,7 +2,7 @@
 module.exports = function optionsToArgs(options) {
     var args = [];
     for(var key in options){
-        if (key === "_") continue;
+        if (key === '_') continue;
         if (options[key] === true) args.push("--".concat(key));
         else if (options[key] === false) args.push("--no-".concat(key));
         else args = args.concat([

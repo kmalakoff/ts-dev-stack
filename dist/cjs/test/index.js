@@ -1,7 +1,7 @@
 "use strict";
-var Queue = require("queue-cb");
-var mocha = require("./mocha");
-var karma = require("./karma");
+var Queue = require('queue-cb');
+var mocha = require('./mocha');
+var karma = require('./karma');
 // const c8 = require('./c8');
 module.exports = function test(args, options, cb) {
     var queue = new Queue(1);

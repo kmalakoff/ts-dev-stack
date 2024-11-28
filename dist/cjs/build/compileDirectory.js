@@ -51,17 +51,17 @@ function _object_spread_props(target, source) {
     }
     return target;
 }
-var path = require("path");
-var Iterator = require("fs-iterator");
-var getTS = require("get-tsconfig-compat");
-var createMatcher = require("ts-swc-loaders").createMatcher;
-var source = require("../lib/source");
-var compileFile = require("./compileFile");
+var path = require('node:path');
+var Iterator = require('fs-iterator');
+var getTS = require('get-tsconfig-compat');
+var createMatcher = require('ts-swc-loaders').createMatcher;
+var source = require('../lib/source');
+var compileFile = require('./compileFile');
 module.exports = function compileDirectory(options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = source(options);
     var srcFolder = path.dirname(path.resolve(cwd, src));
-    var config = getTS.getTsconfig(path.resolve(cwd, "tsconfig.json"));
+    var config = getTS.getTsconfig(path.resolve(cwd, 'tsconfig.json'));
     var matcher = createMatcher(config);
     options = _object_spread_props(_object_spread({}, options), {
         config: config

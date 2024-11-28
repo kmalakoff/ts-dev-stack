@@ -1,8 +1,8 @@
-const path = require('path');
-const _fs = require('fs');
-const rimraf = require('rimraf');
+const path = require('node:path');
+const _fs = require('node:fs');
 const mkdirp = require('mkdirp');
 const Queue = require('queue-cb');
+const rimraf = require('../lib/rimraf');
 const spawn = require('../lib/spawn');
 const source = require('../lib/source');
 module.exports = function docs(_args, options, cb) {

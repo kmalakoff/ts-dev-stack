@@ -1,9 +1,9 @@
 "use strict";
-var path = require("path");
-var fs = require("fs");
-var Queue = require("queue-cb");
-var mkdirp = require("mkdirp");
-var unlink = require("../unlink/unlink");
+var path = require('node:path');
+var fs = require('node:fs');
+var Queue = require('queue-cb');
+var mkdirp = require('mkdirp');
+var unlink = require('../unlink/unlink');
 function saveLink(installPath, cb) {
     var movedPath = path.join(path.dirname(installPath), "".concat(path.basename(installPath), ".tsds"));
     var queue = new Queue(1);
@@ -18,7 +18,7 @@ function createLink(installPath, cb) {
             cb();
         });
     });
-    queue.defer(fs.symlink.bind(null, process.cwd(), installPath, "dir"));
+    queue.defer(fs.symlink.bind(null, process.cwd(), installPath, 'dir'));
     queue.await(cb);
 }
 function removeLink(installPath, cb) {

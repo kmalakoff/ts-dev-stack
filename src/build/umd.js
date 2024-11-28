@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const rimraf = require('rimraf');
+const fs = require('node:fs');
+const path = require('node:path');
 const Queue = require('queue-cb');
 
+const rimraf = require('../lib/rimraf');
 const spawn = require('../lib/spawn');
 const source = require('../lib/source');
 

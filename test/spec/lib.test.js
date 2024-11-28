@@ -3,7 +3,7 @@
 delete process.env.NODE_OPTIONS;
 
 const assert = require('assert');
-const path = require('path');
+const path = require('node:path');
 const spawn = require('cross-spawn-cb');
 
 const data = require('../lib/data');
@@ -28,7 +28,7 @@ function addTests(git) {
       });
     });
 
-    describe.only('happy path', () => {
+    describe('happy path', () => {
       major < 14 ||
         it('build', (done) => {
           devStack.build([], { cwd: packagePath }, (err) => {

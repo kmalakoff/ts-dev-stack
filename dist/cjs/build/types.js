@@ -1,23 +1,23 @@
 "use strict";
-var path = require("path");
-var rimraf = require("rimraf");
-var Iterator = require("fs-iterator");
-var getTS = require("get-tsconfig-compat");
-var createMatcher = require("ts-swc-loaders").createMatcher;
-var spawn = require("../lib/spawn");
-var source = require("../lib/source");
+var path = require('node:path');
+var Iterator = require('fs-iterator');
+var getTS = require('get-tsconfig-compat');
+var createMatcher = require('ts-swc-loaders').createMatcher;
+var rimraf = require('../lib/rimraf');
+var spawn = require('../lib/spawn');
+var source = require('../lib/source');
 module.exports = function types(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = source(options);
     var srcFolder = path.dirname(path.resolve(cwd, src));
-    var dest = path.join(cwd, "dist", "types");
-    var config = getTS.getTsconfig(path.resolve(cwd, "tsconfig.json"));
+    var dest = path.join(cwd, 'dist', 'types');
+    var config = getTS.getTsconfig(path.resolve(cwd, 'tsconfig.json'));
     var matcher = createMatcher(config);
     var tsArgs = [];
     for(var key in config.config.compilerOptions){
         var value = config.config.compilerOptions[key];
         tsArgs.push("--".concat(key));
-        tsArgs.push(Array.isArray(value) ? value.join(",") : value);
+        tsArgs.push(Array.isArray(value) ? value.join(',') : value);
     }
     rimraf(dest, function() {
         var files = [];
@@ -33,12 +33,12 @@ module.exports = function types(_args, options, cb) {
         }, function(err) {
             if (err) return cb(err);
             var args = files.concat([
-                "--declaration",
-                "--emitDeclarationOnly",
-                "--outDir",
+                '--declaration',
+                '--emitDeclarationOnly',
+                '--outDir',
                 dest
             ]).concat(tsArgs);
-            spawn("tsc", args, {
+            spawn('tsc', args, {
                 cwd: cwd
             }, cb);
         });
