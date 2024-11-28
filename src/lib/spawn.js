@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const crossSpawn = require('cross-spawn-cb');
 const pathKey = require('env-path-key');
 const prepend = require('path-string-prepend');
