@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const link = require('./link');
 
 module.exports = function linkCmd(_args, options, cb) {
