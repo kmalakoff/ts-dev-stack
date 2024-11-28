@@ -1,5 +1,5 @@
 "use strict";
-var path = require('node:path');
+var path = require('path');
 var link = require('./link');
 module.exports = function linkCmd(_args, options, cb) {
     var cwd = options.cwd || process.cwd();

@@ -1,5 +1,5 @@
-const path = require('node:path');
-const _fs = require('node:fs');
+const path = require('path');
+const _fs = require('fs');
 const mkdirp = require('mkdirp');
 const Queue = require('queue-cb');
 const rimraf = require('../lib/rimraf');

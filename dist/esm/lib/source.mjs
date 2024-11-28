@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 module.exports = function source(options) {
     const pkg = require(path.resolve(options.cwd || process.cwd(), 'package.json'));
     if (!pkg.tsds || !pkg.tsds.source) console.log('Using default source: src/index.ts. Add "tsds": { "source": "src/index.ts" } to your package.json');

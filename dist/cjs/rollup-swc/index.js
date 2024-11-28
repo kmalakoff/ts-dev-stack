@@ -8,8 +8,8 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _nodefs = /*#__PURE__*/ _interop_require_default(require("node:fs"));
-var _nodepath = /*#__PURE__*/ _interop_require_default(require("node:path"));
+var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _pluginnoderesolve = /*#__PURE__*/ _interop_require_default(require("@rollup/plugin-node-resolve"));
 var _pluginterser = /*#__PURE__*/ _interop_require_default(require("@rollup/plugin-terser"));
 var _lodashcamelcase = /*#__PURE__*/ _interop_require_default(require("lodash.camelcase"));
@@ -20,7 +20,7 @@ function _interop_require_default(obj) {
         default: obj
     };
 }
-var pkg = JSON.parse(_nodefs.default.readFileSync(_nodepath.default.join(process.cwd(), 'package.json'), 'utf8'));
+var pkg = JSON.parse(_fs.default.readFileSync(_path.default.join(process.cwd(), 'package.json'), 'utf8'));
 var globals = pkg.tsds ? pkg.tsds.globals || {} : {};
 var DEPS = [
     'dependencies',
@@ -36,14 +36,14 @@ DEPS.forEach(function(x) {
 var _default = {
     output: [
         {
-            file: _nodepath.default.resolve(process.cwd(), 'dist', 'umd', "".concat(pkg.name, ".js")),
+            file: _path.default.resolve(process.cwd(), 'dist', 'umd', "".concat(pkg.name, ".js")),
             format: 'umd',
             sourcemap: true,
             name: (0, _lodashcamelcase.default)(pkg.name),
             globals: globals
         },
         {
-            file: _nodepath.default.resolve(process.cwd(), 'dist', 'umd', "".concat(pkg.name, ".min.js")),
+            file: _path.default.resolve(process.cwd(), 'dist', 'umd', "".concat(pkg.name, ".min.js")),
             format: 'umd',
             name: (0, _lodashcamelcase.default)(pkg.name),
             sourcemap: true,

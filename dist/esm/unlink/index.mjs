@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 const unlink = require('./unlink');
 module.exports = function linkCmd(_args, options, cb) {
     const cwd = options.cwd || process.cwd();

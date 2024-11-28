@@ -1,5 +1,5 @@
 "use strict";
-var path = require('node:path');
+var path = require('path');
 var Queue = require('queue-cb');
 var rimraf = require('../lib/rimraf');
 var link = require('../link');

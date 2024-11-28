@@ -27,8 +27,8 @@ function _object_spread(target) {
     }
     return target;
 }
-var fs = require('node:fs');
-var path = require('node:path');
+var fs = require('fs');
+var path = require('path');
 var Queue = require('queue-cb');
 var rimraf = require('../lib/rimraf');
 var compileDirectory = require('./compileDirectory');

@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return swcPlugin;
     }
 });
-var _nodepath = /*#__PURE__*/ _interop_require_default(require("node:path"));
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _gettsconfigcompat = /*#__PURE__*/ _interop_require_default(require("get-tsconfig-compat"));
 var _tsswcloaders = require("ts-swc-loaders");
 function _interop_require_default(obj) {
@@ -16,7 +16,7 @@ function _interop_require_default(obj) {
         default: obj
     };
 }
-var config = _gettsconfigcompat.default.getTsconfig(_nodepath.default.resolve(process.cwd(), 'tsconfig.json'));
+var config = _gettsconfigcompat.default.getTsconfig(_path.default.resolve(process.cwd(), 'tsconfig.json'));
 config.config.compilerOptions.target = 'ES5';
 var matcher = (0, _tsswcloaders.createMatcher)(config);
 function swcPlugin() {

@@ -27,8 +27,8 @@ function _object_spread(target) {
     }
     return target;
 }
-var path = require('node:path');
-var fs = require('node:fs');
+var path = require('path');
+var fs = require('fs');
 var Queue = require('queue-cb');
 var once = require('call-once-fn');
 var mkdirp = require('mkdirp');

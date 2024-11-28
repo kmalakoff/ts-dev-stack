@@ -51,7 +51,7 @@ function _object_spread_props(target, source) {
     }
     return target;
 }
-var path = require('node:path');
+var path = require('path');
 var Iterator = require('fs-iterator');
 var getTS = require('get-tsconfig-compat');
 var createMatcher = require('ts-swc-loaders').createMatcher;

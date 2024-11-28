@@ -51,7 +51,7 @@ function _object_spread_props(target, source) {
     }
     return target;
 }
-var path = require('node:path');
+var path = require('path');
 var crossSpawn = require('cross-spawn-cb');
 var pathKey = require('env-path-key');
 var prepend = require('path-string-prepend');

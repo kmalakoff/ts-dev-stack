@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path from 'path';
 import getTS from 'get-tsconfig-compat';
 import { createMatcher, transformSync } from 'ts-swc-loaders';
 const config = getTS.getTsconfig(path.resolve(process.cwd(), 'tsconfig.json'));

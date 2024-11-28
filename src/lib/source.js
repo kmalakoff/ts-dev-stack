@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 
 module.exports = function source(options) {
   const pkg = require(path.resolve(options.cwd || process.cwd(), 'package.json'));

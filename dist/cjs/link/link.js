@@ -1,6 +1,6 @@
 "use strict";
-var path = require('node:path');
-var fs = require('node:fs');
+var path = require('path');
+var fs = require('fs');
 var Queue = require('queue-cb');
 var mkdirp = require('mkdirp');
 var unlink = require('../unlink/unlink');

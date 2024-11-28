@@ -1,6 +1,6 @@
 "use strict";
-var path = require('node:path');
-var _fs = require('node:fs');
+var path = require('path');
+var _fs = require('fs');
 var mkdirp = require('mkdirp');
 var Queue = require('queue-cb');
 var rimraf = require('../lib/rimraf');
