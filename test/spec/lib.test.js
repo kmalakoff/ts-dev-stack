@@ -32,21 +32,21 @@ function addTests(git) {
       major < 14 ||
         it('build', (done) => {
           devStack.build([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
 
       it('link', (done) => {
         devStack.link([], { cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
 
       it('unlink', (done) => {
         devStack.unlink([], { cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
@@ -54,7 +54,7 @@ function addTests(git) {
       major < 14 ||
         it.skip('coverage', (done) => {
           devStack.coverage([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
@@ -62,7 +62,7 @@ function addTests(git) {
       major < 14 ||
         it('format', (done) => {
           devStack.format([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
@@ -70,21 +70,21 @@ function addTests(git) {
       major < 14 ||
         it('predeploy', (done) => {
           devStack.predeploy([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
 
       it('test', (done) => {
         devStack.test([], { cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
 
       it('test:node', (done) => {
         devStack.testNode([], { cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
@@ -92,14 +92,14 @@ function addTests(git) {
       major < 14 ||
         it('test:browser', (done) => {
           devStack.testBrowser([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
 
       it('test:engines', (done) => {
         spawn('npm', ['run', 'test:engines'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
@@ -108,14 +108,14 @@ function addTests(git) {
       major < 14 ||
         it('docs', (done) => {
           devStack.docs([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
       major < 14 ||
         it('version', (done) => {
           devStack.version([], { cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });

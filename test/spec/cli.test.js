@@ -28,21 +28,21 @@ function addTests(git) {
       major < 14 ||
         it('build', (done) => {
           spawn(CLI, ['build'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
 
       it('link', (done) => {
         spawn(CLI, ['link'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
 
       it('unlink', (done) => {
         spawn(CLI, ['unlink'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
@@ -50,7 +50,7 @@ function addTests(git) {
       major < 14 ||
         it.skip('coverage', (done) => {
           spawn(CLI, ['coverage'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
@@ -58,26 +58,26 @@ function addTests(git) {
       major < 14 ||
         it('format', (done) => {
           spawn(CLI, ['format'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
 
       it('test', (done) => {
         spawn(CLI, ['test'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('test:node', (done) => {
         spawn(CLI, ['test:node'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('test:browser', (done) => {
         spawn(CLI, ['test:browser'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-          assert.ok(!err);
+          assert.ok(!err, err ? err.message : '');
           done();
         });
       });
@@ -86,14 +86,14 @@ function addTests(git) {
       major < 14 ||
         it('docs', (done) => {
           spawn(CLI, ['docs'], { stdout: 'inherit', cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
       major < 14 ||
         it('version', (done) => {
           spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, (err) => {
-            assert.ok(!err);
+            assert.ok(!err, err ? err.message : '');
             done();
           });
         });
