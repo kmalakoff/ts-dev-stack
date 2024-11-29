@@ -3,7 +3,7 @@ var path = require('path');
 var Iterator = require('fs-iterator');
 var getTS = require('get-tsconfig-compat');
 var createMatcher = require('ts-swc-loaders').createMatcher;
-var rimraf = require('../lib/rimraf');
+var rimraf2 = require('rimraf2');
 var spawn = require('../lib/spawn');
 var source = require('../lib/source');
 module.exports = function types(_args, options, cb) {
@@ -19,7 +19,9 @@ module.exports = function types(_args, options, cb) {
         tsArgs.push("--".concat(key));
         tsArgs.push(Array.isArray(value) ? value.join(',') : value);
     }
-    rimraf(dest, function() {
+    rimraf2(dest, {
+        disableGlob: true
+    }, function() {
         var files = [];
         var iterator = new Iterator(srcFolder);
         iterator.forEach(function(entry, callback) {

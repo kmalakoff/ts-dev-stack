@@ -30,7 +30,7 @@ function _object_spread(target) {
 var fs = require('fs');
 var path = require('path');
 var Queue = require('queue-cb');
-var rimraf = require('../lib/rimraf');
+var rimraf2 = require('rimraf2');
 var spawn = require('../lib/spawn');
 var source = require('../lib/source');
 module.exports = function umd(_args, options, cb) {
@@ -40,7 +40,9 @@ module.exports = function umd(_args, options, cb) {
     options.type = 'umd';
     options.sourceMaps = true;
     options.dest = path.join(cwd, 'dist', 'umd');
-    rimraf(options.dest, function() {
+    rimraf2(options.dest, {
+        disableGlob: true
+    }, function() {
         var queue = new Queue(1);
         queue.defer(spawn.bind(null, 'rollup', [
             '--config',

@@ -1,1 +1,1 @@
-export default function rimraf(dir: any, callback: any): void;
+export default function rimraf2(dir: any, callback: any): void;

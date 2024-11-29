@@ -1,6 +1,6 @@
 const path = require('path');
 const Queue = require('queue-cb');
-const rimraf = require('../lib/rimraf');
+const rimraf2 = require('rimraf2');
 const link = require('../link');
 const spawn = require('../lib/spawn');
 const optionsToArgs = require('../lib/optionsToArgs');
@@ -16,7 +16,9 @@ module.exports = function c8(_args, options, cb) {
         if (err) return cb(err);
         const queue = new Queue(1);
         queue.defer((cb)=>{
-            rimraf(path.resolve(process.cwd(), 'coverage'), ()=>{
+            rimraf2(path.resolve(process.cwd(), {
+                disableGlob: true
+            }, 'coverage'), ()=>{
                 cb();
             });
         });

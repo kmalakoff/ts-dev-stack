@@ -6,7 +6,7 @@ const access = require('fs-access-compat');
 
 const tmpdir = require('os').tmpdir || require('os-shim').tmpdir;
 const mkdirp = require('mkdirp');
-const rimraf = require('rimraf');
+const rimraf2 = require('rimraf2');
 const shortHash = require('short-hash');
 
 const dest = path.join(tmpdir(), 'tsds', shortHash(__dirname));
@@ -27,7 +27,7 @@ module.exports = function data(git, options, callback) {
     const queue = new Queue(1);
 
     if (!err && options.clean) {
-      rimraf.sync(packagePath);
+      rimraf2.sync(packagePath, { disableGlob: true });
       err = true;
     }
 

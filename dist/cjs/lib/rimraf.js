@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "default", {
     enumerable: true,
     get: function() {
-        return rimraf;
+        return rimraf2;
     }
 });
 var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
@@ -15,10 +15,10 @@ function _interop_require_default(obj) {
         default: obj
     };
 }
-function rimraf(dir, callback) {
+function rimraf2(dir, callback) {
     var iterator = new _fsiterator.default(dir);
     iterator.forEach(function(entry, callback) {
-        if (entry.stats.isDirectory()) return _fs.default.rmdir(entry.fullPath, callback);
+        if (entry.stats.isDirectory()) return _fs.default.rimraf2(entry.fullPath, callback);
         _fs.default.unlink(entry.fullPath, callback);
     }, {
         callbacks: true

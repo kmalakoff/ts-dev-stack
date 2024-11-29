@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Queue = require('queue-cb');
-const rimraf = require('../lib/rimraf');
+const rimraf2 = require('rimraf2');
 const spawn = require('../lib/spawn');
 const source = require('../lib/source');
 module.exports = function umd(_args, options, cb) {
@@ -13,7 +13,9 @@ module.exports = function umd(_args, options, cb) {
     options.type = 'umd';
     options.sourceMaps = true;
     options.dest = path.join(cwd, 'dist', 'umd');
-    rimraf(options.dest, ()=>{
+    rimraf2(options.dest, {
+        disableGlob: true
+    }, ()=>{
         const queue = new Queue(1);
         queue.defer(spawn.bind(null, 'rollup', [
             '--config',
