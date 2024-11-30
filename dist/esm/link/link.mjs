@@ -3,6 +3,8 @@ const fs = require('fs');
 const Queue = require('queue-cb');
 const mkdirp = require('mkdirp');
 const unlink = require('../unlink/unlink');
+const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
+const symlinkType = isWindows ? 'junction' : 'dir';
 function saveLink(installPath, cb) {
     const movedPath = path.join(path.dirname(installPath), `${path.basename(installPath)}.tsds`);
     const queue = new Queue(1);
@@ -17,7 +19,7 @@ function createLink(installPath, cb) {
             cb();
         });
     });
-    queue.defer(fs.symlink.bind(null, process.cwd(), installPath, 'dir'));
+    queue.defer(fs.symlink.bind(null, process.cwd(), installPath, symlinkType));
     queue.await(cb);
 }
 function removeLink(installPath, cb) {
