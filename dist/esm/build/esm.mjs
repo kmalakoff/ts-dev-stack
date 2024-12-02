@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const Queue = require('queue-cb');
 const rimraf2 = require('rimraf2');
-const compileDirectory = require('./compileDirectory');
+const { transformDirectory } = require('ts-swc-transform');
+const source = require('../lib/source');
 module.exports = function esm(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     options = {
@@ -14,8 +15,10 @@ module.exports = function esm(_args, options, cb) {
     rimraf2(options.dest, {
         disableGlob: true
     }, ()=>{
+        const src = source(options);
+        const srcDir = path.dirname(path.resolve(cwd, src));
         const queue = new Queue(1);
-        queue.defer(compileDirectory.bind(null, options));
+        queue.defer(transformDirectory.bind(null, srcDir, options.dest, 'esm', options));
         queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"module"}'));
         queue.await(cb);
     });

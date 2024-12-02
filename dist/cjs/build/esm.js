@@ -31,7 +31,8 @@ var fs = require('fs');
 var path = require('path');
 var Queue = require('queue-cb');
 var rimraf2 = require('rimraf2');
-var compileDirectory = require('./compileDirectory');
+var transformDirectory = require('ts-swc-transform').transformDirectory;
+var source = require('../lib/source');
 module.exports = function esm(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     options = _object_spread({}, options);
@@ -41,10 +42,12 @@ module.exports = function esm(_args, options, cb) {
     rimraf2(options.dest, {
         disableGlob: true
     }, function() {
+        var src = source(options);
+        var srcDir = path.dirname(path.resolve(cwd, src));
         var queue = new Queue(1);
-        queue.defer(compileDirectory.bind(null, options));
+        queue.defer(transformDirectory.bind(null, srcDir, options.dest, 'esm', options));
         queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"module"}'));
         queue.await(cb);
     });
 };
-/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }
+/* CJS INTEROP */ if (exports.__esModule && exports.default) { if(typeof exports.default === 'object') Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { if (key !== 'default') exports.default[key] = exports[key]; }; module.exports = exports.default; }

@@ -2,7 +2,7 @@
 var path = require('path');
 var Iterator = require('fs-iterator');
 var getTS = require('get-tsconfig-compat');
-var createMatcher = require('ts-swc-loaders').createMatcher;
+var createMatcher = require('ts-swc-transform').createMatcher;
 var rimraf2 = require('rimraf2');
 var spawn = require('../lib/spawn');
 var source = require('../lib/source');
@@ -46,4 +46,4 @@ module.exports = function types(_args, options, cb) {
         });
     });
 };
-/* CJS INTEROP */ if (exports.__esModule && exports.default) { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) exports.default[key] = exports[key]; module.exports = exports.default; }
+/* CJS INTEROP */ if (exports.__esModule && exports.default) { if(typeof exports.default === 'object') Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { if (key !== 'default') exports.default[key] = exports[key]; }; module.exports = exports.default; }

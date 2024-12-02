@@ -1,7 +1,7 @@
 const path = require('path');
 const Iterator = require('fs-iterator');
 const getTS = require('get-tsconfig-compat');
-const { createMatcher } = require('ts-swc-loaders');
+const { createMatcher } = require('ts-swc-transform');
 
 const rimraf2 = require('rimraf2');
 const spawn = require('../lib/spawn');
