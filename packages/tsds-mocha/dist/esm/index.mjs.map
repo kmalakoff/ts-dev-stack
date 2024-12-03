@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default as mocha } from './lib/mocha';\n"],"names":["default","mocha"],"mappings":"AAAA,SAASA,WAAWC,KAAK,QAAQ,cAAc"}

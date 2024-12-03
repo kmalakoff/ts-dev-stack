@@ -1,0 +1,1 @@
+{"version":3,"sources":["extensions.js"],"sourcesContent":["module.exports = require('tsds-lib').extensions;\n"],"names":["module","exports","require","extensions"],"mappings":"AAAAA,OAAOC,OAAO,GAAGC,QAAQ,YAAYC,UAAU"}

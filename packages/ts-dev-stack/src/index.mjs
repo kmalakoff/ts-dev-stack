@@ -1,0 +1,12 @@
+export { default as build } from './build';
+export { default as coverage } from './test/c8';
+export { default as deploy } from './deploy';
+export { default as docs } from './docs';
+export { default as format } from './quality/format';
+export { default as link } from './link';
+export { default as predeploy } from './deploy/pre';
+export { default as test } from './test';
+export { mocha as testNode } from 'tsds-mocha';
+export { default as testBrowser } from './test/karma';
+export { default as unlink } from './unlink';
+export { default as version } from './deploy/version';

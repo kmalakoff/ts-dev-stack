@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default as data } from './lib/data';\n"],"names":["default","data"],"mappings":"AAAA,SAASA,WAAWC,IAAI,QAAQ,aAAa"}
