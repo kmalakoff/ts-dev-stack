@@ -1,1 +1,1 @@
-ignores: ["ts-dev-stack", "@types/*", "c8", "gh-pages", "karma*", "ts-loader", "ts-swc-loaders", "typedoc", "typescript", "webpack", "sort-package-json", "mocha-compat"]
+ignores: ["ts-dev-stack", "@types/*", "typescript", "c8", "gh-pages", "karma*", "ts-loader", "ts-swc-loaders", "typedoc", "typescript", "webpack", "sort-package-json", "mocha-compat"]
