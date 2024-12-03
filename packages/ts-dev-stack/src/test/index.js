@@ -1,5 +1,5 @@
 const Queue = require('queue-cb');
-const { mocha } = require('tsds-mocha');
+const mocha = require('tsds-mocha');
 const karma = require('./karma');
 // const c8 = require('./c8');
 
