@@ -12,7 +12,7 @@
     "format": "lerna run format",
     "test": "lerna run test",
     "test:engines": "lerna run test:engines",
-    "version": ""
+    "version": "lerna run version"
   },
   "devDependencies": {
     "lerna": "^8.1.9"
