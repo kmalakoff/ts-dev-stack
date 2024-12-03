@@ -29,10 +29,10 @@
     "scripts"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "build": "node ../ts-dev-stack/scripts/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
+    "postinstall": "node ./scripts/patch-package.js",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": "tsds version"
@@ -56,10 +56,8 @@
     "karma-webpack": "^5.0.1",
     "lodash.camelcase": "4.3.0",
     "mkdirp": "0.5.6",
-    "mocha": "11.0.1",
+    "mocha": "^11.0.1",
     "mocha-compat": "^3.6.2",
-    "mock-require-lazy": "^1.0.1",
-    "patch-package": "^8.0.0",
     "queue-cb": "^1.2.1",
     "rimraf2": "^2.8.2",
     "rollup": "^4.28.0",
@@ -72,7 +70,7 @@
     "tsds-mocha": "file:../tsds-mocha",
     "typedoc": "^0.27.2",
     "typescript": "^5.7.2",
-    "webpack": "^5.96.1"
+    "webpack": "^5.97.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

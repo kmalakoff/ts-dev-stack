@@ -17,7 +17,7 @@ function addTests(git) {
   describe.skip(path.basename(git, path.extname(git)), () => {
     let packagePath = null;
     before((cb) => {
-      data(git, {}, (err, _packagePath) => {
+      data(git, { cwd: path.resolve(__dirname, '..', '..') }, (err, _packagePath) => {
         if (err) return cb(err);
         packagePath = _packagePath;
         cb();
@@ -92,7 +92,7 @@ function addTests(git) {
         });
       major < 14 ||
         it('version', (done) => {
-          spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, (err) => {
+          spawn(CLI, ['version'], { stdio: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err, err ? err.message : '');
             done();
           });
