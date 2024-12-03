@@ -20,7 +20,7 @@ function addTests(git) {
   describe(path.basename(git, path.extname(git)), () => {
     let packagePath = null;
     before((cb) => {
-      data(git, {}, (err, _packagePath) => {
+      data(git, { cwd: path.resolve(__dirname, '..', '..') }, (err, _packagePath) => {
         if (err) return cb(err);
         packagePath = _packagePath;
         process.chdir(packagePath); // TODO: get rid of this and figure out why it is needed
@@ -98,8 +98,7 @@ function addTests(git) {
         });
 
       it('test:engines', (done) => {
-        spawn('npm', ['run', 'test:engines'], { encoding: 'utf8', cwd: packagePath }, (err) => {
-          console.log(err);
+        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
