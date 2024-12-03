@@ -98,8 +98,7 @@ function addTests(git) {
         });
 
       it('test:engines', (done) => {
-        spawn('npm', ['run', 'test:engines'], { encoding: 'utf8', cwd: packagePath }, (err) => {
-          console.log(err);
+        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });

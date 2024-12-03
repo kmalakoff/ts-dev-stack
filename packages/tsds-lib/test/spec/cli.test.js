@@ -92,7 +92,7 @@ function addTests(git) {
         });
       major < 14 ||
         it('version', (done) => {
-          spawn(CLI, ['version'], { encoding: 'utf8', cwd: packagePath }, (err) => {
+          spawn(CLI, ['version'], { stdio: 'inherit', cwd: packagePath }, (err) => {
             assert.ok(!err, err ? err.message : '');
             done();
           });
