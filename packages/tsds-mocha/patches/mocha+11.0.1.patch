@@ -1,0 +1,13 @@
+diff --git a/node_modules/mocha/lib/cli/lookup-files.js b/node_modules/mocha/lib/cli/lookup-files.js
+index a587cf9..d05d523 100644
+--- a/node_modules/mocha/lib/cli/lookup-files.js
++++ b/node_modules/mocha/lib/cli/lookup-files.js
+@@ -7,7 +7,7 @@
+ 
+ var fs = require('fs');
+ var path = require('path');
+-var glob = require('glob');
++var glob = require('mocha-compat/vendor/glob');
+ var errors = require('../errors');
+ var createNoFilesMatchPatternError = errors.createNoFilesMatchPatternError;
+ var createMissingArgumentError = errors.createMissingArgumentError;

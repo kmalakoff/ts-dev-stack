@@ -4,7 +4,7 @@ var _require = require('tsds-lib'), link = _require.link, installPath = _require
 var major = +process.versions.node.split('.')[0];
 var mochaName = major < 12 ? 'mocha-compat' : 'mocha';
 var binMocha = null;
-module.exports = function mocha(_args, options, cb) {
+module.exports = function command(_args, options, cb) {
     if (!binMocha) binMocha = require.resolve("".concat(mochaName, "/bin/_").concat(mochaName));
     var cwd = options.cwd || process.cwd();
     link(installPath(options), function(_err, restore) {

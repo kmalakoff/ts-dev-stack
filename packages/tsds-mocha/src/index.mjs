@@ -1,1 +1,1 @@
-export { default as mocha } from './lib/mocha';
+export { default } from './command';
