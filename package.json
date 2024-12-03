@@ -6,15 +6,15 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
-    "depcheck": "lerna run depcheck",
-    "deploy": "lerna run deploy",
-    "format": "lerna run format",
-    "test": "lerna run test",
-    "test:engines": "lerna run test:engines",
-    "version": "lerna run version"
+    "build": "cd packages && ep -d1 -c100 npm run build",
+    "depcheck": "cd packages && ep -d1 -c100 npm run depcheck",
+    "format": "cd packages && ep -d1 -c100 npm run format",
+    "test": "cd packages && ep -d1 -c100 npm run test",
+    "test:engines": "cd packages && ep -d1 -c100 npm run test:engines",
+    "version": "cd packages && ep -d1 -c100 npm run version"
   },
   "devDependencies": {
+    "each-package": "^0.7.2",
     "lerna": "^8.1.9"
   }
 }
