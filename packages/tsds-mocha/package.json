@@ -29,6 +29,7 @@
     "scripts"
   ],
   "scripts": {
+    "postinstall": "patch-package",
     "build": "node ../ts-dev-stack/scripts/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
@@ -40,9 +41,10 @@
   "dependencies": {
     "assert": "1.5.0",
     "cross-spawn-cb": "^1.1.2",
-    "mocha": "11.0.0",
+    "mocha": "11.0.1",
     "mocha-compat": "^3.6.2",
     "mock-require-lazy": "^1.0.1",
+    "patch-package": "^8.0.0",
     "queue-cb": "^1.2.1",
     "regenerator-runtime": "^0.14.1",
     "ts-swc-loaders": "^1.0.4",
