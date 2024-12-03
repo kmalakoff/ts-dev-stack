@@ -1,96 +1,20 @@
 {
-  "name": "ts-dev-stack",
-  "version": "1.0.1",
-  "description": "Development stack for TypeScript libraries",
-  "keywords": [
-    "c8",
-    "dev",
-    "development",
-    "mocha",
-    "rollup",
-    "stack",
-    "test",
-    "typescript"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
-  },
-  "license": "MIT",
+  "name": "root",
+  "private": true,
   "type": "commonjs",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "bin": {
-    "tsds": "bin/cli.js"
-  },
-  "files": [
-    "dist",
-    "assets",
-    "scripts"
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "build": "tsds build",
-    "depcheck": "depcheck",
-    "deploy": "tsds deploy",
-    "format": "biome check --write --unsafe src/ test/",
-    "test": "tsds test:node --no-timeouts",
-    "test:engines": "npm test",
-    "version": "tsds version"
-  },
-  "dependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-terser": "^0.4.4",
-    "assert": "1.5.0",
-    "c8": "^10.1.2",
-    "cross-spawn-cb": "^1.1.1",
-    "depcheck": "^1.4.7",
-    "env-path-key": "^1.0.0",
-    "exit": "^0.1.2",
-    "fs-access-compat": "^1.0.3",
-    "fs-iterator": "^5.1.1",
-    "get-tsconfig-compat": "^0.1.0",
-    "getopts-compat": "^2.2.5",
-    "gh-pages": "^6.2.0",
-    "karma": "^6.4.4",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-mocha": "^2.0.1",
-    "karma-mocha-reporter": "^2.2.5",
-    "karma-sourcemap-loader": "^0.4.0",
-    "karma-webpack": "^5.0.1",
-    "lodash.camelcase": "4.3.0",
-    "mkdirp": "0.5.6",
-    "mocha": "^11.0.0",
-    "mocha-compat": "^3.6.1",
-    "os-shim": "^0.1.3",
-    "path-string-prepend": "^1.0.0",
-    "queue-cb": "^1.2.1",
-    "regenerator-runtime": "^0.14.1",
-    "rimraf2": "^2.8.2",
-    "rollup": "^4.28.0",
-    "rollup-plugin-node-externals": "^7.1.3",
-    "short-hash": "^1.0.0",
-    "sort-package-json": "^2.12.0",
-    "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.0.1",
-    "ts-swc-transform": "^1.0.1",
-    "typedoc": "^0.27.2",
-    "typescript": "^5.7.2",
-    "webpack": "^5.96.1"
+    "build": "lerna run build",
+    "depcheck": "lerna run depcheck",
+    "deploy": "lerna run deploy",
+    "format": "lerna run format",
+    "test": "lerna run test",
+    "test:engines": "lerna run test:engines",
+    "version": "lerna run version"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.1",
-    "ts-dev-stack": "^1.0.0"
-  },
-  "engines": {
-    "node": ">=0.8"
-  },
-  "tsds": {
-    "source": "src/index.mjs",
-    "targets": [
-      "cjs",
-      "esm"
-    ]
+    "lerna": "^8.1.9"
   }
 }
