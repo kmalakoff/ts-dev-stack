@@ -37,7 +37,7 @@ _export(exports, {
         return _karma.default;
     },
     testNode: function() {
-        return _tsdsmocha.mocha;
+        return _tsdsmocha.default;
     },
     unlink: function() {
         return _unlink.default;
@@ -54,7 +54,7 @@ var _format = /*#__PURE__*/ _interop_require_default(require("./quality/format")
 var _link = /*#__PURE__*/ _interop_require_default(require("./link"));
 var _pre = /*#__PURE__*/ _interop_require_default(require("./deploy/pre"));
 var _test = /*#__PURE__*/ _interop_require_default(require("./test"));
-var _tsdsmocha = require("tsds-mocha");
+var _tsdsmocha = /*#__PURE__*/ _interop_require_default(require("tsds-mocha"));
 var _karma = /*#__PURE__*/ _interop_require_default(require("./test/karma"));
 var _unlink = /*#__PURE__*/ _interop_require_default(require("./unlink"));
 var _version = /*#__PURE__*/ _interop_require_default(require("./deploy/version"));

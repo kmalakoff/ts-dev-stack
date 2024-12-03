@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default as mocha } from './lib/mocha';\n"],"names":["mocha"],"mappings":";;;;+BAAoBA;;;eAAAA,cAAK;;;4DAAQ"}
+{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default } from './command';\n"],"names":["default"],"mappings":";;;;+BAASA;;;eAAAA,gBAAO;;;8DAAQ"}

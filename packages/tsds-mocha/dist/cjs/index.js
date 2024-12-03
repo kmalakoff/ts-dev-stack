@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-Object.defineProperty(exports, "mocha", {
+Object.defineProperty(exports, "default", {
     enumerable: true,
     get: function() {
-        return _mocha.default;
+        return _command.default;
     }
 });
-var _mocha = /*#__PURE__*/ _interop_require_default(require("./lib/mocha"));
+var _command = /*#__PURE__*/ _interop_require_default(require("./command"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
