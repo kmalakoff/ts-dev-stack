@@ -1,0 +1,68 @@
+{
+  "name": "tsds-mocha",
+  "version": "1.0.1",
+  "description": "Development stack for TypeScript libraries",
+  "keywords": [
+    "c8",
+    "dev",
+    "development",
+    "mocha",
+    "rollup",
+    "stack",
+    "test",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "bin": {
+    "tsds-mocha": "bin/cli.js"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "node ../ts-dev-stack/scripts/build.js",
+    "depcheck": "depcheck",
+    "format": "biome check --write --unsafe src/ test/",
+    "test": "",
+    "test2": "tsds test:node --no-timeouts",
+    "test:engines": "npm test",
+    "version": "tsds version"
+  },
+  "dependencies": {
+    "assert": "1.5.0",
+    "cross-spawn-cb": "^1.1.2",
+    "mocha": "11.0.0",
+    "mocha-compat": "^3.6.2",
+    "mock-require-lazy": "^1.0.1",
+    "queue-cb": "^1.2.1",
+    "regenerator-runtime": "^0.14.1",
+    "ts-swc-loaders": "^1.0.4",
+    "tsds-lib": "file:../tsds-lib"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.1",
+    "depcheck": "^1.4.7",
+    "tsds-lib-test": "file:../tsds-lib-test"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "tsds": {
+    "source": "src/index.mjs",
+    "targets": [
+      "cjs",
+      "esm"
+    ]
+  }
+}
