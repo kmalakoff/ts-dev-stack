@@ -29,10 +29,10 @@
     "scripts"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "build": "node ../ts-dev-stack/scripts/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
+    "postinstall": "node ./scripts/patch-package.js",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
@@ -41,10 +41,10 @@
   "dependencies": {
     "assert": "1.5.0",
     "cross-spawn-cb": "^1.1.2",
-    "mocha": "11.0.1",
+    "exit": "^0.1.2",
+    "getopts-compat": "^2.2.5",
+    "mocha": "^11.0.1",
     "mocha-compat": "^3.6.2",
-    "mock-require-lazy": "^1.0.1",
-    "patch-package": "^8.0.0",
     "queue-cb": "^1.2.1",
     "regenerator-runtime": "^0.14.1",
     "ts-swc-loaders": "^1.0.4",
@@ -55,7 +55,8 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
     "depcheck": "^1.4.7",
-    "tsds-lib-test": "file:../tsds-lib-test"
+    "tsds-lib-test": "file:../tsds-lib-test",
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=0.8"

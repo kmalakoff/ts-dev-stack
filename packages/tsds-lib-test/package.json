@@ -47,7 +47,8 @@
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
-    "depcheck": "^1.4.7"
+    "depcheck": "^1.4.7",
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=0.8"

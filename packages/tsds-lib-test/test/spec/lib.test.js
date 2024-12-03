@@ -20,7 +20,7 @@ function addTests(git) {
   describe.skip(path.basename(git, path.extname(git)), () => {
     let packagePath = null;
     before((cb) => {
-      data(git, {}, (err, _packagePath) => {
+      data(git, { cwd: path.resolve(__dirname, '..', '..') }, (err, _packagePath) => {
         if (err) return cb(err);
         packagePath = _packagePath;
         process.chdir(packagePath); // TODO: get rid of this and figure out why it is needed
