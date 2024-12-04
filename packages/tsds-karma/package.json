@@ -49,6 +49,7 @@
     "karma-webpack": "^5.0.1",
     "queue-cb": "^1.2.1",
     "regenerator-runtime": "^0.14.1",
+    "ts-loader": "^9.5.1",
     "ts-swc-loaders": "^1.0.4",
     "tsds-lib": "file:../tsds-lib",
     "webpack": "^5.97.0"
