@@ -26,7 +26,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../tsds-build/assets/build.js",
+    "build": "node ../tsds-build/scripts/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
     "test": "",
