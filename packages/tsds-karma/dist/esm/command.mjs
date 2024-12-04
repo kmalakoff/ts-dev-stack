@@ -1,14 +1,13 @@
 import path from 'path';
 import Queue from 'queue-cb';
 import { installPath, link, spawn } from 'tsds-lib';
-const packageName = 'tsds-karma';
-function root(dir) {
+function packageRoot(dir, packageName) {
     if (path.basename(dir) === packageName) return dir;
     const nextDir = path.dirname(dir);
-    if (nextDir === dir) throw new Error(`${packageName} not found`);
-    return root(nextDir);
+    if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+    return packageRoot(nextDir, packageName);
 }
-const config = path.join(root(__dirname), 'assets', 'karma.conf.js');
+const config = path.join(packageRoot(__dirname, 'tsds-karma'), 'assets', 'karma.conf.js');
 export default function karma(args, options, cb) {
     link(installPath(options), (_err, restore)=>{
         const queue = new Queue(1);

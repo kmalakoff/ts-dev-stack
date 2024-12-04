@@ -16,14 +16,13 @@ function _interop_require_default(obj) {
         default: obj
     };
 }
-var packageName = 'tsds-karma';
-function root(dir) {
+function packageRoot(dir, packageName) {
     if (_path.default.basename(dir) === packageName) return dir;
     var nextDir = _path.default.dirname(dir);
-    if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
-    return root(nextDir);
+    if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+    return packageRoot(nextDir, packageName);
 }
-var config = _path.default.join(root(__dirname), 'assets', 'karma.conf.js');
+var config = _path.default.join(packageRoot(__dirname, 'tsds-karma'), 'assets', 'karma.conf.js');
 function karma(args, options, cb) {
     (0, _tsdslib.link)((0, _tsdslib.installPath)(options), function(_err, restore) {
         var queue = new _queuecb.default(1);

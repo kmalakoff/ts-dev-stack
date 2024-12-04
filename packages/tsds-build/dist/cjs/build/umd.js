@@ -46,14 +46,13 @@ function _object_spread(target) {
     }
     return target;
 }
-var packageName = 'tsds-build';
-function root(dir) {
+function packageRoot(dir, packageName) {
     if (_path.default.basename(dir) === packageName) return dir;
     var nextDir = _path.default.dirname(dir);
-    if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
-    return root(nextDir);
+    if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+    return packageRoot(nextDir, packageName);
 }
-var config = _path.default.resolve(root(__dirname), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+var config = _path.default.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup-swc', 'index.mjs');
 function umd(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = _path.default.resolve(cwd, (0, _tsdslib.source)(options));

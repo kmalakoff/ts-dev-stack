@@ -3,14 +3,13 @@ import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { source, spawn } from 'tsds-lib';
-const packageName = 'tsds-build';
-function root(dir) {
+function packageRoot(dir, packageName) {
     if (path.basename(dir) === packageName) return dir;
     const nextDir = path.dirname(dir);
-    if (nextDir === dir) throw new Error(`${packageName} not found`);
-    return root(nextDir);
+    if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+    return packageRoot(nextDir, packageName);
 }
-const config = path.resolve(root(__dirname), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+const config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup-swc', 'index.mjs');
 export default function umd(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const src = path.resolve(cwd, source(options));

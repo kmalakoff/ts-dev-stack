@@ -35,5 +35,5 @@ export default {
       globals,
     },
   ],
-  plugins: [externals({ devDeps: false,  builtinsPrefix: 'strip' }), resolve(), swc()],
+  plugins: [externals({ devDeps: false, builtinsPrefix: 'strip' }), resolve(), swc()],
 };
