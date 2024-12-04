@@ -1,9 +1,9 @@
-const Queue = require('queue-cb');
-const { spawn } = require('tsds-lib');
-const predeploy = require('./pre');
-const postdeploy = require('./post');
+import Queue from 'queue-cb';
+import { spawn } from 'tsds-lib';
+import postdeploy from './post.mjs';
+import predeploy from './pre.mjs';
 
-module.exports = function deploy(args, options, cb) {
+export default function deploy(args, options, cb) {
   const npArgs = [];
   if (options['no-publish']) npArgs.push('--no-publish');
   if (options.preview) npArgs.push('--preview');
@@ -14,6 +14,6 @@ module.exports = function deploy(args, options, cb) {
   queue.defer(spawn.bind(null, 'np', npArgs, {}));
   queue.defer(postdeploy.bind(null, args, options));
   queue.await(cb);
-};
+}
 
 module.exports.options = { alias: { 'no-publish': 'np', preview: 'p', yarn: 'y' } };
