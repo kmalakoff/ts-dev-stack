@@ -16,7 +16,7 @@ export default function command(_args, options, cb) {
       let args = [binMocha, '--watch-extensions', 'ts,tsx'];
       args = args.concat(optionsToArgs(options));
       args = args.concat(_args.length ? _args.slice(-1) : ['test/**/*.test.*']);
-      spawn('ts-swc', args, { cwd }, cb);
+      spawn(require.resolve('ts-swc-loaders/bin/cli.js'), args, { cwd }, cb);
     });
     queue.await((err) => {
       restore((err2) => {
