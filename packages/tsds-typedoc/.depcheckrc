@@ -1,0 +1,1 @@
+ignores: ["tsds-typedoc", "@types/*", "typescript", "typedoc"]

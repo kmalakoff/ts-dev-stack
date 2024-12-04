@@ -3,11 +3,8 @@
   "version": "1.0.5",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
-    "c8",
     "dev",
     "development",
-    "mocha",
-    "rollup",
     "stack",
     "test",
     "typescript"
@@ -26,7 +23,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../ts-dev-stack/scripts/build.js",
+    "build": "node ../tsds-build/assets/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
     "test": "",
