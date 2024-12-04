@@ -1,0 +1,1 @@
+ignores: ["tsds-biome", "@types/*", "typescript"]
