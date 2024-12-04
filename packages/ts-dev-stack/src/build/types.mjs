@@ -1,12 +1,12 @@
-const path = require('path');
-const Iterator = require('fs-iterator');
-const getTS = require('get-tsconfig-compat');
-const { createMatcher } = require('ts-swc-transform');
+import path from 'path';
+import Iterator from 'fs-iterator';
+import getTS from 'get-tsconfig-compat';
+import { createMatcher } from 'ts-swc-transform';
 
-const rimraf2 = require('rimraf2');
-const { source, spawn } = require('tsds-lib');
+import rimraf2 from 'rimraf2';
+import { source, spawn } from 'tsds-lib';
 
-module.exports = function types(_args, options, cb) {
+export default function types(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
   const src = source(options);
   const srcFolder = path.dirname(path.resolve(cwd, src));
@@ -39,4 +39,4 @@ module.exports = function types(_args, options, cb) {
       }
     );
   });
-};
+}
