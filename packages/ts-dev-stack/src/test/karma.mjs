@@ -1,8 +1,8 @@
-const path = require('path');
-const Queue = require('queue-cb');
-const { link, installPath, spawn } = require('tsds-lib');
+import path from 'path';
+import Queue from 'queue-cb';
+import { installPath, link, spawn } from 'tsds-lib';
 
-module.exports = function karma(args, options, cb) {
+export default function karma(args, options, cb) {
   link(installPath(options), (_err, restore) => {
     const queue = new Queue(1);
     queue.defer((cb) => {
@@ -15,4 +15,4 @@ module.exports = function karma(args, options, cb) {
       });
     });
   });
-};
+}

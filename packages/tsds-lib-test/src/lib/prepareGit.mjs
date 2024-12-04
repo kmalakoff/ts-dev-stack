@@ -1,15 +1,16 @@
-const path = require('path');
-const Queue = require('queue-cb');
-const spawn = require('cross-spawn-cb');
-const access = require('fs-access-compat');
-const rimraf2 = require('rimraf2');
-const tmpdir = require('os').tmpdir || require('os-shim').tmpdir;
-const mkdirp = require('mkdirp');
-const shortHash = require('short-hash');
+import fs from 'fs';
+import path from 'path';
+import spawn from 'cross-spawn-cb';
+import access from 'fs-access-compat';
+import mkdirp from 'mkdirp';
+import { tmpdir } from 'os-shim';
+import Queue from 'queue-cb';
+import rimraf2 from 'rimraf2';
+import shortHash from 'short-hash';
 
-module.exports = function prepareGit(git, options, callback) {
+export default function prepareGit(git, options, callback) {
   const cwd = options.cwd || process.cwd();
-  const pkg = require(path.join(cwd, 'package.json'));
+  const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));
   const dest = path.join(tmpdir(), pkg.name, shortHash(cwd));
   const targetName = path.basename(git, path.extname(git));
   const targetPath = path.join(dest, targetName);
