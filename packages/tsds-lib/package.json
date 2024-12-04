@@ -24,7 +24,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../tsds-build/assets/build.js",
+    "build": "node ../tsds-build/scripts/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
     "test": "",
@@ -44,6 +44,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
     "depcheck": "^1.4.7",
+    "rollup": "^4.28.0",
     "tsds-lib-test": "file:../tsds-lib-test",
     "typescript": "^5.7.2"
   },

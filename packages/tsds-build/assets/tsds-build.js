@@ -1,6 +1,6 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('tsds-lib'), require('fs'), require('ts-swc-transform'), require('fs-iterator'), require('get-tsconfig-compat')) :
-  typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'tsds-lib', 'fs', 'ts-swc-transform', 'fs-iterator', 'get-tsconfig-compat'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('tsds-lib/assets/tsds-lib.js'), require('fs'), require('ts-swc-transform'), require('fs-iterator'), require('get-tsconfig-compat')) :
+  typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'tsds-lib/assets/tsds-lib.js', 'fs', 'ts-swc-transform', 'fs-iterator', 'get-tsconfig-compat'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, global.tsdsLib, global.fs, global.tsSwcTransform, global.Iterator, global.getTS));
 })(this, (function (path, Queue, rimraf2, tsdsLib, fs, tsSwcTransform, Iterator, getTS) { 'use strict';
 
@@ -165,14 +165,13 @@
       }
       return target;
   }
-  var packageName = 'tsds-build';
-  function root(dir) {
+  function packageRoot(dir, packageName) {
       if (path.basename(dir) === packageName) return dir;
       var nextDir = path.dirname(dir);
-      if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
-      return root(nextDir);
+      if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+      return packageRoot(nextDir, packageName);
   }
-  var config = path.resolve(root(__dirname), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+  var config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup-swc', 'index.mjs');
   function umd(_args, options, cb) {
       var cwd = options.cwd || process.cwd();
       var src = path.resolve(cwd, tsdsLib.source(options));
