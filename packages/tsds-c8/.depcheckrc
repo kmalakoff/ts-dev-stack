@@ -1,0 +1,1 @@
+ignores: ["tsds-c8", "@types/*", "typescript", "assert"]
