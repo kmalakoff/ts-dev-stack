@@ -1,9 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const Queue = require('queue-cb');
-const rimraf2 = require('rimraf2');
-const { source, spawn } = require('tsds-lib');
-module.exports = function umd(_args, options, cb) {
+import fs from 'fs';
+import path from 'path';
+import Queue from 'queue-cb';
+import rimraf2 from 'rimraf2';
+import { source, spawn } from 'tsds-lib';
+function root(dir) {
+    if (path.basename(dir) === 'ts-dev-stack') return dir;
+    const nextDir = path.dirname(dir);
+    if (nextDir === dir) throw new Error('ts-dev-stack not found');
+    return root(nextDir);
+}
+export default function umd(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const src = path.resolve(cwd, source(options));
     options = {
@@ -18,7 +24,7 @@ module.exports = function umd(_args, options, cb) {
         const queue = new Queue(1);
         queue.defer(spawn.bind(null, 'rollup', [
             '--config',
-            path.resolve(__dirname, '..', '..', 'esm', 'rollup-swc', 'index.mjs'),
+            path.resolve(root(__dirname), 'dist', 'esm', 'rollup-swc', 'index.mjs'),
             '--input',
             src
         ], {
@@ -27,4 +33,4 @@ module.exports = function umd(_args, options, cb) {
         queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
         queue.await(cb);
     });
-};
+}

@@ -1,25 +1,39 @@
 "use strict";
-var Queue = require('queue-cb');
-var _require = require('tsds-lib'), link = _require.link, installPath = _require.installPath, spawn = _require.spawn, optionsToArgs = _require.optionsToArgs;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return command;
+    }
+});
+var _queuecb = /*#__PURE__*/ _interop_require_default(require("queue-cb"));
+var _tsdslib = require("tsds-lib");
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 var major = +process.versions.node.split('.')[0];
 var mochaName = major < 12 ? 'mocha-compat' : 'mocha';
 var binMocha = null;
-module.exports = function command(_args, options, cb) {
+function command(_args, options, cb) {
     if (!binMocha) binMocha = require.resolve("".concat(mochaName, "/bin/_").concat(mochaName));
     var cwd = options.cwd || process.cwd();
-    link(installPath(options), function(_err, restore) {
-        var queue = new Queue(1);
+    (0, _tsdslib.link)((0, _tsdslib.installPath)(options), function(_err, restore) {
+        var queue = new _queuecb.default(1);
         queue.defer(function(cb) {
             var args = [
                 binMocha,
                 '--watch-extensions',
                 'ts,tsx'
             ];
-            args = args.concat(optionsToArgs(options));
+            args = args.concat((0, _tsdslib.optionsToArgs)(options));
             args = args.concat(_args.length ? _args.slice(-1) : [
                 'test/**/*.test.*'
             ]);
-            spawn('ts-swc', args, {
+            (0, _tsdslib.spawn)('ts-swc', args, {
                 cwd: cwd
             }, cb);
         });
@@ -29,7 +43,7 @@ module.exports = function command(_args, options, cb) {
             });
         });
     });
-};
+}
 module.exports.options = {
     alias: {
         temp: 't'

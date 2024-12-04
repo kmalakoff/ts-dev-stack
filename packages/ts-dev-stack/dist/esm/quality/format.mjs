@@ -1,5 +1,5 @@
-const { spawn } = require('tsds-lib');
-module.exports = function format(_args, options, cb) {
+import { spawn } from 'tsds-lib';
+export default function format(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     spawn('npm', [
         'run',
@@ -7,4 +7,4 @@ module.exports = function format(_args, options, cb) {
     ], {
         cwd
     }, cb);
-};
+}

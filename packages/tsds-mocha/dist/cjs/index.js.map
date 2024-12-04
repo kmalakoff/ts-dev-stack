@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default } from './command';\n"],"names":["default"],"mappings":";;;;+BAASA;;;eAAAA,gBAAO;;;8DAAQ"}
+{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default } from './command.mjs';\n"],"names":["default"],"mappings":";;;;+BAASA;;;eAAAA,gBAAO;;;8DAAQ"}

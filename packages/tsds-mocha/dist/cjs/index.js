@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return _command.default;
     }
 });
-var _command = /*#__PURE__*/ _interop_require_default(require("./command"));
+var _command = /*#__PURE__*/ _interop_require_default(require("./command.js"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj

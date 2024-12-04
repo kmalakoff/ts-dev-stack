@@ -1,4 +1,17 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return spawn;
+    }
+});
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
+var _crossspawncb = /*#__PURE__*/ _interop_require_default(require("cross-spawn-cb"));
+var _envpathkey = /*#__PURE__*/ _interop_require_default(require("env-path-key"));
+var _pathstringprepend = /*#__PURE__*/ _interop_require_default(require("path-string-prepend"));
 function _define_property(obj, key, value) {
     if (key in obj) {
         Object.defineProperty(obj, key, {
@@ -11,6 +24,11 @@ function _define_property(obj, key, value) {
         obj[key] = value;
     }
     return obj;
+}
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
 function _object_spread(target) {
     for(var i = 1; i < arguments.length; i++){
@@ -51,22 +69,18 @@ function _object_spread_props(target, source) {
     }
     return target;
 }
-var path = require('path');
-var crossSpawn = require('cross-spawn-cb');
-var pathKey = require('env-path-key');
-var prepend = require('path-string-prepend');
-module.exports = function spawn(cmd, args, options, cb) {
+function spawn(cmd, args, options, cb) {
     var cwd = options.cwd || process.cwd();
-    var PATH_KEY = pathKey(options);
+    var PATH_KEY = (0, _envpathkey.default)(options);
     var env = _object_spread_props(_object_spread({}, process.env), {
         env: options.env || {}
     });
-    env[PATH_KEY] = prepend(env[PATH_KEY] || '', path.resolve(__dirname, '..', '..', '..', '..', '..', 'node_modules', '.bin'));
-    env[PATH_KEY] = prepend(env[PATH_KEY] || '', path.resolve(cwd, 'node_modules', '.bin'));
-    crossSpawn(cmd, args, {
+    env[PATH_KEY] = (0, _pathstringprepend.default)(env[PATH_KEY] || '', _path.default.resolve(__dirname, '..', '..', '..', '..', '..', 'node_modules', '.bin'));
+    env[PATH_KEY] = (0, _pathstringprepend.default)(env[PATH_KEY] || '', _path.default.resolve(cwd, 'node_modules', '.bin'));
+    (0, _crossspawncb.default)(cmd, args, {
         stdio: 'inherit',
         cwd: cwd,
         env: env
     }, cb);
-};
+}
 /* CJS INTEROP */ if (exports.__esModule && exports.default) { try { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { exports.default[key] = exports[key]; } } catch (_) {}; module.exports = exports.default; }

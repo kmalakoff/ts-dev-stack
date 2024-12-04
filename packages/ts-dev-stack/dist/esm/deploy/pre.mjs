@@ -1,8 +1,8 @@
-const Queue = require('queue-cb');
-const { spawn } = require('tsds-lib');
-const build = require('../build');
-const format = require('../quality/format');
-module.exports = function predeploy(args, options, cb) {
+import Queue from 'queue-cb';
+import { spawn } from 'tsds-lib';
+import build from '../build/index.mjs';
+import format from '../quality/format.mjs';
+export default function predeploy(args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const queue = new Queue(1);
     queue.defer(format.bind(null, args, options));
@@ -14,4 +14,4 @@ module.exports = function predeploy(args, options, cb) {
         cwd
     }));
     queue.await(cb);
-};
+}

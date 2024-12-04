@@ -10,16 +10,16 @@ function _export(target, all) {
 }
 _export(exports, {
     build: function() {
-        return _build.default;
+        return _index.default;
     },
     coverage: function() {
         return _c8.default;
     },
     deploy: function() {
-        return _deploy.default;
+        return _index1.default;
     },
     docs: function() {
-        return _docs.default;
+        return _index2.default;
     },
     format: function() {
         return _format.default;
@@ -31,7 +31,7 @@ _export(exports, {
         return _pre.default;
     },
     test: function() {
-        return _test.default;
+        return _index3.default;
     },
     testBrowser: function() {
         return _karma.default;
@@ -46,18 +46,18 @@ _export(exports, {
         return _version.default;
     }
 });
-var _build = /*#__PURE__*/ _interop_require_default(require("./build"));
-var _c8 = /*#__PURE__*/ _interop_require_default(require("./test/c8"));
-var _deploy = /*#__PURE__*/ _interop_require_default(require("./deploy"));
-var _docs = /*#__PURE__*/ _interop_require_default(require("./docs"));
-var _format = /*#__PURE__*/ _interop_require_default(require("./quality/format"));
-var _link = /*#__PURE__*/ _interop_require_default(require("./link"));
-var _pre = /*#__PURE__*/ _interop_require_default(require("./deploy/pre"));
-var _test = /*#__PURE__*/ _interop_require_default(require("./test"));
+var _index = /*#__PURE__*/ _interop_require_default(require("./build/index.js"));
+var _c8 = /*#__PURE__*/ _interop_require_default(require("./test/c8.js"));
+var _index1 = /*#__PURE__*/ _interop_require_default(require("./deploy/index.js"));
+var _index2 = /*#__PURE__*/ _interop_require_default(require("./docs/index.js"));
+var _format = /*#__PURE__*/ _interop_require_default(require("./quality/format.js"));
+var _link = /*#__PURE__*/ _interop_require_default(require("./link.js"));
+var _pre = /*#__PURE__*/ _interop_require_default(require("./deploy/pre.js"));
+var _index3 = /*#__PURE__*/ _interop_require_default(require("./test/index.js"));
 var _tsdsmocha = /*#__PURE__*/ _interop_require_default(require("tsds-mocha"));
-var _karma = /*#__PURE__*/ _interop_require_default(require("./test/karma"));
-var _unlink = /*#__PURE__*/ _interop_require_default(require("./unlink"));
-var _version = /*#__PURE__*/ _interop_require_default(require("./deploy/version"));
+var _karma = /*#__PURE__*/ _interop_require_default(require("./test/karma.js"));
+var _unlink = /*#__PURE__*/ _interop_require_default(require("./unlink.js"));
+var _version = /*#__PURE__*/ _interop_require_default(require("./deploy/version.js"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj

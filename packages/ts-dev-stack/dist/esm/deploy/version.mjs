@@ -1,7 +1,7 @@
-const Queue = require('queue-cb');
-const { spawn } = require('tsds-lib');
-const docs = require('../docs');
-module.exports = function version(_args, _options, cb) {
+import Queue from 'queue-cb';
+import { spawn } from 'tsds-lib';
+import docs from '../docs/index.mjs';
+export default function version(_args, _options, cb) {
     const queue = new Queue(1);
     queue.defer(docs.bind(null, _args, _options));
     queue.defer(spawn.bind(null, 'git', [
@@ -9,4 +9,4 @@ module.exports = function version(_args, _options, cb) {
         'docs'
     ], {}));
     queue.await(cb);
-};
+}

@@ -30,7 +30,7 @@ var DEPS = [
 DEPS.forEach(function(x) {
     var deps = pkg[x] || {};
     for(var name in deps){
-        if (globals[name] === undefined) console.log("umd dependency ".concat(name, 'is missing. Add a "tsds": { "globals": { "${name}": "SomeName" } } to your package.json'));
+        if (globals[name] === undefined) console.log("umd dependency ".concat(name, 'is missing. Add a "tsds": { "globals": { "').concat(name, '": "SomeName" } } to your package.json'));
     }
 });
 var _default = {

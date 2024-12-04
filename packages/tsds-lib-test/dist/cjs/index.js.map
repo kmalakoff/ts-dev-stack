@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default as data } from './lib/data';\n"],"names":["data"],"mappings":";;;;+BAAoBA;;;eAAAA,aAAI;;;2DAAQ"}
+{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default as data } from './lib/data.mjs';\nexport { default as prepareGit } from './lib/prepareGit.mjs';\n"],"names":["data","prepareGit"],"mappings":";;;;;;;;;;;IAAoBA,IAAI;eAAJA,aAAI;;IACJC,UAAU;eAAVA,mBAAU;;;2DADE;iEACM"}

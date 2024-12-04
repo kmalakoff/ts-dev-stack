@@ -15,7 +15,7 @@ const DEPS = [
 DEPS.forEach((x)=>{
     const deps = pkg[x] || {};
     for(const name in deps){
-        if (globals[name] === undefined) console.log(`umd dependency ${name}is missing. Add a "tsds": { "globals": { "\${name}": "SomeName" } } to your package.json`);
+        if (globals[name] === undefined) console.log(`umd dependency ${name}is missing. Add a "tsds": { "globals": { \"${name}\": "SomeName" } } to your package.json`);
     }
 });
 export default {

@@ -1,4 +1,19 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return esm;
+    }
+});
+var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
+var _queuecb = /*#__PURE__*/ _interop_require_default(require("queue-cb"));
+var _rimraf2 = /*#__PURE__*/ _interop_require_default(require("rimraf2"));
+var _tsswctransform = require("ts-swc-transform");
+var _tsdslib = require("tsds-lib");
 function _define_property(obj, key, value) {
     if (key in obj) {
         Object.defineProperty(obj, key, {
@@ -11,6 +26,11 @@ function _define_property(obj, key, value) {
         obj[key] = value;
     }
     return obj;
+}
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
 }
 function _object_spread(target) {
     for(var i = 1; i < arguments.length; i++){
@@ -27,27 +47,21 @@ function _object_spread(target) {
     }
     return target;
 }
-var fs = require('fs');
-var path = require('path');
-var Queue = require('queue-cb');
-var rimraf2 = require('rimraf2');
-var transformDirectory = require('ts-swc-transform').transformDirectory;
-var source = require('tsds-lib').source;
-module.exports = function esm(_args, options, cb) {
+function esm(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     options = _object_spread({}, options);
     options.type = 'esm';
     options.sourceMaps = true;
-    options.dest = path.join(cwd, 'dist', 'esm');
-    rimraf2(options.dest, {
+    options.dest = _path.default.join(cwd, 'dist', 'esm');
+    (0, _rimraf2.default)(options.dest, {
         disableGlob: true
     }, function() {
-        var src = source(options);
-        var srcDir = path.dirname(path.resolve(cwd, src));
-        var queue = new Queue(1);
-        queue.defer(transformDirectory.bind(null, srcDir, options.dest, 'esm', options));
-        queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"module"}'));
+        var src = (0, _tsdslib.source)(options);
+        var srcDir = _path.default.dirname(_path.default.resolve(cwd, src));
+        var queue = new _queuecb.default(1);
+        queue.defer(_tsswctransform.transformDirectory.bind(null, srcDir, options.dest, 'esm', options));
+        queue.defer(_fs.default.writeFile.bind(null, _path.default.join(options.dest, 'package.json'), '{"type":"module"}'));
         queue.await(cb);
     });
-};
+}
 /* CJS INTEROP */ if (exports.__esModule && exports.default) { try { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { exports.default[key] = exports[key]; } } catch (_) {}; module.exports = exports.default; }

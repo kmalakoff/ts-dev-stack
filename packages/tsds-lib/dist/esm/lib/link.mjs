@@ -1,8 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const Queue = require('queue-cb');
-const mkdirp = require('mkdirp');
-const unlink = require('./unlink');
+import fs from 'fs';
+import path from 'path';
+import mkdirp from 'mkdirp';
+import Queue from 'queue-cb';
+import unlink from './unlink.mjs';
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const symlinkType = isWindows ? 'junction' : 'dir';
 function saveLink(target, cb) {
@@ -25,7 +25,7 @@ function createLink(target, cb) {
 function removeLink(target, cb) {
     fs.unlink(target, cb);
 }
-module.exports = function link(target, cb) {
+export default function link(target, cb) {
     try {
         fs.lstat(target, (_, lstat)=>{
             // new
@@ -48,4 +48,4 @@ module.exports = function link(target, cb) {
     } catch (err) {
         return cb(err);
     }
-};
+}

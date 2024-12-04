@@ -1,14 +1,14 @@
-const fs = require('fs');
-const path = require('path');
-const Queue = require('queue-cb');
-const spawn = require('cross-spawn-cb');
-const tmpdir = require('os').tmpdir || require('os-shim').tmpdir;
-const mkdirp = require('mkdirp');
-const shortHash = require('short-hash');
-const prepareGit = require('./prepareGit');
-module.exports = function data(git, options, callback) {
+import fs from 'fs';
+import path from 'path';
+import spawn from 'cross-spawn-cb';
+import mkdirp from 'mkdirp';
+import { tmpdir } from 'os-shim';
+import Queue from 'queue-cb';
+import shortHash from 'short-hash';
+import prepareGit from './prepareGit.mjs';
+export default function data(git, options, callback) {
     const cwd = options.cwd || process.cwd();
-    const pkg = require(path.join(cwd, 'package.json'));
+    const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));
     const dest = path.join(tmpdir(), pkg.name, shortHash(cwd));
     const targetName = path.basename(git, path.extname(git));
     const targetPath = path.join(dest, targetName);
@@ -44,4 +44,4 @@ module.exports = function data(git, options, callback) {
             err ? callback(err) : callback(null, targetPath);
         });
     }
-};
+}

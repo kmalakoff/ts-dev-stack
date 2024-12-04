@@ -1,8 +1,8 @@
-const path = require('path');
-const crossSpawn = require('cross-spawn-cb');
-const pathKey = require('env-path-key');
-const prepend = require('path-string-prepend');
-module.exports = function spawn(cmd, args, options, cb) {
+import path from 'path';
+import crossSpawn from 'cross-spawn-cb';
+import pathKey from 'env-path-key';
+import prepend from 'path-string-prepend';
+export default function spawn(cmd, args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const PATH_KEY = pathKey(options);
     const env = {
@@ -16,4 +16,4 @@ module.exports = function spawn(cmd, args, options, cb) {
         cwd,
         env: env
     }, cb);
-};
+}

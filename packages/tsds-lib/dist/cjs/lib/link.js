@@ -1,34 +1,48 @@
 "use strict";
-var path = require('path');
-var fs = require('fs');
-var Queue = require('queue-cb');
-var mkdirp = require('mkdirp');
-var unlink = require('./unlink');
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return link;
+    }
+});
+var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
+var _mkdirp = /*#__PURE__*/ _interop_require_default(require("mkdirp"));
+var _queuecb = /*#__PURE__*/ _interop_require_default(require("queue-cb"));
+var _unlink = /*#__PURE__*/ _interop_require_default(require("./unlink.js"));
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 var isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 var symlinkType = isWindows ? 'junction' : 'dir';
 function saveLink(target, cb) {
-    var movedPath = path.join(path.dirname(target), "".concat(path.basename(target), ".tsds"));
-    var queue = new Queue(1);
-    queue.defer(fs.rename.bind(null, target, movedPath));
+    var movedPath = _path.default.join(_path.default.dirname(target), "".concat(_path.default.basename(target), ".tsds"));
+    var queue = new _queuecb.default(1);
+    queue.defer(_fs.default.rename.bind(null, target, movedPath));
     queue.defer(createLink.bind(null, target));
     queue.await(cb);
 }
 function createLink(target, cb) {
-    var queue = new Queue(1);
+    var queue = new _queuecb.default(1);
     queue.defer(function(cb) {
-        mkdirp(path.dirname(target), function() {
+        (0, _mkdirp.default)(_path.default.dirname(target), function() {
             cb();
         });
     });
-    queue.defer(fs.symlink.bind(null, process.cwd(), target, symlinkType));
+    queue.defer(_fs.default.symlink.bind(null, process.cwd(), target, symlinkType));
     queue.await(cb);
 }
 function removeLink(target, cb) {
-    fs.unlink(target, cb);
+    _fs.default.unlink(target, cb);
 }
-module.exports = function link(target, cb) {
+function link(target, cb) {
     try {
-        fs.lstat(target, function(_, lstat) {
+        _fs.default.lstat(target, function(_, lstat) {
             // new
             if (!lstat) {
                 createLink(target, function(err) {
@@ -36,7 +50,7 @@ module.exports = function link(target, cb) {
                 });
             } else if (lstat.isDirectory()) {
                 saveLink(target, function(err) {
-                    err ? cb(err) : cb(null, unlink.bind(null, target));
+                    err ? cb(err) : cb(null, _unlink.default.bind(null, target));
                 });
             } else {
                 removeLink(target, function() {
@@ -49,5 +63,5 @@ module.exports = function link(target, cb) {
     } catch (err) {
         return cb(err);
     }
-};
+}
 /* CJS INTEROP */ if (exports.__esModule && exports.default) { try { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { exports.default[key] = exports[key]; } } catch (_) {}; module.exports = exports.default; }

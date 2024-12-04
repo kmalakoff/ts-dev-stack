@@ -1,9 +1,9 @@
-const path = require('path');
-const mkdirp = require('mkdirp');
-const Queue = require('queue-cb');
-const rimraf2 = require('rimraf2');
-const { spawn, source } = require('tsds-lib');
-module.exports = function docs(_args, options, cb) {
+import path from 'path';
+import mkdirp from 'mkdirp';
+import Queue from 'queue-cb';
+import rimraf2 from 'rimraf2';
+import { source, spawn } from 'tsds-lib';
+export default function docs(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const src = source(options);
     const dest = path.resolve(process.cwd(), 'docs');
@@ -19,4 +19,4 @@ module.exports = function docs(_args, options, cb) {
         }));
         queue.await(cb);
     });
-};
+}

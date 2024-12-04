@@ -1,9 +1,9 @@
-const getopts = require('getopts-compat');
-const exit = require('exit');
-const commands = require('./index.mjs');
+import exit from 'exit';
+import getopts from 'getopts-compat';
+import * as commands from './index.mjs';
 commands['test:node'] = commands.testNode;
 commands['test:browser'] = commands.testBrowser;
-module.exports = function cli(argv, name) {
+export default function cli(argv, name) {
     if (argv.length === 0) {
         console.log(`Command missing${name} ${argv.join(',')}`);
         return exit(-1);
@@ -25,4 +25,4 @@ module.exports = function cli(argv, name) {
         }
         exit(0);
     });
-};
+}

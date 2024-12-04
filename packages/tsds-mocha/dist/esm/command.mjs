@@ -1,9 +1,9 @@
-const Queue = require('queue-cb');
-const { link, installPath, spawn, optionsToArgs } = require('tsds-lib');
+import Queue from 'queue-cb';
+import { installPath, link, optionsToArgs, spawn } from 'tsds-lib';
 const major = +process.versions.node.split('.')[0];
 const mochaName = major < 12 ? 'mocha-compat' : 'mocha';
 let binMocha = null;
-module.exports = function command(_args, options, cb) {
+export default function command(_args, options, cb) {
     if (!binMocha) binMocha = require.resolve(`${mochaName}/bin/_${mochaName}`);
     const cwd = options.cwd || process.cwd();
     link(installPath(options), (_err, restore)=>{
@@ -28,7 +28,7 @@ module.exports = function command(_args, options, cb) {
             });
         });
     });
-};
+}
 module.exports.options = {
     alias: {
         temp: 't'

@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const Queue = require('queue-cb');
-const rimraf2 = require('rimraf2');
-const { transformDirectory } = require('ts-swc-transform');
-const { source } = require('tsds-lib');
-module.exports = function esm(_args, options, cb) {
+import fs from 'fs';
+import path from 'path';
+import Queue from 'queue-cb';
+import rimraf2 from 'rimraf2';
+import { transformDirectory } from 'ts-swc-transform';
+import { source } from 'tsds-lib';
+export default function esm(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     options = {
         ...options
@@ -22,4 +22,4 @@ module.exports = function esm(_args, options, cb) {
         queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"module"}'));
         queue.await(cb);
     });
-};
+}

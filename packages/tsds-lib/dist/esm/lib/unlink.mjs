@@ -1,7 +1,7 @@
-const path = require('path');
-const fs = require('fs');
-const Queue = require('queue-cb');
-module.exports = function unlink(target, cb) {
+import fs from 'fs';
+import path from 'path';
+import Queue from 'queue-cb';
+export default function unlink(target, cb) {
     const movedPath = path.join(path.dirname(target), `${path.basename(target)}.tsds`);
     const queue = new Queue(1);
     queue.defer(fs.unlink.bind(null, target));
@@ -9,4 +9,4 @@ module.exports = function unlink(target, cb) {
     queue.await(()=>{
         cb();
     });
-};
+}

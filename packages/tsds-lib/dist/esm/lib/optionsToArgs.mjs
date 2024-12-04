@@ -1,4 +1,4 @@
-module.exports = function optionsToArgs(options) {
+export default function optionsToArgs(options) {
     let args = [];
     for(const key in options){
         if (key === '_') continue;
@@ -10,4 +10,4 @@ module.exports = function optionsToArgs(options) {
         ]);
     }
     return args;
-};
+}
