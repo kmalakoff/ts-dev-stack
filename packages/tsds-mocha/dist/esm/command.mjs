@@ -18,7 +18,7 @@ export default function command(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 'test/**/*.test.*'
             ]);
-            spawn('ts-swc', args, {
+            spawn(require.resolve('ts-swc-loaders/bin/cli.js'), args, {
                 cwd
             }, cb);
         });

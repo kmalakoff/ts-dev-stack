@@ -1,0 +1,38 @@
+import fs from 'fs';
+import path from 'path';
+import Queue from 'queue-cb';
+import rimraf2 from 'rimraf2';
+import { source, spawn } from 'tsds-lib';
+const packageName = 'tsds-build';
+function root(dir) {
+    if (path.basename(dir) === packageName) return dir;
+    const nextDir = path.dirname(dir);
+    if (nextDir === dir) throw new Error(`${packageName} not found`);
+    return root(nextDir);
+}
+const config = path.resolve(root(__dirname), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+export default function umd(_args, options, cb) {
+    const cwd = options.cwd || process.cwd();
+    const src = path.resolve(cwd, source(options));
+    options = {
+        ...options
+    };
+    options.type = 'umd';
+    options.sourceMaps = true;
+    options.dest = path.join(cwd, 'dist', 'umd');
+    rimraf2(options.dest, {
+        disableGlob: true
+    }, ()=>{
+        const queue = new Queue(1);
+        queue.defer(spawn.bind(null, 'rollup', [
+            '--config',
+            config,
+            '--input',
+            src
+        ], {
+            cwd
+        }));
+        queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
+        queue.await(cb);
+    });
+}

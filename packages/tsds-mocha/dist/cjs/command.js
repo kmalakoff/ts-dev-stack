@@ -33,7 +33,7 @@ function command(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 'test/**/*.test.*'
             ]);
-            (0, _tsdslib.spawn)('ts-swc', args, {
+            (0, _tsdslib.spawn)(require.resolve('ts-swc-loaders/bin/cli.js'), args, {
                 cwd: cwd
             }, cb);
         });

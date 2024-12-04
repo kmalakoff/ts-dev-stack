@@ -1,1 +1,0 @@
-{"version":3,"sources":["extensions.mjs"],"sourcesContent":["export { extensions as default } from 'tsds-lib';\n"],"names":["default","extensions"],"mappings":";;;;+BAAuBA;;;eAAdC,mBAAU;;;uBAAmB"}

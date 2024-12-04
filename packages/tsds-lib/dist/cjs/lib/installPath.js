@@ -8,8 +8,8 @@ Object.defineProperty(exports, "default", {
         return installPath;
     }
 });
-var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
+var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj

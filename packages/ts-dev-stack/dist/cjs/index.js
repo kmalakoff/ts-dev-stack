@@ -10,31 +10,31 @@ function _export(target, all) {
 }
 _export(exports, {
     build: function() {
-        return _index.default;
+        return _tsdsbuild.default;
     },
     coverage: function() {
-        return _c8.default;
+        return _tsdsc8.default;
     },
     deploy: function() {
-        return _index1.default;
+        return _deploy.default;
     },
     docs: function() {
-        return _index2.default;
+        return _tsdstypedoc.default;
     },
     format: function() {
-        return _format.default;
+        return _tsdsbiome.default;
     },
     link: function() {
         return _link.default;
     },
     predeploy: function() {
-        return _pre.default;
+        return _predeploy.default;
     },
     test: function() {
-        return _index3.default;
+        return _test.default;
     },
     testBrowser: function() {
-        return _karma.default;
+        return _tsdskarma.default;
     },
     testNode: function() {
         return _tsdsmocha.default;
@@ -46,18 +46,18 @@ _export(exports, {
         return _version.default;
     }
 });
-var _index = /*#__PURE__*/ _interop_require_default(require("./build/index.js"));
-var _c8 = /*#__PURE__*/ _interop_require_default(require("./test/c8.js"));
-var _index1 = /*#__PURE__*/ _interop_require_default(require("./deploy/index.js"));
-var _index2 = /*#__PURE__*/ _interop_require_default(require("./docs/index.js"));
-var _format = /*#__PURE__*/ _interop_require_default(require("./quality/format.js"));
+var _tsdsbuild = /*#__PURE__*/ _interop_require_default(require("tsds-build"));
+var _tsdsc8 = /*#__PURE__*/ _interop_require_default(require("tsds-c8"));
+var _deploy = /*#__PURE__*/ _interop_require_default(require("./deploy.js"));
+var _predeploy = /*#__PURE__*/ _interop_require_default(require("./predeploy.js"));
+var _tsdstypedoc = /*#__PURE__*/ _interop_require_default(require("tsds-typedoc"));
+var _tsdsbiome = /*#__PURE__*/ _interop_require_default(require("tsds-biome"));
 var _link = /*#__PURE__*/ _interop_require_default(require("./link.js"));
-var _pre = /*#__PURE__*/ _interop_require_default(require("./deploy/pre.js"));
-var _index3 = /*#__PURE__*/ _interop_require_default(require("./test/index.js"));
+var _test = /*#__PURE__*/ _interop_require_default(require("./test.js"));
 var _tsdsmocha = /*#__PURE__*/ _interop_require_default(require("tsds-mocha"));
-var _karma = /*#__PURE__*/ _interop_require_default(require("./test/karma.js"));
+var _tsdskarma = /*#__PURE__*/ _interop_require_default(require("tsds-karma"));
 var _unlink = /*#__PURE__*/ _interop_require_default(require("./unlink.js"));
-var _version = /*#__PURE__*/ _interop_require_default(require("./deploy/version.js"));
+var _version = /*#__PURE__*/ _interop_require_default(require("./version.js"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj

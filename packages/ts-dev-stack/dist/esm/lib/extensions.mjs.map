@@ -1,1 +1,0 @@
-{"version":3,"sources":["extensions.mjs"],"sourcesContent":["export { extensions as default } from 'tsds-lib';\n"],"names":["extensions","default"],"mappings":"AAAA,SAASA,cAAcC,OAAO,QAAQ,WAAW"}

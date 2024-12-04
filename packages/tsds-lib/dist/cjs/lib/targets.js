@@ -8,18 +8,15 @@ Object.defineProperty(exports, "default", {
         return targets;
     }
 });
-var _path = /*#__PURE__*/ _interop_require_default(require("path"));
-var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
+var _config = /*#__PURE__*/ _interop_require_default(require("./config"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
 function targets(options) {
-    var cwd = options.cwd || process.cwd();
-    var pkg = JSON.parse(_fs.default.readFileSync(_path.default.resolve(cwd, 'package.json'), 'utf8'));
-    if (pkg.tsds && pkg.tsds.targets) return pkg.tsds.targets;
-    return [
+    var tsds = (0, _config.default)(options);
+    return tsds.targets || [
         'cjs',
         'esm',
         'umd'
