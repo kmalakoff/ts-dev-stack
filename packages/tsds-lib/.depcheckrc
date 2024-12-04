@@ -1,1 +1,1 @@
-ignores: ["tsds-lib", "@types/*", "typescript"]
+ignores: ["tsds-lib", "@types/*", "typescript", "rollup"]
