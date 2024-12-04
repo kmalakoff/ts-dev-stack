@@ -1,0 +1,62 @@
+{
+  "name": "tsds-biome",
+  "version": "1.0.5",
+  "description": "Development stack for TypeScript libraries",
+  "keywords": [
+    "dev",
+    "development",
+    "mocha",
+    "stack",
+    "test",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "bin": {
+    "tsds-biome": "bin/cli.js"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "node ../tsds-build/assets/build.js",
+    "depcheck": "depcheck",
+    "format": "biome check --write --unsafe src/ test/",
+    "test": "",
+    "test2": "tsds test:node --no-timeouts",
+    "test:engines": "npm test",
+    "version": "tsds version"
+  },
+  "dependencies": {
+    "cross-spawn-cb": "^1.1.2",
+    "exit": "^0.1.2",
+    "getopts-compat": "^2.2.5",
+    "tsds-lib": "file:../tsds-lib"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.1",
+    "depcheck": "^1.4.7",
+    "tsds-lib-test": "file:../tsds-lib-test",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "tsds": {
+    "source": "src/index.mjs",
+    "targets": [
+      "cjs",
+      "esm"
+    ]
+  }
+}
