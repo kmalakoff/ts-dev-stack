@@ -27,10 +27,10 @@
     "scripts"
   ],
   "scripts": {
+    "postinstall": "node ./scripts/postinstall.js",
     "build": "node ../tsds-build/scripts/build.js",
     "depcheck": "depcheck",
-    "format": "biome check --write --unsafe src/ test/",
-    "postinstall": "node ./assets/patchMocha.js",
+    "format": "biome check --write --unsafe src/ test/ scripts/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
@@ -44,6 +44,7 @@
     "mocha": "^11.0.1",
     "mocha-compat": "^3.6.2",
     "queue-cb": "^1.2.1",
+    "unixify": "^1.0.0",
     "regenerator-runtime": "^0.14.1",
     "ts-swc-loaders": "^1.0.4",
     "tsds-lib": "file:../tsds-lib"
