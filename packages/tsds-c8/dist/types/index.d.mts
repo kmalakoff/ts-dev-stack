@@ -1,1 +1,1 @@
-export { default } from "./command.mjs";
+export {};

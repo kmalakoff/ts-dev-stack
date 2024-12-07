@@ -11,14 +11,19 @@ Object.defineProperty(exports, "default", {
 var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _fsiterator = /*#__PURE__*/ _interop_require_default(require("fs-iterator"));
 var _gettsconfigcompat = /*#__PURE__*/ _interop_require_default(require("get-tsconfig-compat"));
-var _tsswctransform = require("ts-swc-transform");
+var _sync = /*#__PURE__*/ _interop_require_default(require("resolve/sync"));
 var _rimraf2 = /*#__PURE__*/ _interop_require_default(require("rimraf2"));
+var _tsswctransform = require("ts-swc-transform");
 var _tsdslib = require("tsds-lib");
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
+var major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
+var nvu = (0, _tsdslib.binPath)((0, _sync.default)('node-version-use/package.json', {
+    basedir: __dirname
+}), 'nvu');
 function types(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = (0, _tsdslib.source)(options);
@@ -47,13 +52,19 @@ function types(_args, options, cb) {
             concurrency: 1024
         }, function(err) {
             if (err) return cb(err);
-            var args = files.concat([
+            var args = [
+                'tsc',
+                files,
                 '--declaration',
                 '--emitDeclarationOnly',
                 '--outDir',
                 dest
-            ]).concat(tsArgs);
-            (0, _tsdslib.spawn)('tsc', args, {
+            ].concat(tsArgs);
+            if (major < 14) args = [
+                nvu,
+                'stable'
+            ].concat(args);
+            (0, _tsdslib.spawn)(args[0], args.slice(1), {
                 cwd: cwd
             }, cb);
         });

@@ -11,8 +11,10 @@
     "depcheck": "cd packages && ep -d1 -c100 npm run depcheck",
     "format": "cd packages && ep -d1 -c100 npm run format",
     "test": "cd packages && ep -d1 -c100 npm run test",
-    "test:engines": "cd packages && ep -d1 -c100 npm run test:engines",
-    "version": "cd packages && ep -d1 -c1 npm run version"
+    "test:engines": "cd packages && ep -d1 -c100 npm run test:engines"
+  },
+  "dependencies": {
+    "resolve": "^1.22.8"
   },
   "devDependencies": {
     "each-package": "^0.7.2",

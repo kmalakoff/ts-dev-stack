@@ -11,6 +11,7 @@ Object.defineProperty(exports, "default", {
 var _fs = /*#__PURE__*/ _interop_require_default(require("fs"));
 var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _queuecb = /*#__PURE__*/ _interop_require_default(require("queue-cb"));
+var _sync = /*#__PURE__*/ _interop_require_default(require("resolve/sync"));
 var _rimraf2 = /*#__PURE__*/ _interop_require_default(require("rimraf2"));
 var _tsdslib = require("tsds-lib");
 function _define_property(obj, key, value) {
@@ -46,6 +47,10 @@ function _object_spread(target) {
     }
     return target;
 }
+var major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
+var nvu = (0, _tsdslib.binPath)((0, _sync.default)('node-version-use/package.json', {
+    basedir: __dirname
+}), 'nvu');
 function packageRoot(dir, packageName) {
     if (_path.default.basename(dir) === packageName) return dir;
     var nextDir = _path.default.dirname(dir);
@@ -64,14 +69,22 @@ function umd(_args, options, cb) {
         disableGlob: true
     }, function() {
         var queue = new _queuecb.default(1);
-        queue.defer(_tsdslib.spawn.bind(null, 'rollup', [
-            '--config',
-            config,
-            '--input',
-            src
-        ], {
-            cwd: cwd
-        }));
+        (function() {
+            var args = [
+                'rollup',
+                '--config',
+                config,
+                '--input',
+                src
+            ];
+            if (major < 14) args = [
+                nvu,
+                'stable'
+            ].concat(args);
+            queue.defer(_tsdslib.spawn.bind(null, args[0], args.slice(1), {
+                cwd: cwd
+            }));
+        })();
         queue.defer(_fs.default.writeFile.bind(null, _path.default.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
         queue.await(cb);
     });

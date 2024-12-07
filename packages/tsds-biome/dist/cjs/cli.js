@@ -89,7 +89,7 @@ _index['test:node'] = _index.testNode;
 _index['test:browser'] = _index.testBrowser;
 function cli(argv, name) {
     if (argv.length === 0) {
-        console.log("Command missing".concat(name, " ").concat(argv.join(',')));
+        console.log("Command missing ".concat(name, " ").concat(argv.join(',')));
         return (0, _exit.default)(-1);
     }
     var command = _index[argv[0]];

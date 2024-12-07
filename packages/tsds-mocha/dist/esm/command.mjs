@@ -1,16 +1,22 @@
 import Queue from 'queue-cb';
-import { installPath, link, optionsToArgs, spawn } from 'tsds-lib';
-const major = +process.versions.node.split('.')[0];
-const mochaName = major < 12 ? 'mocha-compat' : 'mocha';
-let binMocha = null;
+import requireResolve from 'resolve/sync';
+import { binPath, installPath, link, optionsToArgs, spawn } from 'tsds-lib';
+const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
+const mocha = major < 12 ? binPath(requireResolve('mocha-compat/package.json', {
+    basedir: __dirname
+}), '_mocha-compat') : binPath(requireResolve('mocha/package.json', {
+    basedir: __dirname
+}), '_mocha');
+const loader = binPath(requireResolve('ts-swc-loaders/package.json', {
+    basedir: __dirname
+}), 'ts-swc');
 export default function command(_args, options, cb) {
-    if (!binMocha) binMocha = require.resolve(`${mochaName}/bin/_${mochaName}`);
     const cwd = options.cwd || process.cwd();
     link(installPath(options), (_err, restore)=>{
         const queue = new Queue(1);
         queue.defer((cb)=>{
             let args = [
-                binMocha,
+                mocha,
                 '--watch-extensions',
                 'ts,tsx'
             ];
@@ -18,7 +24,7 @@ export default function command(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 'test/**/*.test.*'
             ]);
-            spawn(require.resolve('ts-swc-loaders/bin/cli.js'), args, {
+            spawn(loader, args, {
                 cwd
             }, cb);
         });

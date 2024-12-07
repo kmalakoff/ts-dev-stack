@@ -9,23 +9,29 @@ Object.defineProperty(exports, "default", {
     }
 });
 var _queuecb = /*#__PURE__*/ _interop_require_default(require("queue-cb"));
+var _sync = /*#__PURE__*/ _interop_require_default(require("resolve/sync"));
 var _tsdslib = require("tsds-lib");
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
-var major = +process.versions.node.split('.')[0];
-var mochaName = major < 12 ? 'mocha-compat' : 'mocha';
-var binMocha = null;
+var major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
+var mocha = major < 12 ? (0, _tsdslib.binPath)((0, _sync.default)('mocha-compat/package.json', {
+    basedir: __dirname
+}), '_mocha-compat') : (0, _tsdslib.binPath)((0, _sync.default)('mocha/package.json', {
+    basedir: __dirname
+}), '_mocha');
+var loader = (0, _tsdslib.binPath)((0, _sync.default)('ts-swc-loaders/package.json', {
+    basedir: __dirname
+}), 'ts-swc');
 function command(_args, options, cb) {
-    if (!binMocha) binMocha = require.resolve("".concat(mochaName, "/bin/_").concat(mochaName));
     var cwd = options.cwd || process.cwd();
     (0, _tsdslib.link)((0, _tsdslib.installPath)(options), function(_err, restore) {
         var queue = new _queuecb.default(1);
         queue.defer(function(cb) {
             var args = [
-                binMocha,
+                mocha,
                 '--watch-extensions',
                 'ts,tsx'
             ];
@@ -33,7 +39,7 @@ function command(_args, options, cb) {
             args = args.concat(_args.length ? _args.slice(-1) : [
                 'test/**/*.test.*'
             ]);
-            (0, _tsdslib.spawn)(require.resolve('ts-swc-loaders/bin/cli.js'), args, {
+            (0, _tsdslib.spawn)(loader, args, {
                 cwd: cwd
             }, cb);
         });

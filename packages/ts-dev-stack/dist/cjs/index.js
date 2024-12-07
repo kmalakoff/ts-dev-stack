@@ -30,11 +30,8 @@ _export(exports, {
     predeploy: function() {
         return _predeploy.default;
     },
-    test: function() {
-        return _test.default;
-    },
     testBrowser: function() {
-        return _tsdskarma.default;
+        return _tsdswebtestrunner.default;
     },
     testNode: function() {
         return _tsdsmocha.default;
@@ -53,9 +50,8 @@ var _predeploy = /*#__PURE__*/ _interop_require_default(require("./predeploy.js"
 var _tsdstypedoc = /*#__PURE__*/ _interop_require_default(require("tsds-typedoc"));
 var _tsdsbiome = /*#__PURE__*/ _interop_require_default(require("tsds-biome"));
 var _link = /*#__PURE__*/ _interop_require_default(require("./link.js"));
-var _test = /*#__PURE__*/ _interop_require_default(require("./test.js"));
 var _tsdsmocha = /*#__PURE__*/ _interop_require_default(require("tsds-mocha"));
-var _tsdskarma = /*#__PURE__*/ _interop_require_default(require("tsds-karma"));
+var _tsdswebtestrunner = /*#__PURE__*/ _interop_require_default(require("tsds-web-test-runner"));
 var _unlink = /*#__PURE__*/ _interop_require_default(require("./unlink.js"));
 var _version = /*#__PURE__*/ _interop_require_default(require("./version.js"));
 function _interop_require_default(obj) {

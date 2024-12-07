@@ -9,6 +9,9 @@ function _export(target, all) {
     });
 }
 _export(exports, {
+    binPath: function() {
+        return _binPath.default;
+    },
     config: function() {
         return _config.default;
     },
@@ -40,8 +43,9 @@ _export(exports, {
         return _uuid.default;
     }
 });
-var _extensions = /*#__PURE__*/ _interop_require_default(require("./lib/extensions.js"));
+var _binPath = /*#__PURE__*/ _interop_require_default(require("./lib/binPath.js"));
 var _config = /*#__PURE__*/ _interop_require_default(require("./lib/config.js"));
+var _extensions = /*#__PURE__*/ _interop_require_default(require("./lib/extensions.js"));
 var _installPath = /*#__PURE__*/ _interop_require_default(require("./lib/installPath.js"));
 var _link = /*#__PURE__*/ _interop_require_default(require("./lib/link.js"));
 var _optionsToArgs = /*#__PURE__*/ _interop_require_default(require("./lib/optionsToArgs.js"));

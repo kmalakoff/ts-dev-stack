@@ -42,16 +42,18 @@
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "gh-pages": "^6.2.0",
+    "node-version-use": "^1.0.2",
     "queue-cb": "^1.2.1",
+    "resolve": "^1.22.8",
     "sort-package-json": "^2.12.0",
     "ts-swc-loaders": "^1.0.4",
     "tsds-biome": "file:../tsds-biome",
     "tsds-build": "file:../tsds-build",
     "tsds-c8": "file:../tsds-c8",
-    "tsds-karma": "file:../tsds-karma",
     "tsds-lib": "file:../tsds-lib",
     "tsds-mocha": "file:../tsds-mocha",
-    "tsds-typedoc": "file:../tsds-typedoc"
+    "tsds-typedoc": "file:../tsds-typedoc",
+    "tsds-web-test-runner": "file:../tsds-web-test-runner"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
