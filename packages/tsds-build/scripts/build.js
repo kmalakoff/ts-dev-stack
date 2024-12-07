@@ -1,6 +1,7 @@
-var build = require('../assets/tsds-build.js')
+#!/usr/bin/env node
 
-build(null, {}, (err) => { 
+const build = require('../assets/tsds-build.js');
+
+build(null, {}, (err) => {
   !err || console.error(err);
-})
-
+});
