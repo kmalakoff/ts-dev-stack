@@ -39,6 +39,7 @@
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "mkdirp": "0.5.6",
+    "node-version-use": "^1.0.2",
     "queue-cb": "^1.2.1",
     "rimraf2": "^2.7.1",
     "tsds-lib": "file:../tsds-lib",

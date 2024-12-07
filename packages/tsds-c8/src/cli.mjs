@@ -6,7 +6,7 @@ commands['test:browser'] = commands.testBrowser;
 
 export default function cli(argv, name) {
   if (argv.length === 0) {
-    console.log(`Command missing${name} ${argv.join(',')}`);
+    console.log(`Command missing ${name} ${argv.join(',')}`);
     return exit(-1);
   }
 

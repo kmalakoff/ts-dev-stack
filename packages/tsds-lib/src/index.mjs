@@ -1,5 +1,6 @@
-export { default as extensions } from './lib/extensions.mjs';
+export { default as binPath } from './lib/binPath.mjs';
 export { default as config } from './lib/config.mjs';
+export { default as extensions } from './lib/extensions.mjs';
 export { default as installPath } from './lib/installPath.mjs';
 export { default as link } from './lib/link.mjs';
 export { default as optionsToArgs } from './lib/optionsToArgs.mjs';
