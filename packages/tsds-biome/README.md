@@ -19,9 +19,6 @@ $ tsds deploy
 # format library using prettier
 $ tsds format
 
-# run tests on current version of node and browser
-$ tsds test
-
 # run tests on current version of node
 $ tsds test:node
 

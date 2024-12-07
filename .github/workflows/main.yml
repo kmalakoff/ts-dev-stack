@@ -21,7 +21,9 @@ jobs:
       - run: git config --global user.email "actions@users.noreply.github.com"
       - run: npm uninstall node-version-use -g
       - run: npm install node-version-use -g
-      - run: npm ci
+      # - run: npm ci - need local install without package-lock.json for CI
+      - run: npm install
+      - run: npx -y playwright install --with-deps
       - run: npm run version
       - run: npm run build
       - run: npm run test
