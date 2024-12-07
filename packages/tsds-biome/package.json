@@ -39,6 +39,7 @@
     "cross-spawn-cb": "^1.1.2",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
+    "node-version-use": "^1.0.2",
     "tsds-lib": "file:../tsds-lib"
   },
   "devDependencies": {
