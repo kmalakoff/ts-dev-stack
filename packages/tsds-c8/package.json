@@ -3,7 +3,6 @@
   "version": "1.1.0",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
-    "c8",
     "dev",
     "development",
     "mocha",
@@ -28,22 +27,30 @@
     "scripts"
   ],
   "scripts": {
+    "postinstall": "node ./scripts/postinstall.js",
     "build": "node ../tsds-build/scripts/build.js",
     "depcheck": "depcheck",
-    "format": "biome check --write --unsafe src/ test/",
+    "format": "biome check --write --unsafe src/ test/ scripts/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": "tsds version"
   },
   "dependencies": {
+    "assert": "1.5.0",
     "c8": "^10.1.2",
     "cross-spawn-cb": "^1.1.2",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
+    "mocha": "^11.0.1",
+    "mocha-compat": "^3.6.2",
     "queue-cb": "^1.2.1",
-    "rimraf2": "^2.8.1",
-    "tsds-lib": "file:../tsds-lib"
+    "regenerator-runtime": "^0.14.1",
+    "resolve": "^1.22.8",
+    "rimraf2": "^2.8.2",
+    "ts-swc-loaders": "^1.0.4",
+    "tsds-lib": "file:../tsds-lib",
+    "unixify": "^1.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

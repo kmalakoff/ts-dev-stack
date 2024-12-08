@@ -45,6 +45,7 @@
     "mocha-compat": "^3.6.2",
     "queue-cb": "^1.2.1",
     "regenerator-runtime": "^0.14.1",
+    "resolve": "^1.22.8",
     "ts-swc-loaders": "^1.0.4",
     "tsds-lib": "file:../tsds-lib",
     "unixify": "^1.0.0"

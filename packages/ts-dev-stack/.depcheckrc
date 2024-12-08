@@ -1,1 +1,1 @@
-ignores: ["ts-dev-stack", "@types/*", "typescript", "gh-pages", "sort-package-json", "ts-swc-loaders"]
+ignores: ["ts-dev-stack", "@types/*", "typescript", "node-version-use", "gh-pages", "sort-package-json", "ts-swc-loaders"]

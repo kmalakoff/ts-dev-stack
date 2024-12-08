@@ -4,7 +4,7 @@ delete process.env.NODE_OPTIONS;
 const assert = require('assert');
 const path = require('path');
 const spawn = require('cross-spawn-cb');
-const { data } = require('tsds-web-test-runner-test');
+const { data } = require('tsds-lib-test');
 const devStack = require('tsds-web-test-runner');
 const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
 // const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];

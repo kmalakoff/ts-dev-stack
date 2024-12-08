@@ -1,1 +1,1 @@
-ignores: ["tsds-karma", "@types/*", "typescript", "assert", "regenerator-runtime", "ts-swc-loaders", "mocha-compat", "karma*", "webpack", "ts-loader"]
+ignores: ["tsds-karma", "@types/*", "typescript", "node-version-use", "assert", "regenerator-runtime", "ts-swc-loaders", "mocha-compat", "karma*", "webpack", "ts-loader"]
