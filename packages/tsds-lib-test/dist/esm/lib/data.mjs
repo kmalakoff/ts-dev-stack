@@ -37,8 +37,9 @@ export default function data(git, options, callback) {
         // link bin
         queue.defer(fs.rename.bind(null, binPath, `${binPath}.tsds`));
         queue.defer(fs.symlink.bind(null, path.resolve.apply(null, [
-            cwd
-        ].concat(pkg.bin[binName].split('/'))), binPath, 'file'));
+            cwd,
+            ...pkg.bin[binName].split('/')
+        ]), binPath, 'file'));
         queue.await((err)=>{
             console.log('------------------');
             err ? callback(err) : callback(null, targetPath);

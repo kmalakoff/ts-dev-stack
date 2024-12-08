@@ -19,7 +19,7 @@ function _interop_require_default(obj) {
 function packageRoot(dir, packageName) {
     if (_path.default.basename(dir) === packageName) return dir;
     var nextDir = _path.default.dirname(dir);
-    if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+    if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
     return packageRoot(nextDir, packageName);
 }
 var config = _path.default.join(packageRoot(__dirname, 'tsds-karma'), 'assets', 'karma.conf.js');

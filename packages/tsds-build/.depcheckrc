@@ -1,1 +1,1 @@
-ignores: ["tsds-build", "@types/*", "typescript", "rollup", "@swc/core"]
+ignores: ["tsds-build", "@types/*", "typescript", "node-version-use", "rollup", "@swc/core"]

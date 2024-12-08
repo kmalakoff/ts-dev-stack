@@ -14,7 +14,7 @@ function optionsToArgs(options) {
         if (key === '_') continue;
         if (options[key] === true) args.push("--".concat(key));
         else if (options[key] === false) args.push("--no-".concat(key));
-        else args = args.concat([
+        else Array.prototype.push.apply(args, [
             "--".concat(key),
             options[key]
         ]);

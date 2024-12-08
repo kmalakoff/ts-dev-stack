@@ -1,1 +1,1 @@
-export default function optionsToArgs(options: any): any[];
+export default function optionsToArgs(options: any): string[];

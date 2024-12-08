@@ -1,12 +1,12 @@
 import path from 'path';
 import Iterator from 'fs-iterator';
 import getTS from 'get-tsconfig-compat';
-import requireResolve from 'resolve/sync';
+import resolve from 'resolve';
 import rimraf2 from 'rimraf2';
 import { createMatcher } from 'ts-swc-transform';
 import { binPath, source, spawn } from 'tsds-lib';
 const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
-const nvu = binPath(requireResolve('node-version-use/package.json', {
+const nvu = binPath(resolve.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
 export default function types(_args, options, cb) {
@@ -39,16 +39,18 @@ export default function types(_args, options, cb) {
             if (err) return cb(err);
             let args = [
                 'tsc',
-                files,
+                ...files,
                 '--declaration',
                 '--emitDeclarationOnly',
                 '--outDir',
-                dest
-            ].concat(tsArgs);
+                dest,
+                ...tsArgs
+            ];
             if (major < 14) args = [
                 nvu,
-                'stable'
-            ].concat(args);
+                'stable',
+                ...args
+            ];
             spawn(args[0], args.slice(1), {
                 cwd
             }, cb);

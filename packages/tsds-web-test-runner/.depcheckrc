@@ -1,1 +1,1 @@
-ignores: ["tsds-web-test-runner", "@types/*", "typescript", "rollup"]
+ignores: ["tsds-web-test-runner", "@types/*", "typescript", "node-version-use", "node-version-use", "@web/test-runner", "assert"]

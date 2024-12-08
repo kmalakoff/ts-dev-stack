@@ -1,1 +1,1 @@
-ignores: ["tsds-biome", "@types/*", "typescript"]
+ignores: ["tsds-biome", "@types/*", "typescript", "node-version-use"]

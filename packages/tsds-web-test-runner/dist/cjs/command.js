@@ -10,8 +10,16 @@ Object.defineProperty(exports, "default", {
 });
 var _path = /*#__PURE__*/ _interop_require_default(require("path"));
 var _queuecb = /*#__PURE__*/ _interop_require_default(require("queue-cb"));
-var _sync = /*#__PURE__*/ _interop_require_default(require("resolve/sync"));
+var _resolve = /*#__PURE__*/ _interop_require_default(require("resolve"));
 var _tsdslib = require("tsds-lib");
+function _array_like_to_array(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
+    return arr2;
+}
+function _array_without_holes(arr) {
+    if (Array.isArray(arr)) return _array_like_to_array(arr);
+}
 function _define_property(obj, key, value) {
     if (key in obj) {
         Object.defineProperty(obj, key, {
@@ -30,6 +38,12 @@ function _interop_require_default(obj) {
         default: obj
     };
 }
+function _iterable_to_array(iter) {
+    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+function _non_iterable_spread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
 function _object_spread(target) {
     for(var i = 1; i < arguments.length; i++){
         var source = arguments[i] != null ? arguments[i] : {};
@@ -45,18 +59,29 @@ function _object_spread(target) {
     }
     return target;
 }
+function _to_consumable_array(arr) {
+    return _array_without_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) || _non_iterable_spread();
+}
+function _unsupported_iterable_to_array(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _array_like_to_array(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(n);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o, minLen);
+}
 function packageRoot(dir, packageName) {
     if (_path.default.basename(dir) === packageName) return dir;
     var nextDir = _path.default.dirname(dir);
-    if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
+    if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
     return packageRoot(nextDir, packageName);
 }
 var major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
-var nvu = (0, _tsdslib.binPath)((0, _sync.default)('node-version-use/package.json', {
+var nvu = (0, _tsdslib.binPath)(_resolve.default.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
 var config = _path.default.resolve(packageRoot(__dirname, 'tsds-web-test-runner'), 'assets', 'web-test-runner.config.cjs');
-var wtr = (0, _tsdslib.binPath)((0, _sync.default)('@web/test-runner/package.json', {
+var wtr = (0, _tsdslib.binPath)(_resolve.default.sync('@web/test-runner/package.json', {
     basedir: __dirname
 }), 'web-test-runner');
 function command(_args, options, cb) {
@@ -72,12 +97,12 @@ function command(_args, options, cb) {
             if (major < 14) args = [
                 nvu,
                 'stable'
-            ].concat(args);
-            args = args.concat((0, _tsdslib.optionsToArgs)(options));
-            if (!options.config) args = args.concat((0, _tsdslib.optionsToArgs)({
+            ].concat(_to_consumable_array(args));
+            Array.prototype.push.apply(args, (0, _tsdslib.optionsToArgs)(options));
+            if (!options.config) Array.prototype.push.apply(args, (0, _tsdslib.optionsToArgs)({
                 config: config
             }));
-            args = args.concat(_args.length ? _args.slice(-1) : [
+            Array.prototype.push.apply(args, _args.length ? _args.slice(-1) : [
                 'test/**/*.test.{ts,tsx,jsx,mjs}'
             ]);
             (0, _tsdslib.spawn)(args[0], args.slice(1), {

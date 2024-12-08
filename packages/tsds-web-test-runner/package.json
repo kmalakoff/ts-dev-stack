@@ -11,7 +11,7 @@
     "typescript"
   ],
   "bin": {
-    "tsds-wtr": "bin/cli.js",
+    "tsds test:browser": "bin/cli.js",
     "tsds-web-test-runner": "bin/cli.js"
   },
   "repository": {
@@ -47,6 +47,7 @@
     "getopts-compat": "^2.2.5",
     "node-version-use": "^1.0.2",
     "queue-cb": "^1.2.1",
+    "resolve": "^1.22.8",
     "tsds-lib": "file:../tsds-lib"
   },
   "devDependencies": {
@@ -54,8 +55,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
     "depcheck": "^1.4.7",
-    "rollup": "^4.28.0",
-    "tsds-web-test-runner-test": "file:../tsds-web-test-runner-test",
+    "tsds-lib-test": "file:../tsds-lib-test",
     "typescript": "^5.7.2"
   },
   "engines": {

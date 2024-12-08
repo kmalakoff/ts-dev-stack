@@ -1,10 +1,10 @@
 import Queue from 'queue-cb';
 import format from 'tsds-biome';
 import build from 'tsds-build';
-import requireResolve from 'resolve/sync';
+import resolve from 'resolve';
 import { binPath, spawn } from 'tsds-lib';
 const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
-const nvu = binPath(requireResolve('node-version-use/package.json', {
+const nvu = binPath(resolve.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
 export default function predeploy(args, options, cb) {
@@ -18,8 +18,9 @@ export default function predeploy(args, options, cb) {
         ];
         if (major < 14) args = [
             nvu,
-            'stable'
-        ].concat(args);
+            'stable',
+            ...args
+        ];
         queue.defer(spawn.bind(null, args[0], args.slice(1), {
             cwd
         }));
@@ -30,8 +31,9 @@ export default function predeploy(args, options, cb) {
         ];
         if (major < 14) args = [
             nvu,
-            'stable'
-        ].concat(args);
+            'stable',
+            ...args
+        ];
         queue.defer(spawn.bind(null, args[0], args.slice(1), {
             cwd
         }));
