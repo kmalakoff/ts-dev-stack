@@ -45,7 +45,7 @@
     "@types/node": "^22.10.1",
     "depcheck": "^1.4.7",
     "rollup": "^4.28.0",
-    "tsds-lib-test": "file:../tsds-lib-test",
+    "tsds-lib-test": "*",
     "typescript": "^5.7.2"
   },
   "engines": {

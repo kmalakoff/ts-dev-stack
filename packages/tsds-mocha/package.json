@@ -47,7 +47,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.8",
     "ts-swc-loaders": "^1.0.4",
-    "tsds-lib": "file:../tsds-lib",
+    "tsds-lib": "*",
     "unixify": "^1.0.0"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
     "depcheck": "^1.4.7",
-    "tsds-lib-test": "file:../tsds-lib-test",
+    "tsds-lib-test": "*",
     "typescript": "^5.7.2"
   },
   "engines": {
