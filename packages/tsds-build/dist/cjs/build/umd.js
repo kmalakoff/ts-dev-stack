@@ -76,13 +76,7 @@ var major = typeof process === 'undefined' ? Infinity : +process.versions.node.s
 var nvu = (0, _tsdslib.binPath)(_resolve.default.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
-function packageRoot(dir, packageName) {
-    if (_path.default.basename(dir) === packageName) return dir;
-    var nextDir = _path.default.dirname(dir);
-    if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
-    return packageRoot(nextDir, packageName);
-}
-var config = _path.default.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+var config = _path.default.resolve((0, _tsdslib.packageRoot)(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup', 'config.mjs');
 function umd(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = _path.default.resolve(cwd, (0, _tsdslib.source)(options));

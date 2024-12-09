@@ -70,20 +70,14 @@ function _unsupported_iterable_to_array(o, minLen) {
     if (n === "Map" || n === "Set") return Array.from(n);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o, minLen);
 }
-function packageRoot(dir, packageName) {
-    if (_path.default.basename(dir) === packageName) return dir;
-    var nextDir = _path.default.dirname(dir);
-    if (nextDir === dir) throw new Error("".concat(packageName, " not found"));
-    return packageRoot(nextDir, packageName);
-}
 var major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
 var nvu = (0, _tsdslib.binPath)(_resolve.default.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
-var config = _path.default.resolve(packageRoot(__dirname, 'tsds-web-test-runner'), 'assets', 'web-test-runner.config.cjs');
 var wtr = (0, _tsdslib.binPath)(_resolve.default.sync('@web/test-runner/package.json', {
     basedir: __dirname
 }), 'web-test-runner');
+var config = _path.default.resolve((0, _tsdslib.packageRoot)(__dirname, 'tsds-web-test-runner'), 'dist', 'esm', 'wtr', 'config.mjs');
 function command(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     options = _object_spread({}, options);
@@ -94,10 +88,6 @@ function command(_args, options, cb) {
             var args = [
                 wtr
             ];
-            if (major < 14) args = [
-                nvu,
-                'stable'
-            ].concat(_to_consumable_array(args));
             Array.prototype.push.apply(args, (0, _tsdslib.optionsToArgs)(options));
             if (!options.config) Array.prototype.push.apply(args, (0, _tsdslib.optionsToArgs)({
                 config: config
@@ -105,6 +95,10 @@ function command(_args, options, cb) {
             Array.prototype.push.apply(args, _args.length ? _args.slice(-1) : [
                 'test/**/*.test.{ts,tsx,jsx,mjs}'
             ]);
+            if (major < 14) args = [
+                nvu,
+                'stable'
+            ].concat(_to_consumable_array(args));
             (0, _tsdslib.spawn)(args[0], args.slice(1), {
                 cwd: cwd
             }, cb);

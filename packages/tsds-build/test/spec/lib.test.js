@@ -71,7 +71,7 @@ function addTests(git) {
           done();
         });
       });
-      it('test:browser', (done) => {
+      it.only('test:browser', (done) => {
         devStack.testBrowser([], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();

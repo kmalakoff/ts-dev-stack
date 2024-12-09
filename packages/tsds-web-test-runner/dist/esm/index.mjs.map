@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default } from './command.mjs';\n"],"names":["default"],"mappings":"AAAA,SAASA,OAAO,QAAQ,gBAAgB"}
+{"version":3,"sources":["index.mjs"],"sourcesContent":["export { default } from './command.mjs';\nexport { default as createConfig } from './config/createConfig.mjs';\nexport { default as packageVersion } from './config/packageVersion.mjs';\n"],"names":["default","createConfig","packageVersion"],"mappings":"AAAA,SAASA,OAAO,QAAQ,gBAAgB;AACxC,SAASA,WAAWC,YAAY,QAAQ,4BAA4B;AACpE,SAASD,WAAWE,cAAc,QAAQ,8BAA8B"}

@@ -50,7 +50,7 @@ function binPath(packagePath, binName) {
             _path.default.dirname(packagePath)
         ].concat(_to_consumable_array(pkg.bin[binName].split('/'))));
     }
-    // the bin entry itself 
+    // the bin entry itself
     if (typeof pkg.bin !== 'string') throw new Error("Module binary expecting a path. Module: ".concat(packagePath));
     return _path.default.resolve.apply(null, [
         _path.default.dirname(packagePath)

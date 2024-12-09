@@ -171,7 +171,7 @@
       if (nextDir === dir) throw new Error(''.concat(packageName, ' not found'));
       return packageRoot(nextDir, packageName);
   }
-  var config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+  var config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup', 'index.mjs');
   function umd(_args, options, cb) {
       var cwd = options.cwd || process.cwd();
       var src = path.resolve(cwd, tsdsLib.source(options));

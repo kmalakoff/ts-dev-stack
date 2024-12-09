@@ -12,23 +12,25 @@ export default function format(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const src = source(options);
     const dest = path.resolve(process.cwd(), 'docs');
-    let args = [
-        'typedoc',
-        src
-    ];
-    if (major < 14) args = [
-        nvu,
-        'stable',
-        ...args
-    ];
     rimraf2(dest, {
         disableGlob: true
     }, ()=>{
         const queue = new Queue(1);
         queue.defer(mkdirp.bind(null, dest));
-        queue.defer(spawn.bind(null, args[0], args.slice(1), {
-            cwd
-        }));
+        (()=>{
+            let args = [
+                'typedoc',
+                src
+            ];
+            if (major < 14) args = [
+                nvu,
+                'stable',
+                ...args
+            ];
+            queue.defer(spawn.bind(null, args[0], args.slice(1), {
+                cwd
+            }));
+        })();
         queue.await(cb);
     });
 }

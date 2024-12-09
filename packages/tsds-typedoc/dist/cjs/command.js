@@ -52,22 +52,24 @@ function format(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = (0, _tsdslib.source)(options);
     var dest = _path.default.resolve(process.cwd(), 'docs');
-    var args = [
-        'typedoc',
-        src
-    ];
-    if (major < 14) args = [
-        nvu,
-        'stable'
-    ].concat(_to_consumable_array(args));
     (0, _rimraf2.default)(dest, {
         disableGlob: true
     }, function() {
         var queue = new _queuecb.default(1);
         queue.defer(_mkdirp.default.bind(null, dest));
-        queue.defer(_tsdslib.spawn.bind(null, args[0], args.slice(1), {
-            cwd: cwd
-        }));
+        (function() {
+            var args = [
+                'typedoc',
+                src
+            ];
+            if (major < 14) args = [
+                nvu,
+                'stable'
+            ].concat(_to_consumable_array(args));
+            queue.defer(_tsdslib.spawn.bind(null, args[0], args.slice(1), {
+                cwd: cwd
+            }));
+        })();
         queue.await(cb);
     });
 }

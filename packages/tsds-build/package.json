@@ -54,14 +54,14 @@
     "rollup": "^4.28.0",
     "rollup-plugin-node-externals": "^7.1.3",
     "ts-swc-transform": "^1.0.3",
-    "tsds-lib": "file:../tsds-lib"
+    "tsds-lib": "*"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
     "depcheck": "^1.4.7",
-    "tsds-lib-test": "file:../tsds-lib-test",
+    "tsds-lib-test": "*",
     "typescript": "^5.7.2"
   },
   "engines": {
