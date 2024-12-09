@@ -3,18 +3,11 @@ import path from 'path';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
 import rimraf2 from 'rimraf2';
-import { binPath, source, spawn } from 'tsds-lib';
+import { binPath, packageRoot, source, spawn } from 'tsds-lib';
 
 const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
 const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __dirname }), 'nvu');
-
-function packageRoot(dir, packageName) {
-  if (path.basename(dir) === packageName) return dir;
-  const nextDir = path.dirname(dir);
-  if (nextDir === dir) throw new Error(`${packageName} not found`);
-  return packageRoot(nextDir, packageName);
-}
-const config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup-swc', 'index.mjs');
+const config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup', 'config.mjs');
 
 export default function umd(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
