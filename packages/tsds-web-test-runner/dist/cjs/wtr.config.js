@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return _default;
     }
 });
-var _createConfig = /*#__PURE__*/ _interop_require_default(require("./createConfig.js"));
+var _createConfig = /*#__PURE__*/ _interop_require_default(require("./exports/createConfig.js"));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
