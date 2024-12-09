@@ -30,6 +30,9 @@ _export(exports, {
     packageRoot: function() {
         return _packageRoot.default;
     },
+    packageVersion: function() {
+        return _packageVersion.default;
+    },
     source: function() {
         return _source.default;
     },
@@ -53,6 +56,7 @@ var _installPath = /*#__PURE__*/ _interop_require_default(require("./lib/install
 var _link = /*#__PURE__*/ _interop_require_default(require("./lib/link.js"));
 var _optionsToArgs = /*#__PURE__*/ _interop_require_default(require("./lib/optionsToArgs.js"));
 var _packageRoot = /*#__PURE__*/ _interop_require_default(require("./lib/packageRoot.js"));
+var _packageVersion = /*#__PURE__*/ _interop_require_default(require("./lib/packageVersion.js"));
 var _source = /*#__PURE__*/ _interop_require_default(require("./lib/source.js"));
 var _spawn = /*#__PURE__*/ _interop_require_default(require("./lib/spawn.js"));
 var _targets = /*#__PURE__*/ _interop_require_default(require("./lib/targets.js"));

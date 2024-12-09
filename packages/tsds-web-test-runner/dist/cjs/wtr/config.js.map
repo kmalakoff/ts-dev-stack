@@ -1,1 +1,0 @@
-{"version":3,"sources":["config.mjs"],"sourcesContent":["import createConfig from '../config/createConfig.mjs';\n\nexport default createConfig();\n"],"names":["createConfig"],"mappings":";;;;+BAEA;;;eAAA;;;mEAFyB;;;;;;IAEzB,WAAeA,IAAAA,qBAAY"}

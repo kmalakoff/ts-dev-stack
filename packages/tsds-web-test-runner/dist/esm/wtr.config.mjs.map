@@ -1,0 +1,1 @@
+{"version":3,"sources":["wtr.config.mjs"],"sourcesContent":["import createConfig from './createConfig.mjs';\n\nexport default createConfig();\n"],"names":["createConfig"],"mappings":"AAAA,OAAOA,kBAAkB,qBAAqB;AAE9C,eAAeA,eAAe"}

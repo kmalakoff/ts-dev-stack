@@ -7,11 +7,7 @@ import { merge } from 'webpack-merge';
 export default function createConfig(mergeConfig = {}) {
   const config = {
     nodeResolve: true,
-    browsers: [
-      playwrightLauncher({ product: 'chromium' }),
-      playwrightLauncher({ product: 'firefox' }),
-      playwrightLauncher({ product: 'webkit' }),
-    ],
+    browsers: [playwrightLauncher({ product: 'chromium' }), playwrightLauncher({ product: 'firefox' }), playwrightLauncher({ product: 'webkit' })],
     plugins: [
       importMapsPlugin({
         inject: {

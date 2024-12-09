@@ -77,7 +77,7 @@ var nvu = (0, _tsdslib.binPath)(_resolve.default.sync('node-version-use/package.
 var wtr = (0, _tsdslib.binPath)(_resolve.default.sync('@web/test-runner/package.json', {
     basedir: __dirname
 }), 'web-test-runner');
-var config = _path.default.resolve((0, _tsdslib.packageRoot)(__dirname, 'tsds-web-test-runner'), 'dist', 'esm', 'wtr', 'config.mjs');
+var config = _path.default.resolve((0, _tsdslib.packageRoot)(__dirname, 'tsds-web-test-runner'), 'dist', 'esm', 'wtr.config.mjs');
 function command(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     options = _object_spread({}, options);
