@@ -20,6 +20,14 @@
   },
   "license": "MIT",
   "type": "commonjs",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./createConfig.cjs": "./dist/cjs/createConfig.js",
+    "./createConfig.mjs": "./dist/esm/createConfig.mjs"
+  },
   "main": "dist/cjs/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
