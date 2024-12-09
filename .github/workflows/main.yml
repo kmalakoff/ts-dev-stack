@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: [latest]
+        node: ["latest"]
         os: [ubuntu-latest, windows-latest]
         # os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
@@ -21,10 +21,11 @@ jobs:
       - run: git config --global user.email "actions@users.noreply.github.com"
       - run: npm uninstall node-version-use -g
       - run: npm install node-version-use -g
-      # - run: npm ci - need local install without package-lock.json for CI
+      # - run: nvu 22 npm ci - need local install without package-lock.json for CI
       - run: npm install
+      - run: npm install playwright
       - run: npx -y playwright install --with-deps
-      - run: npm run version
+      # - run: npm run version
       - run: npm run build
       - run: npm run test
       - run: npm run test:engines
