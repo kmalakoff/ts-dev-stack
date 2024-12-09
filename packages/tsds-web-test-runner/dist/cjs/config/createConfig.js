@@ -51,6 +51,6 @@ function createConfig() {
             })
         ]
     };
-    return (0, _webpackmerge.merge)(config, mergeConfig);
+    return (0, _webpackmerge.merge)(mergeConfig, config);
 }
 /* CJS INTEROP */ if (exports.__esModule && exports.default) { try { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { exports.default[key] = exports[key]; } } catch (_) {}; module.exports = exports.default; }

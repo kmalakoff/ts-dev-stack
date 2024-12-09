@@ -29,5 +29,5 @@ export default function createConfig(mergeConfig = {}) {
       }),
     ],
   };
-  return merge(config, mergeConfig);
+  return merge(mergeConfig, config);
 }
