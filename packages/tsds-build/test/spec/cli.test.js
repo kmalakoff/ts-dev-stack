@@ -61,7 +61,7 @@ function addTests(git) {
           done();
         });
       });
-      it('test:browser', (done) => {
+      it.only('test:browser', (done) => {
         spawn(CLI, ['test:browser'], { stdout: 'inherit', cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();

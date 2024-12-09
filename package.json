@@ -13,11 +13,11 @@
     "test": "cd packages && ep -d1 -c100 npm run test",
     "test:engines": "cd packages && ep -d1 -c100 npm run test:engines"
   },
+  "dependencies": {
+    "resolve": "^1.22.8"
+  },
   "devDependencies": {
     "each-package": "^0.7.2",
     "lerna": "^8.1.9"
-  },
-  "dependencies": {
-    "resolve": "^1.22.8"
   }
 }

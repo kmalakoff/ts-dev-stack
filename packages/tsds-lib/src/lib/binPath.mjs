@@ -11,7 +11,7 @@ export default function binPath(packagePath, binName) {
     return path.resolve.apply(null, [path.dirname(packagePath), ...pkg.bin[binName].split('/')]);
   }
 
-  // the bin entry itself 
+  // the bin entry itself
   if (typeof pkg.bin !== 'string') throw new Error(`Module binary expecting a path. Module: ${packagePath}`);
   return path.resolve.apply(null, [path.dirname(packagePath), ...pkg.bin.split('/')]);
 }
