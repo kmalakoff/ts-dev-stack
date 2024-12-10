@@ -29,6 +29,7 @@
     "scripts"
   ],
   "scripts": {
+    "assets": "node ./scripts/assets.js",
     "build": "node ./scripts/build.js",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/ scripts/",
@@ -51,8 +52,9 @@
     "queue-cb": "^1.2.1",
     "resolve": "^1.22.8",
     "rimraf2": "^2.8.2",
-    "rollup": "^4.28.0",
+    "rollup": "^4.28.1",
     "rollup-plugin-node-externals": "^7.1.3",
+    "ts-swc-rollup-plugin": "^1.0.1",
     "ts-swc-transform": "^1.0.3",
     "tsds-lib": "^1.1.4"
   },

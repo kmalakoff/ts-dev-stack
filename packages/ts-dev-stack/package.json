@@ -46,7 +46,7 @@
     "queue-cb": "^1.2.1",
     "resolve": "^1.22.8",
     "sort-package-json": "^2.12.0",
-    "ts-swc-loaders": "^1.0.4",
+    "ts-swc-loaders": "^1.0.5",
     "tsds-biome": "^1.1.4",
     "tsds-build": "^1.1.4",
     "tsds-c8": "^1.1.4",
