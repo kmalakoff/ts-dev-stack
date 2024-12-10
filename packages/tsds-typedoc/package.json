@@ -42,9 +42,9 @@
     "node-version-use": "^1.0.2",
     "queue-cb": "^1.2.1",
     "resolve": "^1.22.8",
-    "rimraf2": "^2.7.1",
+    "rimraf2": "^2.8.2",
     "tsds-lib": "^1.1.4",
-    "typedoc": "^0.27.2",
+    "typedoc": "^0.27.4",
     "typescript": "^5.7.2"
   },
   "devDependencies": {

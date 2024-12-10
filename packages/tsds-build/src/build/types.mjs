@@ -12,7 +12,7 @@ const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __d
 export default function types(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
   const src = source(options);
-  const srcFolder = path.dirname(path.resolve(cwd, src));
+  const srcDir = path.dirname(path.resolve(cwd, src));
   const dest = path.join(cwd, 'dist', 'types');
 
   const config = getTS.getTsconfig(path.resolve(cwd, 'tsconfig.json'));
@@ -26,7 +26,7 @@ export default function types(_args, options, cb) {
 
   rimraf2(dest, { disableGlob: true }, () => {
     const files = [];
-    const iterator = new Iterator(srcFolder);
+    const iterator = new Iterator(srcDir);
     iterator.forEach(
       (entry, callback) => {
         if (!entry.stats.isFile()) return callback();
