@@ -8,17 +8,12 @@ const major = typeof process === 'undefined' ? Infinity : +process.versions.node
 const nvu = binPath(resolve.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
-const config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup', 'config.mjs');
+const config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup.config.mjs');
 export default function umd(_args, options, cb) {
     const cwd = options.cwd || process.cwd();
     const src = path.resolve(cwd, source(options));
-    options = {
-        ...options
-    };
-    options.type = 'umd';
-    options.sourceMaps = true;
-    options.dest = path.join(cwd, 'dist', 'umd');
-    rimraf2(options.dest, {
+    const dest = path.join(cwd, 'dist', 'umd');
+    rimraf2(dest, {
         disableGlob: true
     }, ()=>{
         const queue = new Queue(1);
@@ -39,7 +34,7 @@ export default function umd(_args, options, cb) {
                 cwd
             }));
         })();
-        queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
+        queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
         queue.await(cb);
     });
 }

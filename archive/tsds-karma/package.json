@@ -50,9 +50,9 @@
     "queue-cb": "^1.2.1",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.0.4",
+    "ts-swc-loaders": "^1.0.5",
     "tsds-lib": "*",
-    "webpack": "^5.97.0"
+    "webpack": "^5.97.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

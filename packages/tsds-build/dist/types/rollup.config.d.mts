@@ -16,7 +16,7 @@ declare namespace _default {
     })[];
     let plugins: (import("rollup").Plugin<any> | {
         name: string;
-        transform(contents: any, filename: any): any;
+        transform(code: string, id: string): import("rollup").TransformResult;
     })[];
 }
 export default _default;

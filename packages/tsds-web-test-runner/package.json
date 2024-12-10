@@ -25,6 +25,7 @@
       "require": "./dist/cjs/index.js",
       "types": "./dist/types/index.d.ts"
     },
+    "./*": "./*",
     "./createConfig.cjs": "./dist/cjs/exports/createConfig.js",
     "./createConfig.mjs": "./dist/esm/exports/createConfig.mjs"
   },

@@ -2,9 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
+import getTS from 'get-tsconfig-compat';
 import camelcase from 'lodash.camelcase';
 import externals from 'rollup-plugin-node-externals';
-import swc from './swc.mjs';
+import { swc } from 'ts-swc-rollup-plugin';
 const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 const globals = pkg.tsds ? pkg.tsds.globals || {} : {};
 const DEPS = [
@@ -18,6 +19,11 @@ DEPS.forEach((x)=>{
         if (globals[name] === undefined) console.log(`umd dependency ${name}is missing. Add a "tsds": { "globals": { \"${name}\": "SomeName" } } to your package.json`);
     }
 });
+const tsconfig = getTS.getTsconfig();
+tsconfig.config.compilerOptions = {
+    ...tsconfig.config.compilerOptions,
+    target: 'ES5'
+};
 export default {
     output: [
         {
@@ -44,6 +50,8 @@ export default {
             builtinsPrefix: 'strip'
         }),
         resolve(),
-        swc()
+        swc({
+            tsconfig
+        })
     ]
 };

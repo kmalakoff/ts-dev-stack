@@ -47,20 +47,44 @@ function _object_spread(target) {
     }
     return target;
 }
+function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        if (enumerableOnly) {
+            symbols = symbols.filter(function(sym) {
+                return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+            });
+        }
+        keys.push.apply(keys, symbols);
+    }
+    return keys;
+}
+function _object_spread_props(target, source) {
+    source = source != null ? source : {};
+    if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+        ownKeys(Object(source)).forEach(function(key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+    }
+    return target;
+}
 function cjs(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
-    options = _object_spread({}, options);
-    options.type = 'cjs';
-    options.sourceMaps = true;
-    options.dest = _path.default.join(cwd, 'dist', 'cjs');
-    (0, _rimraf2.default)(options.dest, {
+    var src = (0, _tsdslib.source)(options);
+    var srcDir = _path.default.dirname(_path.default.resolve(cwd, src));
+    var dest = _path.default.join(cwd, 'dist', 'cjs');
+    (0, _rimraf2.default)(dest, {
         disableGlob: true
     }, function() {
-        var src = (0, _tsdslib.source)(options);
-        var srcDir = _path.default.dirname(_path.default.resolve(cwd, src));
         var queue = new _queuecb.default(1);
-        queue.defer(_tsswctransform.transformDirectory.bind(null, srcDir, options.dest, 'cjs', options));
-        queue.defer(_fs.default.writeFile.bind(null, _path.default.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
+        queue.defer(_tsswctransform.transformDirectory.bind(null, srcDir, dest, 'cjs', _object_spread_props(_object_spread({}, options), {
+            type: 'cjs',
+            sourceMaps: true
+        })));
+        queue.defer(_fs.default.writeFile.bind(null, _path.default.join(dest, 'package.json'), '{"type":"commonjs"}'));
         queue.await(cb);
     });
 }

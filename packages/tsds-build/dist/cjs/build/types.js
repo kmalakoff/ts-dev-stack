@@ -52,7 +52,7 @@ var nvu = (0, _tsdslib.binPath)(_resolve.default.sync('node-version-use/package.
 function types(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = (0, _tsdslib.source)(options);
-    var srcFolder = _path.default.dirname(_path.default.resolve(cwd, src));
+    var srcDir = _path.default.dirname(_path.default.resolve(cwd, src));
     var dest = _path.default.join(cwd, 'dist', 'types');
     var config = _gettsconfigcompat.default.getTsconfig(_path.default.resolve(cwd, 'tsconfig.json'));
     var matcher = (0, _tsswctransform.createMatcher)(config);
@@ -66,7 +66,7 @@ function types(_args, options, cb) {
         disableGlob: true
     }, function() {
         var files = [];
-        var iterator = new _fsiterator.default(srcFolder);
+        var iterator = new _fsiterator.default(srcDir);
         iterator.forEach(function(entry, callback) {
             if (!entry.stats.isFile()) return callback();
             if (!matcher(entry.fullPath)) return callback();

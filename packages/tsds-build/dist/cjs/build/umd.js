@@ -22,19 +22,6 @@ function _array_like_to_array(arr, len) {
 function _array_without_holes(arr) {
     if (Array.isArray(arr)) return _array_like_to_array(arr);
 }
-function _define_property(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
@@ -45,21 +32,6 @@ function _iterable_to_array(iter) {
 }
 function _non_iterable_spread() {
     throw new TypeError("Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _object_spread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
-        }
-        ownKeys.forEach(function(key) {
-            _define_property(target, key, source[key]);
-        });
-    }
-    return target;
 }
 function _to_consumable_array(arr) {
     return _array_without_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) || _non_iterable_spread();
@@ -76,15 +48,12 @@ var major = typeof process === 'undefined' ? Infinity : +process.versions.node.s
 var nvu = (0, _tsdslib.binPath)(_resolve.default.sync('node-version-use/package.json', {
     basedir: __dirname
 }), 'nvu');
-var config = _path.default.resolve((0, _tsdslib.packageRoot)(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup', 'config.mjs');
+var config = _path.default.resolve((0, _tsdslib.packageRoot)(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup.config.mjs');
 function umd(_args, options, cb) {
     var cwd = options.cwd || process.cwd();
     var src = _path.default.resolve(cwd, (0, _tsdslib.source)(options));
-    options = _object_spread({}, options);
-    options.type = 'umd';
-    options.sourceMaps = true;
-    options.dest = _path.default.join(cwd, 'dist', 'umd');
-    (0, _rimraf2.default)(options.dest, {
+    var dest = _path.default.join(cwd, 'dist', 'umd');
+    (0, _rimraf2.default)(dest, {
         disableGlob: true
     }, function() {
         var queue = new _queuecb.default(1);
@@ -104,7 +73,7 @@ function umd(_args, options, cb) {
                 cwd: cwd
             }));
         })();
-        queue.defer(_fs.default.writeFile.bind(null, _path.default.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
+        queue.defer(_fs.default.writeFile.bind(null, _path.default.join(dest, 'package.json'), '{"type":"commonjs"}'));
         queue.await(cb);
     });
 }
