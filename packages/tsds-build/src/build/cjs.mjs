@@ -7,17 +7,14 @@ import { source } from 'tsds-lib';
 
 export default function cjs(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
-  options = { ...options };
-  options.type = 'cjs';
-  options.sourceMaps = true;
-  options.dest = path.join(cwd, 'dist', 'cjs');
-  rimraf2(options.dest, { disableGlob: true }, () => {
-    const src = source(options);
-    const srcDir = path.dirname(path.resolve(cwd, src));
+  const src = source(options);
+  const srcDir = path.dirname(path.resolve(cwd, src));
+  const dest = path.join(cwd, 'dist', 'cjs');
 
+  rimraf2(dest, { disableGlob: true }, () => {
     const queue = new Queue(1);
-    queue.defer(transformDirectory.bind(null, srcDir, options.dest, 'cjs', options));
-    queue.defer(fs.writeFile.bind(null, path.join(options.dest, 'package.json'), '{"type":"commonjs"}'));
+    queue.defer(transformDirectory.bind(null, srcDir, dest, 'cjs', { ...options, type: 'cjs', sourceMaps: true }));
+    queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
     queue.await(cb);
   });
 }
