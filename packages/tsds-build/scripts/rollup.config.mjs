@@ -1,5 +1,8 @@
+import resolve from '@rollup/plugin-node-resolve';
+import externals from 'rollup-plugin-node-externals';
+import swc from 'ts-swc-rollup-plugin';
+
 import getTS from 'get-tsconfig-compat';
-import { swc } from 'ts-swc-rollup-plugin';
 
 const tsconfig = getTS.getTsconfig();
 tsconfig.config.compilerOptions = { ...tsconfig.config.compilerOptions, target: 'ES5' };
@@ -9,5 +12,5 @@ export default {
     format: 'umd',
     name: 'tsdsBuild',
   },
-  plugins: [swc({ tsconfig })],
+  plugins: [externals({ deps: false, devDeps: false, builtinsPrefix: 'strip' }), resolve({ resolveOnly: ['tsds-lib'] }), swc({ tsconfig })],
 };
