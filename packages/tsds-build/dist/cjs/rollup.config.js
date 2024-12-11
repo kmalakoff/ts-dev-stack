@@ -15,7 +15,7 @@ var _pluginterser = /*#__PURE__*/ _interop_require_default(require("@rollup/plug
 var _gettsconfigcompat = /*#__PURE__*/ _interop_require_default(require("get-tsconfig-compat"));
 var _lodashcamelcase = /*#__PURE__*/ _interop_require_default(require("lodash.camelcase"));
 var _rolluppluginnodeexternals = /*#__PURE__*/ _interop_require_default(require("rollup-plugin-node-externals"));
-var _tsswcrollupplugin = require("ts-swc-rollup-plugin");
+var _tsswcrollupplugin = /*#__PURE__*/ _interop_require_default(require("ts-swc-rollup-plugin"));
 function _define_property(obj, key, value) {
     if (key in obj) {
         Object.defineProperty(obj, key, {
@@ -116,7 +116,7 @@ var _default = {
             builtinsPrefix: 'strip'
         }),
         (0, _pluginnoderesolve.default)(),
-        (0, _tsswcrollupplugin.swc)({
+        (0, _tsswcrollupplugin.default)({
             tsconfig: tsconfig
         })
     ]
