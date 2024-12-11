@@ -5,7 +5,7 @@ import terser from '@rollup/plugin-terser';
 import getTS from 'get-tsconfig-compat';
 import camelcase from 'lodash.camelcase';
 import externals from 'rollup-plugin-node-externals';
-import { swc } from 'ts-swc-rollup-plugin';
+import swc from 'ts-swc-rollup-plugin';
 
 const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 const globals = pkg.tsds ? pkg.tsds.globals || {} : {};
