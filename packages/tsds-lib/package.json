@@ -38,20 +38,20 @@
     "test": "",
     "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
-    "version": "tsds version"
+    "version": ""
   },
   "dependencies": {
     "cross-spawn-cb": "^1.1.2",
     "env-path-key": "^1.0.0",
     "mkdirp": "0.5.6",
     "path-string-prepend": "^1.0.0",
-    "queue-cb": "^1.2.1",
-    "resolve": "^1.22.8"
+    "queue-cb": "^1.4.2",
+    "resolve": "^1.22.9"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "depcheck": "^1.4.7",
     "tsds-lib-test": "*",
     "typescript": "^5.7.2"
