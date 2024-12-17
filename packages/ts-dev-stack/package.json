@@ -34,7 +34,7 @@
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
-    "version": "tsds version"
+    "version": ""
   },
   "dependencies": {
     "cross-spawn-cb": "^1.1.2",
@@ -42,11 +42,11 @@
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "gh-pages": "^6.2.0",
-    "node-version-use": "^1.0.2",
-    "queue-cb": "^1.2.1",
-    "resolve": "^1.22.8",
+    "node-version-use": "^1.0.4",
+    "queue-cb": "^1.4.2",
+    "resolve": "^1.22.9",
     "sort-package-json": "^2.12.0",
-    "ts-swc-loaders": "^1.0.5",
+    "ts-swc-loaders": "^1.0.6",
     "tsds-biome": "^1.2.1",
     "tsds-build": "^1.2.1",
     "tsds-c8": "^1.2.1",
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "tsds-lib-test": "*",
     "typescript": "^5.7.2"
   },
