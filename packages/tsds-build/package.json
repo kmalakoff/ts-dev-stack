@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -56,7 +56,7 @@
     "rollup-plugin-node-externals": "^8.0.0",
     "ts-swc-rollup-plugin": "^1.2.2",
     "ts-swc-transform": "^1.1.1",
-    "tsds-lib": "^1.2.1"
+    "tsds-lib": "^1.2.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -66,7 +66,7 @@
     "env-path-key": "^1.0.0",
     "mkdirp": "0.5.6",
     "path-string-prepend": "^1.0.0",
-    "tsds-lib-test": "*",
+    "tsds-lib-test": "^1.2.2",
     "typescript": "^5.7.2"
   },
   "engines": {
