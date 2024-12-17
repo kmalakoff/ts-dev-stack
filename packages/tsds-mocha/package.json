@@ -34,7 +34,7 @@
     "test": "",
     "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
-    "version": "tsds version"
+    "version": ""
   },
   "dependencies": {
     "assert": "1.5.0",
@@ -43,17 +43,17 @@
     "getopts-compat": "^2.2.5",
     "mocha": "^11.0.1",
     "mocha-compat": "^3.6.2",
-    "queue-cb": "^1.2.1",
+    "queue-cb": "^1.4.2",
     "regenerator-runtime": "^0.14.1",
-    "resolve": "^1.22.8",
-    "ts-swc-loaders": "^1.0.5",
+    "resolve": "^1.22.9",
+    "ts-swc-loaders": "^1.0.6",
     "tsds-lib": "^1.2.1",
     "unixify": "^1.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "depcheck": "^1.4.7",
     "tsds-lib-test": "*",
     "typescript": "^5.7.2"
