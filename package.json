@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "resolve": "^1.22.9",
-    "ts-dev-stack": "^1.2.2"
+    "ts-dev-stack": "^1.2.3"
   },
   "devDependencies": {
     "each-package": "^0.7.2",
