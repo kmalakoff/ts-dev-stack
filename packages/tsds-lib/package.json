@@ -45,7 +45,7 @@
     "env-path-key": "^1.0.0",
     "mkdirp": "0.5.6",
     "path-string-prepend": "^1.0.0",
-    "queue-cb": "^1.4.2",
+    "queue-cb": "^1.4.3",
     "resolve": "^1.22.9"
   },
   "devDependencies": {

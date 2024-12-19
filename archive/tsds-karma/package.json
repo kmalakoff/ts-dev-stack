@@ -47,10 +47,10 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
-    "queue-cb": "^1.4.2",
+    "queue-cb": "^1.4.3",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.0.6",
+    "ts-swc-loaders": "^1.1.1",
     "tsds-lib": "*",
     "webpack": "^5.97.1"
   },

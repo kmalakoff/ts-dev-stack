@@ -28,7 +28,6 @@ export default function data(git, options, callback) {
             'npm',
             'install'
         ], {
-            stdio: 'inherit',
             cwd: targetPath
         }));
         // link package

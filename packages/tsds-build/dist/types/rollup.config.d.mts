@@ -14,9 +14,6 @@ declare namespace _default {
         plugins: import("rollup").Plugin<any>[];
         globals: any;
     })[];
-    let plugins: (import("rollup").Plugin<any> | {
-        name: string;
-        transform(code: string, id: string): import("rollup").TransformResult;
-    })[];
+    let plugins: import("rollup").Plugin<any>[];
 }
 export default _default;
