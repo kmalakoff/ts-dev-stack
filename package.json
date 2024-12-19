@@ -15,7 +15,7 @@
     "version": ""
   },
   "dependencies": {
-    "ts-dev-stack": "^1.2.4"
+    "ts-dev-stack": "^1.2.5"
   },
   "devDependencies": {
     "each-package": "^0.7.2",
