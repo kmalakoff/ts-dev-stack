@@ -21,7 +21,8 @@ jobs:
       - run: git config --global user.email "actions@users.noreply.github.com"
       - run: npm uninstall node-version-use -g
       - run: npm install node-version-use -g
-      - run: nvu 22 npm ci
+      # - run: nvu lts npm ci // Failed to install @swc/core-win32-x64-msvc and Failed to install @swc/core-linux-x64-musl
+      - run: nvu lts npm install
       - run: npm install playwright
       - run: npx -y playwright install --with-deps
       - run: npm run version

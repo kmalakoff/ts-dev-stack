@@ -28,7 +28,7 @@ export default function data(git, options, callback) {
     queue.defer(prepareGit.bind(null, git, options));
 
     // install
-    queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install'], { stdio: 'inherit', cwd: targetPath }));
+    queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install'], { cwd: targetPath }));
 
     // link package
     queue.defer(fs.rename.bind(null, packagePath, `${packagePath}.tsds`));
