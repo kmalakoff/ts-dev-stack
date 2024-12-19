@@ -46,7 +46,7 @@
     "queue-cb": "^1.4.3",
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.9",
-    "ts-swc-loaders": "^1.2.2",
+    "ts-swc-loaders": "^1.2.3",
     "tsds-lib": "^1.2.3",
     "unixify": "^1.0.0"
   },
