@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
-const path = require('path');
-const _fs = require('fs');
-const spawn = require('cross-spawn-cb');
+import path from 'path';
+import url from 'url';
+import spawn from 'cross-spawn-cb';
 
-const dirname = __dirname;
-const src = path.resolve(dirname, '..', 'src', 'index.mjs');
-const dest = path.join(dirname, '..', 'assets', 'tsds-build.js');
+const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const src = path.resolve(__dirname, '..', 'src', 'index.ts');
+const dest = path.join(__dirname, '..', 'assets', 'tsds-build.cjs');
 
 function build(callback) {
   const config = path.resolve(__dirname, 'rollup.config.mjs');
   const args = ['rollup', '--config', config, '--input', src, '--file', dest];
-  spawn(args[0], args.slice(1), { cwd: path.dirname(dirname), stdio: 'inherit' }, callback);
+  spawn(args[0], args.slice(1), { cwd: path.dirname(__dirname), stdio: 'inherit' }, callback);
 }
 
 build((err) => {
