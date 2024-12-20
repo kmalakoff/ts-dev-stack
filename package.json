@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "cd packages && ep -d1 -c100 npm run build",
+    "build": "cd packages && ep -d1 npm run build",
     "clean": "ep -d1 -c100 rm -rf node_modules",
     "depcheck": "cd packages && ep -d1 -c100 npm run depcheck",
     "format": "cd packages && ep -d1 -c100 npm run format",
@@ -15,7 +15,7 @@
     "version": ""
   },
   "dependencies": {
-    "ts-dev-stack": "^1.2.5"
+    "ts-dev-stack": "^1.2.6"
   },
   "devDependencies": {
     "each-package": "^0.7.2",
