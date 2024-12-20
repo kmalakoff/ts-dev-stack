@@ -16,11 +16,20 @@
     "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
   },
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./*": "./*"
+  },
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "bin": {
-    "tsds-karma": "bin/cli.js"
+    "tsds-karma": "bin/cli.cjs"
   },
   "files": [
     "dist",
@@ -47,7 +56,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
-    "queue-cb": "^1.4.3",
+    "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
     "ts-swc-loaders": "^1.2.3",
@@ -66,7 +75,7 @@
     "node": ">=0.8"
   },
   "tsds": {
-    "source": "src/index.mjs",
+    "source": "src/index.ts",
     "targets": [
       "cjs",
       "esm"
