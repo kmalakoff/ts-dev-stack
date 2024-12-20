@@ -1,6 +1,6 @@
 {
   "name": "tsds-c8",
-  "version": "1.2.6",
+  "version": "1.3.0",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -58,7 +58,7 @@
     "resolve": "^1.22.10",
     "rimraf2": "^2.8.2",
     "ts-swc-loaders": "^1.2.3",
-    "tsds-lib": "^1.2.3",
+    "tsds-lib": "^1.3.0",
     "unixify": "^1.0.0"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.2",
     "depcheck": "^1.4.7",
-    "tsds-lib-test": "^1.2.3",
+    "tsds-lib-test": "^1.3.0",
     "typescript": "^5.7.2"
   },
   "engines": {
