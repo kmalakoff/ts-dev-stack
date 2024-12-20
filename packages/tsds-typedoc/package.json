@@ -14,11 +14,20 @@
     "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
   },
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./*": "./*"
+  },
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "bin": {
-    "tsds-typedoc": "bin/cli.js"
+    "tsds-typedoc": "bin/cli.cjs"
   },
   "files": [
     "dist",
@@ -40,8 +49,8 @@
     "getopts-compat": "^2.2.5",
     "mkdirp": "0.5.6",
     "node-version-use": "^1.0.4",
-    "queue-cb": "^1.4.3",
-    "resolve": "^1.22.9",
+    "queue-cb": "^1.4.4",
+    "resolve": "^1.22.10",
     "rimraf2": "^2.8.2",
     "tsds-lib": "^1.2.3",
     "typedoc": "^0.27.5",
@@ -59,7 +68,7 @@
     "node": ">=0.8"
   },
   "tsds": {
-    "source": "src/index.mjs",
+    "source": "src/index.ts",
     "targets": [
       "cjs",
       "esm"
