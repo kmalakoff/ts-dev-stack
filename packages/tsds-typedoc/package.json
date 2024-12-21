@@ -1,6 +1,6 @@
 {
   "name": "tsds-typedoc",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -51,7 +51,7 @@
     "queue-cb": "^1.4.4",
     "resolve": "^1.22.10",
     "rimraf2": "^2.8.2",
-    "tsds-lib": "^1.4.1",
+    "tsds-lib": "^1.4.2",
     "typedoc": "^0.27.5",
     "typescript": "^5.7.2"
   },
