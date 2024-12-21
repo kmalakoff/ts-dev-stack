@@ -1,6 +1,6 @@
 import path from 'path';
 import url from 'url';
-import mkdirp from 'mkdirp';
+import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 
 import resolve from 'resolve';

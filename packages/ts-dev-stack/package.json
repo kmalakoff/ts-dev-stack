@@ -38,7 +38,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../tsds-build/scripts/build.js",
+    "build": "tsds build",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
@@ -46,7 +46,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.1.2",
+    "cross-spawn-cb": "^1.1.3",
     "depcheck": "^1.4.7",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
@@ -55,7 +55,7 @@
     "queue-cb": "^1.4.4",
     "resolve": "^1.22.10",
     "sort-package-json": "^2.12.0",
-    "ts-swc-loaders": "^1.2.3",
+    "ts-swc-loaders": "^1.3.2",
     "tsds-biome": "^1.4.0",
     "tsds-build": "^1.4.0",
     "tsds-c8": "^1.4.0",

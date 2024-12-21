@@ -36,16 +36,15 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../tsds-build/scripts/build.js",
+    "build": "tsds build",
     "depcheck": "depcheck",
-    "format": "biome check --write --unsafe src/ test/",
+    "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.1.2",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "node-version-use": "^1.0.4",
@@ -57,7 +56,6 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.2",
     "depcheck": "^1.4.7",
-    "tsds-lib-test": "^1.4.0",
     "typescript": "^5.7.2"
   },
   "engines": {

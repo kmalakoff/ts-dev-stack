@@ -4,8 +4,12 @@ import path from 'path';
 // @ts-ignore
 import process from './process.cjs';
 
-export default function config(options) {
-  options = options || {};
+export interface ConfigOptions {
+  cwd?: string;
+  config?: JSON;
+}
+
+export default function config(options: ConfigOptions = {}) {
   const cwd = options.cwd || process.cwd();
   return options.config || JSON.parse(fs.readFileSync(path.resolve(cwd, 'package.json'), 'utf8')).tsds || {};
 }

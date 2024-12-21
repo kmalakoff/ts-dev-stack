@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["assert", "mkdirp"]
+  "reject": ["assert"]
 }
