@@ -33,7 +33,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "tsds build",
+    "build": "node ../../dev/build/scripts/build.mjs",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/",
     "test": "",
@@ -44,6 +44,7 @@
   "dependencies": {
     "cross-spawn-cb": "^1.1.3",
     "env-path-key": "^1.0.0",
+    "fs-access-sync-compat": "^1.0.2",
     "mkdirp-classic": "^0.5.3",
     "path-string-prepend": "^1.0.0",
     "queue-cb": "^1.4.4",
