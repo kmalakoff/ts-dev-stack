@@ -12,7 +12,7 @@ const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : 
 
 const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
 const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __dirname }), 'nvu');
-const config = path.resolve(packageRoot(__dirname, 'tsds-build'), 'dist', 'esm', 'rollup.config.mjs');
+const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'rollup.config.mjs');
 
 export default function umd(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
