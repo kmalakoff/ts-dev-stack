@@ -9,7 +9,7 @@ import packageRoot from './packageRoot.js';
 // @ts-ignore
 import process from './process.cjs';
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-const root = packageRoot(__dirname, 'tsds-lib');
+const root = packageRoot(__dirname);
 
 export default function spawn(cmd, args, options, cb) {
   const cwd = options.cwd || process.cwd();
