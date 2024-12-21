@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import spawn from 'cross-spawn-cb';
 import access from 'fs-access-compat';
-import mkdirp from 'mkdirp';
+import mkdirp from 'mkdirp-classic';
 import os from 'os-shim';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
