@@ -11,7 +11,7 @@ const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : 
 const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
 const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __dirname }), 'nvu');
 const wtr = binPath(resolve.sync('@web/test-runner/package.json', { basedir: __dirname }), 'web-test-runner');
-const config = path.resolve(packageRoot(__dirname, 'tsds-web-test-runner'), 'dist', 'esm', 'wtr.config.mjs');
+const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
 
 export default function command(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
