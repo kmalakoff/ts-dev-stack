@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import mkdirp from 'mkdirp';
+import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 import unlink from './unlink.js';
 
