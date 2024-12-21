@@ -1,1 +1,1 @@
-ignores: ["ts-dev-stack", "each-package", "lerna"]
+ignores: ["each-package", "lerna"]
