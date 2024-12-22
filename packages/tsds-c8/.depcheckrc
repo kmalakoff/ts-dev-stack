@@ -1,1 +1,1 @@
-ignores: ["tsds-c8",  "@types/*", "@biomejs/*", "typescript", "node-version-use", "assert", "regenerator-runtime", "ts-swc-loaders", "mocha-compat", "tsds-lib", "resolve", " c8"]
+ignores: ["tsds-c8", "@types/*", "@biomejs/*", "typescript", "node-version-use", "assert", "regenerator-runtime", "ts-swc-loaders", "mocha-compat", "tsds-lib", "resolve", " c8"]
