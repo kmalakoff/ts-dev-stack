@@ -1,9 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('mkdirp-classic'), require('resolve'), require('url'), require('cross-spawn-cb'), require('env-path-key'), require('path-string-prepend'), require('fs'), require('ts-swc-transform'), require('fs-iterator'), require('get-tsconfig-compat')) :
-        typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'mkdirp-classic', 'resolve', 'url', 'cross-spawn-cb', 'env-path-key', 'path-string-prepend', 'fs', 'ts-swc-transform', 'fs-iterator', 'get-tsconfig-compat'], factory) :
-            (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, null, global.resolve, global.url, global.crossSpawn, global.pathKey, global.prepend, global.fs, global.tsSwcTransform, global.Iterator, global.getTS));
-})(this, (function (path, Queue, rimraf2, mkdirp, resolve, url, crossSpawn, pathKey, prepend, fs, tsSwcTransform, Iterator, getTS) {
-    'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('mkdirp-classic'), require('fs-access-sync-compat'), require('resolve'), require('url'), require('cross-spawn-cb'), require('env-path-key'), require('path-string-prepend'), require('fs'), require('ts-swc-transform'), require('fs-iterator'), require('get-tsconfig-compat')) :
+    typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'mkdirp-classic', 'fs-access-sync-compat', 'resolve', 'url', 'cross-spawn-cb', 'env-path-key', 'path-string-prepend', 'fs', 'ts-swc-transform', 'fs-iterator', 'get-tsconfig-compat'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, null, global.accessSync, global.resolve, global.url, global.crossSpawn, global.pathKey, global.prepend, global.fs, global.tsSwcTransform, global.Iterator, global.getTS));
+})(this, (function (path, Queue, rimraf2, mkdirp, accessSync, resolve, url, crossSpawn, pathKey, prepend, fs, tsSwcTransform, Iterator, getTS) { 'use strict';
 
     var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
     function binPath(packagePath, binName) {
@@ -42,11 +41,21 @@
 
     process$2.platform === 'win32' || /^(msys|cygwin)$/.test(process$2.env.OSTYPE);
 
-    function packageRoot(dir, packageName) {
-        if (path.basename(dir) === packageName) return dir;
+    function existsSync(path) {
+        try {
+            accessSync(path);
+            return true;
+        } catch (_err) {
+            return false;
+        }
+    }
+
+    function packageRoot(dir) {
+        const packagePath = path.join(dir, 'package.json');
+        if (existsSync(packagePath) && JSON.parse(fs.readFileSync(packagePath, 'utf8')).name) return dir;
         const nextDir = path.dirname(dir);
-        if (nextDir === dir) throw new Error(`${packageName} not found`);
-        return packageRoot(nextDir, packageName);
+        if (nextDir === dir) throw new Error('Package root not found');
+        return packageRoot(nextDir);
     }
 
     function source(options) {
@@ -59,12 +68,7 @@
     }
 
     const __dirname$2 = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath((typeof document === 'undefined' && typeof location === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : typeof document === 'undefined' ? location.href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('tsds-build.cjs', document.baseURI).href))));
-    let root;
-    try {
-        root = packageRoot(__dirname$2, 'tsds-lib');
-    } catch (_) {
-        root = packageRoot(__dirname$2, 'build');
-    }
+    const root = packageRoot(__dirname$2);
     function spawn(cmd, args, options, cb) {
         const cwd = options.cwd || process$2.cwd();
         const PATH_KEY = pathKey(options);
@@ -109,7 +113,7 @@
         const dest = path.join(cwd, 'dist', 'cjs');
         rimraf2(dest, {
             disableGlob: true
-        }, () => {
+        }, ()=>{
             const queue = new Queue(1);
             queue.defer(tsSwcTransform.transformDirectory.bind(null, srcDir, dest, 'cjs', {
                 ...options,
@@ -128,7 +132,7 @@
         const dest = path.join(cwd, 'dist', 'esm');
         rimraf2(dest, {
             disableGlob: true
-        }, () => {
+        }, ()=>{
             const queue = new Queue(1);
             queue.defer(tsSwcTransform.transformDirectory.bind(null, srcDir, dest, 'esm', {
                 ...options,
@@ -153,17 +157,17 @@
         const config = getTS.getTsconfig(path.resolve(cwd, 'tsconfig.json'));
         const matcher = tsSwcTransform.createMatcher(config);
         const tsArgs = [];
-        for (const key in config.config.compilerOptions) {
+        for(const key in config.config.compilerOptions){
             const value = config.config.compilerOptions[key];
             tsArgs.push(`--${key}`);
             tsArgs.push(Array.isArray(value) ? value.join(',') : value);
         }
         rimraf2(dest, {
             disableGlob: true
-        }, () => {
+        }, ()=>{
             const files = [];
             const iterator = new Iterator(srcDir);
-            iterator.forEach((entry, callback) => {
+            iterator.forEach((entry, callback)=>{
                 if (!entry.stats.isFile()) return callback();
                 if (!matcher(entry.fullPath)) return callback();
                 files.push(entry.fullPath);
@@ -171,7 +175,7 @@
             }, {
                 callbacks: true,
                 concurrency: 1024
-            }, (err) => {
+            }, (err)=>{
                 if (err) return cb(err);
                 let args = [
                     'tsc',
@@ -199,16 +203,16 @@
     const nvu = binPath(resolve.sync('node-version-use/package.json', {
         basedir: __dirname
     }), 'nvu');
-    const config = path.resolve(packageRoot(__dirname, 'build'), 'dist', 'esm', 'rollup.config.mjs');
+    const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'rollup.config.mjs');
     function umd(_args, options, cb) {
         const cwd = options.cwd || process$1.cwd();
         const src = path.resolve(cwd, source(options));
         const dest = path.join(cwd, 'dist', 'umd');
         rimraf2(dest, {
             disableGlob: true
-        }, () => {
+        }, ()=>{
             const queue = new Queue(1);
-            (() => {
+            (()=>{
                 let args = [
                     'rollup',
                     '--config',
@@ -235,9 +239,9 @@
         const clean = options.clean === undefined ? true : options.clean;
         const cwd = options.cwd || process$1.cwd();
         const queue = new Queue(1);
-        !clean || queue.defer((cb) => rimraf2(path.join(cwd, 'dist'), {
-            disableGlob: true
-        }, cb.bind(null, null)));
+        !clean || queue.defer((cb)=>rimraf2(path.join(cwd, 'dist'), {
+                disableGlob: true
+            }, cb.bind(null, null)));
         targs.indexOf('cjs') < 0 || queue.defer(cjs.bind(null, args, options));
         targs.indexOf('esm') < 0 || queue.defer(esm.bind(null, args, options));
         targs.indexOf('umd') < 0 || queue.defer(umd.bind(null, args, options));
