@@ -8,5 +8,5 @@ export default {
     format: 'umd',
     name: 'tsdsBuild',
   },
-  plugins: [commonjs({ extensions: '.cts' }), externals({ deps: false, devDeps: false, builtinsPrefix: 'strip' }), resolve({ resolveOnly: ['tsds-lib'] }), swc()],
+  plugins: [commonjs(), externals({ deps: false, devDeps: false, builtinsPrefix: 'strip' }), resolve({ resolveOnly: ['tsds-build', 'tsds-lib'] }), swc()],
 };
