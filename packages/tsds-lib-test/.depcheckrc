@@ -1,1 +1,1 @@
-ignores: ["tsds-lib-test",  "@types/*", "@biomejs/*", "typescript", "node-version-use"]
+ignores: ["tsds-lib-test", "@types/*", "@biomejs/*", "typescript", "node-version-use"]
