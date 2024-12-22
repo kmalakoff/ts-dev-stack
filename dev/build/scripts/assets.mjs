@@ -5,7 +5,7 @@ import url from 'url';
 import spawn from 'cross-spawn-cb';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-const src = path.resolve(__dirname, '..', '..', '..', 'packages', 'tsds-build', 'src', 'index.ts');
+const src = path.resolve(__dirname, '..', 'src', 'index.ts');
 const dest = path.join(__dirname, '..', 'assets', 'tsds-build.cjs');
 
 function build(callback) {
