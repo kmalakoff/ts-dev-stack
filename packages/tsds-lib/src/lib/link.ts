@@ -29,17 +29,13 @@ function createLink(target, cb) {
   queue.await(cb);
 }
 
-function removeLink(target, cb) {
-  fs.unlink(target, cb);
-}
-
 export default function link(target, cb) {
   try {
     fs.lstat(target, (_, lstat) => {
       // new
       if (!lstat) {
         createLink(target, (err) => {
-          err ? cb(err) : cb(null, removeLink.bind(null, target));
+          err ? cb(err) : cb(null, fs.unlink.bind(null, target));
         });
       }
 
@@ -52,9 +48,9 @@ export default function link(target, cb) {
 
       // replace
       else {
-        removeLink(target, () => {
+        fs.unlink(target, () => {
           createLink(target, (err) => {
-            err ? cb(err) : cb(null, removeLink.bind(null, target));
+            err ? cb(err) : cb(null, fs.unlink.bind(null, target));
           });
         });
       }
