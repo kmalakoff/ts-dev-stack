@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-// @ts-ignore
-import process from './process.cjs';
-
 export default function installPath(options) {
   options = options || {};
   if (options.installPath) return options.installPath;
