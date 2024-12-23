@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.4.9",
+  "version": "1.4.10",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -57,10 +57,10 @@
     "sort-package-json": "^2.12.0",
     "ts-swc-loaders": "^1.4.4",
     "tsds-biome": "^1.4.8",
-    "tsds-build": "^1.4.9",
-    "tsds-c8": "^1.4.9",
+    "tsds-build": "^1.4.10",
+    "tsds-c8": "^1.4.10",
     "tsds-lib": "^1.4.8",
-    "tsds-mocha": "^1.4.9",
+    "tsds-mocha": "^1.4.10",
     "tsds-typedoc": "^1.4.8",
     "tsds-web-test-runner": "^1.4.8"
   },
