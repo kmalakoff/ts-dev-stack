@@ -6,7 +6,7 @@
     "assets": "node scripts/assets.mjs"
   },
   "dependencies": {
-    "tsds-build": "^1.4.8",
+    "tsds-build": "^1.4.9",
     "tsds-lib": "^1.4.8"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.5.2",
-    "ts-swc-transform": "^1.7.3"
+    "ts-swc-rollup-plugin": "^1.5.3",
+    "ts-swc-transform": "^1.7.4"
   }
 }
