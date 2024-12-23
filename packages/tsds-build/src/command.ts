@@ -7,9 +7,6 @@ import esm from './build/esm.js';
 import types from './build/types.js';
 import umd from './build/umd.js';
 
-// @ts-ignore
-import process from './lib/process.cjs';
-
 export default function build(args, options, cb) {
   const targs = targets(options);
   const clean = options.clean === undefined ? true : options.clean;
