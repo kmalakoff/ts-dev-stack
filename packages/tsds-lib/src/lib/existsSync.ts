@@ -1,10 +1,12 @@
-import accessSync from 'fs-access-sync-compat';
+import fs from 'fs';
 
-export default function existsSync(path) {
+function existsSyncPolyfill(path) {
   try {
-    accessSync(path);
+    fs.accessSync(path);
     return true;
-  } catch (_err) {
+  } catch (_) {
     return false;
   }
 }
+
+export default fs.accessSync ? existsSyncPolyfill : fs.existsSync;
