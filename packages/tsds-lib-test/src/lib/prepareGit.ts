@@ -8,9 +8,6 @@ import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import shortHash from 'short-hash';
 
-// @ts-ignore
-import process from './process.cjs';
-
 export default function prepareGit(git, options, callback) {
   const cwd = options.cwd || process.cwd();
   const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));

@@ -3,9 +3,6 @@ import { spawn } from 'tsds-lib';
 
 import prepublish from './prepublish.js';
 
-// @ts-ignore
-import process from './lib/process.cjs';
-
 function postpublish(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
 
