@@ -1,5 +1,6 @@
 import path from 'path';
 import url from 'url';
+import getopts from 'getopts-compat';
 import Queue from 'queue-cb';
 
 import resolve from 'resolve';
@@ -13,8 +14,11 @@ const _c8 = binPath(resolve.sync('c8/package.json', { basedir: __dirname }));
 const mocha = major < 12 ? binPath(resolve.sync('mocha-compat/package.json', { basedir: __dirname }), '_mocha-compat') : binPath(resolve.sync('mocha/package.json', { basedir: __dirname }), '_mocha');
 const loader = binPath(resolve.sync('ts-swc-loaders/package.json', { basedir: __dirname }), 'ts-swc');
 
-export default function c8(_args, options, cb) {
-  const cwd = options.cwd || process.cwd();
+export default function c8(_args, _options, cb) {
+  const cwd = _options.cwd || process.cwd();
+
+  const options = getopts(_args, { stopEarly: true, alias: { temp: 't' } });
+  _args = options._;
 
   link(installPath(options), (err, restore) => {
     if (err) return cb(err);
