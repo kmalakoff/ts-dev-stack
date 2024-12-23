@@ -6,8 +6,6 @@ import prepend from 'path-string-prepend';
 
 import packageRoot from './packageRoot.js';
 
-// @ts-ignore
-import process from './process.cjs';
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const root = packageRoot(__dirname);
 

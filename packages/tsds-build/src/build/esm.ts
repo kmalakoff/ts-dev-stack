@@ -5,9 +5,6 @@ import rimraf2 from 'rimraf2';
 import { transformDirectory } from 'ts-swc-transform';
 import { source } from 'tsds-lib';
 
-// @ts-ignore
-import process from '../lib/process.cjs';
-
 export default function esm(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
   const src = source(options);

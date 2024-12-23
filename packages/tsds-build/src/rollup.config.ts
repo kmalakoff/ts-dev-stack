@@ -7,8 +7,6 @@ import camelcase from 'lodash.camelcase';
 import externals from 'rollup-plugin-node-externals';
 import swc from 'ts-swc-rollup-plugin';
 
-// @ts-ignore
-import process from './lib/process.cjs';
 const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 const globals = pkg.tsds ? pkg.tsds.globals || {} : {};
 

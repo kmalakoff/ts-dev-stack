@@ -4,8 +4,6 @@ import Queue from 'queue-cb';
 import resolve from 'resolve';
 import { binPath, installPath, link, optionsToArgs, packageRoot, spawn } from 'tsds-lib';
 
-// @ts-ignore
-import process from './lib/process.cjs';
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
 const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];

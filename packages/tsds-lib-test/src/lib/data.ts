@@ -8,9 +8,6 @@ import shortHash from 'short-hash';
 
 import prepareGit from './prepareGit.js';
 
-// @ts-ignore
-import process from './process.cjs';
-
 export default function data(git, options, callback) {
   const cwd = options.cwd || process.cwd();
   const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));
