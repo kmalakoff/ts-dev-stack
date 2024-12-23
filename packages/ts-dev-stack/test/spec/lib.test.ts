@@ -6,6 +6,8 @@ import assert from 'assert';
 import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
+import resolve from 'resolve';
+import rimraf2 from 'rimraf2';
 
 import { runCommand } from 'ts-dev-stack';
 import { data } from 'tsds-lib-test';
