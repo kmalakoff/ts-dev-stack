@@ -1,1 +1,1 @@
-ignores: ["build", "fs-access-sync-compat", "minimatch", "node-version-use"]
+ignores: ["build", "tsds-lib"]

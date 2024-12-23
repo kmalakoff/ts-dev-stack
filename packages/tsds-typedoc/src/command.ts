@@ -9,7 +9,7 @@ import { binPath, source, spawn } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
-const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
+const major = +process.versions.node.split('.')[0];
 const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __dirname }), 'nvu');
 
 export default function format(_args, options, cb) {
