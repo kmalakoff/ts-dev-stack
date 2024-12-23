@@ -1,11 +1,1 @@
-export { default as build } from 'tsds-build';
-export { default as coverage } from 'tsds-c8';
-export { default as publish } from './publish.js';
-export { default as prepublish } from './prepublish.js';
-export { default as docs } from 'tsds-typedoc';
-export { default as format } from 'tsds-biome';
-export { default as link } from './link.js';
-export { default as testNode } from 'tsds-mocha';
-export { default as testBrowser } from 'tsds-web-test-runner';
-export { default as unlink } from './unlink.js';
-export { default as version } from './version.js';
+export { default as runCommand } from './runCommand.js';

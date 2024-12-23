@@ -4,23 +4,23 @@ import url from 'url';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
 import rimraf2 from 'rimraf2';
-import { binPath, packageRoot, source, spawn } from 'tsds-lib';
+import { binPath, config, packageRoot, spawn } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
 const major = +process.versions.node.split('.')[0];
 const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __dirname }), 'nvu');
-const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'rollup.config.mjs');
+const configPath = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'rollup.config.mjs');
 
 export default function umd(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
-  const src = path.resolve(cwd, source(options));
+  const src = path.resolve(cwd, config(options).source);
   const dest = path.join(cwd, 'dist', 'umd');
 
   rimraf2(dest, { disableGlob: true }, () => {
     const queue = new Queue(1);
     (() => {
-      let args = ['rollup', '--config', config, '--input', src];
+      let args = ['rollup', '--config', configPath, '--input', src];
       if (major < 14) args = [nvu, 'stable', ...args];
       queue.defer(spawn.bind(null, args[0], args.slice(1), { cwd }));
     })();
