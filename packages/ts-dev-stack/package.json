@@ -76,10 +76,6 @@
   },
   "gitHead": "5d936c167b89e3ac836c29d08eba26fa0fab3b92",
   "tsds": {
-    "source": "src/index.ts",
-    "targets": [
-      "cjs",
-      "esm"
-    ]
+    "source": "src/index.ts"
   }
 }

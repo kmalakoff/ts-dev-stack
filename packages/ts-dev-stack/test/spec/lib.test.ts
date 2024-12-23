@@ -7,7 +7,7 @@ import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 
-import * as devStack from 'ts-dev-stack';
+import { runCommand } from 'ts-dev-stack';
 import { data } from 'tsds-lib-test';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
@@ -31,49 +31,49 @@ function addTests(git) {
     });
     describe('happy path', () => {
       it('build', (done) => {
-        devStack.build([], { cwd: packagePath }, (err) => {
+        runCommand('build', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('link', (done) => {
-        devStack.link([], { cwd: packagePath }, (err) => {
+        runCommand('link', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('unlink', (done) => {
-        devStack.unlink([], { cwd: packagePath }, (err) => {
+        runCommand('unlink', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it.skip('coverage', (done) => {
-        devStack.coverage([], { cwd: packagePath }, (err) => {
+        runCommand('coverage', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('format', (done) => {
-        devStack.format([], { cwd: packagePath }, (err) => {
+        runCommand('format', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('prepublish', (done) => {
-        devStack.prepublish([], { cwd: packagePath }, (err) => {
+        runCommand('prepublish', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('test:node', (done) => {
-        devStack.testNode([], { cwd: packagePath }, (err) => {
+        runCommand('test:node', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('test:browser', (done) => {
-        devStack.testBrowser([], { cwd: packagePath }, (err) => {
+        runCommand('test:browser', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
@@ -86,13 +86,13 @@ function addTests(git) {
       });
       // typedoc doesn't seem to take the parameters
       it('docs', (done) => {
-        devStack.docs([], { cwd: packagePath }, (err) => {
+        runCommand('docs', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('version', (done) => {
-        devStack.version([], { cwd: packagePath }, (err) => {
+        runCommand('version', [], { cwd: packagePath }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
