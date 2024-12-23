@@ -7,7 +7,7 @@ import { binPath, installPath, link, optionsToArgs, spawn } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
-const major = typeof process === 'undefined' ? Infinity : +process.versions.node.split('.')[0];
+const major = +process.versions.node.split('.')[0];
 const mocha = major < 12 ? binPath(resolve.sync('mocha-compat/package.json', { basedir: __dirname }), '_mocha-compat') : binPath(resolve.sync('mocha/package.json', { basedir: __dirname }), '_mocha');
 const loader = binPath(resolve.sync('ts-swc-loaders/package.json', { basedir: __dirname }), 'ts-swc');
 
