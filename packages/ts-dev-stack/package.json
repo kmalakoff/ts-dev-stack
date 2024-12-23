@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.4.12",
+  "version": "1.5.0",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -59,9 +59,9 @@
     "ts-swc-loaders": "^1.4.5",
     "tsds-biome": "^1.4.12",
     "tsds-build": "^1.4.12",
-    "tsds-c8": "^1.4.12",
+    "tsds-c8": "^1.5.0",
     "tsds-lib": "^1.4.12",
-    "tsds-mocha": "^1.4.12",
+    "tsds-mocha": "^1.5.0",
     "tsds-typedoc": "^1.4.12"
   },
   "peerDependencies": {
@@ -77,8 +77,8 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.2",
     "tsds-lib-test": "^1.4.12",
-    "typescript": "^5.7.2",
-    "tsds-web-test-runner": "^1.4.12"
+    "tsds-web-test-runner": "^1.5.0",
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=0.8"
