@@ -1,14 +1,19 @@
 import fs from 'fs';
 import path from 'path';
+import url from 'url';
 import spawn from 'cross-spawn-cb';
 import mkdirp from 'mkdirp-classic';
 import os from 'os-shim';
 import Queue from 'queue-cb';
 import shortHash from 'short-hash';
-
+import { packageRoot, wrapWorker } from 'tsds-lib';
 import prepareGit from './prepareGit.js';
 
-export default function data(git, options, callback) {
+const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const major = +process.versions.node.split('.')[0];
+const workerWrapper = wrapWorker(path.join(packageRoot(__dirname), 'dist', 'cjs', 'lib', 'data.js'));
+
+function worker(git, options, callback) {
   const cwd = options.cwd || process.cwd();
   const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));
   const dest = path.join(os.tmpdir(), pkg.name, shortHash(cwd));
@@ -28,7 +33,7 @@ export default function data(git, options, callback) {
     queue.defer(prepareGit.bind(null, git, options));
 
     // install
-    queue.defer(spawn.bind(null, 'nvu', ['lts', '--silent', 'npm', 'install'], { cwd: targetPath }));
+    queue.defer(spawn.bind(null, 'npm', ['--silent', 'install'], { cwd: targetPath }));
 
     // link package
     queue.defer(fs.rename.bind(null, packagePath, `${packagePath}.tsds`));
@@ -43,4 +48,8 @@ export default function data(git, options, callback) {
       err ? callback(err) : callback(null, targetPath);
     });
   }
+}
+
+export default function data(git, options, callback) {
+  major < 14 ? workerWrapper('stable', git, options, callback) : worker(git, options, callback);
 }
