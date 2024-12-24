@@ -10,10 +10,9 @@ export default function cjs(_args, options, cb) {
   const src = path.dirname(path.resolve(cwd, config(options).source));
   const dest = path.join(cwd, 'dist', 'cjs');
 
-  rimraf2(dest, { disableGlob: true }, () => {
-    const queue = new Queue(1);
-    queue.defer(transformDirectory.bind(null, src, dest, 'cjs', { ...options, type: 'cjs', sourceMaps: true }));
-    queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
-    queue.await(cb);
-  });
+  const queue = new Queue(1);
+  queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
+  queue.defer(transformDirectory.bind(null, src, dest, 'cjs', { ...options, type: 'cjs', sourceMaps: true }));
+  queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
+  queue.await(cb);
 }
