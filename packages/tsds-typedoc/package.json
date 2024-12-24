@@ -44,12 +44,8 @@
     "version": ""
   },
   "dependencies": {
-    "exit": "^0.1.2",
-    "getopts-compat": "^2.2.5",
     "mkdirp-classic": "^0.5.3",
-    "node-version-use": "^1.0.4",
     "queue-cb": "^1.4.4",
-    "resolve": "^1.22.10",
     "rimraf2": "^2.8.2",
     "tsds-lib": "^1.4.12",
     "typedoc": "^0.27.5",
