@@ -45,10 +45,6 @@
     "version": ""
   },
   "dependencies": {
-    "exit": "^0.1.2",
-    "getopts-compat": "^2.2.5",
-    "node-version-use": "^1.0.4",
-    "resolve": "^1.22.10",
     "tsds-lib": "^1.4.12"
   },
   "devDependencies": {

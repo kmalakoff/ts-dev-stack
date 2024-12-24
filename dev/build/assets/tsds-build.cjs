@@ -1,23 +1,10 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('fs'), require('mkdirp-classic'), require('resolve'), require('url'), require('cross-spawn-cb'), require('env-path-key'), require('path-string-prepend'), require('ts-swc-transform')) :
-    typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'fs', 'mkdirp-classic', 'resolve', 'url', 'cross-spawn-cb', 'env-path-key', 'path-string-prepend', 'ts-swc-transform'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, global.fs, null, global.resolve, global.url, global.crossSpawn, global.pathKey, global.prepend, global.tsSwcTransform));
-})(this, (function (path, Queue, rimraf2, fs, mkdirp, resolve, url, crossSpawn, pathKey, prepend, tsSwcTransform) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('fs'), require('mkdirp-classic'), require('resolve'), require('url'), require('cross-spawn-cb'), require('env-path-key'), require('path-string-prepend'), require('lazy-cache'), require('ts-swc-transform')) :
+    typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'fs', 'mkdirp-classic', 'resolve', 'url', 'cross-spawn-cb', 'env-path-key', 'path-string-prepend', 'lazy-cache', 'ts-swc-transform'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, global.fs, null, null, global.url, global.crossSpawn, global.pathKey, global.prepend, global.require$$0, global.tsSwcTransform));
+})(this, (function (path, Queue, rimraf2, fs, mkdirp, resolve, url, crossSpawn, pathKey, prepend, require$$0, tsSwcTransform) { 'use strict';
 
     var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
-    function binPath(packagePath, binName) {
-        const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
-        if (!pkg) throw new Error(`Module binary package not found. Module: ${packagePath}`);
-        // one of the bin entries
-        {
-            if (typeof pkg.bin[binName] !== 'string') throw new Error(`Module binary not found. Module: ${packagePath}. Binary: ${binName}`);
-            return path.resolve.apply(null, [
-                path.dirname(packagePath),
-                ...pkg.bin[binName].split('/')
-            ]);
-        }
-    }
-
     const defaults = {
         source: 'src/index.ts',
         targets: [
@@ -87,95 +74,125 @@
         }, cb);
     }
 
+    function getDefaultExportFromCjs(x) {
+        return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+    }
+
+    function commonjsRequire(path) {
+        throw new Error('Could not dynamically require "' + path + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
+    }
+
+    var lazy$1;
+    var hasRequiredLazy;
+    function requireLazy() {
+        if (hasRequiredLazy) return lazy$1;
+        hasRequiredLazy = 1;
+        lazy$1 = require$$0(commonjsRequire);
+        return lazy$1;
+    }
+
+    var lazyExports = requireLazy();
+    var lazy = /*@__PURE__*/ getDefaultExportFromCjs(lazyExports);
+
+    // @ts-ignore
+    const call = lazy('node-version-call');
+    function wrapWorker(workerPath) {
+        return function workerWrapper(version, ...args) {
+            if (version === 'local') return lazy(workerPath)().apply(null, args);
+            const callback = args.pop();
+            try {
+                callback(null, call()({
+                    version,
+                    callbacks: true
+                }, workerPath, ...args));
+            } catch (err) {
+                callback(err);
+            }
+        };
+    }
+
     function cjs$1(_args, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.dirname(path.resolve(cwd, config(options).source));
         const dest = path.join(cwd, 'dist', 'cjs');
-        rimraf2(dest, {
-            disableGlob: true
-        }, ()=>{
-            const queue = new Queue(1);
-            queue.defer(tsSwcTransform.transformDirectory.bind(null, src, dest, 'cjs', {
-                ...options,
-                type: 'cjs',
-                sourceMaps: true
-            }));
-            queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
-            queue.await(cb);
-        });
+        const queue = new Queue(1);
+        queue.defer((cb)=>rimraf2(dest, {
+                disableGlob: true
+            }, cb.bind(null, null)));
+        queue.defer(tsSwcTransform.transformDirectory.bind(null, src, dest, 'cjs', {
+            ...options,
+            type: 'cjs',
+            sourceMaps: true
+        }));
+        queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
+        queue.await(cb);
     }
 
     function esm(_args, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.dirname(path.resolve(cwd, config(options).source));
         const dest = path.join(cwd, 'dist', 'esm');
-        rimraf2(dest, {
-            disableGlob: true
-        }, ()=>{
-            const queue = new Queue(1);
-            queue.defer(tsSwcTransform.transformDirectory.bind(null, src, dest, 'esm', {
-                ...options,
-                type: 'esm',
-                sourceMaps: true
-            }));
-            queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"module"}'));
-            queue.await(cb);
-        });
+        const queue = new Queue(1);
+        queue.defer((cb)=>rimraf2(dest, {
+                disableGlob: true
+            }, cb.bind(null, null)));
+        queue.defer(tsSwcTransform.transformDirectory.bind(null, src, dest, 'esm', {
+            ...options,
+            type: 'esm',
+            sourceMaps: true
+        }));
+        queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"module"}'));
+        queue.await(cb);
     }
 
     function cjs(_args, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.dirname(path.resolve(cwd, config(options).source));
         const dest = path.join(cwd, 'dist', 'types');
-        rimraf2(dest, {
-            disableGlob: true
-        }, ()=>{
-            tsSwcTransform.transformTypes(src, dest, cb);
-        });
+        const queue = new Queue(1);
+        queue.defer((cb)=>rimraf2(dest, {
+                disableGlob: true
+            }, cb.bind(null, null)));
+        queue.defer(tsSwcTransform.transformTypes.bind(null, src, dest));
+        queue.await(cb);
     }
 
     const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath((typeof document === 'undefined' && typeof location === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : typeof document === 'undefined' ? location.href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('tsds-build.cjs', document.baseURI).href))));
     const major = +process.versions.node.split('.')[0];
-    const nvu = binPath(resolve.sync('node-version-use/package.json', {
-        basedir: __dirname
-    }), 'nvu');
-    const configPath = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'rollup.config.mjs');
-    function umd(_args, options, cb) {
+    const workerWrapper = wrapWorker(path.join(packageRoot(__dirname), 'dist', 'cjs', 'build', 'umd.js'));
+    const configPath = path.join(packageRoot(__dirname), 'dist', 'esm', 'rollup.config.mjs');
+    function worker(_args, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.resolve(cwd, config(options).source);
         const dest = path.join(cwd, 'dist', 'umd');
-        rimraf2(dest, {
-            disableGlob: true
-        }, ()=>{
-            const queue = new Queue(1);
-            (()=>{
-                let args = [
-                    'rollup',
-                    '--config',
-                    configPath,
-                    '--input',
-                    src
-                ];
-                if (major < 14) args = [
-                    nvu,
-                    'stable',
-                    ...args
-                ];
-                queue.defer(spawn.bind(null, args[0], args.slice(1), {
-                    cwd
-                }));
-            })();
-            queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
-            queue.await(cb);
-        });
+        const args = [
+            'rollup',
+            '--config',
+            configPath,
+            '--input',
+            src
+        ];
+        const queue = new Queue(1);
+        queue.defer((cb)=>rimraf2(dest, {
+                disableGlob: true
+            }, cb.bind(null, null)));
+        queue.defer(spawn.bind(null, args[0], args.slice(1), {
+            cwd
+        }));
+        queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
+        queue.await(cb);
+    }
+    function umd(args, options, cb) {
+        major < 14 ? workerWrapper('stable', args, options, cb) : worker(args, options, cb);
     }
 
     function build(args, options, cb) {
+        const cwd = options.cwd || process.cwd();
         const { targets } = config(options);
         const clean = options.clean === undefined ? true : options.clean;
-        const cwd = options.cwd || process.cwd();
+        const dest = path.join(cwd, 'dist');
         const queue = new Queue(1);
-        !clean || queue.defer((cb)=>rimraf2(path.join(cwd, 'dist'), {
+        !clean || queue.defer((cb)=>rimraf2(dest, {
                 disableGlob: true
             }, cb.bind(null, null)));
         targets.indexOf('cjs') < 0 || queue.defer(cjs$1.bind(null, args, options));

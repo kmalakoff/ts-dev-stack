@@ -16,7 +16,7 @@ const loader = binPath(resolve.sync('ts-swc-loaders/package.json', { basedir: __
 
 export default function c8(_args, _options, cb) {
   const cwd = _options.cwd || process.cwd();
-
+  const dest = path.resolve(cwd, 'coverage');
   const options = getopts(_args, { stopEarly: true, alias: { temp: 't' } });
   _args = options._;
 
@@ -24,11 +24,7 @@ export default function c8(_args, _options, cb) {
     if (err) return cb(err);
 
     const queue = new Queue(1);
-    queue.defer((cb) => {
-      rimraf2(path.resolve(process.cwd(), 'coverage'), { disableGlob: true }, () => {
-        cb();
-      });
-    });
+    queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
     queue.defer((cb) => {
       const args = [loader, c8, '--config', path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json')];
       Array.prototype.push(args, [mocha, '--watch-extensions', 'ts,tsx']);

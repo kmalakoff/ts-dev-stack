@@ -15,6 +15,7 @@
     "version": "cd packages && ep -d1 -c100 npm run version"
   },
   "devDependencies": {
+    "core-js": "^3.39.0",
     "each-package": "^0.7.2",
     "lerna": "^8.1.9"
   },

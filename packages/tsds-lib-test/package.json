@@ -47,7 +47,8 @@
     "os-shim": "^0.1.3",
     "queue-cb": "^1.4.4",
     "rimraf2": "^2.8.2",
-    "short-hash": "^1.0.0"
+    "short-hash": "^1.0.0",
+    "tsds-lib": "^1.4.12"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

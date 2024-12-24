@@ -14,11 +14,12 @@ import { data } from 'tsds-lib-test';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
-const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
 // const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git', 'https://github.com/kmalakoff/react-dom-event.git'];
+const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
 // const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 // const GITS = ['https://github.com/kmalakoff/react-dom-event.git'];
 // const GITS = ['https://github.com/kmalakoff/react-native-event.git'];
+// const GITS = ['https://github.com/kmalakoff/parser-multipart.git'];
 
 function addTests(git) {
   describe(path.basename(git, path.extname(git)), () => {

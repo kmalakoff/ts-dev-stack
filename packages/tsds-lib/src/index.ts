@@ -9,3 +9,4 @@ export { default as packageVersion } from './lib/packageVersion.js';
 export { default as spawn } from './lib/spawn.js';
 export { default as unlink } from './lib/unlink.js';
 export { default as uuid } from './lib/uuid.js';
+export { default as wrapWorker } from './lib/wrapWorker.js';

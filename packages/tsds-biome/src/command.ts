@@ -1,16 +1,16 @@
 import path from 'path';
 import url from 'url';
-import resolve from 'resolve';
-import { binPath, spawn } from 'tsds-lib';
+import { packageRoot, spawn, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-
 const major = +process.versions.node.split('.')[0];
-const nvu = binPath(resolve.sync('node-version-use/package.json', { basedir: __dirname }), 'nvu');
+const workerWrapper = wrapWorker(path.join(packageRoot(__dirname), 'dist', 'cjs', 'command.js'));
 
-export default function format(_args, options, cb) {
+function worker(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
-  let args = ['npm', 'run', 'format'];
-  if (major < 14) args = [nvu, 'stable', ...args];
-  spawn(args[0], args.slice(1), { cwd }, cb);
+  spawn('npm', ['run', 'format'], { cwd }, cb);
+}
+
+export default function format(args, options, cb) {
+  major < 14 ? workerWrapper('stable', args, options, cb) : worker(args, options, cb);
 }
