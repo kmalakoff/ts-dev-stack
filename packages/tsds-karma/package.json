@@ -48,8 +48,6 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "exit": "^0.1.2",
-    "getopts-compat": "^2.2.5",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-mocha": "^2.0.1",
@@ -59,7 +57,7 @@
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.4.5",
+    "ts-swc-loaders": "^1.4.6",
     "tsds-lib": "^1.4.12",
     "webpack": "^5.97.1"
   },
