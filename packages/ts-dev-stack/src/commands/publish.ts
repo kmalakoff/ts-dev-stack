@@ -1,7 +1,7 @@
 import Queue from 'queue-cb';
 import { spawn } from 'tsds-lib';
 
-import prepublish from './commands/prepublish.js';
+import prepublish from './prepublish.js';
 
 function postpublish(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
