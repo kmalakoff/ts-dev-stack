@@ -2,11 +2,12 @@ import path from 'path';
 import url from 'url';
 import installModule from 'install-module-linked';
 import resolve from 'resolve';
-import { constants, config } from 'tsds-lib';
+import { constants, config, packageRoot } from 'tsds-lib';
 
 // @ts-ignore
 import lazy from './lazy.cjs';
-const ext = path.extname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const _dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const root = packageRoot(_dirname);
 
 function run(specifier, args, options, cb) {
   try {
@@ -37,5 +38,5 @@ export default function runCommand(name, args, options, cb) {
     }
   }
   // for relative files, ensure the extension matches
-  return run(command.replace(/\.[^/.]+$/, ext), args, options, cb);
+  return run(path.resolve(root, 'dist', 'cjs', command), args, options, cb);
 }
