@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
-import getTS from 'get-tsconfig-compat';
+import * as getTS from 'get-tsconfig-compat';
 import camelcase from 'lodash.camelcase';
 import externals from 'rollup-plugin-node-externals';
 import swc from 'ts-swc-rollup-plugin';
