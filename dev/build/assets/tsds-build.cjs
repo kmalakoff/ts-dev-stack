@@ -111,37 +111,23 @@
         };
     }
 
-    function cjs$1(_args, options, cb) {
+    function transform(_args, type, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.dirname(path.resolve(cwd, config(options).source));
-        const dest = path.join(cwd, 'dist', 'cjs');
+        const dest = path.join(cwd, 'dist', type);
         const queue = new Queue(1);
         queue.defer((cb)=>rimraf2(dest, {
                 disableGlob: true
             }, cb.bind(null, null)));
-        queue.defer(tsSwcTransform.transformDirectory.bind(null, src, dest, 'cjs', {
-            ...options,
-            type: 'cjs',
-            sourceMaps: true
-        }));
+        queue.defer((cb)=>tsSwcTransform.transformDirectory(src, dest, type, {
+                ...options,
+                type,
+                sourceMaps: true
+            }, (err, results)=>{
+                if (results && results.to) console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.to.join(',')}`);
+                cb(err);
+            }));
         queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
-        queue.await(cb);
-    }
-
-    function esm(_args, options, cb) {
-        const cwd = options.cwd || process.cwd();
-        const src = path.dirname(path.resolve(cwd, config(options).source));
-        const dest = path.join(cwd, 'dist', 'esm');
-        const queue = new Queue(1);
-        queue.defer((cb)=>rimraf2(dest, {
-                disableGlob: true
-            }, cb.bind(null, null)));
-        queue.defer(tsSwcTransform.transformDirectory.bind(null, src, dest, 'esm', {
-            ...options,
-            type: 'esm',
-            sourceMaps: true
-        }));
-        queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"module"}'));
         queue.await(cb);
     }
 
@@ -153,7 +139,10 @@
         queue.defer((cb)=>rimraf2(dest, {
                 disableGlob: true
             }, cb.bind(null, null)));
-        queue.defer(tsSwcTransform.transformTypes.bind(null, src, dest));
+        queue.defer((cb)=>tsSwcTransform.transformTypes(src, dest, (err, results)=>{
+                if (results && results.to) console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.to.join(',')}`);
+                cb(err);
+            }));
         queue.await(cb);
     }
 
@@ -195,8 +184,8 @@
         !clean || queue.defer((cb)=>rimraf2(dest, {
                 disableGlob: true
             }, cb.bind(null, null)));
-        targets.indexOf('cjs') < 0 || queue.defer(cjs$1.bind(null, args, options));
-        targets.indexOf('esm') < 0 || queue.defer(esm.bind(null, args, options));
+        targets.indexOf('cjs') < 0 || queue.defer(transform.bind(null, args, 'cjs', options));
+        targets.indexOf('esm') < 0 || queue.defer(transform.bind(null, args, 'esm', options));
         targets.indexOf('umd') < 0 || queue.defer(umd.bind(null, args, options));
         queue.defer(cjs.bind(null, args, options));
         queue.await(cb);
