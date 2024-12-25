@@ -15,7 +15,7 @@ const loader = binPath(resolve.sync('ts-swc-loaders/package.json', { basedir: __
 export default function command(_args, _options, cb) {
   const cwd = _options.cwd || process.cwd();
 
-  const options = getopts(_args, { stopEarly: true, alias: { temp: 't' } });
+  const options = getopts(_args, { stopEarly: true, alias: {} });
   _args = options._;
 
   link(installPath(options), (_err, restore) => {
