@@ -1,5 +1,4 @@
 // remove NODE_OPTIONS from ts-dev-stack
-// biome-ignore lint/performance/noDelete: <explanation>
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
