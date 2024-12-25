@@ -1,6 +1,6 @@
 {
   "name": "tsds-biome",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -45,7 +45,7 @@
     "version": ""
   },
   "dependencies": {
-    "tsds-lib": "^1.5.2"
+    "tsds-lib": "^1.5.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
