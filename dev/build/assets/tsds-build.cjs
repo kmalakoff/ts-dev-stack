@@ -124,7 +124,7 @@
                 type,
                 sourceMaps: true
             }, (err, results)=>{
-                if (results && results.to) console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.to.join(',')}`);
+                console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.map((x)=>x.to).join(',')}`);
                 cb(err);
             }));
         queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
@@ -140,7 +140,7 @@
                 disableGlob: true
             }, cb.bind(null, null)));
         queue.defer((cb)=>tsSwcTransform.transformTypes(src, dest, (err, results)=>{
-                if (results && results.to) console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.to.join(',')}`);
+                console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.map((x)=>x.to).join(',')}`);
                 cb(err);
             }));
         queue.await(cb);
