@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -57,7 +57,7 @@
     "rimraf2": "^2.8.2",
     "sort-package-json": "^2.12.0",
     "tsds-biome": "^1.5.5",
-    "tsds-build": "^1.5.5",
+    "tsds-build": "^1.5.6",
     "tsds-c8": "^1.5.5",
     "tsds-lib": "^1.5.5",
     "tsds-mocha": "^1.5.5",
