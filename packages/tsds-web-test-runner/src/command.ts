@@ -14,7 +14,7 @@ const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'wtr.config.m
 function worker(_args, _options, cb) {
   const cwd = _options.cwd || process.cwd();
 
-  let options = getopts(_args, { stopEarly: true, alias: { temp: 't' } });
+  let options = getopts(_args, { stopEarly: true, alias: { config: 'c' } });
   _args = options._;
 
   options = { ...options };
