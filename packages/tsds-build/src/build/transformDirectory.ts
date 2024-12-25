@@ -14,7 +14,7 @@ export default function transform(_args, type, options, cb) {
   queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
   queue.defer((cb) =>
     transformDirectory(src, dest, type, { ...options, type, sourceMaps: true }, (err, results) => {
-      if (results && results.to) console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.to.join(',')}`);
+      console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.map((x) => x.to).join(',')}`);
       cb(err);
     })
   );
