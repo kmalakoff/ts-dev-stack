@@ -11,6 +11,7 @@ export default function installGitRepo(repo: string, dest: string, options, call
     options = {};
   }
   options = options || {};
+  console.log('installGitRepo', repo, dest);
   // options.clean = true;
 
   function checkOrClean(dest, callback) {

@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const Queue = require('queue-cb');
 const unixify = require('unixify');
-const exit = require('exit');
+const _exit = require('exit');
 
 const FILES = ['lib/cli/lookup-files.js'];
 
@@ -35,7 +35,6 @@ function patch(callback) {
 
 // run patch
 patch((err) => {
-  if (!err) return;
-  console.error(err.message);
-  return exit(1);
+  !err || console.error(err);
+  process.exit(err ? 1 : 0);
 });
