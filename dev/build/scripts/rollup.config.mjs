@@ -1,12 +1,16 @@
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import externals from 'rollup-plugin-node-externals';
-import swc from 'ts-swc-rollup-plugin';
+import path from 'path';
+import { defineConfig } from 'rolldown';
 
-export default {
+export const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
+
+export default defineConfig({
+  input: './src/tsds-build.ts',
   output: {
-    format: 'umd',
-    name: 'tsdsBuild',
+    file: path.resolve(process.cwd(), 'assets', 'tsds-build.js'),
+    format: 'cjs',
   },
-  plugins: [commonjs(), externals({ deps: false, devDeps: false, builtinsPrefix: 'strip' }), resolve({ resolveOnly: ['tsds-build', 'tsds-lib'] }), swc()],
-};
+  external: (module) => !moduleRegEx.test(module) ? false : !['tsds-lib', 'tsds-build'].includes(module),
+  resolve: {
+    tsconfigFilename: path.join(process.cwd(), 'tsconfig.json'),
+  },
+});
