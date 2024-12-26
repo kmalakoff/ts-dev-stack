@@ -2,99 +2,111 @@
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
+import fs from 'fs';
 import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
+import os from 'os-shim';
+import Queue from 'queue-cb';
 import resolve from 'resolve';
-import rimraf2 from 'rimraf2';
+import shortHash from 'short-hash';
+import { installGitRepo, linkModule } from 'tsds-lib-test';
 
 import { runCommand } from 'ts-dev-stack';
-import { data } from 'tsds-lib-test';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
-// const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git', 'https://github.com/kmalakoff/react-dom-event.git'];
-const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git'];
-// const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
-// const GITS = ['https://github.com/kmalakoff/react-dom-event.git'];
-// const GITS = ['https://github.com/kmalakoff/react-native-event.git'];
+const GITS = ['https://github.com/kmalakoff/fetch-http-message.git', 'https://github.com/kmalakoff/parser-multipart.git', 'https://github.com/kmalakoff/react-dom-event.git'];
 // const GITS = ['https://github.com/kmalakoff/parser-multipart.git'];
 
-function addTests(git) {
-  describe(path.basename(git, path.extname(git)), () => {
-    let packagePath = null;
+function addTests(repo) {
+  const repoName = path.basename(repo, path.extname(repo));
+  describe(repoName, () => {
+    const dest = path.join(os.tmpdir(), 'ts-dev-stack', shortHash(process.cwd()), repoName);
+
     before((cb) => {
-      data(git, { cwd: path.resolve(__dirname, '..', '..') }, (err, _packagePath) => {
+      const modulePath = fs.realpathSync(path.resolve(__dirname, '..', '..'));
+      const modulePackage = JSON.parse(fs.readFileSync(path.join(modulePath, 'package.json'), 'utf8'));
+      const nodeModules = path.join(dest, 'node_modules');
+      const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
+
+      installGitRepo(repo, dest, (err) => {
         if (err) return cb(err);
-        packagePath = _packagePath;
-        process.chdir(packagePath); // TODO: get rid of this and figure out why it is needed
-        cb();
+
+        const queue = new Queue();
+        queue.defer(linkModule.bind(null, modulePath, nodeModules));
+        for (const dep in deps) queue.defer(linkModule.bind(null, path.dirname(resolve.sync(`${dep}/package.json`)), nodeModules));
+        queue.await((err) => {
+          if (err) return cb(err);
+          process.chdir(modulePath); // TODO: get rid of this and figure out why it is needed
+          cb();
+        });
       });
     });
+
     describe('happy path', () => {
       it('build', (done) => {
-        runCommand('build', [], { cwd: packagePath }, (err) => {
+        runCommand('build', [], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('link', (done) => {
-        runCommand('link', [], { cwd: packagePath }, (err) => {
+        runCommand('link', [], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('unlink', (done) => {
-        runCommand('unlink', [], { cwd: packagePath }, (err) => {
-          assert.ok(!err, err ? err.message : '');
-          done();
-        });
-      });
-      it.skip('coverage', (done) => {
-        runCommand('coverage', [], { cwd: packagePath }, (err) => {
+        runCommand('unlink', [], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('format', (done) => {
-        runCommand('format', [], { cwd: packagePath }, (err) => {
+        runCommand('format', [], { cwd: dest }, (err) => {
+          assert.ok(!err, err ? err.message : '');
+          done();
+        });
+      });
+      it('publish', (done) => {
+        runCommand('prepublish', ['--dry-run'], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('prepublish', (done) => {
-        runCommand('prepublish', [], { cwd: packagePath }, (err) => {
+        runCommand('prepublish', [], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
-      it('test:node', (done) => {
-        runCommand('test:node', [], { cwd: packagePath }, (err) => {
-          assert.ok(!err, err ? err.message : '');
-          done();
-        });
-      });
-      it('test:browser', (done) => {
-        runCommand('test:browser', [], { cwd: packagePath }, (err) => {
+      it('test', (done) => {
+        spawn('npm', ['run', 'test'], { stdio: 'inherit', cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('test:engines', (done) => {
-        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: packagePath }, (err) => {
+        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
-      // typedoc doesn't seem to take the parameters
+      it.skip('coverage', (done) => {
+        spawn('npm', ['run', 'coverage'], { stdio: 'inherit', cwd: dest }, (err) => {
+          if (err && err.message.indexOf('Missing script"') < 0) assert.ok(err.message);
+          done();
+        });
+      });
       it('docs', (done) => {
-        runCommand('docs', [], { cwd: packagePath }, (err) => {
+        runCommand('docs', [], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
       });
       it('version', (done) => {
-        runCommand('version', [], { cwd: packagePath }, (err) => {
+        runCommand('version', [], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });

@@ -2,12 +2,37 @@ import fs from 'fs';
 import path from 'path';
 import Queue from 'queue-cb';
 
-export default function unlink(target, cb) {
-  const movedPath = path.join(path.dirname(target), `${path.basename(target)}.tsds`);
-  const queue = new Queue(1);
-  queue.defer(fs.unlink.bind(null, target));
-  queue.defer(fs.rename.bind(null, movedPath, target));
-  queue.await(() => {
-    cb();
+function restoreLink(previous, target, callback) {
+  fs.unlink(previous, (err) => {
+    err ? callback(err) : fs.rename(previous, target, callback);
+  });
+}
+
+export default function unlink(target, callback) {
+  const dirname = path.dirname(target);
+  const basename = path.dirname(target);
+
+  fs.readdir(dirname, (err, files) => {
+    if (err) return callback(err);
+    const matches = files.filter((x) => x.indexOf(basename) === 0 && x.slice(basename.length)[0] === '.');
+    if (matches.length === 0) return callback();
+    if (matches.length === 1) return restoreLink(matches[0], target, callback);
+
+    const stats = [];
+    const queue = new Queue();
+    matches.forEach((match) =>
+      queue.defer((cb) =>
+        fs.stat(match, (err, stat) => {
+          if (err) return callback(err);
+          stats.push({ match, stat });
+          cb();
+        })
+      )
+    );
+    queue.await((err) => {
+      if (err) return callback(err);
+      const sorted = stats.sort((a, b) => b.stat.ctime.valueOf() - a.stat.ctime.valueOf());
+      restoreLink(sorted[0], target, callback);
+    });
   });
 }

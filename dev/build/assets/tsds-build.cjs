@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('fs'), require('mkdirp-classic'), require('resolve'), require('url'), require('cross-spawn-cb'), require('env-path-key'), require('path-string-prepend'), require('lazy-cache'), require('ts-swc-transform')) :
-    typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'fs', 'mkdirp-classic', 'resolve', 'url', 'cross-spawn-cb', 'env-path-key', 'path-string-prepend', 'lazy-cache', 'ts-swc-transform'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, global.fs, null, null, global.url, global.crossSpawn, global.pathKey, global.prepend, global.require$$0, global.tsSwcTransform));
-})(this, (function (path, Queue, rimraf2, fs, mkdirp, resolve, url, crossSpawn, pathKey, prepend, require$$0, tsSwcTransform) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('queue-cb'), require('rimraf2'), require('fs'), require('mkdirp-classic'), require('temp-suffix'), require('resolve'), require('url'), require('cross-spawn-cb'), require('env-path-key'), require('path-string-prepend'), require('lazy-cache'), require('ts-swc-transform')) :
+    typeof define === 'function' && define.amd ? define(['path', 'queue-cb', 'rimraf2', 'fs', 'mkdirp-classic', 'temp-suffix', 'resolve', 'url', 'cross-spawn-cb', 'env-path-key', 'path-string-prepend', 'lazy-cache', 'ts-swc-transform'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.tsdsBuild = factory(global.path, global.Queue, global.rimraf2, global.fs, null, null, null, global.url, global.crossSpawn, global.pathKey, global.prepend, global.require$$0, global.tsSwcTransform));
+})(this, (function (path, Queue, rimraf2, fs, mkdirp, tempSuffix, resolve, url, crossSpawn, pathKey, prepend, require$$0, tsSwcTransform) { 'use strict';
 
     var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
     const defaults = {
@@ -124,7 +124,7 @@
                 type,
                 sourceMaps: true
             }, (err, results)=>{
-                console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.map((x)=>x.to).join(',')}`);
+                console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.map((x)=>`dist/${x.to}`).join(',')}`);
                 cb(err);
             }));
         queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
@@ -140,7 +140,7 @@
                 disableGlob: true
             }, cb.bind(null, null)));
         queue.defer((cb)=>tsSwcTransform.transformTypes(src, dest, (err, results)=>{
-                console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.map((x)=>x.to).join(',')}`);
+                console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.map((x)=>`dist/${x.to}`).join(',')}`);
                 cb(err);
             }));
         queue.await(cb);

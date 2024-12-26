@@ -29,9 +29,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
-  "bin": {
-    "tsds-karma": "bin/cli.cjs"
-  },
   "files": [
     "dist",
     "assets",
@@ -57,7 +54,7 @@
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.4.11",
+    "ts-swc-loaders": "^1.4.12",
     "tsds-lib": "^1.5.5",
     "webpack": "^5.97.1"
   },

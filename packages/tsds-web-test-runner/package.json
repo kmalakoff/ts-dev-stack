@@ -29,10 +29,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
-  "bin": {
-    "tsds test:browser": "bin/cli.cjs",
-    "tsds-web-test-runner": "bin/cli.cjs"
-  },
   "files": [
     "dist",
     "assets",

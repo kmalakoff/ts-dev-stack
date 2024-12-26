@@ -1,5 +1,6 @@
 import path from 'path';
 import url from 'url';
+import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
 import resolve from 'resolve';
 import { constants, config, packageRoot } from 'tsds-lib';
@@ -24,6 +25,9 @@ export default function runCommand(name, args, options, cb) {
 
   const command = commands[name];
   if (!command) return cb(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
+
+  const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
+  if (opts['dry-run']) return cb();
 
   if (constants.moduleRegEx.test(command)) {
     try {

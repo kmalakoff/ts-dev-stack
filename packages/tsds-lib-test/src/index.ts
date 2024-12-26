@@ -1,2 +1,2 @@
-export { default as data } from './lib/data.js';
-export { default as prepareGit } from './lib/prepareGit.js';
+export { default as linkModule } from './lib/linkModule.js';
+export { default as installGitRepo } from './lib/installGitRepo.js';
