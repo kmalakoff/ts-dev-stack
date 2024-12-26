@@ -1,58 +1,42 @@
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp-classic';
-import Queue from 'queue-cb';
-import unlink from './unlink.js';
+import tempSuffix from 'temp-suffix';
 
 const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
-const symlinkType = isWindows ? 'junction' : 'dir';
+const dirSymlinkType = isWindows ? 'junction' : 'dir';
 
-function saveLink(target, cb) {
-  const movedPath = path.join(path.dirname(target), `${path.basename(target)}.tsds`);
-  const queue = new Queue(1);
-  queue.defer(fs.rename.bind(null, target, movedPath));
-  queue.defer(createLink.bind(null, target));
-  queue.await(cb);
+function saveLink(target, callback) {
+  const movedPath = path.join(path.dirname(target), `${path.basename(target)}.${tempSuffix()}`);
+  fs.rename(target, movedPath, callback);
 }
 
-function createLink(target, cb) {
-  const queue = new Queue(1);
-  queue.defer((cb) => {
+function createLink(src, target, callback) {
+  fs.stat(src, (err, stat) => {
+    if (err) return callback(err);
+
     mkdirp(path.dirname(target), () => {
-      cb();
+      fs.symlink(src, target, stat.isFile() ? 'file' : dirSymlinkType, callback);
     });
   });
-  queue.defer(fs.symlink.bind(null, process.cwd(), target, symlinkType));
-  queue.await(cb);
 }
 
-export default function link(target, cb) {
-  try {
-    fs.lstat(target, (_, lstat) => {
-      // new
-      if (!lstat) {
-        createLink(target, (err) => {
-          err ? cb(err) : cb(null, fs.unlink.bind(null, target));
-        });
-      }
+export default function link(src, target, callback) {
+  fs.stat(target, (_, stat) => {
+    // new
+    if (!stat) createLink(src, target, callback);
+    // exists so move it
+    else if (stat.isDirectory()) {
+      saveLink(target, (err) => {
+        err ? callback(err) : createLink(src, target, callback);
+      });
+    }
 
-      // exists so move it
-      else if (lstat.isDirectory()) {
-        saveLink(target, (err) => {
-          err ? cb(err) : cb(null, unlink.bind(null, target));
-        });
-      }
-
-      // replace
-      else {
-        fs.unlink(target, () => {
-          createLink(target, (err) => {
-            err ? cb(err) : cb(null, fs.unlink.bind(null, target));
-          });
-        });
-      }
-    });
-  } catch (err) {
-    return cb(err);
-  }
+    // replace
+    else {
+      fs.unlink(target, () => {
+        createLink(src, target, callback);
+      });
+    }
+  });
 }

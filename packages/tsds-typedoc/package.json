@@ -26,9 +26,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
-  "bin": {
-    "tsds-typedoc": "bin/cli.cjs"
-  },
   "files": [
     "dist",
     "assets",
@@ -48,7 +45,7 @@
     "queue-cb": "^1.4.4",
     "rimraf2": "^2.8.2",
     "tsds-lib": "^1.5.5",
-    "typedoc": "^0.27.5",
+    "typedoc": "^0.27.6",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
