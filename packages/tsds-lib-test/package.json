@@ -44,10 +44,8 @@
     "cross-spawn-cb": "^1.4.0",
     "fs-access-compat": "^1.0.3",
     "mkdirp-classic": "^0.5.3",
-    "os-shim": "^0.1.3",
     "queue-cb": "^1.4.4",
     "rimraf2": "^2.8.2",
-    "short-hash": "^1.0.0",
     "tsds-lib": "^1.5.5"
   },
   "devDependencies": {
