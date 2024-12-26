@@ -2,9 +2,9 @@ import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { config } from 'tsds-lib';
-import transformDirectory from './build/transformDirectory.js';
-import types from './build/types.js';
-import umd from './build/umd.js';
+import transformDirectory from './lib/transformDirectory.js';
+import types from './lib/types.js';
+import umd from './lib/umd.js';
 
 export default function build(args, options, cb) {
   const cwd = options.cwd || process.cwd();
