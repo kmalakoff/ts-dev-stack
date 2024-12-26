@@ -16,4 +16,5 @@ function build(callback) {
 
 build((err) => {
   !err || console.error(err);
+  process.exit(err ? 1 : 0);
 });

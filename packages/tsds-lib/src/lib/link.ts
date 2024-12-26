@@ -16,13 +16,13 @@ function createLink(src, target, callback) {
     if (err) return callback(err);
 
     mkdirp(path.dirname(target), () => {
-      fs.symlink(src, target, stat.isFile() ? 'file' : dirSymlinkType, callback);
+      fs.symlink(src, target, stat.isFile() ? 'file' : dirSymlinkType, (err) => (err ? callback(err) : callback(null, target)));
     });
   });
 }
 
 export default function link(src, target, callback) {
-  fs.stat(target, (_, stat) => {
+  fs.lstat(target, (_, stat) => {
     // new
     if (!stat) createLink(src, target, callback);
     // exists so move it

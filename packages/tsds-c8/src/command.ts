@@ -25,14 +25,14 @@ export default function c8(args, options, cb) {
   if (_.length === 0) Array.prototype.push.apply(spawnArgs, [['test/**/*.test.*']]);
   const dest = path.resolve(cwd, 'coverage');
 
-  link(cwd, installPath(options), (err) => {
+  link(cwd, installPath(options), (err, restore) => {
     if (err) return cb(err);
 
     const queue = new Queue(1);
     queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
     queue.defer(spawn.bind(null, loader, spawnArgs, { cwd }));
     queue.await((err) => {
-      unlink(cwd, (err2) => {
+      unlink(restore, (err2) => {
         cb(err || err2);
       });
     });

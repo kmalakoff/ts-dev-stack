@@ -8,8 +8,8 @@
   "dependencies": {
     "lazy-cache": "^2.0.2",
     "temp-suffix": "^0.1.1",
-    "tsds-build": "^1.5.7",
-    "tsds-lib": "^1.5.5"
+    "tsds-build": "^1.5.9",
+    "tsds-lib": "^1.5.9"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
