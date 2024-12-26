@@ -19,13 +19,13 @@ function worker(args, options, cb) {
   Array.prototype.push.apply(spawnArgs, args);
   if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.{ts,tsx,jsx,mjs}']);
 
-  link(cwd, installPath(options), (err) => {
+  link(cwd, installPath(options), (err, restore) => {
     if (err) return cb(err);
 
     const queue = new Queue(1);
     queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), { cwd }));
     queue.await((err) => {
-      unlink(cwd, (err2) => {
+      unlink(restore, (err2) => {
         cb(err || err2);
       });
     });
