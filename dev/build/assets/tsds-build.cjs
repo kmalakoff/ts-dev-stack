@@ -111,6 +111,7 @@
         };
     }
 
+    const MAX_FILES$1 = 10;
     function transform(_args, type, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.dirname(path.resolve(cwd, config(options).source));
@@ -124,23 +125,27 @@
                 type,
                 sourceMaps: true
             }, (err, results)=>{
-                console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.map((x)=>`dist/${x.to}`).join(',')}`);
+                if (err) console.log(`${type} failed: ${err.message} from ${src}`);
+                else console.log(`created ${results.length < MAX_FILES$1 ? results.map((x)=>`dist/${type}${x.to}`).join(',') : `${results.length} files in dist/${type}`}`);
                 cb(err);
             }));
         queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
         queue.await(cb);
     }
 
+    const MAX_FILES = 10;
+    const type = 'types';
     function cjs(_args, options, cb) {
         const cwd = options.cwd || process.cwd();
         const src = path.dirname(path.resolve(cwd, config(options).source));
-        const dest = path.join(cwd, 'dist', 'types');
+        const dest = path.join(cwd, 'dist', type);
         const queue = new Queue(1);
         queue.defer((cb)=>rimraf2(dest, {
                 disableGlob: true
             }, cb.bind(null, null)));
         queue.defer((cb)=>tsSwcTransform.transformTypes(src, dest, (err, results)=>{
-                console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.map((x)=>`dist/${x.to}`).join(',')}`);
+                if (err) console.log(`${type} failed: ${err.message} from ${src}`);
+                else console.log(`created ${results.length < MAX_FILES ? results.map((x)=>`dist/${type}${x.to}`).join(',') : `${results.length} files in dist/${type}`}`);
                 cb(err);
             }));
         queue.await(cb);
