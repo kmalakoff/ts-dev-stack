@@ -50,6 +50,7 @@
     "path-string-prepend": "^1.0.0",
     "queue-cb": "^1.4.4",
     "resolve": "^1.22.10",
+    "rimraf2": "^2.8.2",
     "temp-suffix": "^0.1.1"
   },
   "devDependencies": {
