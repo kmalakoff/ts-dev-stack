@@ -1,17 +1,25 @@
 #!/usr/bin/env node
 
 import path from 'path';
+import fs from 'fs';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
+import Queue from 'queue-cb';
+import rimraf2 from 'rimraf2';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-const src = path.resolve(__dirname, '..', 'src', 'index.ts');
-const dest = path.join(__dirname, '..', 'assets', 'tsds-build.cjs');
+const dest = path.resolve(__dirname, '..', 'assets')
 
-function build(callback) {
+function build(cb) {
+  const cwd = process.cwd();
   const config = path.resolve(__dirname, 'rollup.config.mjs');
-  const args = ['rollup', '--config', config, '--input', src, '--file', dest];
-  spawn(args[0], args.slice(1), { cwd: path.dirname(__dirname), stdio: 'inherit' }, callback);
+  const args = ['rolldown', '--config', config];
+
+  const queue = new Queue(1);
+  queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
+  queue.defer(spawn.bind(null, args[0], args.slice(1), { cwd }));
+  queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
+  queue.await(cb);
 }
 
 build((err) => {
