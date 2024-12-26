@@ -54,7 +54,7 @@
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.4.12",
+    "ts-swc-loaders": "^1.5.0",
     "tsds-lib": "^1.6.0",
     "webpack": "^5.97.1"
   },
