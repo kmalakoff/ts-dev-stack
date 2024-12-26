@@ -27,9 +27,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
-  "bin": {
-    "tsds-biome": "bin/cli.cjs"
-  },
   "files": [
     "dist",
     "assets",
