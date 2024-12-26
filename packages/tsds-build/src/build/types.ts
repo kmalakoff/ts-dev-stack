@@ -13,7 +13,7 @@ export default function cjs(_args, options, cb) {
   queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
   queue.defer((cb) =>
     transformTypes(src, dest, (err, results) => {
-      console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.map((x) => x.to).join(',')}`);
+      console.log(err ? `Types failed: ${err.message} from ${src}` : `created ${results.map((x) => `dist/${x.to}`).join(',')}`);
       cb(err);
     })
   );

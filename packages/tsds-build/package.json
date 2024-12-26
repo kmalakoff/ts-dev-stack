@@ -29,9 +29,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
-  "bin": {
-    "tsds-build": "bin/cli.cjs"
-  },
   "files": [
     "dist",
     "assets",
@@ -55,8 +52,8 @@
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.5.9",
-    "ts-swc-transform": "^1.8.2",
+    "ts-swc-rollup-plugin": "^1.5.10",
+    "ts-swc-transform": "^1.8.3",
     "tsds-lib": "^1.5.5"
   },
   "devDependencies": {
