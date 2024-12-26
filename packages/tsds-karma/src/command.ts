@@ -10,7 +10,7 @@ const config = path.join(packageRoot(__dirname), 'assets', 'karma.conf.cjs');
 export default function karma(args, options, cb) {
   const cwd = options.cwd || process.cwd();
 
-  link(cwd, installPath(options), (err) => {
+  link(cwd, installPath(options), (err, restore) => {
     if (err) return cb(err);
 
     const queue = new Queue(1);
@@ -19,7 +19,7 @@ export default function karma(args, options, cb) {
       spawn('karma', ['start', config, tests], {}, cb);
     });
     queue.await((err) => {
-      unlink(cwd, (err2) => {
+      unlink(restore, (err2) => {
         cb(err || err2);
       });
     });

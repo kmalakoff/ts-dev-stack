@@ -5,6 +5,8 @@ import rimraf2 from 'rimraf2';
 import { transformDirectory } from 'ts-swc-transform';
 import { config } from 'tsds-lib';
 
+const MAX_FILES = 10;
+
 export default function transform(_args, type, options, cb) {
   const cwd = options.cwd || process.cwd();
   const src = path.dirname(path.resolve(cwd, config(options).source));
@@ -14,7 +16,8 @@ export default function transform(_args, type, options, cb) {
   queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
   queue.defer((cb) =>
     transformDirectory(src, dest, type, { ...options, type, sourceMaps: true }, (err, results) => {
-      console.log(err ? `${type} failed: ${err.message} from ${src}` : `created ${results.map((x) => `dist/${x.to}`).join(',')}`);
+      if (err) console.log(`${type} failed: ${err.message} from ${src}`);
+      else console.log(`created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(',') : `${results.length} files in dist/${type}`}`);
       cb(err);
     })
   );
