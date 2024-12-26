@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "dev/*",
     "packages/*"
   ],
   "scripts": {
