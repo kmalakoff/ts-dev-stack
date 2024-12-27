@@ -1,1 +1,1 @@
-ignores: ["tsds-karma", "depcheck", "@biomejs/*", "@types/*", "typescript", "assert", "regenerator-runtime", "ts-swc-loaders", "mocha-compat", "karma*", "webpack", "ts-loader"]
+ignores: ["tsds-karma", "depcheck", "@biomejs/*", "@types/*", "typescript", "assert", "regenerator-runtime", "mocha-compat", "karma*", "webpack", "ts-loader"]
