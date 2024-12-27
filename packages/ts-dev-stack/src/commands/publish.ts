@@ -1,12 +1,13 @@
 import Queue from 'queue-cb';
-import { spawn } from 'tsds-lib';
+import { spawn, which } from 'tsds-lib';
 
 import prepublish from './prepublish.js';
 
-function postpublish(_args, options, cb) {
+function postpublish(_args, options, callback) {
   const cwd = options.cwd || process.cwd();
-
-  spawn('gh-pages', ['-d', 'docs'], { cwd }, cb);
+  which('gh-pages', options, (err, docs) => {
+    err ? callback(err) : spawn(docs, ['-d', 'docs'], { cwd }, callback);
+  });
 }
 
 export default function publish(args, options, cb) {
