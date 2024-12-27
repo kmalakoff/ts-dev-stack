@@ -16,7 +16,7 @@ export default function whichCompat(command, options, callback) {
   const pathKey = envPathKey(env) || '';
   let envPath = env[pathKey] || '';
   envPath = prepend(envPath, path.resolve(cwd, 'node_modules', '.bin'));
-  envPath = prepend(envPath, path.resolve(root, '..', 'node_modules', '.bin'));
+  envPath = prepend(envPath, path.resolve(root, '..', '.bin'));
 
   if (NODES.indexOf(path.basename(command).toLowerCase()) >= 0) {
     if (env.NODE || env.npm_node_execpath) return callback(null, env.NODE || env.npm_node_execpath);

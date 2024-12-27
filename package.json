@@ -16,6 +16,6 @@
   "devDependencies": {
     "each-package": "^0.7.2",
     "lerna": "^8.1.9",
-    "ts-swc-loaders": "^1.5.1"
+    "ts-swc-loaders": "^1.5.2"
   }
 }
