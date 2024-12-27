@@ -46,7 +46,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.4.1",
+    "cross-spawn-cb": "^1.4.2",
     "depcheck": "^1.4.7",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
