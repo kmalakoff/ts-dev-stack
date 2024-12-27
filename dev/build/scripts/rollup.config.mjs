@@ -9,7 +9,7 @@ export default defineConfig({
     file: path.resolve(process.cwd(), 'assets', 'tsds-build.js'),
     format: 'cjs',
   },
-  external: (module) => !moduleRegEx.test(module) ? false : !['tsds-lib', 'tsds-build'].includes(module),
+  external: (module) => (!moduleRegEx.test(module) ? false : !['tsds-lib', 'tsds-build'].includes(module)),
   resolve: {
     tsconfigFilename: path.join(process.cwd(), 'tsconfig.json'),
   },

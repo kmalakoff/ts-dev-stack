@@ -3,31 +3,32 @@ import url from 'url';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
-import resolve from 'resolve';
-import { binPath, installPath, packageRoot, spawn, wrapWorker } from 'tsds-lib';
+import { installPath, packageRoot, spawn, which, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const major = +process.versions.node.split('.')[0];
 const workerWrapper = wrapWorker(path.join(packageRoot(__dirname), 'dist', 'cjs', 'command.js'));
-const wtr = binPath(resolve.sync('@web/test-runner/package.json', { basedir: __dirname }), 'web-test-runner');
 const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
 
-function worker(args, options, cb) {
-  const cwd = options.cwd || process.cwd();
-  const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
-  const spawnArgs = [wtr];
-  if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);
-  Array.prototype.push.apply(spawnArgs, args);
-  if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.{ts,tsx,jsx,mjs}']);
+function worker(args, options, callback) {
+  which('wtr', options, (err, wtr) => {
+    if (err) return callback(err);
+    const cwd = options.cwd || process.cwd();
+    const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
+    const spawnArgs = [wtr];
+    if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);
+    Array.prototype.push.apply(spawnArgs, args);
+    if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.{ts,tsx,jsx,mjs}']);
 
-  link(cwd, installPath(options), (err, restore) => {
-    if (err) return cb(err);
+    link(cwd, installPath(options), (err, restore) => {
+      if (err) return callback(err);
 
-    const queue = new Queue(1);
-    queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), { cwd }));
-    queue.await((err) => {
-      unlink(restore, (err2) => {
-        cb(err || err2);
+      const queue = new Queue(1);
+      queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), { cwd }));
+      queue.await((err) => {
+        unlink(restore, (err2) => {
+          callback(err || err2);
+        });
       });
     });
   });
