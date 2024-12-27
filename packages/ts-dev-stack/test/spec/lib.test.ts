@@ -6,11 +6,12 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
+import { linkModule, unlinkModule } from 'module-link-unlink';
 import os from 'os-shim';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
 import shortHash from 'short-hash';
-import { installGitRepo, linkModule, unlinkModule } from 'tsds-lib-test';
+import { installGitRepo } from 'tsds-lib-test';
 
 import { runCommand } from 'ts-dev-stack';
 
