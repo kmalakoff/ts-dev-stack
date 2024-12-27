@@ -3,9 +3,10 @@ import url from 'url';
 import getopts from 'getopts-compat';
 import Queue from 'queue-cb';
 
+import { link, unlink } from 'link-unlink';
 import resolve from 'resolve';
 import rimraf2 from 'rimraf2';
-import { binPath, installPath, link, spawn, unlink } from 'tsds-lib';
+import { binPath, installPath, spawn } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
