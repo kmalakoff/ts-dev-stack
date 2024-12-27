@@ -5,6 +5,7 @@ updates:
     schedule:
       interval: weekly
     ignore:
+      - dependency-name: 'mocha'
       - dependency-name: 'assert'
       - dependency-name: '@types/mocha'
       - dependency-name: '@types/node'

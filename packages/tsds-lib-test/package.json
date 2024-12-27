@@ -41,7 +41,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.4.0",
+    "cross-spawn-cb": "^1.4.1",
     "fs-access-compat": "^1.0.3",
     "mkdirp-classic": "^0.5.3",
     "queue-cb": "^1.4.4",

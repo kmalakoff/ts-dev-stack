@@ -28,11 +28,13 @@ const path = __toESM(require("path"));
 const queue_cb = __toESM(require("queue-cb"));
 const rimraf2 = __toESM(require("rimraf2"));
 const fs = __toESM(require("fs"));
+const fs_exists_sync = __toESM(require("fs-exists-sync"));
 require("resolve");
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const env_path_key = __toESM(require("env-path-key"));
 const path_string_prepend = __toESM(require("path-string-prepend"));
+require("which");
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
 
 //#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
@@ -65,22 +67,10 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/existsSync.mjs
-function existsSyncPolyfill(path$10) {
-	try {
-		fs.default.accessSync(path$10);
-		return true;
-	} catch (_) {
-		return false;
-	}
-}
-var existsSync_default = fs.default.accessSync ? existsSyncPolyfill : fs.default.existsSync;
-
-//#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/packageRoot.mjs
 function packageRoot(dir) {
 	const packagePath = path.default.join(dir, "package.json");
-	if (existsSync_default(packagePath) && JSON.parse(fs.default.readFileSync(packagePath, "utf8")).name) return dir;
+	if ((0, fs_exists_sync.default)(packagePath) && JSON.parse(fs.default.readFileSync(packagePath, "utf8")).name) return dir;
 	const nextDir = path.default.dirname(dir);
 	if (nextDir === dir) throw new Error("Package root not found");
 	return packageRoot(nextDir);
@@ -88,8 +78,8 @@ function packageRoot(dir) {
 
 //#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/spawn.mjs
-const __dirname$2 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
-const root = packageRoot(__dirname$2);
+const __dirname$3 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
+const root$1 = packageRoot(__dirname$3);
 function spawn(cmd, args, options, cb) {
 	const cwd = options.cwd || process.cwd();
 	const PATH_KEY = (0, env_path_key.default)(options);
@@ -97,7 +87,7 @@ function spawn(cmd, args, options, cb) {
 		...process.env,
 		env: options.env || {}
 	};
-	env[PATH_KEY] = (0, path_string_prepend.default)(env[PATH_KEY] || "", path.default.resolve(root, "..", "..", "node_modules", ".bin"));
+	env[PATH_KEY] = (0, path_string_prepend.default)(env[PATH_KEY] || "", path.default.resolve(root$1, "..", "..", "node_modules", ".bin"));
 	env[PATH_KEY] = (0, path_string_prepend.default)(env[PATH_KEY] || "", path.default.resolve(cwd, "node_modules", ".bin"));
 	(0, cross_spawn_cb.default)(cmd, args, {
 		stdio: "inherit",
@@ -105,6 +95,11 @@ function spawn(cmd, args, options, cb) {
 		env
 	}, cb);
 }
+
+//#endregion
+//#region ../../packages/tsds-lib/dist/esm/lib/which.mjs
+const __dirname$2 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
+const root = packageRoot(__dirname$2);
 
 //#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/lazy.cjs
