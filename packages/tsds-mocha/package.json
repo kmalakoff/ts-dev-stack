@@ -51,7 +51,7 @@
     "mocha-compat": "^3.6.2",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
-    "ts-swc-loaders": "^1.5.4",
+    "ts-swc-loaders": "^1.5.6",
     "tsds-lib": "^1.6.5",
     "unixify": "^1.0.0"
   },
