@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import existsSync from './existsSync.js';
+import existsSync from 'fs-exists-sync';
 
 export default function packageRoot(dir) {
   const packagePath = path.join(dir, 'package.json');
