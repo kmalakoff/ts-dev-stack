@@ -8,7 +8,6 @@ import packageRoot from './packageRoot.js';
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const root = packageRoot(__dirname);
 
-const isWindows = process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 const NODES = ['node', 'node.exe', 'node.cmd'];
 
 export default function whichCompat(command, options, callback) {
@@ -25,8 +24,6 @@ export default function whichCompat(command, options, callback) {
 
   // look up the full path
   which(command, { path: envPath }, (err, found) => {
-    if (err) return callback(err);
-    if (isWindows && found.slice(-4).toLowerCase() === '.cmd') found = found.slice(0, -4);
-    callback(null, found);
+    err ? callback(err) : callback(null, found);
   });
 }
