@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-const dest = path.resolve(__dirname, '..', 'assets')
+const dest = path.resolve(__dirname, '..', 'assets');
 
 function build(cb) {
   const cwd = process.cwd();
