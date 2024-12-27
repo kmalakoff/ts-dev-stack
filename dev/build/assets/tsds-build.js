@@ -100,6 +100,7 @@ function spawn(cmd, args, options, cb) {
 //#region ../../packages/tsds-lib/dist/esm/lib/which.mjs
 const __dirname$2 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const root = packageRoot(__dirname$2);
+const isWindows = process.platform === "win32" || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 
 //#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/lazy.cjs
