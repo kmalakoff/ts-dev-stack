@@ -1,1 +1,1 @@
-ignores: ["ts-swc-loaders", "each-package", "lerna"]
+ignores: ["each-package", "lerna"]
