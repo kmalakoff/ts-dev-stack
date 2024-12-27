@@ -50,6 +50,7 @@
     "@web/test-runner-playwright": "^0.11.0",
     "assert": "1.5.0",
     "getopts-compat": "^2.2.5",
+    "link-unlink": "^0.1.2",
     "queue-cb": "^1.4.4",
     "resolve": "^1.22.10",
     "tsds-lib": "^1.6.2",

@@ -28,8 +28,6 @@ const path = __toESM(require("path"));
 const queue_cb = __toESM(require("queue-cb"));
 const rimraf2 = __toESM(require("rimraf2"));
 const fs = __toESM(require("fs"));
-require("mkdirp-classic");
-require("temp-suffix");
 require("resolve");
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
@@ -67,14 +65,10 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/link.mjs
-const isWindows = process.platform === "win32" || /^(msys|cygwin)$/.test(process.env.OSTYPE);
-
-//#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/existsSync.mjs
-function existsSyncPolyfill(path$12) {
+function existsSyncPolyfill(path$10) {
 	try {
-		fs.default.accessSync(path$12);
+		fs.default.accessSync(path$10);
 		return true;
 	} catch (_) {
 		return false;

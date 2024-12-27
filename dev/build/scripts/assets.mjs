@@ -23,6 +23,6 @@ function build(cb) {
 }
 
 build((err) => {
-  !err || console.error(err);
+  !err || console.log(err.message);
   process.exit(err ? 1 : 0);
 });

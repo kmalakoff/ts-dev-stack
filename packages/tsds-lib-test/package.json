@@ -45,8 +45,7 @@
     "fs-access-compat": "^1.0.3",
     "mkdirp-classic": "^0.5.3",
     "queue-cb": "^1.4.4",
-    "rimraf2": "^2.8.2",
-    "tsds-lib": "^1.6.2"
+    "rimraf2": "^2.8.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

@@ -46,6 +46,7 @@
     "assert": "1.5.0",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
+    "link-unlink": "^0.1.2",
     "mocha": "^11.0.1",
     "mocha-compat": "^3.6.2",
     "queue-cb": "^1.4.4",
