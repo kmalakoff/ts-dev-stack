@@ -42,7 +42,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.4.1",
+    "cross-spawn-cb": "^1.4.2",
     "env-path-key": "^1.0.0",
     "fs-exists-sync": "^0.1.0",
     "lazy-cache": "^2.0.2",
