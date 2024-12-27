@@ -35,6 +35,6 @@ function patch(callback) {
 
 // run patch
 patch((err) => {
-  !err || console.error(err);
+  !err || console.log(err.message);
   process.exit(err ? 1 : 0);
 });

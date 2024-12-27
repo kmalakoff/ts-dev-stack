@@ -1,9 +1,10 @@
 import path from 'path';
 import url from 'url';
 import getopts from 'getopts-compat';
+import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
-import { binPath, installPath, link, packageRoot, spawn, unlink, wrapWorker } from 'tsds-lib';
+import { binPath, installPath, packageRoot, spawn, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const major = +process.versions.node.split('.')[0];
