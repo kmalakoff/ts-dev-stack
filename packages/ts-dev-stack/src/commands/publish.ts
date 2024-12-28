@@ -26,7 +26,7 @@ function worker(args, options, callback) {
   queue.defer(format.bind(null, args, options));
   queue.defer(build.bind(null, args, options));
   queue.defer(spawn.bind(null, 'sort-package-json', [], { cwd }));
-  queue.defer(spawn.bind(null, docs.bind(null, args, options)));
+  queue.defer(docs.bind(null, args, options));
   queue.defer(spawn.bind(null, 'np', ['--no-yarn'], {}));
   queue.await(callback);
 }
