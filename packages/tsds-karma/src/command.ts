@@ -1,7 +1,7 @@
 import path from 'path';
 import url from 'url';
 import { link, unlink } from 'link-unlink';
-import Queue from 'queue-callback';
+import Queue from 'queue-cb';
 import { installPath, packageRoot, spawn, which } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));

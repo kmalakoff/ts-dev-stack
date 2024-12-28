@@ -12,9 +12,7 @@ const defaults = {
   commands: {
     build: 'tsds-build',
     coverage: 'tsds-c8',
-    prepublish: './commands/prepublish.js',
     publish: './commands/publish.js',
-    postpublish: './commands/postpublish.js',
     docs: 'tsds-typedoc',
     format: 'tsds-biome',
     link: './commands/link.js',

@@ -72,13 +72,7 @@ function addTests(repo) {
         });
       });
       it('publish', (done) => {
-        runCommand('prepublish', ['--dry-run'], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
-          done();
-        });
-      });
-      it('prepublish', (done) => {
-        runCommand('prepublish', [], { cwd: dest }, (err) => {
+        runCommand('publish', ['--dry-run'], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
@@ -108,7 +102,7 @@ function addTests(repo) {
         });
       });
       it('version', (done) => {
-        runCommand('version', [], { cwd: dest }, (err) => {
+        runCommand('version', ['--dry-run'], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
