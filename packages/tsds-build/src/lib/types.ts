@@ -17,7 +17,7 @@ export default function cjs(_args, options, cb) {
   queue.defer((cb) =>
     transformTypes(src, dest, (err, results) => {
       if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-      else console.log(`created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(',') : `${results.length} files in dist/${type}`}`);
+      else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(',') : `${results.length} files in dist/${type}`}`);
       cb(err);
     })
   );
