@@ -51,11 +51,11 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
-    "link-unlink": "^0.1.2",
+    "link-unlink": "^0.1.5",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.5.15",
+    "ts-swc-loaders": "^1.5.16",
     "tsds-lib": "^1.6.15",
     "webpack": "^5.97.1"
   },
