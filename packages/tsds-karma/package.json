@@ -52,10 +52,12 @@
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
     "link-unlink": "^0.1.5",
+    "module-root-sync": "^0.1.1",
+    "module-which": "^0.1.0",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.6.1",
+    "ts-swc-loaders": "^1.6.2",
     "tsds-lib": "^1.7.7",
     "webpack": "^5.97.1"
   },

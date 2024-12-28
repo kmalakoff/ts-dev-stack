@@ -2,13 +2,15 @@ import path from 'path';
 import url from 'url';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
+import moduleRoot from 'module-root-sync';
+import which from 'module-which';
 import Queue from 'queue-cb';
-import { installPath, packageRoot, spawn, which, wrapWorker } from 'tsds-lib';
+import { installPath, spawn, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const major = +process.versions.node.split('.')[0];
-const workerWrapper = wrapWorker(path.join(packageRoot(__dirname), 'dist', 'cjs', 'command.js'));
-const config = path.resolve(packageRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
+const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'command.js'));
+const config = path.resolve(moduleRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
 
 function worker(args, options, callback) {
   which('wtr', options, (err, wtr) => {
