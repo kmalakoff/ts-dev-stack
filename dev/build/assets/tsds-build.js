@@ -5,7 +5,7 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function() {
+var __commonJS = (cb, mod) => function () {
 	return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __copyProps = (to, from, except, desc) => {
@@ -66,19 +66,19 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region node_modules/tsds-lib/dist/esm/lib/packageRoot.mjs
-function packageRoot(dir) {
+//#region node_modules/tsds-lib/dist/esm/lib/moduleRoot.mjs
+function moduleRoot(dir) {
 	const packagePath = path.default.join(dir, "package.json");
 	if ((0, fs_exists_sync.default)(packagePath) && JSON.parse(fs.default.readFileSync(packagePath, "utf8")).name) return dir;
 	const nextDir = path.default.dirname(dir);
 	if (nextDir === dir) throw new Error("Package root not found");
-	return packageRoot(nextDir);
+	return moduleRoot(nextDir);
 }
 
 //#endregion
 //#region node_modules/tsds-lib/dist/esm/lib/spawn.mjs
 const __dirname$3 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
-const root$1 = packageRoot(__dirname$3);
+const root$1 = moduleRoot(__dirname$3);
 function spawn(cmd, args, options, cb) {
 	const cwd = options.cwd || process.cwd();
 	const PATH_KEY = (0, env_path_key.default)(options);
@@ -98,13 +98,15 @@ function spawn(cmd, args, options, cb) {
 //#endregion
 //#region node_modules/tsds-lib/dist/esm/lib/which.mjs
 const __dirname$2 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
-const root = packageRoot(__dirname$2);
+const root = moduleRoot(__dirname$2);
 
 //#endregion
 //#region node_modules/tsds-lib/dist/esm/lib/lazy.cjs
-var require_lazy = __commonJS({ "node_modules/tsds-lib/dist/esm/lib/lazy.cjs"(exports, module) {
-	module.exports = require("lazy-cache")(require);
-} });
+var require_lazy = __commonJS({
+	"node_modules/tsds-lib/dist/esm/lib/lazy.cjs"(exports, module) {
+		module.exports = require("lazy-cache")(require);
+	}
+});
 
 //#endregion
 //#region node_modules/tsds-lib/dist/esm/lib/wrapWorker.mjs
@@ -140,7 +142,7 @@ function transform(_args, type$1, options, cb) {
 		sourceMaps: true
 	}, (err, results) => {
 		if (err) console.log(`${type$1} failed: ${err.message} from ${src}`);
-else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `dist/${type$1}${x.to}`).join(",") : `${results.length} files in dist/${type$1}`}`);
+		else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `dist/${type$1}${x.to}`).join(",") : `${results.length} files in dist/${type$1}`}`);
 		cb$1(err);
 	}));
 	queue.defer(fs.default.writeFile.bind(null, path.default.join(dest, "package.json"), "{\"type\":\"commonjs\"}"));
@@ -159,7 +161,7 @@ function cjs(_args, options, cb) {
 	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
 	queue.defer((cb$1) => (0, ts_swc_transform.transformTypes)(src, dest, (err, results) => {
 		if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(",") : `${results.length} files in dist/${type}`}`);
+		else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(",") : `${results.length} files in dist/${type}`}`);
 		cb$1(err);
 	}));
 	queue.await(cb);
@@ -169,14 +171,14 @@ else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dis
 //#region node_modules/tsds-build/dist/esm/lib/umd.mjs
 const __dirname$1 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const major = +process.versions.node.split(".")[0];
-const workerWrapper = wrapWorker(path.default.join(packageRoot(__dirname$1), "dist", "cjs", "build", "umd.js"));
+const workerWrapper = wrapWorker(path.default.join(moduleRoot(__dirname$1), "dist", "cjs", "build", "umd.js"));
 function worker(_args, options, cb) {
 	const cwd = options.cwd || process.cwd();
 	const dest = path.default.join(cwd, "dist", "umd");
 	const queue = new queue_cb.default(1);
 	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
 	(() => {
-		const configPath = path.default.join(packageRoot(__dirname$1), "dist", "esm", "rollup", "config.mjs");
+		const configPath = path.default.join(moduleRoot(__dirname$1), "dist", "esm", "rollup", "config.mjs");
 		const args = [
 			"rollup",
 			"--config",
@@ -185,7 +187,7 @@ function worker(_args, options, cb) {
 		queue.defer(spawn.bind(null, args[0], args.slice(1), { cwd }));
 	})();
 	(() => {
-		const configPath = path.default.join(packageRoot(__dirname$1), "dist", "esm", "rollup", "config.min.mjs");
+		const configPath = path.default.join(moduleRoot(__dirname$1), "dist", "esm", "rollup", "config.min.mjs");
 		const args = [
 			"rollup",
 			"--config",
