@@ -2,13 +2,14 @@ import path from 'path';
 import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
+import moduleRoot from 'module-root-sync';
 import resolve from 'resolve';
-import { constants, config, packageRoot } from 'tsds-lib';
+import { constants, config } from 'tsds-lib';
 
 // @ts-ignore
 import lazy from './lazy.cjs';
 const _dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-const root = packageRoot(_dirname);
+const root = moduleRoot(_dirname);
 
 function run(specifier, args, options, cb) {
   try {

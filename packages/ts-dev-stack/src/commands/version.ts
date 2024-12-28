@@ -1,5 +1,6 @@
+import which from 'module-which';
 import Queue from 'queue-cb';
-import { spawn, which } from 'tsds-lib';
+import { spawn } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 export default function version(args, options, callback) {

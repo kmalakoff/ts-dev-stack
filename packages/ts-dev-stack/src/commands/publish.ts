@@ -1,15 +1,16 @@
 import path from 'path';
 import url from 'url';
+import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
 import format from 'tsds-biome';
 import build from 'tsds-build';
-import { packageRoot, spawn, wrapWorker } from 'tsds-lib';
+import { spawn, wrapWorker } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';
-const workerWrapper = wrapWorker(path.join(packageRoot(__dirname), 'dist', 'cjs', 'commands', 'publish.js'));
+const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'commands', 'publish.js'));
 
 // TODO: use np options
 // const optionsNP = { alias: { 'no-publish': 'np', preview: 'p', yarn: 'y' } };
