@@ -29,7 +29,6 @@ const queue_cb = __toESM(require("queue-cb"));
 const rimraf2 = __toESM(require("rimraf2"));
 const fs = __toESM(require("fs"));
 const fs_exists_sync = __toESM(require("fs-exists-sync"));
-require("resolve");
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const env_path_key = __toESM(require("env-path-key"));
@@ -45,7 +44,6 @@ const defaults = {
 		build: "tsds-build",
 		coverage: "tsds-c8",
 		publish: "./commands/publish.js",
-		prepublish: "./commands/prepublish.js",
 		docs: "tsds-typedoc",
 		format: "tsds-biome",
 		link: "./commands/link.js",
