@@ -80,7 +80,6 @@ function packageRoot(dir) {
 const __dirname$3 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const root$1 = packageRoot(__dirname$3);
 function spawn(cmd, args, options, cb) {
-	console.log(options);
 	const cwd = options.cwd || process.cwd();
 	const PATH_KEY = (0, env_path_key.default)(options);
 	const env = {
