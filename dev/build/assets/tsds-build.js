@@ -100,7 +100,6 @@ function spawn(cmd, args, options, cb) {
 //#region ../../packages/tsds-lib/dist/esm/lib/which.mjs
 const __dirname$2 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const root = packageRoot(__dirname$2);
-const isWindows = process.platform === "win32" || /^(msys|cygwin)$/.test(process.env.OSTYPE);
 
 //#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/lazy.cjs
@@ -142,7 +141,7 @@ function transform(_args, type$1, options, cb) {
 		sourceMaps: true
 	}, (err, results) => {
 		if (err) console.log(`${type$1} failed: ${err.message} from ${src}`);
-else console.log(`created ${results.length < MAX_FILES$1 ? results.map((x) => `dist/${type$1}${x.to}`).join(",") : `${results.length} files in dist/${type$1}`}`);
+else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `dist/${type$1}${x.to}`).join(",") : `${results.length} files in dist/${type$1}`}`);
 		cb$1(err);
 	}));
 	queue.defer(fs.default.writeFile.bind(null, path.default.join(dest, "package.json"), "{\"type\":\"commonjs\"}"));
@@ -161,7 +160,7 @@ function cjs(_args, options, cb) {
 	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
 	queue.defer((cb$1) => (0, ts_swc_transform.transformTypes)(src, dest, (err, results) => {
 		if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-else console.log(`created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(",") : `${results.length} files in dist/${type}`}`);
+else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(",") : `${results.length} files in dist/${type}`}`);
 		cb$1(err);
 	}));
 	queue.await(cb);
