@@ -53,7 +53,7 @@
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "rimraf2": "^2.8.2",
-    "ts-swc-loaders": "^1.5.10",
+    "ts-swc-loaders": "^1.5.11",
     "tsds-lib": "^1.6.12",
     "unixify": "^1.0.0"
   },
