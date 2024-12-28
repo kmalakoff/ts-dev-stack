@@ -34,8 +34,8 @@ const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const env_path_key = __toESM(require("env-path-key"));
 const path_string_prepend = __toESM(require("path-string-prepend"));
 require("which");
-const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const tsds_typedoc = __toESM(require("tsds-typedoc"));
+const ts_swc_transform = __toESM(require("ts-swc-transform"));
 
 //#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
 const defaults = {
@@ -80,6 +80,7 @@ function packageRoot(dir) {
 const __dirname$3 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const root$1 = packageRoot(__dirname$3);
 function spawn(cmd, args, options, cb) {
+	console.log(options);
 	const cwd = options.cwd || process.cwd();
 	const PATH_KEY = (0, env_path_key.default)(options);
 	const env = {
