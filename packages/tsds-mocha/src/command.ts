@@ -1,7 +1,8 @@
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
+import { whichAll } from 'module-which';
 import Queue from 'queue-cb';
-import { installPath, spawn, whichAll } from 'tsds-lib';
+import { installPath, spawn } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
 
