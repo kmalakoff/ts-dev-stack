@@ -3,7 +3,6 @@ import { spawn, which } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 export default function version(args, options, callback) {
-  console.log(args, options, callback);
   const cwd = options.cwd || process.cwd();
 
   const queue = new Queue(1);
