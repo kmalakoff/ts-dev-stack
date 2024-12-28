@@ -10,7 +10,6 @@ const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : 
 const root = packageRoot(__dirname);
 
 export default function spawn(cmd, args, options, cb) {
-  console.log(options);
   const cwd = options.cwd || process.cwd();
   const PATH_KEY = pathKey(options);
   const env = { ...process.env, env: options.env || {} };
