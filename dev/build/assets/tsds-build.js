@@ -35,6 +35,7 @@ const env_path_key = __toESM(require("env-path-key"));
 const path_string_prepend = __toESM(require("path-string-prepend"));
 require("which");
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
+const tsds_typedoc = __toESM(require("tsds-typedoc"));
 
 //#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
 const defaults = {
@@ -125,7 +126,7 @@ function wrapWorker(workerPath) {
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/transformDirectory.mjs
+//#region ../../packages/tsds-build/dist/esm/lib/code.mjs
 const MAX_FILES$1 = 10;
 function transform(_args, type$1, options, cb) {
 	const cwd = options.cwd || process.cwd();
@@ -212,6 +213,7 @@ function build(args, options, cb) {
 	targets.indexOf("esm") < 0 || queue.defer(transform.bind(null, args, "esm", options));
 	targets.indexOf("umd") < 0 || queue.defer(umd.bind(null, args, options));
 	queue.defer(cjs.bind(null, args, options));
+	queue.defer(tsds_typedoc.default.bind(null, args, options));
 	queue.await(cb);
 }
 
