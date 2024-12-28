@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const Queue = require('queue-cb');
 const unixify = require('unixify');
-const { whichAll } = require('tsds-lib');
+const whichAll = require('module-which').whichAll;
 
 const FILES = ['lib/cli/lookup-files.js'];
 
@@ -14,7 +14,7 @@ function findNodeModules(found) {
     if (foundParts[foundParts.length - 1] === 'node_modules') return foundParts.join(path.sep);
     // global install
     if (foundParts[foundParts.length - 1] === 'bin') return foundParts.slice(0, -1).concat(['lib', 'node_modules']).join(path.sep);
-    foundParts.pop()
+    foundParts.pop();
   }
   throw new Error('node_modules not found');
 }
@@ -23,8 +23,8 @@ function patch(callback) {
   whichAll(['mocha', 'mocha-compat'], {}, (err, results) => {
     if (err) return callback(err);
     try {
-      const patchPath = path.join(findNodeModules(results[0]), 'mocha')
-      const mochaCompatPath = path.join(findNodeModules(results[1]), 'mocha-compat', 'vendor', 'glob')
+      const patchPath = path.join(findNodeModules(results[0]), 'mocha');
+      const mochaCompatPath = path.join(findNodeModules(results[1]), 'mocha-compat', 'vendor', 'glob');
 
       const queue = new Queue();
       FILES.map((file) => {

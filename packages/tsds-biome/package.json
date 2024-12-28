@@ -42,6 +42,7 @@
     "version": ""
   },
   "dependencies": {
+    "module-which": "^0.1.0",
     "tsds-lib": "^1.7.7"
   },
   "devDependencies": {
