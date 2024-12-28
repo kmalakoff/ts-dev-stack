@@ -46,14 +46,14 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "get-tsconfig-compat": "^2.0.1",
+    "get-tsconfig-compat": "^2.0.2",
     "lodash.camelcase": "4.3.0",
     "queue-cb": "^1.4.4",
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.6.1",
-    "ts-swc-transform": "^1.8.7",
+    "ts-swc-rollup-plugin": "^1.6.2",
+    "ts-swc-transform": "^1.8.8",
     "tsds-lib": "^1.6.12"
   },
   "devDependencies": {
