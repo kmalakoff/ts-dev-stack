@@ -69,8 +69,20 @@ function addTests(repo) {
           done();
         });
       });
+      it('prepublish', (done) => {
+        spawn(CLI, ['prepublish', '--dry-run'], { stdout: 'inherit', cwd: dest }, (err) => {
+          assert.ok(!err, err ? err.message : '');
+          done();
+        });
+      });
       it('publish', (done) => {
         spawn(CLI, ['publish', '--dry-run'], { stdout: 'inherit', cwd: dest }, (err) => {
+          assert.ok(!err, err ? err.message : '');
+          done();
+        });
+      });
+      it('postpublish', (done) => {
+        spawn(CLI, ['postpublish', '--dry-run'], { stdout: 'inherit', cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
