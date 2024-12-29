@@ -1,4 +1,3 @@
-import path from 'path';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
