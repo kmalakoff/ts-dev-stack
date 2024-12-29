@@ -3,6 +3,7 @@ import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
 import moduleRoot from 'module-root-sync';
+import { prependEnvPath } from 'module-which';
 import resolve from 'resolve';
 import { constants, config } from 'tsds-lib';
 
@@ -30,17 +31,21 @@ export default function runCommand(name, args, options, cb) {
   const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
   if (opts['dry-run']) return cb();
 
+  const cwd = options.cwd || process.cwd();
+  const { envPath, pathKey } = prependEnvPath({ root, ...options });
+  const env = { ...(options.env || process.env), [pathKey]: envPath };
+  const runOptions = { ...options, cwd, env, stdio: 'inherit' };
   if (constants.moduleRegEx.test(command)) {
     try {
       resolve.sync(path.join(command, 'package.json'));
-      return run(command, args, options, cb);
+      return run(command, args, runOptions, cb);
     } catch (_err) {
       return installModule(command, path.join(root, 'node_modules'), (err) => {
         console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
-        err ? cb(err) : run(command, args, options, cb);
+        err ? cb(err) : run(command, args, runOptions, cb);
       });
     }
   }
   // for relative files, ensure the extension matches
-  return run(path.resolve(root, 'dist', 'cjs', command), args, options, cb);
+  return run(path.resolve(root, 'dist', 'cjs', command), args, runOptions, cb);
 }
