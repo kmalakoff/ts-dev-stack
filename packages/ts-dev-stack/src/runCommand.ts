@@ -3,7 +3,6 @@ import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
 import moduleRoot from 'module-root-sync';
-import { prependEnvPath } from 'module-which';
 import resolve from 'resolve';
 import { constants, config } from 'tsds-lib';
 
@@ -26,15 +25,17 @@ export default function runCommand(name, args, options, cb) {
   const { commands } = config();
 
   const command = commands[name];
-  if (!command) return cb(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
+  if (!command) {
+    throw new Error(name);
+
+    return cb(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
+  }
 
   const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
   if (opts['dry-run']) return cb();
 
   const cwd = options.cwd || process.cwd();
-  const { envPath, pathKey } = prependEnvPath({ root, ...options });
-  const env = { ...(options.env || process.env), [pathKey]: envPath };
-  const runOptions = { ...options, cwd, env, stdio: 'inherit' };
+  const runOptions = { ...options, cwd, stdio: 'inherit' };
   if (constants.moduleRegEx.test(command)) {
     try {
       resolve.sync(path.join(command, 'package.json'));

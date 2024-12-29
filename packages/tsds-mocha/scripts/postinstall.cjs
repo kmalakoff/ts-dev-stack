@@ -4,49 +4,37 @@ const path = require('path');
 const fs = require('fs');
 const Queue = require('queue-cb');
 const unixify = require('unixify');
-const whichAll = require('module-which').whichAll;
+const resolve = require('resolve');
 
-const FILES = ['lib/cli/lookup-files.js'];
+function patchGlob(mocha, mochaCompat, callback) {
+  const filePath = path.join(mocha, 'lib', 'cli', 'lookup-files.js');
+  const mochaCompatPath = path.join(mochaCompat, 'vendor', 'glob');
+  const find = "require('glob')";
+  const replace = `require('${unixify(path.relative(path.dirname(filePath), mochaCompatPath))}')`;
 
-function findNodeModules(found) {
-  const foundParts = found.split(path.sep);
-  while (foundParts.length) {
-    if (foundParts[foundParts.length - 1] === 'node_modules') return foundParts.join(path.sep);
-    // global install
-    if (foundParts[foundParts.length - 1] === 'bin') return foundParts.slice(0, -1).concat(['lib', 'node_modules']).join(path.sep);
-    foundParts.pop();
-  }
-  throw new Error('node_modules not found');
+  fs.readFile(filePath, 'utf8', (err, contents) => {
+    if (err) return callback(err);
+    const newContents = contents.replace(find, replace);
+    if (contents === newContents) return callback(); // no change
+    fs.writeFile(filePath, newContents, 'utf8', (err) => {
+      if (err) return callback(err);
+      console.log(`Patched glob in: ${filePath}`);
+      callback();
+    });
+  });
 }
 
 function patch(callback) {
-  whichAll(['mocha', 'mocha-compat'], {}, (err, results) => {
-    if (err) return callback(err);
-    try {
-      const patchPath = path.join(findNodeModules(results[0]), 'mocha');
-      const mochaCompatPath = path.join(findNodeModules(results[1]), 'mocha-compat', 'vendor', 'glob');
+  try {
+    const mocha = path.dirname(resolve.sync('mocha/package.json'));
+    const mochaCompat = path.dirname(resolve.sync('mocha-compat/package.json'));
 
-      const queue = new Queue();
-      FILES.map((file) => {
-        queue.defer((cb) => {
-          try {
-            const filePath = path.join.apply(null, [patchPath].concat(file.split('/')));
-            const contents = fs.readFileSync(filePath, 'utf8');
-            const newContents = contents.replace("require('glob')", `require('${unixify(path.relative(path.dirname(filePath), mochaCompatPath))}')`);
-            if (contents === newContents) return cb(); // no change
-            fs.writeFileSync(filePath, newContents, 'utf8');
-            console.log(`Patched glob in: ${filePath}`);
-            cb();
-          } catch (err) {
-            return callback(err);
-          }
-        });
-      });
-      queue.await(callback);
-    } catch (err) {
-      return callback(err);
-    }
-  });
+    const queue = new Queue();
+    queue.defer(patchGlob.bind(null, mocha, mochaCompat));
+    queue.await(callback);
+  } catch (err) {
+    return callback(err);
+  }
 }
 
 // run patch

@@ -49,11 +49,11 @@
     "link-unlink": "^0.1.5",
     "mocha": "^11.0.1",
     "mocha-compat": "^3.6.2",
-    "module-which": "^0.2.1",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
-    "ts-swc-loaders": "^1.7.4",
+    "resolve-bin": "^1.0.1",
+    "ts-swc-loaders": "^1.7.5",
     "tsds-lib": "^1.8.8",
     "unixify": "^1.0.0"
   },

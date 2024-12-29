@@ -51,6 +51,7 @@
     "lodash.camelcase": "4.3.0",
     "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
+    "resolve-bin": "^1.0.1",
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.1",
     "rollup-plugin-node-externals": "^8.0.0",
