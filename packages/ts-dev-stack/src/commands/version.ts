@@ -1,6 +1,6 @@
+import spawn from 'cross-spawn-cb';
 import which from 'module-which';
 import Queue from 'queue-cb';
-import { spawn } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 export default function version(args, options, callback) {

@@ -1,7 +1,9 @@
 import path from 'path';
 import url from 'url';
+import spawn from 'cross-spawn-cb';
+import moduleRoot from 'module-root-sync';
 import which from 'module-which';
-import { moduleRoot, spawn, wrapWorker } from 'tsds-lib';
+import { wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const major = +process.versions.node.split('.')[0];

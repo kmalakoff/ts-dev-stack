@@ -1,10 +1,11 @@
 import path from 'path';
 import url from 'url';
+import spawn from 'cross-spawn-cb';
 import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
 import format from 'tsds-biome';
 import build from 'tsds-build';
-import { spawn, wrapWorker } from 'tsds-lib';
+import { wrapWorker } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
