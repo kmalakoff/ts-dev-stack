@@ -10,8 +10,11 @@
     "depcheck": "cd packages && ep -d1 -c100 npm run depcheck",
     "format": "cd packages && ep -d1 -c100 npm run format",
     "test": "cd packages/ts-dev-stack && npm run test",
-    "test:engines": "cd packages && ep -d1 -c100 npm run test:engines",
+    "test:engines": "cd packages/ts-dev-stack && npm run test",
     "version": "cd packages && ep -d1 -c100 npm run version"
+  },
+  "dependencies": {
+    "each-package": "^0.7.3"
   },
   "devDependencies": {
     "lerna": "^8.1.9"

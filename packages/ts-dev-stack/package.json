@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^1.5.7",
+    "depcheck": "^1.4.7",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "gh-pages": "^6.2.0",
@@ -54,6 +55,7 @@
     "lazy-cache": "^2.0.2",
     "link-unlink": "^0.1.5",
     "module-root-sync": "^0.1.1",
+    "module-which": "^0.2.0",
     "np": "^10.1.0",
     "queue-cb": "^1.4.4",
     "resolve": "^1.22.10",

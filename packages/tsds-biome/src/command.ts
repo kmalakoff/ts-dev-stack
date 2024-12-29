@@ -11,9 +11,7 @@ const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs',
 
 function worker(_args, options, callback) {
   const cwd = options.cwd || process.cwd();
-  which('npm', options, (err, npm) => {
-    err ? callback(err) : spawn(npm, ['run', 'format'], { cwd }, callback);
-  });
+  spawn('npm', ['run', 'format'], { cwd }, callback);
 }
 
 export default function format(args, options, cb) {

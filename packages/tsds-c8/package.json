@@ -51,7 +51,7 @@
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "rimraf2": "^2.8.2",
-    "ts-swc-loaders": "^1.7.0",
+    "ts-swc-loaders": "^1.7.1",
     "tsds-lib": "^1.8.8",
     "tsds-mocha": "^1.8.8"
   },
