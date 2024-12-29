@@ -35,8 +35,7 @@ export default function runCommand(name, args, options, cb) {
       resolve.sync(path.join(command, 'package.json'));
       return run(command, args, options, cb);
     } catch (_err) {
-      const nodeModules = path.dirname(path.dirname(resolve.sync(path.join('tsds-lib', 'package.json'))));
-      return installModule(command, nodeModules, (err) => {
+      return installModule(command, path.join(root, 'node_modules'), (err) => {
         console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
         err ? cb(err) : run(command, args, options, cb);
       });
