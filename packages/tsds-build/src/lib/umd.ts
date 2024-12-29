@@ -20,12 +20,12 @@ function worker(_args, options, cb) {
   (() => {
     const configPath = path.join(moduleRoot(__dirname), 'dist', 'esm', 'rollup', 'config.mjs');
     const args = ['rollup', '--config', configPath];
-    queue.defer(spawn.bind(null, args[0], args.slice(1), { cwd }));
+    queue.defer(spawn.bind(null, args[0], args.slice(1), options));
   })();
   (() => {
     const configPath = path.join(moduleRoot(__dirname), 'dist', 'esm', 'rollup', 'config.min.mjs');
     const args = ['rollup', '--config', configPath];
-    queue.defer(spawn.bind(null, args[0], args.slice(1), { cwd }));
+    queue.defer(spawn.bind(null, args[0], args.slice(1), options));
   })();
   queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
   queue.await(cb);

@@ -27,7 +27,7 @@ function worker(args, options, callback) {
       if (err) return callback(err);
 
       const queue = new Queue(1);
-      queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), { cwd }));
+      queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), options));
       queue.await((err) => {
         unlink(restore, (err2) => {
           callback(err || err2);

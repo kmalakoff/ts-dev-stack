@@ -32,7 +32,7 @@ export default function c8(args, options, callback) {
 
       const queue = new Queue(1);
       queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
-      queue.defer(spawn.bind(null, loader, spawnArgs, { cwd }));
+      queue.defer(spawn.bind(null, loader, spawnArgs, options));
       queue.await((err) => {
         unlink(restore, (err2) => {
           callback(err || err2);
