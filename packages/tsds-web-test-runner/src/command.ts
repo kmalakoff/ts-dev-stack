@@ -1,11 +1,12 @@
 import path from 'path';
 import url from 'url';
+import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import moduleRoot from 'module-root-sync';
 import which from 'module-which';
 import Queue from 'queue-cb';
-import { installPath, spawn, wrapWorker } from 'tsds-lib';
+import { installPath, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 const major = +process.versions.node.split('.')[0];
