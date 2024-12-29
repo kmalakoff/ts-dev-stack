@@ -28,7 +28,6 @@ const path = __toESM(require("path"));
 const queue_cb = __toESM(require("queue-cb"));
 const rimraf2 = __toESM(require("rimraf2"));
 const fs = __toESM(require("fs"));
-const tsds_typedoc = __toESM(require("tsds-typedoc"));
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
@@ -175,7 +174,6 @@ function build(args, options, cb) {
 	targets.indexOf("esm") < 0 || queue.defer(transform.bind(null, args, "esm", options));
 	targets.indexOf("umd") < 0 || queue.defer(umd.bind(null, args, options));
 	queue.defer(cjs.bind(null, args, options));
-	queue.defer(tsds_typedoc.default.bind(null, args, options));
 	queue.await(cb);
 }
 
