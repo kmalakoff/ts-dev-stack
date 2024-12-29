@@ -56,8 +56,7 @@
     "rollup-plugin-node-externals": "^8.0.0",
     "ts-swc-rollup-plugin": "^1.6.5",
     "ts-swc-transform": "^1.9.2",
-    "tsds-lib": "^1.8.4",
-    "tsds-typedoc": "^1.8.4"
+    "tsds-lib": "^1.8.4"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
