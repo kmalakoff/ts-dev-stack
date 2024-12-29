@@ -35,7 +35,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.mjs",
+    "build": "tsds build",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/",
     "test": "",
@@ -49,6 +49,7 @@
     "@web/test-runner": "^0.19.0",
     "@web/test-runner-playwright": "^0.11.0",
     "assert": "1.5.0",
+    "cross-spawn-cb": "^1.5.7",
     "getopts-compat": "^2.2.5",
     "link-unlink": "^0.1.5",
     "module-root-sync": "^0.1.1",
