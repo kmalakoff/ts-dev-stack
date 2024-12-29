@@ -1,6 +1,6 @@
 {
   "name": "tsds-c8",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -53,7 +53,7 @@
     "rimraf2": "^2.8.2",
     "ts-swc-loaders": "^1.7.0",
     "tsds-lib": "^1.8.4",
-    "tsds-mocha": "^1.8.6"
+    "tsds-mocha": "^1.8.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
