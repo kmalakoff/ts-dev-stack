@@ -1,0 +1,21 @@
+{
+  "name": "build",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/assets.mjs",
+    "format": "biome check --write --unsafe src/ scripts/"
+  },
+  "dependencies": {
+    "tsds-build": "^1.8.3",
+    "tsds-lib": "^1.8.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.2",
+    "cross-spawn-cb": "^1.5.7",
+    "queue-cb": "^1.4.4",
+    "rimraf2": "^2.8.2",
+    "rolldown": "^1.0.0-beta.1"
+  }
+}
