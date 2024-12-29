@@ -1,6 +1,6 @@
 {
   "name": "tsds-biome",
-  "version": "1.8.4",
+  "version": "1.8.7",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
