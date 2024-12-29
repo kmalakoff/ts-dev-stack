@@ -33,7 +33,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.mjs",
+    "build": "tsds build",
     "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ scripts/",
     "postinstall": "node ./scripts/postinstall.cjs",
@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "assert": "1.5.0",
+    "cross-spawn-cb": "^1.5.7",
     "getopts-compat": "^2.2.5",
     "link-unlink": "^0.1.5",
     "mocha": "^11.0.1",
@@ -51,9 +52,10 @@
     "module-which": "^0.1.0",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
+    "resolve": "^1.22.10",
     "ts-swc-loaders": "^1.7.0",
     "tsds-lib": "^1.8.1",
-    "tsds-mocha": "^1.8.1",
+    "tsds-mocha": "^1.8.2",
     "unixify": "^1.0.0"
   },
   "devDependencies": {

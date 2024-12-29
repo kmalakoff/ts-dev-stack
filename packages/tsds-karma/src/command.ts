@@ -1,10 +1,11 @@
 import path from 'path';
 import url from 'url';
+import spawn from 'cross-spawn-cb';
 import { link, unlink } from 'link-unlink';
 import moduleRoot from 'module-root-sync';
 import which from 'module-which';
 import Queue from 'queue-cb';
-import { installPath, spawn } from 'tsds-lib';
+import { installPath } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
