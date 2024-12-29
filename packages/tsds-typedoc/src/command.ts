@@ -3,8 +3,8 @@ import url from 'url';
 import spawn from 'cross-spawn-cb';
 import mkdirp from 'mkdirp-classic';
 import moduleRoot from 'module-root-sync';
-import which from 'module-which';
 import Queue from 'queue-cb';
+import resolve from 'resolve';
 import rimraf2 from 'rimraf2';
 import { config, wrapWorker } from 'tsds-lib';
 
@@ -13,8 +13,8 @@ const major = +process.versions.node.split('.')[0];
 const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'command.js'));
 
 function worker(_args, options, callback) {
-  which('typedoc', options, (err, typedoc) => {
-    if (err) return callback(err);
+  try {
+    const typedoc = resolve.sync('typedoc/bin/typedoc');
     const cwd = options.cwd || process.cwd();
     const source = config(options).source;
     const dest = path.resolve(process.cwd(), 'docs');
@@ -24,7 +24,9 @@ function worker(_args, options, callback) {
     queue.defer(mkdirp.bind(null, dest));
     queue.defer(spawn.bind(null, typedoc, [source], { cwd }));
     queue.await(callback);
-  });
+  } catch (err) {
+    return callback(err);
+  }
 }
 
 export default function docs(args, options, callback) {
