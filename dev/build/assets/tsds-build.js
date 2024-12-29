@@ -36,7 +36,7 @@ const path_string_prepend = __toESM(require("path-string-prepend"));
 const tsds_typedoc = __toESM(require("tsds-typedoc"));
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
 
-//#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
+//#region node_modules/tsds-lib/dist/esm/lib/config.mjs
 const defaults = {
 	source: "src/index.ts",
 	targets: ["cjs", "esm"],
@@ -65,7 +65,7 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/spawn.mjs
+//#region node_modules/tsds-lib/dist/esm/lib/spawn.mjs
 const __dirname$2 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const root = (0, module_root_sync.default)(__dirname$2);
 function spawn(cmd, args, options, cb) {
@@ -86,13 +86,13 @@ function spawn(cmd, args, options, cb) {
 }
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/lazy.cjs
-var require_lazy = __commonJS({ "../../packages/tsds-lib/dist/esm/lib/lazy.cjs"(exports, module) {
+//#region node_modules/tsds-lib/dist/esm/lib/lazy.cjs
+var require_lazy = __commonJS({ "node_modules/tsds-lib/dist/esm/lib/lazy.cjs"(exports, module) {
 	module.exports = require("lazy-cache")(require);
 } });
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/wrapWorker.mjs
+//#region node_modules/tsds-lib/dist/esm/lib/wrapWorker.mjs
 var import_lazy = __toESM(require_lazy(), 1);
 const call = (0, import_lazy.default)("node-version-call");
 function wrapWorker(workerPath) {
@@ -111,7 +111,7 @@ function wrapWorker(workerPath) {
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/code.mjs
+//#region node_modules/tsds-build/dist/esm/lib/code.mjs
 const MAX_FILES$1 = 10;
 function transform(_args, type$1, options, cb) {
 	const cwd = options.cwd || process.cwd();
@@ -133,7 +133,7 @@ else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `d
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/types.mjs
+//#region node_modules/tsds-build/dist/esm/lib/types.mjs
 const MAX_FILES = 10;
 const type = "types";
 function cjs(_args, options, cb) {
@@ -151,7 +151,7 @@ else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dis
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/umd.mjs
+//#region node_modules/tsds-build/dist/esm/lib/umd.mjs
 const __dirname$1 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
 const major = +process.versions.node.split(".")[0];
 const workerWrapper = wrapWorker(path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "cjs", "build", "umd.js"));
@@ -186,7 +186,7 @@ function umd(args, options, cb) {
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/command.mjs
+//#region node_modules/tsds-build/dist/esm/command.mjs
 function build(args, options, cb) {
 	const cwd = options.cwd || process.cwd();
 	const { targets } = config(options);
