@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.8.1",
+  "version": "1.8.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -55,7 +55,7 @@
     "module-root-sync": "^0.1.1",
     "module-which": "^0.1.0",
     "queue-cb": "^1.4.4",
-    "tsds-lib": "^1.8.1",
+    "tsds-lib": "^1.8.3",
     "webpack-merge": "^6.0.1"
   },
   "devDependencies": {
