@@ -2,7 +2,6 @@ import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { config } from 'tsds-lib';
-import docs from 'tsds-typedoc';
 import code from './lib/code.js';
 import types from './lib/types.js';
 import umd from './lib/umd.js';
@@ -18,6 +17,5 @@ export default function build(args, options, cb) {
   targets.indexOf('esm') < 0 || queue.defer(code.bind(null, args, 'esm', options));
   targets.indexOf('umd') < 0 || queue.defer(umd.bind(null, args, options));
   queue.defer(types.bind(null, args, options));
-  queue.defer(docs.bind(null, args, options));
   queue.await(cb);
 }
