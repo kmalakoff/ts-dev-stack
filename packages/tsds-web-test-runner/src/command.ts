@@ -4,8 +4,8 @@ import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import moduleRoot from 'module-root-sync';
-import which from 'module-which';
 import Queue from 'queue-cb';
+import resolveBin from 'resolve-bin';
 import { installPath, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
@@ -14,26 +14,25 @@ const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs',
 const config = path.resolve(moduleRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
 
 function worker(args, options, callback) {
-  which('wtr', options, (err, wtr) => {
-    if (err) return callback(err);
-    const cwd = options.cwd || process.cwd();
-    const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
-    const spawnArgs = [wtr];
-    if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);
-    Array.prototype.push.apply(spawnArgs, args);
-    if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.{ts,tsx,jsx,mjs}']);
+  const cwd = options.cwd || process.cwd();
 
-    link(cwd, installPath(options), (err, restore) => {
-      if (err) return callback(err);
+  link(cwd, installPath(options), (err, restore) => {
+    if (err) return callback(err);
+
+    try {
+      const wtr = resolveBin.sync('@web/test-runner', { executable: 'wtr' });
+      const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
+      const spawnArgs = [wtr];
+      if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);
+      Array.prototype.push.apply(spawnArgs, args);
+      if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.{ts,tsx,jsx,mjs}']);
 
       const queue = new Queue(1);
       queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), options));
-      queue.await((err) => {
-        unlink(restore, (err2) => {
-          callback(err || err2);
-        });
-      });
-    });
+      queue.await((err) => unlink(restore, callback.bind(err)));
+    } catch (err) {
+      callback(err);
+    }
   });
 }
 
