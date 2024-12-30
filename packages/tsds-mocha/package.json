@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^1.5.7",
+    "cross-spawn-cb": "^1.5.8",
     "getopts-compat": "^2.2.5",
     "link-unlink": "^0.1.5",
     "mocha": "^11.0.1",
@@ -53,7 +53,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.0",
-    "ts-swc-loaders": "^1.8.2",
+    "ts-swc-loaders": "^1.8.3",
     "tsds-lib": "^1.9.4",
     "unixify": "^1.0.0"
   },

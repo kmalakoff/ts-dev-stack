@@ -46,7 +46,7 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^1.5.7",
+    "cross-spawn-cb": "^1.5.8",
     "get-tsconfig-compat": "^2.0.3",
     "lodash.camelcase": "4.3.0",
     "module-root-sync": "^0.1.1",
@@ -55,8 +55,8 @@
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.6.8",
-    "ts-swc-transform": "^1.9.7",
+    "ts-swc-rollup-plugin": "^1.6.9",
+    "ts-swc-transform": "^1.9.9",
     "tsds-lib": "^1.9.4"
   },
   "devDependencies": {

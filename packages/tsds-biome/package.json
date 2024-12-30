@@ -42,7 +42,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.5.7",
+    "cross-spawn-cb": "^1.5.8",
     "module-root-sync": "^0.1.1",
     "tsds-lib": "^1.9.4"
   },
