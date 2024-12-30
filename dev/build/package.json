@@ -7,8 +7,8 @@
     "format": "biome check --write --unsafe src/ scripts/"
   },
   "dependencies": {
-    "tsds-build": "^1.9.0",
-    "tsds-lib": "^1.8.8"
+    "tsds-build": "^1.9.1",
+    "tsds-lib": "^1.9.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",

@@ -9,7 +9,7 @@ import build from 'tsds-build';
 import { wrapWorker } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
-const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const root = moduleRoot(__dirname);
 const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';

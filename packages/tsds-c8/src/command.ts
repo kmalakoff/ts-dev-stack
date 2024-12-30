@@ -10,7 +10,7 @@ import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { installPath } from 'tsds-lib';
 
-const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 
 const major = +process.versions.node.split('.')[0];
 const config = path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json');

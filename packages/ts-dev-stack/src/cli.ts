@@ -5,7 +5,7 @@ import exit from 'exit';
 import getopts from 'getopts-compat';
 import runCommand from './runCommand.js';
 
-const _dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 
 export default function cli(argv, name) {
   if (argv.length === 0) {
