@@ -4,7 +4,7 @@ import url from 'url';
 import spawn from 'cross-spawn-cb';
 import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { wrapWorker } from 'tsds-lib';
 
@@ -18,7 +18,7 @@ function worker(_args, options, callback) {
   const configRoot = path.join(moduleRoot(__dirname), 'dist', 'esm', 'rollup');
 
   try {
-    const rollup = resolveBin.sync('rollup');
+    const rollup = resolveBin('rollup');
 
     const queue = new Queue(1);
     queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
