@@ -1,6 +1,8 @@
-// @ts-ignore
-import lazy from './lazy.cjs';
-const call = lazy('node-version-call');
+import Module from 'module';
+import lazy from 'lazy-cache';
+
+const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
+const call = lazy(_require)('node-version-call');
 
 export default function wrapWorker(workerPath: string) {
   return function workerWrapper(version, ...args) {

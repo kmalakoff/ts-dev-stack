@@ -8,7 +8,7 @@ import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import { installPath, wrapWorker } from 'tsds-lib';
 
-const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
 const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'command.js'));
 const config = path.resolve(moduleRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
@@ -20,7 +20,7 @@ function worker(args, options, callback) {
     if (err) return callback(err);
 
     try {
-      const wtr = resolveBin('@web/test-runner', { executable: 'wtr' });
+      const wtr = resolveBin('@web/test-runner', 'wtr');
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
       const spawnArgs = [wtr];
       if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);

@@ -1,3 +1,4 @@
+import Module from 'module';
 import path from 'path';
 import url from 'url';
 import getopts from 'getopts-compat';
@@ -6,14 +7,13 @@ import moduleRoot from 'module-root-sync';
 import resolve from 'resolve';
 import { constants, config } from 'tsds-lib';
 
-// @ts-ignore
-import lazy from './lazy.cjs';
-const _dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
+const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
+const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const root = moduleRoot(_dirname);
 
 function run(specifier, args, options, cb) {
   try {
-    const mod = lazy(specifier)();
+    const mod = _require(specifier);
     const fn = mod.default || mod;
     fn(args, options, cb);
   } catch (err) {

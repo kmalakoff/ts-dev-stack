@@ -1,3 +1,4 @@
+"use strict";
 //#region rolldown:runtime
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -5,9 +6,6 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function() {
-	return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
 var __copyProps = (to, from, except, desc) => {
 	if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
 		key = keys[i];
@@ -28,10 +26,13 @@ const path = __toESM(require("path"));
 const queue_cb = __toESM(require("queue-cb"));
 const rimraf2 = __toESM(require("rimraf2"));
 const fs = __toESM(require("fs"));
+const module$1 = __toESM(require("module"));
+const lazy_cache = __toESM(require("lazy-cache"));
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const module_root_sync = __toESM(require("module-root-sync"));
+const resolve_bin_sync = __toESM(require("resolve-bin-sync"));
 
 //#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
 const defaults = {
@@ -62,18 +63,12 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/lazy.cjs
-var require_lazy = __commonJS({ "../../packages/tsds-lib/dist/esm/lib/lazy.cjs"(exports, module) {
-	module.exports = require("lazy-cache")(require);
-} });
-
-//#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/wrapWorker.mjs
-var import_lazy = __toESM(require_lazy(), 1);
-const call = (0, import_lazy.default)("node-version-call");
+const _require = typeof require === "undefined" ? module$1.default.createRequire(require("url").pathToFileURL(__filename).href) : require;
+const call = (0, lazy_cache.default)(_require)("node-version-call");
 function wrapWorker(workerPath) {
 	return function workerWrapper$1(version, ...args) {
-		if (version === "local") return (0, import_lazy.default)(workerPath)().apply(null, args);
+		if (version === "local") return (0, lazy_cache.default)(workerPath)().apply(null, args);
 		const callback = args.pop();
 		try {
 			callback(null, call()({
@@ -128,34 +123,24 @@ else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dis
 
 //#endregion
 //#region ../../packages/tsds-build/dist/esm/lib/umd.mjs
-const __dirname$1 = path.default.dirname(typeof __filename !== "undefined" ? __filename : url.default.fileURLToPath(require("url").pathToFileURL(__filename).href));
+const __dirname$1 = path.default.dirname(typeof __filename === "undefined" ? url.default.fileURLToPath(require("url").pathToFileURL(__filename).href) : __filename);
 const major = +process.versions.node.split(".")[0];
 const workerWrapper = wrapWorker(path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "cjs", "build", "umd.js"));
-function worker(_args, options, cb) {
+function worker(_args, options, callback) {
 	const cwd = options.cwd || process.cwd();
 	const dest = path.default.join(cwd, "dist", "umd");
-	const queue = new queue_cb.default(1);
-	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
-	(() => {
-		const configPath = path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "esm", "rollup", "config.mjs");
-		const args = [
-			"rollup",
-			"--config",
-			configPath
-		];
-		queue.defer(cross_spawn_cb.default.bind(null, args[0], args.slice(1), { cwd }));
-	})();
-	(() => {
-		const configPath = path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "esm", "rollup", "config.min.mjs");
-		const args = [
-			"rollup",
-			"--config",
-			configPath
-		];
-		queue.defer(cross_spawn_cb.default.bind(null, args[0], args.slice(1), { cwd }));
-	})();
-	queue.defer(fs.default.writeFile.bind(null, path.default.join(dest, "package.json"), "{\"type\":\"commonjs\"}"));
-	queue.await(cb);
+	const configRoot = path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "esm", "rollup");
+	try {
+		const rollup = (0, resolve_bin_sync.default)("rollup");
+		const queue = new queue_cb.default(1);
+		queue.defer((cb) => (0, rimraf2.default)(dest, { disableGlob: true }, cb.bind(null, null)));
+		queue.defer(cross_spawn_cb.default.bind(null, rollup, ["--config", path.default.join(configRoot, "config.mjs")], options));
+		queue.defer(cross_spawn_cb.default.bind(null, rollup, ["--config", path.default.join(configRoot, "config.min.mjs")], options));
+		queue.defer(fs.default.writeFile.bind(null, path.default.join(dest, "package.json"), "{\"type\":\"commonjs\"}"));
+		queue.await(callback);
+	} catch (err) {
+		return callback(err);
+	}
 }
 function umd(args, options, cb) {
 	major < 14 ? workerWrapper("stable", args, options, cb) : worker(args, options, cb);
