@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib-test",
-  "version": "1.8.8",
+  "version": "1.9.1",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
