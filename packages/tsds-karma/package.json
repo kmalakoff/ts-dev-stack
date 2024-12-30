@@ -56,9 +56,9 @@
     "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
-    "resolve-bin": "^1.0.1",
+    "resolve-bin-sync": "^0.1.0",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.7.5",
+    "ts-swc-loaders": "^1.8.0",
     "tsds-lib": "^1.8.8",
     "webpack": "^5.97.1"
   },

@@ -1,11 +1,11 @@
 import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import docs from 'tsds-typedoc';
 
 export default function version(args, options, callback) {
   try {
-    const ghPages = resolveBin.sync('gh-pages');
+    const ghPages = resolveBin('gh-pages');
 
     const queue = new Queue(1);
     queue.defer(docs.bind(null, args, options));

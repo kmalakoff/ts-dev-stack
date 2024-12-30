@@ -4,7 +4,7 @@ import spawn from 'cross-spawn-cb';
 import { link, unlink } from 'link-unlink';
 import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
@@ -18,7 +18,7 @@ export default function karma(args, options, callback) {
     if (err) return callback(err);
 
     try {
-      const karma = resolveBin.sync('karma');
+      const karma = resolveBin('karma');
       const tests = args.length ? args[0] : 'test/**/*.test.*';
 
       const queue = new Queue(1);

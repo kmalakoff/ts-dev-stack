@@ -4,7 +4,7 @@ import spawn from 'cross-spawn-cb';
 import mkdirp from 'mkdirp-classic';
 import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { config, wrapWorker } from 'tsds-lib';
 
@@ -14,7 +14,7 @@ const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs',
 
 function worker(_args, options, callback) {
   try {
-    const typedoc = resolveBin.sync('typedoc');
+    const typedoc = resolveBin('typedoc');
     const source = config(options).source;
     const dest = path.resolve(process.cwd(), 'docs');
 
