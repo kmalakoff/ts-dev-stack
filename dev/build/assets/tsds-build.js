@@ -67,8 +67,9 @@ function config(options = {}) {
 const _require = typeof require === "undefined" ? module$1.default.createRequire(require("url").pathToFileURL(__filename).href) : require;
 const call = (0, lazy_cache.default)(_require)("node-version-call");
 function wrapWorker(workerPath) {
+	const workerLazy = (0, lazy_cache.default)(_require)(workerPath);
 	return function workerWrapper$1(version, ...args) {
-		if (version === "local") return (0, lazy_cache.default)(workerPath)().apply(null, args);
+		if (version === "local") return workerLazy().apply(null, args);
 		const callback = args.pop();
 		try {
 			callback(null, call()({
