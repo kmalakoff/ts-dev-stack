@@ -5,7 +5,7 @@ import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import { installPath, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
@@ -20,7 +20,7 @@ function worker(args, options, callback) {
     if (err) return callback(err);
 
     try {
-      const wtr = resolveBin.sync('@web/test-runner', { executable: 'wtr' });
+      const wtr = resolveBin('@web/test-runner', { executable: 'wtr' });
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
       const spawnArgs = [wtr];
       if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);

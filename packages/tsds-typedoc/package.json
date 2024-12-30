@@ -45,7 +45,7 @@
     "mkdirp-classic": "^0.5.3",
     "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
-    "resolve-bin": "^1.0.1",
+    "resolve-bin-sync": "^0.1.0",
     "rimraf2": "^2.8.2",
     "tsds-lib": "^1.8.8",
     "typedoc": "^0.27.6",
