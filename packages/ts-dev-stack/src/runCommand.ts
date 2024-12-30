@@ -25,11 +25,7 @@ export default function runCommand(name, args, options, cb) {
   const { commands } = config();
 
   const command = commands[name];
-  if (!command) {
-    throw new Error(name);
-
-    return cb(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
-  }
+  if (!command) return cb(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
 
   const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
   if (opts['dry-run']) return cb();

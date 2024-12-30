@@ -6,7 +6,7 @@ import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { installPath } from 'tsds-lib';
 
@@ -23,10 +23,9 @@ export default function c8(args, options, callback) {
     if (err) return callback(err);
 
     try {
-      const c8 = resolveBin.sync('c8');
-      const mocha = resolveBin.sync(mochaName);
-      const loaderPackagePath = resolve.sync('ts-swc-loaders/package.json');
-      const loader = path.join(path.dirname(loaderPackagePath), JSON.parse(fs.readFileSync(loaderPackagePath, 'utf8')).bin['ts-swc']);
+      const c8 = resolveBin('c8');
+      const mocha = resolveBin(mochaName);
+      const loader = resolveBin('ts-swc-loaders', 'ts-swc');
 
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
       const spawnArgs = [c8];

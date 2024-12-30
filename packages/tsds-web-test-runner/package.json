@@ -54,7 +54,7 @@
     "link-unlink": "^0.1.5",
     "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
-    "resolve-bin": "^1.0.1",
+    "resolve-bin-sync": "^0.1.0",
     "tsds-lib": "^1.8.8",
     "webpack-merge": "^6.0.1"
   },

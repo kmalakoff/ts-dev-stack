@@ -5,7 +5,7 @@ import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
@@ -18,9 +18,8 @@ export default function command(args, options, callback) {
     if (err) return callback(err);
 
     try {
-      const loaderPackagePath = resolve.sync('ts-swc-loaders/package.json');
-      const loader = path.join(path.dirname(loaderPackagePath), JSON.parse(fs.readFileSync(loaderPackagePath, 'utf8')).bin['ts-swc']);
-      const mocha = resolveBin.sync(mochaName);
+      const loader = resolveBin('ts-swc-loaders', 'ts-swc');
+      const mocha = resolveBin(mochaName);
 
       const { _ } = getopts(args, { stopEarly: true, alias: {} });
       const spawnArgs = [mocha, '--watch-extensions', 'ts,tsx', ...args];

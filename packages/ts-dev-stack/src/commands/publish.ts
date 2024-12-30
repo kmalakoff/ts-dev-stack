@@ -3,7 +3,7 @@ import url from 'url';
 import spawn from 'cross-spawn-cb';
 import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
-import resolveBin from 'resolve-bin';
+import resolveBin from 'resolve-bin-sync';
 import format from 'tsds-biome';
 import build from 'tsds-build';
 import { wrapWorker } from 'tsds-lib';
@@ -24,9 +24,9 @@ const workerWrapper = wrapWorker(path.join(root, 'dist', 'cjs', 'commands', 'pub
 
 function worker(args, options, callback) {
   try {
-    const depcheck = resolveBin.sync('depcheck');
-    const sortPackageJSON = resolveBin.sync('sort-package-json');
-    const np = resolveBin.sync('np');
+    const depcheck = resolveBin('depcheck');
+    const sortPackageJSON = resolveBin('sort-package-json');
+    const np = resolveBin('np');
 
     const queue = new Queue(1);
     queue.defer(spawn.bind(null, depcheck, [], options));
