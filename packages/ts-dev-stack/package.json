@@ -39,7 +39,6 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
-    "depcheck": "depcheck",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
