@@ -12,14 +12,14 @@ const defaults = {
   commands: {
     build: 'tsds-build',
     coverage: 'tsds-c8',
-    publish: './commands/publish.js',
+    publish: './commands/publish.cjs',
     docs: 'tsds-typedoc',
     format: 'tsds-biome',
-    link: './commands/link.js',
+    link: './commands/link.cjs',
     'test:node': 'tsds-mocha',
     'test:browser': 'tsds-web-test-runner',
-    unlink: './commands/unlink.js',
-    version: './commands/version.js',
+    unlink: './commands/unlink.cjs',
+    version: './commands/version.cjs',
   },
 };
 
