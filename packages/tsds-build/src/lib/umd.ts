@@ -24,7 +24,6 @@ function worker(_args, options, callback) {
     queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
     queue.defer(spawn.bind(null, rollup, ['--config', path.join(configRoot, 'config.mjs')], options));
     queue.defer(spawn.bind(null, rollup, ['--config', path.join(configRoot, 'config.min.mjs')], options));
-    queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
     queue.await(callback);
   } catch (err) {
     return callback(err);
