@@ -10,7 +10,7 @@ import { wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
-const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'build', 'umd.js'));
+const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'build', 'umd'));
 
 function worker(_args, options, callback) {
   const cwd = options.cwd || process.cwd();

@@ -41,14 +41,14 @@ const defaults = {
 	commands: {
 		build: "tsds-build",
 		coverage: "tsds-c8",
-		publish: "./commands/publish.js",
+		publish: "./commands/publish.cjs",
 		docs: "tsds-typedoc",
 		format: "tsds-biome",
-		link: "./commands/link.js",
+		link: "./commands/link.cjs",
 		"test:node": "tsds-mocha",
 		"test:browser": "tsds-web-test-runner",
-		unlink: "./commands/unlink.js",
-		version: "./commands/version.js"
+		unlink: "./commands/unlink.cjs",
+		version: "./commands/version.cjs"
 	}
 };
 function config(options = {}) {
@@ -94,13 +94,16 @@ function transform(_args, type$1, options, cb) {
 	queue.defer((cb$1) => (0, ts_swc_transform.transformDirectory)(src, dest, type$1, {
 		...options,
 		type: type$1,
+		extensions: {
+			cjs: ".cjs",
+			esm: ".mjs"
+		},
 		sourceMaps: true
 	}, (err, results) => {
 		if (err) console.log(`${type$1} failed: ${err.message} from ${src}`);
-		else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `dist/${type$1}${x}`).join(",") : `${results.length} files in dist/${type$1}`}`);
+else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `dist/${type$1}${path.default.relative(dest, x)}`).join(",") : `${results.length} files in dist/${type$1}`}`);
 		cb$1(err);
 	}));
-	queue.defer(fs.default.writeFile.bind(null, path.default.join(dest, "package.json"), "{\"type\":\"commonjs\"}"));
 	queue.await(cb);
 }
 
@@ -116,7 +119,7 @@ function cjs(_args, options, cb) {
 	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
 	queue.defer((cb$1) => (0, ts_swc_transform.transformTypes)(src, dest, (err, results) => {
 		if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-		else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x}`).join(",") : `${results.length} files in dist/${type}`}`);
+else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${path.default.relative(dest, x)}`).join(",") : `${results.length} files in dist/${type}`}`);
 		cb$1(err);
 	}));
 	queue.await(cb);
@@ -126,7 +129,7 @@ function cjs(_args, options, cb) {
 //#region ../../packages/tsds-build/dist/esm/lib/umd.mjs
 const __dirname$1 = path.default.dirname(typeof __filename === "undefined" ? url.default.fileURLToPath(require("url").pathToFileURL(__filename).href) : __filename);
 const major = +process.versions.node.split(".")[0];
-const workerWrapper = wrapWorker(path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "cjs", "build", "umd.js"));
+const workerWrapper = wrapWorker(path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "cjs", "build", "umd"));
 function worker(_args, options, callback) {
 	const cwd = options.cwd || process.cwd();
 	const dest = path.default.join(cwd, "dist", "umd");
@@ -137,7 +140,6 @@ function worker(_args, options, callback) {
 		queue.defer((cb) => (0, rimraf2.default)(dest, { disableGlob: true }, cb.bind(null, null)));
 		queue.defer(cross_spawn_cb.default.bind(null, rollup, ["--config", path.default.join(configRoot, "config.mjs")], options));
 		queue.defer(cross_spawn_cb.default.bind(null, rollup, ["--config", path.default.join(configRoot, "config.min.mjs")], options));
-		queue.defer(fs.default.writeFile.bind(null, path.default.join(dest, "package.json"), "{\"type\":\"commonjs\"}"));
 		queue.await(callback);
 	} catch (err) {
 		return callback(err);
