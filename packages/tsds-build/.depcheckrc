@@ -1,1 +1,1 @@
-ignores: ["tsds-build", "@types/*", "@biomejs/*", "typescript", "rollup", "ts-swc-transform"]
+ignores: ["tsds-build", "@types/*", "@biomejs/*", "typescript", "rollup"]
