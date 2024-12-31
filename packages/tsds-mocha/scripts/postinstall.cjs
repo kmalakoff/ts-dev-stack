@@ -1,44 +1,42 @@
 #!/usr/bin/env node
 
-const path = require('path');
-const fs = require('fs');
-const Queue = require('queue-cb');
-const unixify = require('unixify');
-const resolve = require('resolve');
-
-function patchGlob(mocha, mochaCompat, callback) {
-  const filePath = path.join(mocha, 'lib', 'cli', 'lookup-files.js');
-  const mochaCompatPath = path.join(mochaCompat, 'vendor', 'glob');
-  const find = "require('glob')";
-  const replace = `require('${unixify(path.relative(path.dirname(filePath), mochaCompatPath))}')`;
-
-  fs.readFile(filePath, 'utf8', (err, contents) => {
-    if (err) return callback(err);
-    const newContents = contents.replace(find, replace);
-    if (contents === newContents) return callback(); // no change
-    fs.writeFile(filePath, newContents, 'utf8', (err) => {
-      if (err) return callback(err);
-      console.log(`Patched glob in: ${filePath}`);
-      callback();
-    });
-  });
-}
+var path = require('path');
+var fs = require('fs');
+var unixify = require('unixify');
+var resolve = require('resolve');
 
 function patch(callback) {
   try {
-    const mocha = path.dirname(resolve.sync('mocha/package.json'));
-    const mochaCompat = path.dirname(resolve.sync('mocha-compat/package.json'));
+    var mocha = path.dirname(resolve.sync('mocha/package.json'));
+    var mochaCompat = path.dirname(resolve.sync('mocha-compat/package.json'));
 
-    const queue = new Queue();
-    queue.defer(patchGlob.bind(null, mocha, mochaCompat));
-    queue.await(callback);
+    var filePath = path.join(mocha, 'lib', 'cli', 'lookup-files.js');
+    var mochaCompatPath = path.join(mochaCompat, 'vendor', 'glob');
+    var find = "require('glob')";
+    var replace = `require('${unixify(path.relative(path.dirname(filePath), mochaCompatPath))}')`;
+
+    fs.readFile(filePath, 'utf8', function (err, contents) {
+      if (err) return callback(err);
+      var newContents = contents.replace(find, replace);
+      if (contents === newContents) return callback(); // no change
+      fs.writeFile(filePath, newContents, 'utf8', function (err) {
+        if (err) return callback(err);
+        console.log(`Patched glob in: ${filePath}`);
+        callback();
+      });
+    });
   } catch (err) {
     return callback(err);
   }
 }
 
 // run patch
-patch((err) => {
-  !err || console.log(err.message);
-  process.exit(0);
+patch(function (err) {
+  if (err) {
+    console.log(`postinstall failed. Error: ${err.message}`);
+    process.exit(-1);
+  } else {
+    console.log('postinstall succeeded');
+    process.exit(0);
+  }
 });
