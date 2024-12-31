@@ -22,7 +22,7 @@ jobs:
       - run: npm uninstall ts-dev-stack node-version-use depcheck -g
       - run: npm install ts-dev-stack node-version-use depcheck -g
       - run: depcheck
-      - run: npm ci
+      - run: npm ci --foreground-scripts
       - run: npm install playwright
       - run: npx -y playwright install --with-deps
       # - run: npm run version
