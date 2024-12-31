@@ -17,7 +17,7 @@ export default function transform(_args, type, options, cb) {
   queue.defer((cb) =>
     transformDirectory(src, dest, type, { ...options, type, extensions: { cjs: '.cjs', esm: '.mjs' }, sourceMaps: true }, (err, results) => {
       if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-      else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x}`).join(',') : `${results.length} files in dist/${type}`}`);
+      else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}/${path.relative(dest, x)}`).join(',') : `${results.length} files in dist/${type}`}`);
       cb(err);
     })
   );

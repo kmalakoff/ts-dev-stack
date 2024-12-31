@@ -5,7 +5,7 @@ import camelcase from 'lodash.camelcase';
 import externals from 'rollup-plugin-node-externals';
 import swc from 'ts-swc-rollup-plugin';
 
-import { globals, input, pkg, tsconfig } from '../lib/rollingOptions.js';
+import { globals, input, pkg, tsconfig } from '../lib/rollingOptions';
 
 export default {
   input,

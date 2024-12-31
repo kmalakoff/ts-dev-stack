@@ -13,7 +13,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const root = moduleRoot(__dirname);
 const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';
-const workerWrapper = wrapWorker(path.join(root, 'dist', 'cjs', 'commands', 'publish.js'));
+const workerWrapper = wrapWorker(path.join(root, 'dist', 'cjs', 'commands', 'publish.cjs'));
 
 // TODO: use np options
 // const optionsNP = { alias: { 'no-publish': 'np', preview: 'p', yarn: 'y' } };
