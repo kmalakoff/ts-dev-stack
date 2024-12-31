@@ -18,7 +18,6 @@ function build(cb) {
   const queue = new Queue(1);
   queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
   queue.defer(spawn.bind(null, args[0], args.slice(1), { cwd }));
-  queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
   queue.await(cb);
 }
 

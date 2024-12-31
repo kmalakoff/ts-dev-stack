@@ -15,12 +15,11 @@ export default function transform(_args, type, options, cb) {
   const queue = new Queue(1);
   queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
   queue.defer((cb) =>
-    transformDirectory(src, dest, type, { ...options, type, sourceMaps: true }, (err, results) => {
+    transformDirectory(src, dest, type, { ...options, type, extensions: { cjs: '.cjs', esm: '.mjs' }, sourceMaps: true }, (err, results) => {
       if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-      else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x.to}`).join(',') : `${results.length} files in dist/${type}`}`);
+      else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}${x}`).join(',') : `${results.length} files in dist/${type}`}`);
       cb(err);
     })
   );
-  queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), '{"type":"commonjs"}'));
   queue.await(cb);
 }
