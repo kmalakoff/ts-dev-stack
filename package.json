@@ -15,7 +15,7 @@
     "version": "cd packages && ep -d1 -c100 npm run version"
   },
   "dependencies": {
-    "each-package": "^0.7.3",
+    "each-package": "^0.8.0",
     "lerna": "^8.1.9"
   }
 }
