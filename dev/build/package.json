@@ -7,13 +7,13 @@
     "format": "biome check --write --unsafe src/ scripts/"
   },
   "dependencies": {
-    "tsds-build": "^1.11.2",
+    "tsds-build": "^1.11.3",
     "tsds-lib": "^1.11.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.2",
-    "cross-spawn-cb": "^1.5.8",
+    "@types/node": "^22.10.3",
+    "cross-spawn-cb": "^2.0.0",
     "queue-cb": "^1.4.4",
     "rimraf2": "^2.8.2",
     "rolldown": "^1.0.0-beta.1"

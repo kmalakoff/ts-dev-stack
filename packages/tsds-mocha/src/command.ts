@@ -27,8 +27,9 @@ export default function command(args, options, callback) {
 
       const queue = new Queue(1);
       queue.defer(spawn.bind(null, loader, spawnArgs, options));
-      queue.await((err) => unlink(restore, callback.bind(err)));
+      queue.await((err) => unlink(restore, callback.bind(null, err)));
     } catch (err) {
+      console.log(err);
       callback(err);
     }
   });
