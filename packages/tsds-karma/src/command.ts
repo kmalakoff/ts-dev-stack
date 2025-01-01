@@ -23,7 +23,7 @@ export default function karma(args, options, callback) {
 
       const queue = new Queue(1);
       queue.defer(spawn.bind(null, karma, ['start', config, tests], options));
-      queue.await((err) => unlink(restore, callback.bind(err)));
+      queue.await((err) => unlink(restore, callback.bind(null, err)));
     } catch (err) {
       callback(err);
     }
