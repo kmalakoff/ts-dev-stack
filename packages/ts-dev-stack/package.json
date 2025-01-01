@@ -80,7 +80,7 @@
   "engines": {
     "node": ">=0.8"
   },
-  "gitHead": "5d936c167b89e3ac836c29d08eba26fa0fab3b92",
+  "gitHead": "fe6e20748ee8ca42fcd143445c0dab1f06710a86",
   "tsds": {
     "source": "src/index.ts"
   }
