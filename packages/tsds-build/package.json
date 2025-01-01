@@ -45,7 +45,7 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^1.5.8",
+    "cross-spawn-cb": "^2.0.0",
     "get-tsconfig-compat": "^2.0.3",
     "lodash.camelcase": "4.3.0",
     "module-root-sync": "^0.1.1",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "rolldown": "^1.0.0-beta.1",
     "typescript": "^5.7.2"
   },

@@ -29,7 +29,7 @@ function worker(args, options, callback) {
 
       const queue = new Queue(1);
       queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), options));
-      queue.await((err) => unlink(restore, callback.bind(err)));
+      queue.await((err) => unlink(restore, callback.bind(null, err)));
     } catch (err) {
       callback(err);
     }

@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^1.5.8",
+    "cross-spawn-cb": "^2.0.0",
     "getopts-compat": "^2.2.5",
     "link-unlink": "^0.1.5",
     "mocha": "^11.0.1",
@@ -59,7 +59,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "typescript": "^5.7.2"
   },
   "engines": {

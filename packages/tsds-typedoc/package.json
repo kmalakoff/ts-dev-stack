@@ -40,7 +40,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^1.5.8",
+    "cross-spawn-cb": "^2.0.0",
     "mkdirp-classic": "^0.5.3",
     "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "typescript": "^5.7.2"
   },
   "engines": {
