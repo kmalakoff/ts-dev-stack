@@ -7,7 +7,7 @@
     "format": "biome check --write --unsafe src/ scripts/"
   },
   "dependencies": {
-    "tsds-build": "^1.11.1",
+    "tsds-build": "^1.11.2",
     "tsds-lib": "^1.11.1"
   },
   "devDependencies": {
