@@ -12,7 +12,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const major = +process.versions.node.split('.')[0];
 const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'command'));
 
-function worker(_args, options, callback) {
+function worker(args, options, callback) {
   try {
     const typedoc = resolveBin('typedoc');
     const source = config(options).source;
@@ -21,7 +21,7 @@ function worker(_args, options, callback) {
     const queue = new Queue(1);
     queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
     queue.defer(mkdirp.bind(null, dest));
-    queue.defer(spawn.bind(null, typedoc, [source], options));
+    queue.defer(spawn.bind(null, typedoc, [source, ...args, '--excludeExternals', 'true'], options));
     queue.await(callback);
   } catch (err) {
     return callback(err);
