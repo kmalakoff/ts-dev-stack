@@ -10,8 +10,8 @@ function patch(callback) {
     var mocha = path.dirname(resolve.sync('mocha/package.json'));
     var mochaCompat = path.dirname(resolve.sync('mocha-compat/package.json'));
 
-    var filePath = path.join(mocha, 'lib', 'cli', 'lookup-files.js');
-    var mochaCompatPath = path.join(mochaCompat, 'vendor', 'glob');
+    var filePath = fs.realpathSync(path.join(mocha, 'lib', 'cli', 'lookup-files.js'));
+    var mochaCompatPath = fs.realpathSync(path.join(mochaCompat, 'vendor', 'glob'));
     var find = "require('glob')";
     var replace = `require('${unixify(path.relative(path.dirname(filePath), mochaCompatPath))}')`;
 
