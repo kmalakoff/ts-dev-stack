@@ -40,7 +40,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.0.1",
+    "cross-spawn-cb": "^2.0.3",
     "mkdirp-classic": "^0.5.3",
     "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
