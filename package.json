@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "depcheck": "cd packages && ep -d1 -c100 npm run depcheck",
+    "docs": "cd packages && ep -d1 -c100 npm run docs",
     "format": "cd packages && ep -d1 -c100 npm run format",
     "test": "cd packages/ts-dev-stack && npm run test",
     "test:engines": "cd packages/ts-dev-stack && npm run test",
