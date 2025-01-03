@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
+    "docs": "tsds docs",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
