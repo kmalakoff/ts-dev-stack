@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.11.14",
+  "version": "1.11.15",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -54,7 +54,7 @@
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.0",
     "ts-swc-loaders": "^1.9.2",
-    "tsds-lib": "^1.11.14",
+    "tsds-lib": "^1.11.15",
     "unixify": "^1.0.0"
   },
   "devDependencies": {
