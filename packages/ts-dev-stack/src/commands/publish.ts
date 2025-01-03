@@ -28,7 +28,7 @@ function worker(args, options, callback) {
     const sortPackageJSON = resolveBin('sort-package-json');
     const np = resolveBin('np');
 
-    const npOptions = { boolean: ['yolo', 'preview', 'yarn'], default: { yarn: false } } as NPOptions;
+    const { _, ...npOptions } = getopts(args, { boolean: ['yolo', 'preview', 'yarn'], default: { yarn: false } });
     const npArgs = [];
     if (npOptions.yolo) npArgs.push('--yolo');
     if (npOptions.preview) npArgs.push('--preview');
@@ -36,10 +36,10 @@ function worker(args, options, callback) {
 
     const queue = new Queue(1);
     queue.defer(spawn.bind(null, depcheck, [], options));
-    queue.defer(format.bind(null, args, options));
-    queue.defer(build.bind(null, args, options));
+    queue.defer(format.bind(null, [], options));
+    queue.defer(build.bind(null, _, options));
     queue.defer(spawn.bind(null, sortPackageJSON, [], options));
-    queue.defer(docs.bind(null, args, options));
+    queue.defer(docs.bind(null, [], options));
     queue.defer(spawn.bind(null, np, npArgs, options));
     queue.await(callback);
   } catch (err) {
