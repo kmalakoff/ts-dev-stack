@@ -1,10 +1,7 @@
-import fs from 'fs';
-import path from 'path';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
-import resolve from 'resolve';
 import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
