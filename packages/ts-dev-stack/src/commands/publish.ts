@@ -16,12 +16,6 @@ const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';
 const workerWrapper = wrapWorker(path.join(root, 'dist', 'cjs', 'commands', 'publish.cjs'));
 
-interface NPOptions {
-  yolo?: boolean;
-  preview?: boolean;
-  yarn?: boolean;
-}
-
 function worker(args, options, callback) {
   try {
     const depcheck = resolveBin('depcheck');
