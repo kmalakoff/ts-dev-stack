@@ -52,14 +52,14 @@
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.0",
-    "ts-swc-loaders": "^1.9.0",
+    "ts-swc-loaders": "^1.9.1",
     "tsds-lib": "^1.11.10",
     "unixify": "^1.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.4",
+    "@types/node": "^22.10.5",
     "typescript": "^5.7.2"
   },
   "engines": {
