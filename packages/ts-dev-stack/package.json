@@ -45,7 +45,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.0.1",
+    "cross-spawn-cb": "^2.0.3",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "gh-pages": "^6.3.0",

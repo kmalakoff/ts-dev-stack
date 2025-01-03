@@ -33,7 +33,7 @@ function patch(callback) {
 // run patch
 patch(function (err) {
   if (err) {
-    console.log(`postinstall failed. Error: ${err.message}`);
+    console.log('postinstall failed. Error: ' + err.message);
     process.exit(-1);
   } else {
     console.log('postinstall succeeded');
