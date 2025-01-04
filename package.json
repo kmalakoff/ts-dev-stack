@@ -17,5 +17,12 @@
   "dependencies": {
     "each-package": "^0.8.3",
     "lerna": "^8.1.9"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.5"
+  },
+  "tsds": {
+    "source": "src/index.ts"
   }
 }
