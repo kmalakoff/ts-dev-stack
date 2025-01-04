@@ -34,6 +34,7 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
+    "clean": "node -e \"const dir = require('path').join(require('os').homedir(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "tsds docs",
     "format": "biome check --write --unsafe src/",
     "test": "",
@@ -54,8 +55,8 @@
   "engines": {
     "node": ">=0.8"
   },
+  "gitHead": "6351d2f9fe10282485467d05036a55315bd6d9d9",
   "tsds": {
     "source": "src/index.ts"
-  },
-  "gitHead": "6351d2f9fe10282485467d05036a55315bd6d9d9"
+  }
 }
