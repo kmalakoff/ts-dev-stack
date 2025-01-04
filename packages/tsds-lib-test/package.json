@@ -41,8 +41,8 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.0.3",
-    "fs-access-compat": "^1.0.3",
+    "cross-spawn-cb": "^2.0.4",
+    "fs-access-compat": "^1.1.0",
     "mkdirp-classic": "^0.5.3",
     "queue-cb": "^1.4.4",
     "rimraf2": "^2.8.2"

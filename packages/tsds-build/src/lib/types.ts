@@ -9,7 +9,7 @@ const type = 'types';
 
 export default function cjs(_args, options, cb) {
   const cwd = options.cwd || process.cwd();
-  const src = path.dirname(path.resolve(cwd, config(options).source));
+  const src = path.dirname(path.join(cwd, config(options).source));
   const dest = path.join(cwd, 'dist', type);
 
   const queue = new Queue(1);

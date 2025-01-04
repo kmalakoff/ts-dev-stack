@@ -19,6 +19,7 @@ const defaults = {
     'test:node': 'tsds-mocha',
     'test:browser': 'tsds-web-test-runner',
     unlink: './commands/unlink.cjs',
+    validate: './commands/validate.cjs',
     version: './commands/version.cjs',
   },
 };
@@ -26,7 +27,7 @@ const defaults = {
 export default function config(options: ConfigOptions = {}) {
   if (options.config) return options.config;
   const cwd = options.cwd || process.cwd();
-  const tsds = JSON.parse(fs.readFileSync(path.resolve(cwd, 'package.json'), 'utf8')).tsds || {};
+  const tsds = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8')).tsds || {};
   if (!tsds.source) console.log('Using default source: src/index.ts. Add "tsds": { "source": "src/index.ts" } to your package.json');
   return { ...defaults, ...tsds };
 }

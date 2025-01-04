@@ -3,15 +3,15 @@ import url from 'url';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
-import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import { installPath, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
-const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'command'));
-const config = path.resolve(moduleRoot(__dirname), 'dist', 'esm', 'wtr.config.mjs');
+const dist = path.join(__dirname, '..');
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command'));
+const config = path.join(dist, 'esm', 'wtr.config.mjs');
 
 function worker(args, options, callback) {
   const cwd = options.cwd || process.cwd();

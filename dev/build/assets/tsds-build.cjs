@@ -31,7 +31,6 @@ const lazy_cache = __toESM(require("lazy-cache"));
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
-const module_root_sync = __toESM(require("module-root-sync"));
 const resolve_bin_sync = __toESM(require("resolve-bin-sync"));
 
 //#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
@@ -48,13 +47,14 @@ const defaults = {
 		"test:node": "tsds-mocha",
 		"test:browser": "tsds-web-test-runner",
 		unlink: "./commands/unlink.cjs",
+		validate: "./commands/validate.cjs",
 		version: "./commands/version.cjs"
 	}
 };
 function config(options = {}) {
 	if (options.config) return options.config;
 	const cwd = options.cwd || process.cwd();
-	const tsds = JSON.parse(fs.default.readFileSync(path.default.resolve(cwd, "package.json"), "utf8")).tsds || {};
+	const tsds = JSON.parse(fs.default.readFileSync(path.default.join(cwd, "package.json"), "utf8")).tsds || {};
 	if (!tsds.source) console.log("Using default source: src/index.ts. Add \"tsds\": { \"source\": \"src/index.ts\" } to your package.json");
 	return {
 		...defaults,
@@ -65,14 +65,14 @@ function config(options = {}) {
 //#endregion
 //#region ../../packages/tsds-lib/dist/esm/lib/wrapWorker.mjs
 const _require = typeof require === "undefined" ? module$1.default.createRequire(require("url").pathToFileURL(__filename).href) : require;
-const call = (0, lazy_cache.default)(_require)("node-version-call");
+const callLazy = (0, lazy_cache.default)(_require)("node-version-call");
 function wrapWorker(workerPath) {
 	const workerLazy = (0, lazy_cache.default)(_require)(workerPath);
 	return function workerWrapper$1(version, ...args) {
 		if (version === "local") return workerLazy().apply(null, args);
 		const callback = args.pop();
 		try {
-			callback(null, call()({
+			callback(null, callLazy()({
 				version,
 				callbacks: true
 			}, workerPath, ...args));
@@ -87,7 +87,7 @@ function wrapWorker(workerPath) {
 const MAX_FILES$1 = 10;
 function transform(_args, type$1, options, cb) {
 	const cwd = options.cwd || process.cwd();
-	const src = path.default.dirname(path.default.resolve(cwd, config(options).source));
+	const src = path.default.dirname(path.default.join(cwd, config(options).source));
 	const dest = path.default.join(cwd, "dist", type$1);
 	const queue = new queue_cb.default(1);
 	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
@@ -113,7 +113,7 @@ const MAX_FILES = 10;
 const type = "types";
 function cjs(_args, options, cb) {
 	const cwd = options.cwd || process.cwd();
-	const src = path.default.dirname(path.default.resolve(cwd, config(options).source));
+	const src = path.default.dirname(path.default.join(cwd, config(options).source));
 	const dest = path.default.join(cwd, "dist", type);
 	const queue = new queue_cb.default(1);
 	queue.defer((cb$1) => (0, rimraf2.default)(dest, { disableGlob: true }, cb$1.bind(null, null)));
@@ -129,11 +129,12 @@ else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dis
 //#region ../../packages/tsds-build/dist/esm/lib/umd.mjs
 const __dirname$1 = path.default.dirname(typeof __filename === "undefined" ? url.default.fileURLToPath(require("url").pathToFileURL(__filename).href) : __filename);
 const major = +process.versions.node.split(".")[0];
-const workerWrapper = wrapWorker(path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "cjs", "build", "umd"));
+const dist = path.default.join(__dirname$1, "..", "..");
+const workerWrapper = wrapWorker(path.default.join(dist, "cjs", "build", "umd"));
 function worker(_args, options, callback) {
 	const cwd = options.cwd || process.cwd();
 	const dest = path.default.join(cwd, "dist", "umd");
-	const configRoot = path.default.join((0, module_root_sync.default)(__dirname$1), "dist", "esm", "rollup");
+	const configRoot = path.default.join(dist, "esm", "rollup");
 	try {
 		const rollup = (0, resolve_bin_sync.default)("rollup");
 		const queue = new queue_cb.default(1);

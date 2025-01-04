@@ -13,7 +13,7 @@ fs.writeFileSync(`${tsconfig.path}.es5`, JSON.stringify(tsconfig.config), 'utf8'
 export default defineConfig({
   input,
   output: {
-    file: path.resolve(process.cwd(), 'dist', 'umd', `${pkg.name}.cjs`),
+    file: path.join(process.cwd(), 'dist', 'umd', `${pkg.name}.cjs`),
     format: 'umd',
     sourcemap: true,
     name: camelcase(pkg.name),
