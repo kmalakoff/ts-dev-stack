@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
