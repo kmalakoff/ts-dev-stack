@@ -10,8 +10,8 @@
     "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.0",
     "ts-swc-transform": "^1.12.4",
-    "tsds-build": "^1.11.16",
-    "tsds-lib": "^1.11.15"
+    "tsds-build": "^1.11.17",
+    "tsds-lib": "^1.11.17"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
