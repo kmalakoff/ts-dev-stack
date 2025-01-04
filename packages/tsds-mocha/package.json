@@ -34,7 +34,6 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
-    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "tsds docs",
     "format": "biome check --write --unsafe src/ && biome check --config-path biome.es5.json --write --unsafe scripts/",
     "postinstall": "node ./scripts/postinstall.cjs",

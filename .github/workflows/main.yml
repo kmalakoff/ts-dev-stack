@@ -22,8 +22,8 @@ jobs:
       - run: npm install ts-dev-stack node-version-use -g
       - run: npm install depcheck -g
       - run: depcheck
-      - run: npm install homedir-polyfill
-      - run: npm run clean
+      - run: npm install install-module-linked
+      - run: im clean
       - run: npm ci
       - run: npm install playwright
       - run: npx -y playwright install --with-deps

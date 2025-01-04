@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "build": "node scripts/assets.mjs",
     "format": "biome check --write --unsafe src/ scripts/"
   },
@@ -12,8 +11,8 @@
     "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.4",
     "ts-swc-transform": "^1.12.10",
-    "tsds-build": "^1.11.22",
-    "tsds-lib": "^1.11.22"
+    "tsds-build": "^1.12.0",
+    "tsds-lib": "^1.12.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
