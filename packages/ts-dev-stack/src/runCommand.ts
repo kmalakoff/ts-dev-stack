@@ -3,13 +3,13 @@ import path from 'path';
 import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
-import moduleRoot from 'module-root-sync';
 import resolve from 'resolve';
 import { constants, config } from 'tsds-lib';
 
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
-const root = moduleRoot(_dirname);
+const dist = path.join(_dirname, '..');
+const nodeModules = path.join(_dirname, '..', '..', 'node_modules');
 
 function run(specifier, args, options, cb) {
   try {
@@ -37,12 +37,12 @@ export default function runCommand(name, args, options, cb) {
       resolve.sync(path.join(command, 'package.json'));
       return run(command, args, runOptions, cb);
     } catch (_err) {
-      return installModule(command, path.join(root, 'node_modules'), (err) => {
+      return installModule(command, nodeModules, (err) => {
         console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
         err ? cb(err) : run(command, args, runOptions, cb);
       });
     }
   }
   // for relative files, ensure the extension matches
-  return run(path.resolve(root, 'dist', 'cjs', command), args, runOptions, cb);
+  return run(path.join(dist, 'cjs', command), args, runOptions, cb);
 }

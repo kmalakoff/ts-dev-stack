@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.0.3",
+    "cross-spawn-cb": "^2.0.4",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-mocha": "^2.0.1",
@@ -53,12 +53,11 @@
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
     "link-unlink": "^0.1.5",
-    "module-root-sync": "^0.1.1",
     "queue-cb": "^1.4.4",
     "regenerator-runtime": "^0.14.1",
     "resolve-bin-sync": "^0.1.0",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.9.3",
+    "ts-swc-loaders": "^1.10.3",
     "tsds-lib": "^1.11.15",
     "webpack": "^5.97.1"
   },

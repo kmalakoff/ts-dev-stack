@@ -33,7 +33,7 @@ export default function c8(args, options, callback) {
       Array.prototype.push(spawnArgs, [mocha, '--watch-extensions', 'ts,tsx']);
       Array.prototype.push(spawnArgs, args);
       if (_.length === 0) Array.prototype.push.apply(spawnArgs, [['test/**/*.test.*']]);
-      const dest = path.resolve(cwd, 'coverage');
+      const dest = path.join(cwd, 'coverage');
 
       const queue = new Queue(1);
       queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
