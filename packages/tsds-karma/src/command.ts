@@ -2,14 +2,12 @@ import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 import { link, unlink } from 'link-unlink';
-import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
-
-const config = path.join(moduleRoot(__dirname), 'assets', 'karma.conf.cjs');
+const config = path.join(__dirname, '..', '..', 'assets', 'karma.conf.cjs');
 
 export default function karma(args, options, callback) {
   const cwd = options.cwd || process.cwd();
