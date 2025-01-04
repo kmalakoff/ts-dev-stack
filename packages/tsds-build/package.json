@@ -46,16 +46,16 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^2.0.4",
+    "cross-spawn-cb": "^2.0.6",
     "get-tsconfig-compat": "^2.0.3",
     "lodash.camelcase": "4.3.0",
-    "queue-cb": "^1.4.4",
-    "resolve-bin-sync": "^0.1.0",
+    "queue-cb": "^1.4.7",
+    "resolve-bin-sync": "^0.1.2",
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.8.2",
-    "ts-swc-transform": "^1.12.4",
+    "ts-swc-rollup-plugin": "^1.8.4",
+    "ts-swc-transform": "^1.12.5",
     "tsds-lib": "^1.11.17"
   },
   "devDependencies": {

@@ -18,7 +18,7 @@ function worker(args, options, callback) {
     const np = resolveBin('np');
 
     const { _, ...npOptions } = getopts(args, { boolean: ['yolo', 'preview', 'yarn'], default: { yarn: false } });
-    const npArgs = [];
+    const npArgs = ['--no-release-draft'];
     if (npOptions.yolo) npArgs.push('--yolo');
     if (npOptions.preview) npArgs.push('--preview');
     if (!npOptions.yarn) npArgs.push('--no-yarn');
