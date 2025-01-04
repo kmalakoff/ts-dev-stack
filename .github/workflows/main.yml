@@ -22,7 +22,7 @@ jobs:
       - run: npm install ts-dev-stack node-version-use -g
       - run: npm install depcheck -g
       - run: depcheck
-      - run: npm install install-module-linked
+      - run: npm install install-module-linked -g
       - run: im clean
       - run: npm ci
       - run: npm install playwright
