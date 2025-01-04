@@ -41,10 +41,10 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.0.4",
+    "cross-spawn-cb": "^2.0.6",
     "mkdirp-classic": "^0.5.3",
-    "queue-cb": "^1.4.4",
-    "resolve-bin-sync": "^0.1.0",
+    "queue-cb": "^1.4.7",
+    "resolve-bin-sync": "^0.1.2",
     "rimraf2": "^2.8.2",
     "tsds-lib": "^1.11.17",
     "typedoc": "^0.27.6",
