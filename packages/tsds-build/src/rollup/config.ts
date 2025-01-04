@@ -10,7 +10,7 @@ import { globals, input, pkg, tsconfig } from '../lib/rollingOptions';
 export default {
   input,
   output: {
-    file: path.resolve(process.cwd(), 'dist', 'umd', `${pkg.name}.cjs`),
+    file: path.join(process.cwd(), 'dist', 'umd', `${pkg.name}.cjs`),
     format: 'umd',
     sourcemap: true,
     name: camelcase(pkg.name),
