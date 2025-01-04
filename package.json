@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
+    "clean": "node -e \"const dir = require('path').join(require('os').homedir(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "cd packages && ep -d1 -c100 npm run docs",
     "format": "cd packages && ep -d1 -c100 npm run format",
     "test": "cd packages/ts-dev-stack && npm run test",
