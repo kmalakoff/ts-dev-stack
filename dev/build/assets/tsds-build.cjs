@@ -33,7 +33,7 @@ const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const resolve_bin_sync = __toESM(require("resolve-bin-sync"));
 
-//#region node_modules/tsds-lib/dist/esm/lib/config.mjs
+//#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
 const defaults = {
 	source: "src/index.ts",
 	targets: ["cjs", "esm"],
@@ -63,7 +63,7 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region node_modules/tsds-lib/dist/esm/lib/wrapWorker.mjs
+//#region ../../packages/tsds-lib/dist/esm/lib/wrapWorker.mjs
 const _require = typeof require === "undefined" ? module$1.default.createRequire(require("url").pathToFileURL(__filename).href) : require;
 const callLazy = (0, lazy_cache.default)(_require)("node-version-call");
 function wrapWorker(workerPath) {
@@ -83,7 +83,7 @@ function wrapWorker(workerPath) {
 }
 
 //#endregion
-//#region node_modules/tsds-build/dist/esm/lib/code.mjs
+//#region ../../packages/tsds-build/dist/esm/lib/code.mjs
 const MAX_FILES$1 = 10;
 function transform(_args, type$1, options, cb) {
 	const cwd = options.cwd || process.cwd();
@@ -108,7 +108,7 @@ else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `d
 }
 
 //#endregion
-//#region node_modules/tsds-build/dist/esm/lib/types.mjs
+//#region ../../packages/tsds-build/dist/esm/lib/types.mjs
 const MAX_FILES = 10;
 const type = "types";
 function cjs(_args, options, cb) {
@@ -126,7 +126,7 @@ else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dis
 }
 
 //#endregion
-//#region node_modules/tsds-build/dist/esm/lib/umd.mjs
+//#region ../../packages/tsds-build/dist/esm/lib/umd.mjs
 const __dirname$1 = path.default.dirname(typeof __filename === "undefined" ? url.default.fileURLToPath(require("url").pathToFileURL(__filename).href) : __filename);
 const major = +process.versions.node.split(".")[0];
 const dist = path.default.join(__dirname$1, "..", "..");
@@ -151,7 +151,7 @@ function umd(args, options, cb) {
 }
 
 //#endregion
-//#region node_modules/tsds-build/dist/esm/command.mjs
+//#region ../../packages/tsds-build/dist/esm/command.mjs
 function build(args, options, cb) {
 	const cwd = options.cwd || process.cwd();
 	const { targets } = config(options);
