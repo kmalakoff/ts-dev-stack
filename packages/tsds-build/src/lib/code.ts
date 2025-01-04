@@ -9,7 +9,7 @@ const MAX_FILES = 10;
 
 export default function transform(_args, type, options, cb) {
   const cwd = options.cwd || process.cwd();
-  const src = path.dirname(path.resolve(cwd, config(options).source));
+  const src = path.dirname(path.join(cwd, config(options).source));
   const dest = path.join(cwd, 'dist', type);
 
   const queue = new Queue(1);

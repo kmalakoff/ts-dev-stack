@@ -24,7 +24,7 @@ function addTests(repo) {
   const repoName = path.basename(repo, path.extname(repo));
   describe(repoName, () => {
     const dest = path.join(os.tmpdir(), 'ts-dev-stack', shortHash(process.cwd()), repoName);
-    const modulePath = fs.realpathSync(path.resolve(__dirname, '..', '..'));
+    const modulePath = fs.realpathSync(path.join(__dirname, '..', '..'));
     const modulePackage = JSON.parse(fs.readFileSync(path.join(modulePath, 'package.json'), 'utf8'));
     const nodeModules = path.join(dest, 'node_modules');
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
@@ -97,6 +97,12 @@ function addTests(repo) {
       });
       it('docs', (done) => {
         runCommand('docs', [], { cwd: dest }, (err) => {
+          assert.ok(!err, err ? err.message : '');
+          done();
+        });
+      });
+      it('validate', (done) => {
+        runCommand('validate', ['--dry-run'], { cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });
