@@ -3,17 +3,18 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*",
-    "dev/*"
+    "dev/*",
+    "packages/*"
   ],
   "scripts": {
     "build": "lerna run build",
-    "clean": "node -e \"const dir = require('path').join(require('os').homedir(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
-    "docs": "cd packages && ep -d1 -c100 npm run docs",
-    "format": "cd packages && ep -d1 -c100 npm run format",
+    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
+    "docs": "lerna run docs",
+    "format": "lerna run format",
+    "postinstall": "lerna exec --parallel -- npm install",
     "test": "cd packages/ts-dev-stack && npm run test",
     "test:engines": "cd packages/ts-dev-stack && npm run test",
-    "version": "cd packages && ep -d1 -c100 npm run version"
+    "version": "lerna run version"
   },
   "dependencies": {
     "each-package": "^0.8.7",

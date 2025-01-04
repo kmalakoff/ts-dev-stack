@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.11.22",
+  "version": "1.11.23",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
-    "clean": "node -e \"const dir = require('path').join(require('os').homedir(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
+    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "tsds docs",
     "format": "biome check --write --unsafe src/",
     "test": "",
@@ -52,10 +52,10 @@
     "assert": "1.5.0",
     "cross-spawn-cb": "^2.0.13",
     "getopts-compat": "^2.2.5",
-    "link-unlink": "^0.1.9",
-    "queue-cb": "^1.4.9",
-    "resolve-bin-sync": "^0.1.3",
-    "tsds-lib": "^1.11.22",
+    "link-unlink": "^0.1.11",
+    "queue-cb": "^1.4.10",
+    "resolve-bin-sync": "^0.1.4",
+    "tsds-lib": "^1.11.23",
     "webpack-merge": "^6.0.1"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib-test",
-  "version": "1.11.22",
+  "version": "1.11.23",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
-    "clean": "node -e \"const dir = require('path').join(require('os').homedir(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
+    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "tsds docs",
     "format": "biome check --write --unsafe src/",
     "test": "",
@@ -45,7 +45,7 @@
     "cross-spawn-cb": "^2.0.13",
     "fs-access-compat": "^1.1.4",
     "mkdirp-classic": "^0.5.3",
-    "queue-cb": "^1.4.9",
+    "queue-cb": "^1.4.10",
     "rimraf2": "^2.8.2"
   },
   "devDependencies": {
