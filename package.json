@@ -11,7 +11,6 @@
     "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "lerna run docs",
     "format": "lerna run format",
-    "postinstall": "lerna exec --parallel -- npm install",
     "test": "cd packages/ts-dev-stack && npm run test",
     "test:engines": "cd packages/ts-dev-stack && npm run test",
     "version": "lerna run version"
