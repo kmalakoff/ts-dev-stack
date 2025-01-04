@@ -39,7 +39,6 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
-    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "tsds docs",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
@@ -51,7 +50,7 @@
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.5",
     "gh-pages": "^6.3.0",
-    "install-module-linked": "^1.0.7",
+    "install-module-linked": "^1.1.0",
     "link-unlink": "^0.1.11",
     "np": "^10.1.0",
     "queue-cb": "^1.4.10",
