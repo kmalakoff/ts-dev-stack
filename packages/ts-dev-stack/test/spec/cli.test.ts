@@ -15,14 +15,14 @@ import { installGitRepo } from 'tsds-lib-test';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
-const CLI = path.resolve(__dirname, '..', '..', 'bin', 'cli.cjs');
+const CLI = path.join(__dirname, '..', '..', 'bin', 'cli.cjs');
 const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 
 function addTests(repo) {
   const repoName = path.basename(repo, path.extname(repo));
   describe(repoName, () => {
     const dest = path.join(os.tmpdir(), 'ts-dev-stack', shortHash(process.cwd()), repoName);
-    const modulePath = fs.realpathSync(path.resolve(__dirname, '..', '..'));
+    const modulePath = fs.realpathSync(path.join(__dirname, '..', '..'));
     const modulePackage = JSON.parse(fs.readFileSync(path.join(modulePath, 'package.json'), 'utf8'));
     const nodeModules = path.join(dest, 'node_modules');
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
@@ -95,6 +95,12 @@ function addTests(repo) {
       });
       it('docs', (done) => {
         spawn(CLI, ['docs', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
+          assert.ok(!err, err ? err.message : '');
+          done();
+        });
+      });
+      it('validate', (done) => {
+        spawn(CLI, ['validate', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           assert.ok(!err, err ? err.message : '');
           done();
         });

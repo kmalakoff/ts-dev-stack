@@ -2,7 +2,6 @@ import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 import mkdirp from 'mkdirp-classic';
-import moduleRoot from 'module-root-sync';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
@@ -10,13 +9,14 @@ import { config, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
-const workerWrapper = wrapWorker(path.join(moduleRoot(__dirname), 'dist', 'cjs', 'command'));
+const dist = path.join(__dirname, '..');
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command'));
 
 function worker(args, options, callback) {
   try {
     const typedoc = resolveBin('typedoc');
     const source = config(options).source;
-    const dest = path.resolve(process.cwd(), 'docs');
+    const dest = path.join(process.cwd(), 'docs');
 
     const queue = new Queue(1);
     queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
