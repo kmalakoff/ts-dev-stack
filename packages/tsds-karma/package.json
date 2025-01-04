@@ -36,6 +36,7 @@
   ],
   "scripts": {
     "build": "node ../../dev/build/scripts/build.mjs",
+    "clean": "node -e \"const dir = require('path').join(require('os').homedir(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "tsds docs",
     "format": "biome check --write --unsafe src/",
     "test": "",
@@ -57,7 +58,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve-bin-sync": "^0.1.3",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.10.11",
+    "ts-swc-loaders": "^1.10.12",
     "tsds-lib": "^1.11.21",
     "webpack": "^5.97.1"
   },
