@@ -1,7 +1,6 @@
 import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
-import getopts from 'getopts-compat';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import { wrapWorker } from 'tsds-lib';
@@ -16,16 +15,9 @@ const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'commands', 'publish.cjs
 function worker(args, options, callback) {
   try {
     const np = resolveBin('np');
-
-    const { _, ...npOptions } = getopts(args, { boolean: ['yolo', 'preview', 'yarn'], default: { yarn: false } });
-    const npArgs = ['--no-release-draft'];
-    if (npOptions.yolo) npArgs.push('--yolo');
-    if (npOptions.preview) npArgs.push('--preview');
-    if (!npOptions.yarn) npArgs.push('--no-yarn');
-
     const queue = new Queue(1);
-    queue.defer(validate.bind(null, _, options));
-    queue.defer(spawn.bind(null, np, npArgs, options));
+    queue.defer(validate.bind(null, [], options));
+    queue.defer(spawn.bind(null, np, args, options));
     queue.await(callback);
   } catch (err) {
     console.log(err.message);
