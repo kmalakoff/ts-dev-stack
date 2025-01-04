@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "clean": "node -e \"const dir = require('path').join(require('homedir-polyfill')(), '.im'); try {require('fs').rmdirSync(dir, {recursive: true})} catch(err) {}\"",
     "docs": "lerna run docs",
     "format": "lerna run format",
     "test": "cd packages/ts-dev-stack && npm run test",
