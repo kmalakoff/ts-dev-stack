@@ -8,14 +8,13 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "docs": "lerna run docs",
     "format": "lerna run format",
     "test": "cd packages/ts-dev-stack && npm run test",
     "test:engines": "cd packages/ts-dev-stack && npm run test",
     "version": "lerna run version"
   },
   "dependencies": {
-    "each-package": "^0.8.7",
+    "each-package": "^0.9.1",
     "lerna": "^8.1.9"
   },
   "devDependencies": {

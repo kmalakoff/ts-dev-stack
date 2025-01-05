@@ -25,15 +25,15 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 const path = __toESM(require("path"));
 const queue_cb = __toESM(require("queue-cb"));
 const rimraf2 = __toESM(require("rimraf2"));
+const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const fs = __toESM(require("fs"));
 const module$1 = __toESM(require("module"));
 const lazy_cache = __toESM(require("lazy-cache"));
-const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const resolve_bin_sync = __toESM(require("resolve-bin-sync"));
 
-//#region ../../packages/tsds-lib/dist/esm/lib/config.mjs
+//#region ../../packages/tsds-build/dist/esm/vendor/tsds-lib/lib/config.mjs
 const defaults = {
 	source: "src/index.ts",
 	targets: ["cjs", "esm"],
@@ -63,7 +63,7 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region ../../packages/tsds-lib/dist/esm/lib/wrapWorker.mjs
+//#region ../../packages/tsds-build/dist/esm/vendor/tsds-lib/lib/wrapWorker.mjs
 const _require = typeof require === "undefined" ? module$1.default.createRequire(require("url").pathToFileURL(__filename).href) : require;
 const callLazy = (0, lazy_cache.default)(_require)("node-version-call");
 function wrapWorker(workerPath) {

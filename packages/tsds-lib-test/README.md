@@ -8,7 +8,7 @@ For an example, check out [parser-multipart](https://github.com/kmalakoff/parser
 
 ```
 # build
-$ tsds build
+$ npm run build
 
 # run coverage tests (default on "test/**/*.test.*" only) using c8
 $ tsds coverage

@@ -1,10 +1,10 @@
 import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
-import { config } from 'tsds-lib';
 import code from './lib/code';
 import types from './lib/types';
 import umd from './lib/umd';
+import { config } from './vendor/tsds-lib/index';
 
 export default function build(args, options, cb) {
   const cwd = options.cwd || process.cwd();
