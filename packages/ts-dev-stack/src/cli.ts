@@ -21,10 +21,8 @@ export default function cli(argv, name) {
   }
 
   runCommand(argv[0], argv.slice(1), {}, (err) => {
-    if (err && err.message.indexOf('ExperimentalWarning') < 0) {
-      console.log(err.message);
-      return exit(-1);
-    }
-    exit(0);
+    if (err && err.message.indexOf('ExperimentalWarning') >= 0) err = null;
+    if (err) console.log(err.message);
+    exit(err ? -1 : 0);
   });
 }
