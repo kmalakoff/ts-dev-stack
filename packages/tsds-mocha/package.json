@@ -52,7 +52,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.4",
-    "ts-swc-loaders": "^1.11.3",
+    "ts-swc-loaders": "^1.11.5",
     "tsds-lib": "^1.12.8",
     "unixify": "^1.0.0"
   },
