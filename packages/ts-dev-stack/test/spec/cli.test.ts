@@ -47,67 +47,67 @@ function addTests(repo) {
     describe('happy path', () => {
       it('build', (done) => {
         spawn(CLI, ['build', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('link', (done) => {
         spawn(CLI, ['link', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('unlink', (done) => {
         spawn(CLI, ['unlink', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('format', (done) => {
         spawn(CLI, ['format', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('publish', (done) => {
         spawn(CLI, ['publish', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('test:node', (done) => {
         spawn(CLI, ['test:node', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('test:browser', (done) => {
         spawn(CLI, ['test:browser', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('coverage', (done) => {
         spawn(CLI, ['coverage', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('docs', (done) => {
         spawn(CLI, ['docs', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('validate', (done) => {
         spawn(CLI, ['validate', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('version', (done) => {
         spawn(CLI, ['version', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });

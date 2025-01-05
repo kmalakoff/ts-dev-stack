@@ -49,43 +49,43 @@ function addTests(repo) {
     describe('happy path', () => {
       it('build', (done) => {
         runCommand('build', [], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('link', (done) => {
         runCommand('link', [], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('unlink', (done) => {
         runCommand('unlink', [], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('format', (done) => {
         runCommand('format', [], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('publish', (done) => {
         runCommand('publish', ['--dry-run'], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('test', (done) => {
         spawn('npm', ['run', 'test'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('test:engines', (done) => {
         spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
@@ -97,19 +97,19 @@ function addTests(repo) {
       });
       it('docs', (done) => {
         runCommand('docs', [], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('validate', (done) => {
         runCommand('validate', ['--dry-run'], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
       it('version', (done) => {
         runCommand('version', ['--dry-run'], { cwd: dest }, (err) => {
-          assert.ok(!err, err ? err.message : '');
+          if (err) return done(err);
           done();
         });
       });
