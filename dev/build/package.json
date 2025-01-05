@@ -10,8 +10,7 @@
     "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.4",
     "ts-swc-transform": "^1.13.0",
-    "tsds-build": "^1.12.2",
-    "tsds-lib": "^1.12.1"
+    "tsds-build": "^1.12.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -19,7 +18,6 @@
     "@types/node": "^22.10.5",
     "cross-spawn-cb": "^2.0.13",
     "queue-cb": "^1.4.10",
-    "rimraf2": "^2.8.2",
-    "rolldown": "^1.0.0-beta.1"
+    "rimraf2": "^2.8.2"
   }
 }
