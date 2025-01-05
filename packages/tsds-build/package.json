@@ -45,7 +45,7 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^2.0.13",
+    "cross-spawn-cb": "^2.1.0",
     "get-tsconfig-compat": "^2.0.3",
     "lazy-cache": "^2.0.2",
     "lodash.camelcase": "4.3.0",
