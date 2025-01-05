@@ -1,9 +1,8 @@
-import fs from 'fs';
 import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { transformDirectory } from 'ts-swc-transform';
-import { config } from 'tsds-lib';
+import { config } from '../vendor/tsds-lib/index';
 
 const MAX_FILES = 10;
 
