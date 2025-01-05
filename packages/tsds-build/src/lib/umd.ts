@@ -4,7 +4,7 @@ import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
-import { wrapWorker } from 'tsds-lib';
+import { wrapWorker } from '../vendor/tsds-lib/index';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
