@@ -55,7 +55,7 @@
     "rollup": "^4.29.2",
     "rollup-plugin-node-externals": "^8.0.0",
     "ts-swc-rollup-plugin": "^1.9.0",
-    "ts-swc-transform": "^1.13.2"
+    "ts-swc-transform": "^1.13.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
