@@ -9,8 +9,8 @@
   "dependencies": {
     "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.4",
-    "ts-swc-transform": "^1.13.3",
-    "tsds-build": "^1.12.11"
+    "ts-swc-transform": "^1.13.4",
+    "tsds-build": "^1.12.12"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
