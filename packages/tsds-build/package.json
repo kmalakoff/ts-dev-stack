@@ -54,8 +54,8 @@
     "rimraf2": "^2.8.2",
     "rollup": "^4.29.2",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.9.0",
-    "ts-swc-transform": "^1.13.3"
+    "ts-swc-rollup-plugin": "^1.9.1",
+    "ts-swc-transform": "^1.13.4"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
