@@ -16,7 +16,7 @@
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
-    "cross-spawn-cb": "^2.0.13",
+    "cross-spawn-cb": "^2.1.0",
     "queue-cb": "^1.4.10",
     "rimraf2": "^2.8.2"
   }
