@@ -9,7 +9,7 @@
   "dependencies": {
     "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.4",
-    "ts-swc-transform": "^1.13.0",
+    "ts-swc-transform": "^1.13.2",
     "tsds-build": "^1.12.7"
   },
   "devDependencies": {
