@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "lazy-cache": "^2.0.2",
-    "node-version-call": "^1.5.6"
+    "node-version-call": "^1.5.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
