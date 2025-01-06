@@ -13,7 +13,7 @@
     "version": "lerna run version"
   },
   "dependencies": {
-    "each-package": "^0.9.3",
+    "each-package": "^0.9.4",
     "lerna": "^8.1.9"
   },
   "devDependencies": {
