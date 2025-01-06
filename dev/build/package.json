@@ -9,14 +9,14 @@
   "dependencies": {
     "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.4",
-    "ts-swc-transform": "^1.13.5",
+    "ts-swc-transform": "^1.13.6",
     "tsds-build": "^1.12.16"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
-    "cross-spawn-cb": "^2.1.0",
+    "cross-spawn-cb": "^2.1.2",
     "queue-cb": "^1.4.10",
     "rimraf2": "^2.8.2"
   }
