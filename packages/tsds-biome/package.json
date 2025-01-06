@@ -1,6 +1,6 @@
 {
   "name": "tsds-biome",
-  "version": "1.12.15",
+  "version": "1.12.18",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^2.1.2",
-    "tsds-lib": "^1.12.15"
+    "tsds-lib": "^1.12.18"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
