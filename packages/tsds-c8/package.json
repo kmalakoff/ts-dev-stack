@@ -51,7 +51,7 @@
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.4",
     "rimraf2": "^2.8.2",
-    "ts-swc-loaders": "^1.11.13",
+    "ts-swc-loaders": "^1.11.14",
     "tsds-lib": "^1.12.15",
     "tsds-mocha": "^1.12.15"
   },
