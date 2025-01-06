@@ -1,6 +1,6 @@
 {
   "name": "tsds-karma",
-  "version": "1.12.16",
+  "version": "1.12.17",
   "private": true,
   "description": "Development stack for TypeScript libraries",
   "keywords": [
