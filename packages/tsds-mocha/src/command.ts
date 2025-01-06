@@ -19,7 +19,7 @@ export default function command(args, options, callback) {
       const mocha = resolveBin(mochaName);
 
       const { _ } = getopts(args, { stopEarly: true, alias: {} });
-      const spawnArgs = [mocha, '--watch-extensions', 'ts,tsx', ...args];
+      const spawnArgs = [mocha, '--watch-extensions', 'ts,tsx'].concat(args);
       if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.*']);
 
       const queue = new Queue(1);
