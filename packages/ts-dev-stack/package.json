@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.12.19",
+  "version": "1.12.20",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -71,7 +71,7 @@
     "module-link-unlink": "^0.1.12",
     "os-shim": "^0.1.3",
     "short-hash": "^1.0.0",
-    "tsds-lib-test": "^1.12.19",
+    "tsds-lib-test": "^1.12.20",
     "typescript": "^5.7.2"
   },
   "engines": {
