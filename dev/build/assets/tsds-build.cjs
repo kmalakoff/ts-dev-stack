@@ -28,12 +28,12 @@ const rimraf2 = __toESM(require("rimraf2"));
 const ts_swc_transform = __toESM(require("ts-swc-transform"));
 const fs = __toESM(require("fs"));
 const module$1 = __toESM(require("module"));
-const lazy_cache = __toESM(require("lazy-cache"));
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
 const resolve_bin_sync = __toESM(require("resolve-bin-sync"));
+const ts_swc_rollup_plugin = __toESM(require("ts-swc-rollup-plugin"));
 
-//#region ../../packages/tsds-build/dist/esm/vendor/tsds-lib/lib/config.mjs
+//#region node_modules/tsds-build/dist/esm/vendor/tsds-lib/lib/config.mjs
 const defaults = {
 	source: "src/index.ts",
 	targets: ["cjs", "esm"],
@@ -63,19 +63,17 @@ function config(options = {}) {
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/vendor/tsds-lib/lib/wrapWorker.mjs
+//#region node_modules/tsds-build/dist/esm/vendor/tsds-lib/lib/wrapWorker.mjs
 const _require = typeof require === "undefined" ? module$1.default.createRequire(require("url").pathToFileURL(__filename).href) : require;
-const callLazy = (0, lazy_cache.default)(_require)("node-version-call");
 function wrapWorker(workerPath) {
-	const workerLazy = (0, lazy_cache.default)(_require)(workerPath);
 	return function workerWrapper$1(version, ...args) {
-		if (version === "local") return workerLazy().apply(null, args);
+		if (version === "local") return _require(workerPath).apply(null, args);
 		const callback = args.pop();
 		try {
-			callback(null, callLazy()({
+			callback(null, _require("node-version-call").apply(null, [{
 				version,
 				callbacks: true
-			}, workerPath, ...args));
+			}, workerPath].concat(args)));
 		} catch (err) {
 			callback(err);
 		}
@@ -83,7 +81,7 @@ function wrapWorker(workerPath) {
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/code.mjs
+//#region node_modules/tsds-build/dist/esm/lib/code.mjs
 const MAX_FILES$1 = 10;
 function transform(_args, type$1, options, cb) {
 	const cwd = options.cwd || process.cwd();
@@ -108,7 +106,7 @@ else console.log(`Created ${results.length < MAX_FILES$1 ? results.map((x) => `d
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/types.mjs
+//#region node_modules/tsds-build/dist/esm/lib/types.mjs
 const MAX_FILES = 10;
 const type = "types";
 function cjs(_args, options, cb) {
@@ -126,7 +124,7 @@ else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dis
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/lib/umd.mjs
+//#region node_modules/tsds-build/dist/esm/lib/umd.mjs
 const __dirname$1 = path.default.dirname(typeof __filename === "undefined" ? url.default.fileURLToPath(require("url").pathToFileURL(__filename).href) : __filename);
 const major = +process.versions.node.split(".")[0];
 const dist = path.default.join(__dirname$1, "..", "..");
@@ -137,6 +135,7 @@ function worker(_args, options, callback) {
 	const configRoot = path.default.join(dist, "esm", "rollup");
 	try {
 		const rollup = (0, resolve_bin_sync.default)("rollup");
+		(0, ts_swc_rollup_plugin.ensureBindingsSync)();
 		const queue = new queue_cb.default(1);
 		queue.defer((cb) => (0, rimraf2.default)(dest, { disableGlob: true }, cb.bind(null, null)));
 		queue.defer(cross_spawn_cb.default.bind(null, rollup, ["--config", path.default.join(configRoot, "config.mjs")], options));
@@ -151,7 +150,7 @@ function umd(args, options, cb) {
 }
 
 //#endregion
-//#region ../../packages/tsds-build/dist/esm/command.mjs
+//#region node_modules/tsds-build/dist/esm/command.mjs
 function build(args, options, cb) {
 	const cwd = options.cwd || process.cwd();
 	const { targets } = config(options);
