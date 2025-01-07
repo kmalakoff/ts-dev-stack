@@ -24,17 +24,18 @@ export default function installGitRepo(repo: string, dest: string, options, call
 
     // does not exist - clone
     if (err) {
-      queue.defer(spawn.bind(null, 'git', ['clone', repo, path.basename(dest)], { stdio: 'inherit', cwd: path.dirname(dest) }));
+      queue.defer(spawn.bind(null, 'git', ['clone', repo, path.basename(dest)], { cwd: path.dirname(dest), stdio: 'inherit' }));
     }
     // exists - reset git
     else {
-      queue.defer(spawn.bind(null, 'git', ['clean', '-fd'], { stdio: 'inherit', cwd: dest }));
-      queue.defer(spawn.bind(null, 'git', ['reset', '--hard', 'HEAD'], { stdio: 'inherit', cwd: dest }));
-      queue.defer(spawn.bind(null, 'git', ['pull', '--rebase'], { stdio: 'inherit', cwd: dest }));
+      queue.defer(spawn.bind(null, 'git', ['clean', '-fd'], { cwd: dest, stdio: 'inherit' }));
+      queue.defer(spawn.bind(null, 'git', ['reset', '--hard', 'HEAD'], { cwd: dest, stdio: 'inherit' }));
+      queue.defer(spawn.bind(null, 'git', ['pull', '--rebase'], { cwd: dest, stdio: 'inherit' }));
     }
 
-    // install
-    queue.defer(spawn.bind(null, 'npm', ['--silent', 'install'], { cwd: dest }));
+    // npm ci - not working due to binary incompatibilities - install without lockfile - https://github.com/npm/cli/issues/4828#issuecomment-2514987829
+    queue.defer(spawn.bind(null, 'git', ['checkout', 'master', '--', 'package-lock.json'], { cwd: dest, stdio: 'inherit' }));
+    queue.defer(spawn.bind(null, 'npm', ['install'], { cwd: dest }));
 
     queue.await(callback);
   });
