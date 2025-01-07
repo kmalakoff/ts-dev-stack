@@ -52,10 +52,10 @@
     "queue-cb": "^1.4.10",
     "resolve-bin-sync": "^0.1.4",
     "rimraf2": "^2.8.2",
-    "rollup": "^4.30.0",
+    "rollup": "^4.30.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.9.4",
-    "ts-swc-transform": "^1.13.10"
+    "ts-swc-rollup-plugin": "^1.9.5",
+    "ts-swc-transform": "^1.13.11"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
