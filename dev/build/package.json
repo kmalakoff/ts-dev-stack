@@ -7,10 +7,11 @@
     "format": "biome check --write --unsafe src/ scripts/"
   },
   "dependencies": {
-    "lazy-cache": "^2.0.2",
     "resolve-bin-sync": "^0.1.4",
-    "ts-swc-transform": "^1.13.11",
-    "tsds-build": "^1.12.19"
+    "rolldown": "^1.0.0-beta.1",
+    "ts-swc-rollup-plugin": "^1.10.0",
+    "ts-swc-transform": "^1.14.0",
+    "tsds-build": "^1.12.21"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
