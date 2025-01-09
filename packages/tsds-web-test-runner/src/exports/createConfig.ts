@@ -7,6 +7,7 @@ import { merge } from 'webpack-merge';
 export default function createConfig(mergeConfig = {}) {
   const config = {
     nodeResolve: true,
+    browserStartTimeout: 60000, // sometimes 30000 times out
     browsers: [playwrightLauncher({ product: 'chromium' }), playwrightLauncher({ product: 'firefox' }), playwrightLauncher({ product: 'webkit' })],
     plugins: [
       importMapsPlugin({

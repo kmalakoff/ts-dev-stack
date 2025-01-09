@@ -2,6 +2,7 @@ import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
+import { installSync, removeSync } from 'install-optional';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
@@ -20,6 +21,10 @@ function worker(args, options, callback) {
     if (err) return callback(err);
 
     try {
+      installSync('rollup', `${process.platform}-${process.arch}`);
+      removeSync('esbuild', '@esbuild/');
+      installSync('esbuild', `${process.platform}-${process.arch}`);
+
       const wtr = resolveBin('@web/test-runner', 'wtr');
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
       const spawnArgs = [wtr];
