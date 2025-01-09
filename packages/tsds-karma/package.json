@@ -56,7 +56,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve-bin-sync": "^0.1.4",
     "ts-loader": "^9.5.1",
-    "ts-swc-loaders": "^1.11.17",
+    "ts-swc-loaders": "^1.12.0",
     "tsds-lib": "^1.12.19",
     "webpack": "^5.97.1"
   },
@@ -64,7 +64,7 @@
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
   "engines": {
     "node": ">=0.8"
