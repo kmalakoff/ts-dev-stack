@@ -16,12 +16,9 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.cjs",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./*": "./*"
+    "import": "./dist/esm/index.mjs",
+    "require": "./dist/cjs/index.cjs",
+    "types": "./dist/types/index.d.ts"
   },
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
@@ -55,7 +52,6 @@
   "engines": {
     "node": ">=0.8"
   },
-  "gitHead": "6351d2f9fe10282485467d05036a55315bd6d9d9",
   "tsds": {
     "source": "src/index.ts"
   }
