@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -59,7 +59,7 @@
     "tsds-lib": "^1.13.0",
     "tsds-mocha": "^1.13.0",
     "tsds-typedoc": "^1.13.0",
-    "tsds-web-test-runner": "^1.13.0"
+    "tsds-web-test-runner": "^1.13.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
