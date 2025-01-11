@@ -17,12 +17,9 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.cjs",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./*": "./*"
+    "import": "./dist/esm/index.mjs",
+    "require": "./dist/cjs/index.cjs",
+    "types": "./dist/types/index.d.ts"
   },
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
@@ -52,7 +49,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.4",
-    "ts-swc-loaders": "^1.12.0",
+    "ts-swc-loaders": "^1.12.1",
     "tsds-lib": "^1.13.0",
     "unixify": "^1.0.0"
   },
@@ -65,7 +62,6 @@
   "engines": {
     "node": ">=0.8"
   },
-  "gitHead": "6351d2f9fe10282485467d05036a55315bd6d9d9",
   "tsds": {
     "source": "src/index.ts"
   }
