@@ -8,6 +8,7 @@
       "program": "/Users/kevin/.nvm/versions/node/v22.12.0/lib/node_modules/ts-dev-stack/bin/cli.cjs",
       "args": ["test:node", "--no-timeouts"],
       "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/packages/tsds-publish",
       "internalConsoleOptions": "neverOpen"
     },
     {

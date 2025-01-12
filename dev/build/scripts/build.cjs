@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import build from '../assets/tsds-build.cjs';
+const build = require('../assets/build.cjs');
 
 build(null, {}, (err) => {
   !err || console.log(err.message);

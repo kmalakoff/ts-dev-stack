@@ -1,15 +1,13 @@
 import path from 'path';
 import { defineConfig } from 'rolldown';
-export const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
+
+const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
 
 export default defineConfig({
-  input: './src/tsds-build.ts',
+  input: './src/index.ts',
   output: {
-    file: path.resolve(process.cwd(), 'assets', 'tsds-build.cjs'),
+    file: path.resolve(process.cwd(), 'assets', 'build.cjs'),
     format: 'cjs',
   },
-  external: (module) => (!moduleRegEx.test(module) ? false : !['tsds-lib', 'tsds-build'].includes(module)),
-  resolve: {
-    tsconfigFilename: path.join(process.cwd(), 'tsconfig.json'),
-  },
+  external: (module) => !!moduleRegEx.test(module),
 });

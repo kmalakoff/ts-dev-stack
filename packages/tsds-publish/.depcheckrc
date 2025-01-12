@@ -1,0 +1,1 @@
+ignores: ["tsds-publish", "@types/*", "@biomejs/*", "typescript", "tsds-*", "np"]

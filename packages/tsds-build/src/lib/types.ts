@@ -2,7 +2,7 @@ import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { transformTypes } from 'ts-swc-transform';
-import { loadConfig } from '../vendor/tsds-lib/index';
+import { loadConfig } from 'tsds-lib';
 
 const MAX_FILES = 10;
 const type = 'types';

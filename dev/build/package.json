@@ -1,24 +1,22 @@
 {
-  "name": "build",
+  "name": "ts-dev-stack-build",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "build": "node scripts/assets.mjs",
     "format": "biome check --write --unsafe src/ scripts/"
   },
   "dependencies": {
-    "resolve-bin-sync": "^0.1.4",
-    "rolldown": "^1.0.0-beta.1",
-    "ts-swc-rollup-plugin": "^1.10.2",
-    "ts-swc-transform": "^1.15.1",
-    "tsds-build": "^1.13.2"
+    "ts-swc-transform": "^1.15.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
     "cross-spawn-cb": "^2.1.2",
+    "get-tsconfig-compat": "^2.0.3",
     "queue-cb": "^1.4.10",
-    "rimraf2": "^2.8.2"
+    "rimraf2": "^2.8.2",
+    "rolldown": "^1.0.0-beta.1"
   }
 }

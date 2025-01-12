@@ -1,11 +1,11 @@
 import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
+import { loadConfig } from 'tsds-lib';
 import { DEFAULT_TARGETS } from './constants';
 import code from './lib/code';
 import types from './lib/types';
 import umd from './lib/umd';
-import { loadConfig } from './vendor/tsds-lib/index';
 
 export default function build(args, options, callback) {
   const config = loadConfig(options);
