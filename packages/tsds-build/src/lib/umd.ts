@@ -5,7 +5,7 @@ import { installSync } from 'install-optional';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
-import { wrapWorker } from '../vendor/tsds-lib/index';
+import { wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
