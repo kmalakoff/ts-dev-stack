@@ -1,6 +1,6 @@
 {
   "name": "tsds-karma",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "private": true,
   "description": "Development stack for TypeScript libraries",
   "keywords": [
@@ -54,7 +54,7 @@
     "resolve-bin-sync": "^0.1.4",
     "ts-loader": "^9.5.2",
     "ts-swc-loaders": "^1.12.1",
-    "tsds-lib": "^1.13.0",
+    "tsds-lib": "^1.13.2",
     "webpack": "^5.97.1"
   },
   "devDependencies": {

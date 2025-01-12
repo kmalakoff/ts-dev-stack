@@ -1,6 +1,5 @@
 import path from 'path';
 import { defineConfig } from 'rolldown';
-
 export const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
 
 export default defineConfig({
