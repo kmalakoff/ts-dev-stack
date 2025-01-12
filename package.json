@@ -1,26 +1,17 @@
 {
   "name": "root",
   "private": true,
-  "type": "module",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
-    "format": "lerna run format",
+    "build": "cd packages && ep -d1 -c100 npm run build",
+    "format": "cd packages && ep -d1 -c100 npm run format",
     "test": "cd packages/ts-dev-stack && npm run test",
     "test:engines": "cd packages/ts-dev-stack && npm run test",
-    "version": "lerna run version"
+    "version": "cd packages && ep -d1 -c100 npm run version"
   },
   "dependencies": {
-    "each-package": "^0.10.0",
-    "lerna": "^8.1.9"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.5"
-  },
-  "tsds": {
-    "source": "src/index.ts"
+    "each-package": "^0.10.4"
   }
 }

@@ -19,7 +19,6 @@ export default function cli(argv, name) {
     console.log(pkg.version);
     return exit(0);
   }
-
   runCommand(argv[0], argv.slice(1), {}, (err) => {
     if (err && err.message.indexOf('ExperimentalWarning') >= 0) err = null;
     if (err) console.log(err.message);
