@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.13.2",
+  "version": "1.13.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -27,7 +27,8 @@
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "bin": {
-    "tsds": "bin/cli.cjs"
+    "tsds": "bin/cli.cjs",
+    "ts-dev-stack": "bin/cli.cjs"
   },
   "files": [
     "dist",
@@ -35,7 +36,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.mjs",
+    "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",

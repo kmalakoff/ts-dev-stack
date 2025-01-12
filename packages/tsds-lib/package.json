@@ -30,7 +30,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.mjs",
+    "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
