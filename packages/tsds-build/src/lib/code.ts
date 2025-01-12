@@ -2,9 +2,14 @@ import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { transformDirectory } from 'ts-swc-transform';
-import { loadConfig } from '../vendor/tsds-lib/index';
+import { loadConfig } from 'tsds-lib';
 
-const MAX_FILES = 100;
+const MAX_FILES = 10;
+const reportFn = (dest, type, cb) => (err, results) => {
+  if (err) console.log(`${type} failed: ${err.message}`);
+  else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}/${path.relative(dest, x)}`).join(',') : `${results.length} files in dist/${type}`}`);
+  cb(err);
+};
 
 export default function code(_args, type, options, callback) {
   const config = loadConfig(options);
@@ -23,12 +28,6 @@ export default function code(_args, type, options, callback) {
 
   const queue = new Queue(1);
   queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
-  queue.defer((cb) =>
-    transformDirectory(src, dest, type, { ...options, type, extensions: { cjs: '.cjs', esm: '.mjs' }, sourceMaps: true }, (err, results) => {
-      if (err) console.log(`${type} failed: ${err.message} from ${src}`);
-      else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}/${path.relative(dest, x)}`).join(',') : `${results.length} files in dist/${type}`}`);
-      cb(err);
-    })
-  );
+  queue.defer((cb) => transformDirectory(src, dest, type, { ...options, type, extensions: { cjs: '.cjs', esm: '.mjs' }, sourceMaps: true }, reportFn(dest, type, cb)));
   queue.await(callback);
 }
