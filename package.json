@@ -5,13 +5,14 @@
     "packages/*"
   ],
   "scripts": {
+    "publish": "cd packages && ep -d1 -c1 tsds publish",
     "build": "cd packages && ep -d1 -c100 npm run build",
     "format": "cd packages && ep -d1 -c100 npm run format",
-    "test": "cd packages/ts-dev-stack && npm run test",
-    "test:engines": "cd packages/ts-dev-stack && npm run test",
+    "test": "cd packages && ep -d1 -c100 npm run test",
+    "test:engines": "",
     "version": "cd packages && ep -d1 -c100 npm run version"
   },
   "dependencies": {
-    "each-package": "^0.10.5"
+    "each-package": "^0.10.6"
   }
 }
