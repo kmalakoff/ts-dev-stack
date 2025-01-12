@@ -30,8 +30,8 @@ export default function c8(args, options, callback) {
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
       const spawnArgs = [c8];
       if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);
-      Array.prototype.push(spawnArgs, [mocha, '--watch-extensions', 'ts,tsx']);
-      Array.prototype.push(spawnArgs, args);
+      Array.prototype.push.apply(spawnArgs, [mocha, '--watch-extensions', 'ts,tsx']);
+      Array.prototype.push.apply(spawnArgs, args);
       if (_.length === 0) Array.prototype.push.apply(spawnArgs, [['test/**/*.test.*']]);
       const dest = path.join(cwd, 'coverage');
 

@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib",
-  "version": "1.13.2",
+  "version": "1.13.5",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -30,7 +30,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "npx ts-dev-stack build",
+    "build": "node ../../dev/build/scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
