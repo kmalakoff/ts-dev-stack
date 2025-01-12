@@ -11,7 +11,7 @@
     "rolldown": "^1.0.0-beta.1",
     "ts-swc-rollup-plugin": "^1.10.2",
     "ts-swc-transform": "^1.15.1",
-    "tsds-build": "^1.13.0"
+    "tsds-build": "^1.13.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
