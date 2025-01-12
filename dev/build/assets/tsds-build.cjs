@@ -30,8 +30,8 @@ const fs = __toESM(require("fs"));
 const module$1 = __toESM(require("module"));
 const url = __toESM(require("url"));
 const cross_spawn_cb = __toESM(require("cross-spawn-cb"));
+const install_optional = __toESM(require("install-optional"));
 const resolve_bin_sync = __toESM(require("resolve-bin-sync"));
-const ts_swc_rollup_plugin = __toESM(require("ts-swc-rollup-plugin"));
 
 //#region node_modules/tsds-build/dist/esm/vendor/tsds-lib/lib/config.mjs
 const defaults = {
@@ -134,8 +134,8 @@ function worker(_args, options, callback) {
 	const dest = path.default.join(cwd, "dist", "umd");
 	const configRoot = path.default.join(dist, "esm", "rollup");
 	try {
+		(0, install_optional.installSync)("rollup", `${process.platform}-${process.arch}`);
 		const rollup = (0, resolve_bin_sync.default)("rollup");
-		(0, ts_swc_rollup_plugin.ensureBindingsSync)();
 		const queue = new queue_cb.default(1);
 		queue.defer((cb) => (0, rimraf2.default)(dest, { disableGlob: true }, cb.bind(null, null)));
 		queue.defer(cross_spawn_cb.default.bind(null, rollup, ["--config", path.default.join(configRoot, "config.mjs")], options));
