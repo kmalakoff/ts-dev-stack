@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib-test",
-  "version": "1.13.5",
+  "version": "1.13.6",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -37,10 +37,10 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.2",
-    "fs-access-compat": "^1.1.4",
+    "cross-spawn-cb": "^2.1.4",
+    "fs-access-compat": "^1.1.6",
     "mkdirp-classic": "^0.5.3",
-    "queue-cb": "^1.4.10",
+    "queue-cb": "^1.4.11",
     "rimraf2": "^2.8.2"
   },
   "devDependencies": {
