@@ -43,7 +43,7 @@
     "depcheck": "^1.4.7",
     "queue-cb": "^1.4.11",
     "resolve-bin-sync": "^0.1.5",
-    "sort-package-json": "^2.12.0"
+    "sort-package-json": "^2.13.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
