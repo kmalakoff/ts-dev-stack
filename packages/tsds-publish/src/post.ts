@@ -18,7 +18,7 @@ function worker(_args, options, callback) {
   const queue = new Queue(1);
   if ((options.package.scripts || {}).version) queue.defer(spawn.bind(null, 'npm', ['run', 'version'], { ...options, cwd }));
   queue.defer((cb) => spawn('git', ['add', '.'], options, cb.bind(null, null)));
-  queue.defer((cb) => spawn('git', ['commit', '-m', `v${options.package.version}`], options, cb.bind(null, null)));
+  queue.defer((cb) => spawn('git', ['commit', '-m', `${options.package.version}`], options, cb.bind(null, null)));
   queue.await(callback);
 }
 
