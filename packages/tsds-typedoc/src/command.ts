@@ -7,8 +7,9 @@ import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { loadConfig, wrapWorker } from 'tsds-lib';
 
-const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
+const version = major > 14 ? 'local' : 'stable';
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command'));
 
@@ -38,5 +39,5 @@ function worker(args, options, callback) {
 }
 
 export default function docs(args, options, callback) {
-  major < 14 ? workerWrapper('stable', args, options, callback) : worker(args, options, callback);
+  version !== 'local' ? workerWrapper('stable', args, options, callback) : worker(args, options, callback);
 }
