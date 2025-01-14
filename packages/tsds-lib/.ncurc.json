@@ -1,4 +1,4 @@
 {
   "upgrade": true,
-  "reject": ["assert", "which"]
+  "reject": ["@types/*", "@biomejs/*", "assert"]
 }
