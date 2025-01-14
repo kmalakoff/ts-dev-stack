@@ -7,10 +7,11 @@ import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { wrapWorker } from 'tsds-lib';
 
-const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
+const version = major > 14 ? 'local' : 'stable';
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..', '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'build', 'umd'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'umd.cjs'));
 
 function worker(_args, options, callback) {
   const cwd = options.cwd || process.cwd();
@@ -32,5 +33,5 @@ function worker(_args, options, callback) {
 }
 
 export default function umd(args, options, cb) {
-  major < 14 ? workerWrapper('stable', args, options, cb) : worker(args, options, cb);
+  version !== 'local' ? workerWrapper('stable', args, options, cb) : worker(args, options, cb);
 }
