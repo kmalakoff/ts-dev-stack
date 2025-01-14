@@ -12,8 +12,8 @@ import pre from './pre';
 const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
-const dist = path.join(__dirname, '..', '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'commands.cjs'));
+const dist = path.join(__dirname, '..');
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.cjs'));
 
 function worker(args, options, callback) {
   const cwd = options.cwd || process.cwd();
