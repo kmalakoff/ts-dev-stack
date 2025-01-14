@@ -1,6 +1,6 @@
 {
   "name": "tsds-biome",
-  "version": "1.13.6",
+  "version": "1.13.17",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -33,18 +33,18 @@
     "build": "node ../../dev/build/scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
-    "test2": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
+    "test2": "tsds test:node --no-timeouts",
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.2",
-    "tsds-lib": "^1.13.5"
+    "cross-spawn-cb": "^2.1.6",
+    "tsds-lib": "^1.13.13"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.5",
+    "@types/node": "^22.10.6",
     "typescript": "^5.7.3"
   },
   "engines": {

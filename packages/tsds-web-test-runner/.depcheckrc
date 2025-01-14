@@ -1,1 +1,1 @@
-ignores: ["tsds-web-test-runner", "@types/*", "@biomejs/*", "typescript", "@web/test-runner", "assert"]
+ignores: ["@types/*", "@biomejs/*", "assert", "tsds-web-test-runner", "typescript", "@web/test-runner"]

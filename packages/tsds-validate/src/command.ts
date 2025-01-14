@@ -8,9 +8,9 @@ import build from 'tsds-build';
 import { wrapWorker } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
-const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..', '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'commands.cjs'));
 
@@ -33,5 +33,5 @@ function worker(_args, options, callback) {
 }
 
 export default function publish(args, options, callback) {
-  major < 14 ? workerWrapper(version, args, options, callback) : worker(args, options, callback);
+  version !== 'local' ? workerWrapper(version, args, options, callback) : worker(args, options, callback);
 }

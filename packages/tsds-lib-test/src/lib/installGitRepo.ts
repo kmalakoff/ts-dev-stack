@@ -1,21 +1,22 @@
 import path from 'path';
+import fs from 'fs';
+import url from 'url';
 import spawn from 'cross-spawn-cb';
-import access from 'fs-access-compat';
 import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
+import { wrapWorker } from 'tsds-lib';
 
-export default function installGitRepo(repo: string, dest: string, options, callback?) {
-  if (typeof options === 'function') {
-    callback = options;
-    options = {};
-  }
-  options = options || {};
-  console.log('installGitRepo', repo, dest);
+const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
+const major = +process.versions.node.split('.')[0];
+const dist = path.join(__dirname, '..', '..');
+const version = major > 0 ? 'local' : 'stable';
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'installGitRepo.cjs'));
+
+function worker(repo, dest, options, callback) {
   // options.clean = true;
-
   function checkOrClean(dest, callback) {
-    options.clean ? rimraf2(dest, { disableGlob: true }, callback.bind(null, new Error('clone'))) : access(dest, callback);
+    options.clean ? rimraf2(dest, { disableGlob: true }, callback.bind(null, new Error('clone'))) : fs.stat(dest, callback);
   }
 
   checkOrClean(dest, (err) => {
@@ -37,4 +38,13 @@ export default function installGitRepo(repo: string, dest: string, options, call
 
     queue.await(callback);
   });
+}
+
+export default function installGitRepo(repo: string, dest: string, options, callback?) {
+  if (typeof options === 'function') {
+    callback = options;
+    options = {};
+  }
+  options = options || {};
+  version !== 'local' ? workerWrapper(version, repo, dest, options, callback) : worker(repo, dest, options, callback);
 }
