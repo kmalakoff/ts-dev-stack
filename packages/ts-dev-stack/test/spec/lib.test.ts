@@ -49,43 +49,43 @@ function addTests(repo) {
     describe('happy path', () => {
       it('build', (done) => {
         runCommand('build', [], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('link', (done) => {
         runCommand('link', [], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('unlink', (done) => {
         runCommand('unlink', [], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('format', (done) => {
         runCommand('format', [], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('publish', (done) => {
         runCommand('publish', ['--dry-run'], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('test', (done) => {
         spawn('npm', ['run', 'test'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('test:engines', (done) => {
         spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
@@ -97,19 +97,19 @@ function addTests(repo) {
       });
       it('docs', (done) => {
         runCommand('docs', [], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('validate', (done) => {
         runCommand('validate', ['--dry-run'], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });
       it('version', (done) => {
         runCommand('version', ['--dry-run'], { cwd: dest }, (err) => {
-          if (err) return done(err);
+          if (err) return done(err.message);
           done();
         });
       });

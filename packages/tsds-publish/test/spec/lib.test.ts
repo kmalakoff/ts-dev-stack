@@ -47,7 +47,7 @@ function addTests(repo) {
 
     it('hasChanged', (done) => {
       hasChanged({ cwd: dest }, (err, changed) => {
-        if (err) return done(err);
+        if (err) return done(err.message);
         assert.equal(typeof changed, 'boolean');
         done();
       });
