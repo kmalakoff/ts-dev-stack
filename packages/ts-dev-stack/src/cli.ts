@@ -10,7 +10,7 @@ const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToP
 export default function cli(argv, name) {
   if (argv.length === 0) {
     console.log(`Command missing ${name} ${argv.join(',')}`);
-    return exit(-1);
+    return exit(15);
   }
 
   const { _, ...opts } = getopts(argv, { stopEarly: true, alias: { version: 'v' }, boolean: ['version'] });
@@ -22,6 +22,6 @@ export default function cli(argv, name) {
   runCommand(argv[0], argv.slice(1), {}, (err) => {
     if (err && err.message.indexOf('ExperimentalWarning') >= 0) err = null;
     if (err) console.log(err.message);
-    exit(err ? -1 : 0);
+    exit(err ? 16 : 0);
   });
 }
