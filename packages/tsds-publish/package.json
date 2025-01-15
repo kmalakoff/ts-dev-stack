@@ -1,6 +1,6 @@
 {
   "name": "tsds-publish",
-  "version": "1.0.28",
+  "version": "1.0.30",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
