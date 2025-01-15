@@ -1,1 +1,1 @@
-ignores: ["@types/*", "@biomejs/*", "assert", "tsds-validate", "typescript", "tsds-*", "gh-pages", "sort-package-json", "depcheck"]
+ignores: ["tsds-validate", "typescript", "tsds-*", "gh-pages", "sort-package-json"]

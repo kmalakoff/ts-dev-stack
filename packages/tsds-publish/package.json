@@ -1,6 +1,6 @@
 {
   "name": "tsds-publish",
-  "version": "1.0.25",
+  "version": "1.0.28",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -40,25 +40,23 @@
   },
   "dependencies": {
     "@npmcli/arborist": "^9.0.0",
-    "cross-spawn-cb": "^2.1.6",
-    "get-remote": "^1.3.14",
+    "cross-spawn-cb": "^2.1.8",
+    "get-remote": "^1.3.17",
     "getopts-compat": "^2.2.6",
     "npm-package-arg": "^12.0.1",
     "pacote": "^21.0.0",
-    "queue-cb": "^1.4.12",
+    "queue-cb": "^1.4.13",
     "rimraf2": "^2.8.2",
-    "tsds-lib": "^1.13.13"
+    "tsds-lib": "*"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.6",
-    "module-link-unlink": "^0.1.15",
-    "os-shim": "^0.1.3",
-    "resolve": "^1.22.10",
-    "short-hash": "^1.0.0",
-    "tsds-lib-test": "^1.13.9",
-    "typescript": "^5.7.3"
+    "@types/mocha": "*",
+    "@types/node": "*",
+    "module-link-unlink": "*",
+    "os-shim": "*",
+    "resolve": "*",
+    "short-hash": "*",
+    "tsds-lib-test": "*"
   },
   "engines": {
     "node": ">=0.8"

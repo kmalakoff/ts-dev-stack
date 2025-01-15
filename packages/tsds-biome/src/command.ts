@@ -10,6 +10,7 @@ const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.cjs'));
 
 function worker(_args, options, callback) {
+  if (process.platform === 'win32' && ['x64', 'arm64'].indexOf(process.arch) < 0) return callback();
   spawn('npm', ['run', 'format'], options, callback);
 }
 

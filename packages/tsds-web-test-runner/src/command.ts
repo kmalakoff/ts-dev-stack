@@ -28,13 +28,13 @@ function worker(args, options, callback) {
 
       const wtr = resolveBin('@web/test-runner', 'wtr');
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
-      const spawnArgs = [wtr];
+      const spawnArgs = [];
       if (!opts.config) Array.prototype.push.apply(spawnArgs, ['--config', config]);
       Array.prototype.push.apply(spawnArgs, args);
       if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.{ts,tsx,jsx,mjs}']);
 
       const queue = new Queue(1);
-      queue.defer(spawn.bind(null, spawnArgs[0], spawnArgs.slice(1), options));
+      queue.defer(spawn.bind(null, wtr, spawnArgs, options));
       queue.await((err) => unlink(restore, callback.bind(null, err)));
     } catch (err) {
       callback(err);

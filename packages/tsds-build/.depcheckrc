@@ -1,1 +1,1 @@
-ignores: ["@types/*", "@biomejs/*", "assert", "tsds-build", "typescript", "rollup"]
+ignores: ["tsds-build", "typescript", "rollup"]
