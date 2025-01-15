@@ -6,15 +6,16 @@ import { merge } from 'webpack-merge';
 
 export default function createConfig(mergeConfig = {}) {
   const config = {
+    browserStartTimeout: 120000,
+    testsStartTimeout: 60000,
     nodeResolve: true,
-    browserStartTimeout: 60000, // sometimes 30000 times out
     browsers: [playwrightLauncher({ product: 'chromium' }), playwrightLauncher({ product: 'firefox' }), playwrightLauncher({ product: 'webkit' })],
     plugins: [
       importMapsPlugin({
         inject: {
           importMap: {
             imports: {
-              assert: 'https://esm.sh/stable/assert',
+              assert: 'https://esm.sh/assert',
             },
           },
         },

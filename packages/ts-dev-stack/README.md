@@ -23,5 +23,5 @@ $ tsds format
 $ tsds test:node
 
 # run tests on browser only
-$ tsds test:browser
+$ tsds test:browser --config wtr.config.mjs
 ```

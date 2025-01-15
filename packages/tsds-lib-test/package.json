@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib-test",
-  "version": "1.13.12",
+  "version": "1.13.17",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -37,16 +37,14 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.6",
+    "cross-spawn-cb": "^2.1.8",
     "mkdirp-classic": "^0.5.3",
-    "queue-cb": "^1.4.12",
+    "queue-cb": "^1.4.13",
     "rimraf2": "^2.8.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.6",
-    "typescript": "^5.7.3"
+    "@types/mocha": "*",
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"
