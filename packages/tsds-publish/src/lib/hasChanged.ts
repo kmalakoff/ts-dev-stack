@@ -16,7 +16,7 @@ interface Registry {
 }
 
 const major = +process.versions.node.split('.')[0];
-const version = major >= 16 ? 'local' : 'stable';
+const version = major > 14 ? 'local' : 'stable';
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..', '..');
