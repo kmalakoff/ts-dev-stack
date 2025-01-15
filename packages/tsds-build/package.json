@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.13.19",
+  "version": "1.13.24",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -42,25 +42,23 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^2.1.6",
+    "cross-spawn-cb": "^2.1.8",
     "get-tsconfig-compat": "^2.0.3",
-    "install-optional": "^0.1.8",
+    "install-optional": "^0.1.15",
     "lodash.camelcase": "4.3.0",
-    "queue-cb": "^1.4.12",
-    "resolve-bin-sync": "^0.1.6",
+    "queue-cb": "^1.4.13",
+    "resolve-bin-sync": "^0.1.8",
     "rimraf2": "^2.8.2",
     "rollup": "^4.30.1",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.10.9",
-    "ts-swc-transform": "^1.15.8",
-    "tsds-lib": "^1.13.13"
+    "ts-swc-rollup-plugin": "^1.10.16",
+    "ts-swc-transform": "^1.15.15",
+    "tsds-lib": "*"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.6",
-    "rolldown": "^1.0.0-beta.1",
-    "typescript": "^5.7.3"
+    "@types/mocha": "*",
+    "@types/node": "*",
+    "rolldown": "*"
   },
   "engines": {
     "node": ">=0.8"

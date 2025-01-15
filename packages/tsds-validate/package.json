@@ -1,6 +1,6 @@
 {
   "name": "tsds-validate",
-  "version": "1.0.12",
+  "version": "1.0.17",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -39,17 +39,15 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.6",
+    "cross-spawn-cb": "^2.1.8",
     "depcheck": "^1.4.7",
-    "queue-cb": "^1.4.12",
-    "resolve-bin-sync": "^0.1.6",
+    "queue-cb": "^1.4.13",
+    "resolve-bin-sync": "^0.1.8",
     "sort-package-json": "^2.13.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.10.6",
-    "typescript": "^5.7.3"
+    "@types/mocha": "*",
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"
