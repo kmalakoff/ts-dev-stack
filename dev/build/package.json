@@ -14,6 +14,6 @@
     "queue-cb": "^1.4.10",
     "rimraf2": "^2.8.2",
     "rolldown": "^1.0.0-beta.1",
-    "ts-swc-transform": "^1.15.15"
+    "ts-swc-transform": "^1.15.24"
   }
 }

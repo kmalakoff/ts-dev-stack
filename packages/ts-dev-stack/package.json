@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.13.40",
+  "version": "1.13.57",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -39,7 +39,7 @@
     "build": "node ../../dev/build/scripts/build.cjs",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
-    "test:engines": "nvu engines npm test",
+    "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
@@ -47,20 +47,20 @@
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.6",
     "gh-pages": "^6.3.0",
-    "install-module-linked": "^1.1.33",
+    "install-module-linked": "^1.1.37",
     "link-unlink": "^0.1.17",
     "queue-cb": "^1.4.13",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.8",
     "tsds-biome": "^1.13.25",
-    "tsds-build": "^1.13.28",
-    "tsds-c8": "^1.13.25",
+    "tsds-build": "^1.13.33",
+    "tsds-c8": "^1.13.36",
     "tsds-lib": "*",
-    "tsds-mocha": "^1.13.24",
-    "tsds-publish": "^1.0.30",
+    "tsds-mocha": "^1.13.35",
+    "tsds-publish": "^1.0.32",
     "tsds-typedoc": "^1.13.21",
     "tsds-validate": "^1.0.18",
-    "tsds-web-test-runner": "^1.13.29"
+    "tsds-web-test-runner": "^1.13.32"
   },
   "devDependencies": {
     "@types/mocha": "*",

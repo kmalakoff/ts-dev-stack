@@ -35,7 +35,6 @@ function worker(repo, dest, options, callback) {
     }
 
     queue.defer(spawn.bind(null, 'npm', ['install', '--silent'], { cwd: dest }));
-
     queue.await(callback);
   });
 }
