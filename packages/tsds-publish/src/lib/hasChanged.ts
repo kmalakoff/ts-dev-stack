@@ -22,6 +22,8 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..', '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'hasChanged.cjs'));
 
+console.log('version', version, process.versions.node)
+
 async function worker(options, callback) {
   const cwd = options.cwd || process.cwd();
   options = { ...options };
