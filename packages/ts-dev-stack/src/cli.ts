@@ -7,10 +7,12 @@ import runCommand from './runCommand';
 
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 
+const ERROR_CODE = 15
+
 export default function cli(argv, name) {
   if (argv.length === 0) {
     console.log(`Command missing ${name} ${argv.join(',')}`);
-    return exit(15);
+    return exit(ERROR_CODE);
   }
 
   const { _, ...opts } = getopts(argv, { stopEarly: true, alias: { version: 'v' }, boolean: ['version'] });
@@ -22,6 +24,6 @@ export default function cli(argv, name) {
   runCommand(argv[0], argv.slice(1), {}, (err) => {
     if (err && err.message.indexOf('ExperimentalWarning') >= 0) err = null;
     if (err) console.log(err.message);
-    exit(err ? 16 : 0);
+    exit(err ? ERROR_CODE : 0);
   });
 }
