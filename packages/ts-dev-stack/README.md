@@ -4,20 +4,15 @@ Development stack for TypeScript libraries
 
 For an example, check out [parser-multipart](https://github.com/kmalakoff/parser-multipart)
 
-# Example 1: CLI
-
 ```
 # build
 $ npm run build
 
-# run coverage tests (default on "test/**/*.test.*" only) using c8
-$ tsds coverage
-
 # deploy library using np
-$ tsds deploy
+$ tsds deploy --yolo
 
 # format library using prettier
-$ tsds format
+$ tsds validate
 
 # run tests on current version of node
 $ tsds test:node

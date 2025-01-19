@@ -6,7 +6,7 @@ import { merge } from 'webpack-merge';
 
 export default function createConfig(mergeConfig = {}) {
   const config = {
-    browserStartTimeout: 120000,
+    browserStartTimeout: 240000,
     testsStartTimeout: 60000,
     nodeResolve: true,
     browsers: [playwrightLauncher({ product: 'chromium' }), playwrightLauncher({ product: 'firefox' }), playwrightLauncher({ product: 'webkit' })],
