@@ -1,5 +1,5 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 import mkdirp from 'mkdirp-classic';
