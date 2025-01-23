@@ -7,7 +7,7 @@ import runCommand from './runCommand';
 
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 
-const ERROR_CODE = 15
+const ERROR_CODE = 15;
 
 export default function cli(argv, name) {
   if (argv.length === 0) {

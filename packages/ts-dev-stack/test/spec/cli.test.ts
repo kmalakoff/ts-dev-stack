@@ -51,6 +51,12 @@ function addTests(repo) {
           done();
         });
       });
+      it('install', (done) => {
+        spawn(CLI, ['install', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
+          if (err) return done(err.message);
+          done();
+        });
+      });
       it('link', (done) => {
         spawn(CLI, ['link', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) return done(err.message);

@@ -6,6 +6,7 @@ updates:
       interval: weekly
     ignore:
       - dependency-name: 'assert'
+      - dependency-name: 'readable-stream'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:

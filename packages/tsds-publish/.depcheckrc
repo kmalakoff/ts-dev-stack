@@ -1,1 +1,1 @@
-ignores: ["tsds-publish", "typescript", "tsds-*"]
+ignores: ["tsds-publish", "typescript", "tsds-*", "@npmcli/arborist", "npm-package-arg", "pacote"]
