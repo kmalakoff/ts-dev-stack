@@ -5,7 +5,7 @@ import concatWritable from '../lib/concatWritable';
 
 const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;
-const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT).*/;
+const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
 
 export default function command(_args, options, callback) {
   const cwd = options.cwd || process.cwd();
