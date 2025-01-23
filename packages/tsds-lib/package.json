@@ -38,7 +38,7 @@
     "version": ""
   },
   "dependencies": {
-    "node-version-call": "^1.6.35"
+    "node-version-call": "^1.6.38"
   },
   "devDependencies": {
     "@types/mocha": "*",
