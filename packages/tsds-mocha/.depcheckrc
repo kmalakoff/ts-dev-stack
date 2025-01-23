@@ -1,1 +1,1 @@
-ignores: ["assert", "tsds-mocha", "typescript", "regenerator-runtime", "mocha-compat", "ts-swc-loaders"]
+ignores: ["assert", "tsds-mocha", "typescript", "regenerator-runtime", "mocha", "mocha-compat", "ts-swc-loaders"]

@@ -1,1 +1,1 @@
-ignores: ["tsds-validate", "typescript", "tsds-*", "gh-pages", "sort-package-json"]
+ignores: ["tsds-validate", "typescript", "tsds-*", "depcheck", "gh-pages", "sort-package-json"]
