@@ -1,6 +1,6 @@
 {
   "name": "tsds-c8",
-  "version": "1.14.7",
+  "version": "1.14.8",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -42,7 +42,7 @@
     "c8": "^10.1.3",
     "cross-spawn-cb": "^2.1.21",
     "getopts-compat": "^2.2.6",
-    "link-unlink": "^0.1.22",
+    "link-unlink": "^0.1.23",
     "queue-cb": "^1.4.16",
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
