@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.14.8",
+  "version": "1.14.9",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -42,14 +42,14 @@
     "assert": "1.5.0",
     "cross-spawn-cb": "^2.1.21",
     "getopts-compat": "^2.2.6",
-    "link-unlink": "^0.1.23",
+    "link-unlink": "^0.1.24",
     "mocha": "^11.1.0",
     "mocha-compat": "^3.6.2",
     "queue-cb": "^1.4.16",
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
-    "resolve-bin-sync": "^0.1.11",
-    "ts-swc-loaders": "^1.12.61",
+    "resolve-bin-sync": "^0.1.12",
+    "ts-swc-loaders": "^1.12.62",
     "tsds-lib": "*",
     "unixify": "^1.0.0"
   },
