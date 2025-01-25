@@ -19,7 +19,7 @@ function worker(_args, options, callback) {
   const configRoot = path.join(dist, 'esm', 'rollup');
 
   try {
-    installSync('rollup', `${process.platform}-${process.arch}`);
+    installSync('rollup', `${process.platform}-${process.arch}`, { cwd });
     const rollup = resolveBin('rollup');
 
     const queue = new Queue(1);
