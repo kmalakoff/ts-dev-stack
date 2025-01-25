@@ -22,9 +22,9 @@ function worker(args, options, callback) {
     if (err) return callback(err);
 
     try {
-      installSync('rollup', `${process.platform}-${process.arch}`);
-      removeSync('esbuild', '@esbuild/');
-      installSync('esbuild', `${process.platform}-${process.arch}`);
+      installSync('rollup', `${process.platform}-${process.arch}`, { cwd });
+      removeSync('esbuild', '@esbuild/', { cwd });
+      installSync('esbuild', `${process.platform}-${process.arch}`, { cwd });
 
       const wtr = resolveBin('@web/test-runner', 'wtr');
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });

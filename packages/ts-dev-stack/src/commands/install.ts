@@ -7,13 +7,13 @@ const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;
 const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
 
-export default function command(_args, options, callback) {
+export default function command(args, options, callback) {
   const cwd = options.cwd || process.cwd();
   const queue = new Queue(1);
   let count = 0;
   function install(cb) {
     console.log(`npm install${count > 1 ? ` (${count})` : ''}`);
-    const cp = spawn.crossSpawn('npm', ['install'], { encoding: 'utf8' });
+    const cp = spawn.crossSpawn('npm', ['install'].concat(args), { encoding: 'utf8' });
     cp.stdout.pipe(process.stdout);
     cp.stderr.pipe(process.stderr);
     const stderr = cp.stderr.pipe(

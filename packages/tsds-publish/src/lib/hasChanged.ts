@@ -47,8 +47,8 @@ async function worker(options, callback) {
     const latest = parts.join('-');
     const local = crypto.createHash(algorithm).update(new Uint8Array(tarball)).digest('base64');
     callback(null, latest !== local);
-  } catch (err) {
-    callback(err, true);
+  } catch (_err) {
+    callback(null, true);
   }
 }
 
