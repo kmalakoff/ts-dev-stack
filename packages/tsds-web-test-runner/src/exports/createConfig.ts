@@ -8,7 +8,6 @@ const options = {
   launchOptions: {
     headless: true,
     devtools: true,
-    args: ['--no-sandbox'],
   },
 };
 

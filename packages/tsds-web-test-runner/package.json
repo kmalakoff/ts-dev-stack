@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.15.0",
+  "version": "1.15.1",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",

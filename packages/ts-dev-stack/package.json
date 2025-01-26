@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.15.1",
+  "version": "1.15.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -61,7 +61,7 @@
     "tsds-publish": "^1.2.0",
     "tsds-typedoc": "^1.16.0",
     "tsds-validate": "^1.1.10",
-    "tsds-web-test-runner": "^1.15.0"
+    "tsds-web-test-runner": "^1.15.1"
   },
   "devDependencies": {
     "@types/mocha": "*",
