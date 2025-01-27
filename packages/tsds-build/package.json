@@ -52,7 +52,7 @@
     "rollup": "^4.32.0",
     "rollup-plugin-node-externals": "^8.0.0",
     "ts-swc-rollup-plugin": "^1.10.48",
-    "ts-swc-transform": "^1.15.51",
+    "ts-swc-transform": "^1.15.52",
     "tsds-lib": "*"
   },
   "devDependencies": {
