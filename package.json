@@ -13,6 +13,6 @@
     "version": "ep -d1 -c100 npm run version"
   },
   "dependencies": {
-    "each-package": "^0.10.6"
+    "each-package": "^0.10.92"
   }
 }
