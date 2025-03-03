@@ -49,7 +49,7 @@
     "queue-cb": "^1.4.16",
     "resolve-bin-sync": "^0.1.12",
     "rimraf2": "^2.8.2",
-    "rollup": "^4.32.1",
+    "rollup": "^4.34.9",
     "rollup-plugin-node-externals": "^8.0.0",
     "ts-swc-rollup-plugin": "^1.10.49",
     "ts-swc-transform": "^1.15.52",
