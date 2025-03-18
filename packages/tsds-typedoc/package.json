@@ -37,13 +37,13 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.22",
+    "cross-spawn-cb": "^2.1.23",
     "mkdirp-classic": "^0.5.3",
     "queue-cb": "^1.4.16",
     "resolve-bin-sync": "^0.1.12",
     "rimraf2": "^2.8.2",
     "tsds-lib": "*",
-    "typedoc": "^0.27.6"
+    "typedoc": "^0.28.0"
   },
   "devDependencies": {
     "@types/mocha": "*",

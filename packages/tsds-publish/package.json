@@ -39,11 +39,11 @@
     "version": ""
   },
   "dependencies": {
-    "@npmcli/arborist": "^9.0.0",
-    "cross-spawn-cb": "^2.1.22",
-    "get-remote": "^1.3.33",
+    "@npmcli/arborist": "^9.0.1",
+    "cross-spawn-cb": "^2.1.23",
+    "get-remote": "^1.3.34",
     "getopts-compat": "^2.2.6",
-    "npm-package-arg": "^12.0.1",
+    "npm-package-arg": "^12.0.2",
     "pacote": "^21.0.0",
     "queue-cb": "^1.4.16",
     "rimraf2": "^2.8.2",

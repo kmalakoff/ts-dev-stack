@@ -37,7 +37,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.22",
+    "cross-spawn-cb": "^2.1.23",
     "mkdirp-classic": "^0.5.3",
     "queue-cb": "^1.4.16",
     "rimraf2": "^2.8.2",
