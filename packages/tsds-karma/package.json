@@ -55,7 +55,7 @@
     "ts-loader": "^9.5.2",
     "ts-swc-loaders": "^1.12.1",
     "tsds-lib": "^1.13.5",
-    "webpack": "^5.97.1"
+    "webpack": "^5.99.8"
   },
   "devDependencies": {
     "@types/mocha": "*",
