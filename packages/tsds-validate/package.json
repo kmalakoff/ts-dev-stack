@@ -43,7 +43,7 @@
     "depcheck": "^1.4.7",
     "queue-cb": "^1.4.16",
     "resolve-bin-sync": "^0.1.12",
-    "sort-package-json": "^3.0.0"
+    "sort-package-json": "^3.2.1"
   },
   "devDependencies": {
     "@types/mocha": "*",

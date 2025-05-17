@@ -9,11 +9,11 @@
   },
   "devDependencies": {
     "@types/node": "*",
-    "cross-spawn-cb": "^2.1.2",
+    "cross-spawn-cb": "^2.1.23",
     "get-tsconfig-compat": "^2.0.3",
-    "queue-cb": "^1.4.10",
+    "queue-cb": "^1.4.16",
     "rimraf2": "^2.8.2",
-    "rolldown": "^1.0.0-beta.1",
-    "ts-swc-transform": "^1.15.24"
+    "rolldown": "^1.0.0-beta.8",
+    "ts-swc-transform": "^1.15.54"
   }
 }
