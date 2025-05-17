@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.15.1",
+  "version": "1.15.4",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -37,19 +37,19 @@
     "build": "node ../../dev/build/scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
-    "test:engines": "npm test",
     "test2": "tsds test:node --no-timeouts",
+    "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "@web/dev-server-esbuild": "^1.0.3",
+    "@web/dev-server-esbuild": "^1.0.4",
     "@web/dev-server-import-maps": "^0.2.1",
-    "@web/test-runner": "^0.19.0",
+    "@web/test-runner": "^0.20.1",
     "@web/test-runner-playwright": "^0.11.0",
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.1.22",
+    "cross-spawn-cb": "^2.1.23",
     "getopts-compat": "^2.2.6",
-    "install-optional": "^0.1.50",
+    "install-optional": "^0.1.51",
     "link-unlink": "^0.1.24",
     "queue-cb": "^1.4.16",
     "resolve-bin-sync": "^0.1.12",
