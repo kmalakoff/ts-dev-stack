@@ -53,15 +53,15 @@
     "readable-stream": "^2.3.8",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.12",
-    "tsds-biome": "^1.15.0",
-    "tsds-build": "^1.15.0",
+    "tsds-biome": "^1.15.1",
+    "tsds-build": "^1.15.1",
     "tsds-c8": "^1.15.0",
     "tsds-lib": "*",
-    "tsds-mocha": "^1.15.0",
-    "tsds-publish": "^1.2.0",
-    "tsds-typedoc": "^1.16.0",
-    "tsds-validate": "^1.1.10",
-    "tsds-web-test-runner": "^1.15.1"
+    "tsds-mocha": "^1.15.1",
+    "tsds-publish": "^1.2.1",
+    "tsds-typedoc": "^1.16.1",
+    "tsds-validate": "^1.1.11",
+    "tsds-web-test-runner": "^1.15.2"
   },
   "devDependencies": {
     "@types/mocha": "*",
