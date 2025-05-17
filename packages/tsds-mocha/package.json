@@ -34,8 +34,8 @@
     "format": "biome check --write --unsafe src/ && biome check --config-path biome.es5.json --write --unsafe scripts/",
     "postinstall": "node ./scripts/postinstall.cjs",
     "test": "",
-    "test:engines": "npm test",
     "test2": "tsds test:node --no-timeouts",
+    "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
