@@ -6,7 +6,7 @@ import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
-const mochaName = major < 12 ? 'mocha-compat' : 'mocha';
+const mochaBin = major < 12 ? 'mocha-compat' : major < 14 ? 'mocha-compat-esm' : 'mocha';
 
 export default function command(args, options, callback) {
   const cwd = options.cwd || process.cwd();
@@ -16,10 +16,12 @@ export default function command(args, options, callback) {
 
     try {
       const loader = resolveBin('ts-swc-loaders', 'ts-swc');
-      const mocha = resolveBin(mochaName);
+      const mocha = resolveBin(mochaBin);
 
       const { _ } = getopts(args, { stopEarly: true, alias: {} });
-      const spawnArgs = [mocha, '--watch-extensions', 'ts,tsx'].concat(args);
+      const spawnArgs = major < 12 ? [] : ['node'];
+      Array.prototype.push.apply(spawnArgs, [mocha, '--watch-extensions', 'ts,tsx']);
+      Array.prototype.push.apply(spawnArgs, args);
       if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.*']);
 
       const queue = new Queue(1);
