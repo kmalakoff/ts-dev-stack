@@ -44,6 +44,7 @@
     "getopts-compat": "^2.2.6",
     "link-unlink": "^0.1.24",
     "mocha": "^11.3.0",
+    "mocha-10": "npm:mocha@^10.8.2",
     "mocha-compat": "^3.6.2",
     "queue-cb": "^1.4.16",
     "regenerator-runtime": "^0.14.1",

@@ -6,7 +6,7 @@ import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
-const mochaName = major <= 12 ? 'mocha-compat' : 'mocha';
+const mochaName = major < 12 ? 'mocha-compat' : major < 14 ? 'mocha-10' : 'mocha';
 
 export default function command(args, options, callback) {
   const cwd = options.cwd || process.cwd();
