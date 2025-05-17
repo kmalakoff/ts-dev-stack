@@ -13,7 +13,7 @@ export default function command(args, options, callback) {
   let count = 1;
   function install(cb) {
     console.log(`npm install${count > 1 ? ` (${count})` : ''}`);
-    const cp = spawn.crossSpawn('npm', ['install'].concat(args), { encoding: 'utf8' });
+    const cp = spawn.crossSpawn('npm', ['install'].concat(args), { encoding: 'utf8', cwd });
     cp.stdout.pipe(process.stdout);
     cp.stderr.pipe(process.stderr);
     const stderr = cp.stderr.pipe(
