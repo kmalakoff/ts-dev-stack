@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.15.0",
+  "version": "1.15.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -35,24 +35,24 @@
     "build": "node ../../dev/build/scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
-    "test:engines": "npm test",
     "test2": "tsds test:node --no-timeouts",
+    "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^2.1.22",
+    "cross-spawn-cb": "^2.1.23",
     "get-tsconfig-compat": "^2.0.3",
-    "install-optional": "^0.1.50",
+    "install-optional": "^0.1.51",
     "lodash.camelcase": "4.3.0",
     "queue-cb": "^1.4.16",
     "resolve-bin-sync": "^0.1.12",
     "rimraf2": "^2.8.2",
-    "rollup": "^4.32.0",
+    "rollup": "^4.40.2",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.10.48",
-    "ts-swc-transform": "^1.15.51",
+    "ts-swc-rollup-plugin": "^1.10.51",
+    "ts-swc-transform": "^1.15.54",
     "tsds-lib": "*"
   },
   "devDependencies": {
