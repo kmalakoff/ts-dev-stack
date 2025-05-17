@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib",
-  "version": "1.15.8",
+  "version": "1.15.11",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -33,12 +33,12 @@
     "build": "node ../../dev/build/scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
-    "test:engines": "npm test",
     "test2": "tsds test:node --no-timeouts",
+    "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "node-version-call": "^1.6.50"
+    "node-version-call": "^1.6.53"
   },
   "devDependencies": {
     "@types/mocha": "*",

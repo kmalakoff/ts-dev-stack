@@ -1,11 +1,9 @@
-import fs from 'fs';
 import path from 'path';
 import url from 'url';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
-import resolve from 'resolve';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { installPath } from 'tsds-lib';
@@ -14,7 +12,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 
 const major = +process.versions.node.split('.')[0];
 const config = path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json');
-const mochaName = major < 12 ? 'mocha-compat' : 'mocha';
+const mochaBin = major < 12 ? ['mocha-compat'] : major < 14 ? ['mocha-compat-esm', 'mocha'] : ['mocha'];
 
 export default function c8(args, options, callback) {
   const cwd = options.cwd || process.cwd();
@@ -24,7 +22,7 @@ export default function c8(args, options, callback) {
 
     try {
       const c8 = resolveBin('c8');
-      const mocha = resolveBin(mochaName);
+      const mocha = resolveBin.apply(null, mochaBin);
       const loader = resolveBin('ts-swc-loaders', 'ts-swc');
 
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
