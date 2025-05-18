@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.15.4",
+  "version": "1.15.7",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -18,16 +18,15 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
       "types": "./dist/types/index.d.ts"
     },
     "./createConfig.cjs": "./dist/cjs/exports/createConfig.js",
-    "./createConfig.mjs": "./dist/esm/exports/createConfig.mjs"
+    "./createConfig.mjs": "./dist/esm/exports/createConfig.js"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "files": [
     "dist",
     "assets",
@@ -47,12 +46,12 @@
     "@web/test-runner": "^0.20.1",
     "@web/test-runner-playwright": "^0.11.0",
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.1.23",
+    "cross-spawn-cb": "^2.1.25",
     "getopts-compat": "^2.2.6",
-    "install-optional": "^0.1.51",
-    "link-unlink": "^0.1.24",
-    "queue-cb": "^1.4.16",
-    "resolve-bin-sync": "^0.1.12",
+    "install-optional": "^0.1.54",
+    "link-unlink": "^0.1.25",
+    "queue-cb": "^1.4.17",
+    "resolve-bin-sync": "^0.1.13",
     "tsds-lib": "*",
     "webpack-merge": "^6.0.1"
   },

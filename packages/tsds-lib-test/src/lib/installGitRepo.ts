@@ -11,7 +11,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const major = +process.versions.node.split('.')[0];
 const dist = path.join(__dirname, '..', '..');
 const version = major > 0 ? 'local' : 'stable';
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'installGitRepo.cjs'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'installGitRepo.js'));
 
 function worker(repo, dest, options, callback) {
   // options.clean = true;

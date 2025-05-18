@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.15.8",
+  "version": "1.15.13",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -19,13 +19,14 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "bin": {
     "ts-dev-stack": "bin/cli.cjs",
     "tsds": "bin/cli.cjs"
@@ -43,25 +44,25 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.23",
+    "cross-spawn-cb": "^2.1.25",
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.6",
     "gh-pages": "^6.3.0",
-    "install-module-linked": "^1.1.63",
-    "link-unlink": "^0.1.24",
-    "queue-cb": "^1.4.16",
+    "install-module-linked": "^1.1.65",
+    "link-unlink": "^0.1.25",
+    "queue-cb": "^1.4.17",
     "readable-stream": "^2.3.8",
     "resolve": "^1.22.10",
-    "resolve-bin-sync": "^0.1.12",
-    "tsds-biome": "^1.15.3",
-    "tsds-build": "^1.15.3",
-    "tsds-c8": "^1.15.3",
+    "resolve-bin-sync": "^0.1.13",
+    "tsds-biome": "^1.15.6",
+    "tsds-build": "^1.15.9",
+    "tsds-c8": "^1.15.7",
     "tsds-lib": "*",
-    "tsds-mocha": "^1.15.6",
-    "tsds-publish": "^1.2.3",
-    "tsds-typedoc": "^1.16.3",
-    "tsds-validate": "^1.1.13",
-    "tsds-web-test-runner": "^1.15.4"
+    "tsds-mocha": "^1.15.9",
+    "tsds-publish": "^1.2.7",
+    "tsds-typedoc": "^1.16.6",
+    "tsds-validate": "^1.1.16",
+    "tsds-web-test-runner": "^1.15.7"
   },
   "devDependencies": {
     "@types/mocha": "*",

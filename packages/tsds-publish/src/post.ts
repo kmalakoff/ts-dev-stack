@@ -9,7 +9,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const major = +process.versions.node.split('.')[0];
 const version = major > 18 ? 'local' : 'stable';
 const dist = path.join(__dirname, '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.cjs'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
 function worker(_args, options, callback) {
   const cwd = options.cwd || process.cwd();

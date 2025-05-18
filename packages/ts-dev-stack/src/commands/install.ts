@@ -1,7 +1,7 @@
 import path from 'path';
 import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
-import concatWritable from '../lib/concatWritable';
+import concatWritable from '../lib/concatWritable.js';
 
 const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;

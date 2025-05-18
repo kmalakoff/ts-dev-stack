@@ -13,7 +13,7 @@
     "version": "ep -d1 -c100 npm run version"
   },
   "dependencies": {
-    "each-package": "^0.10.93",
-    "tsds": "npm:ts-dev-stack@^1.15.7"
+    "each-package": "^0.10.96",
+    "tsds": "npm:ts-dev-stack@^1.15.13"
   }
 }

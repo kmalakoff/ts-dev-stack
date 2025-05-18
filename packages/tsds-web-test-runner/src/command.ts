@@ -12,7 +12,7 @@ const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.cjs'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 const config = path.join(dist, 'esm', 'wtr.config.mjs');
 
 function worker(args, options, callback) {
