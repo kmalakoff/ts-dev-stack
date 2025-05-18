@@ -40,7 +40,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.25",
+    "cross-spawn-cb": "^2.2.0",
     "depcheck": "^1.4.7",
     "queue-cb": "^1.4.17",
     "resolve-bin-sync": "^0.1.13",
