@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.15.9",
+  "version": "1.15.10",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
