@@ -46,7 +46,7 @@
     "@web/test-runner": "^0.20.1",
     "@web/test-runner-playwright": "^0.11.0",
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.1.25",
+    "cross-spawn-cb": "^2.2.0",
     "getopts-compat": "^2.2.6",
     "install-optional": "^0.1.54",
     "link-unlink": "^0.1.25",
