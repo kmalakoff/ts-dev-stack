@@ -55,14 +55,14 @@
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.13",
     "tsds-biome": "^1.15.8",
-    "tsds-build": "^1.15.11",
+    "tsds-build": "^1.15.12",
     "tsds-c8": "^1.15.9",
     "tsds-lib": "*",
     "tsds-mocha": "^1.15.11",
     "tsds-publish": "^1.2.9",
     "tsds-typedoc": "^1.16.8",
     "tsds-validate": "^1.1.18",
-    "tsds-web-test-runner": "^1.15.9"
+    "tsds-web-test-runner": "^1.15.10"
   },
   "devDependencies": {
     "@types/mocha": "*",
