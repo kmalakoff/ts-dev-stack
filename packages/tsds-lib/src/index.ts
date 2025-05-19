@@ -1,4 +1,4 @@
-export * from './types';
-export { default as loadConfig } from './lib/loadConfig';
-export { default as installPath } from './lib/installPath';
-export { default as wrapWorker } from './lib/wrapWorker';
+export * from './types.js';
+export { default as loadConfig } from './lib/loadConfig.js';
+export { default as installPath } from './lib/installPath.js';
+export { default as wrapWorker } from './lib/wrapWorker.js';

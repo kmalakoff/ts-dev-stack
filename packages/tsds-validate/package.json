@@ -1,6 +1,6 @@
 {
   "name": "tsds-validate",
-  "version": "1.1.13",
+  "version": "1.1.19",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -19,35 +19,38 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "files": [
     "dist",
     "assets",
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.cjs",
+    "build": "cross-env $npm_config_prefix/bin/tsds build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.23",
+    "cross-spawn-cb": "^2.2.2",
     "depcheck": "^1.4.7",
-    "queue-cb": "^1.4.16",
-    "resolve-bin-sync": "^0.1.12",
-    "sort-package-json": "^3.2.1"
+    "queue-cb": "^1.5.0",
+    "resolve-bin-sync": "^0.1.14",
+    "sort-package-json": "^3.2.1",
+    "tsds-lib": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*"
+    "@types/node": "*",
+    "cross-env": "^7.0.3"
   },
   "engines": {
     "node": ">=0.8"
