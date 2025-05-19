@@ -44,7 +44,7 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "cross-spawn-cb": "^2.2.0",
-    "fs-iterator": "^5.2.27",
+    "fs-iterator": "^5.3.8",
     "get-tsconfig-compat": "^2.0.3",
     "install-optional": "^0.1.54",
     "lodash.camelcase": "4.3.0",
