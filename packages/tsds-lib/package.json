@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib",
-  "version": "1.15.11",
+  "version": "1.15.18",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -17,20 +17,21 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "files": [
     "dist",
     "assets",
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.cjs",
+    "build": "cross-env $npm_config_prefix/bin/tsds build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
@@ -38,11 +39,12 @@
     "version": ""
   },
   "dependencies": {
-    "node-version-call": "^1.6.53"
+    "node-version-call": "^1.7.3"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*"
+    "@types/node": "*",
+    "cross-env": "^7.0.3"
   },
   "engines": {
     "node": ">=0.8"

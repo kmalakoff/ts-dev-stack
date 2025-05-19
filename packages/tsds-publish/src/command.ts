@@ -5,15 +5,15 @@ import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import Queue from 'queue-cb';
 import { wrapWorker } from 'tsds-lib';
-import hasChanged from './lib/hasChanged';
-import post from './post';
-import pre from './pre';
+import hasChanged from './lib/hasChanged.js';
+import post from './post.js';
+import pre from './pre.js';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.cjs'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
 function worker(args, options, callback) {
   const cwd = options.cwd || process.cwd();
