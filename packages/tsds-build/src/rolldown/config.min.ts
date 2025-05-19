@@ -3,7 +3,7 @@ import camelcase from 'lodash.camelcase';
 import { type Plugin, defineConfig } from 'rolldown';
 import swc from 'ts-swc-rollup-plugin';
 
-import { globals, input, pkg, tsconfig } from '../lib/rollingOptions';
+import { globals, input, pkg, tsconfig } from '../lib/rollingOptions.js';
 
 export const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
 

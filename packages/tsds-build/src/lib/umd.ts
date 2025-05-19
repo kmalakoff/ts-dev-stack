@@ -11,7 +11,7 @@ const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..', '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'umd.cjs'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'umd.js'));
 
 function worker(_args, options, callback) {
   const cwd = options.cwd || process.cwd();
@@ -24,8 +24,8 @@ function worker(_args, options, callback) {
 
     const queue = new Queue(1);
     queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));
-    queue.defer(spawn.bind(null, rollup, ['--config', path.join(configRoot, 'config.mjs')], options));
-    queue.defer(spawn.bind(null, rollup, ['--config', path.join(configRoot, 'config.min.mjs')], options));
+    queue.defer(spawn.bind(null, rollup, ['--config', path.join(configRoot, 'config.js')], options));
+    queue.defer(spawn.bind(null, rollup, ['--config', path.join(configRoot, 'config.min.js')], options));
     queue.await(callback);
   } catch (err) {
     return callback(err);

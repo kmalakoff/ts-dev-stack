@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.15.3",
+  "version": "1.15.12",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -19,20 +19,21 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "files": [
     "dist",
     "assets",
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.cjs",
+    "build": "cross-env $npm_config_prefix/bin/tsds build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
@@ -42,22 +43,25 @@
   "dependencies": {
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "cross-spawn-cb": "^2.1.23",
+    "cross-spawn-cb": "^2.2.2",
+    "fs-iterator": "^5.3.8",
     "get-tsconfig-compat": "^2.0.3",
-    "install-optional": "^0.1.51",
+    "install-optional": "^0.1.56",
     "lodash.camelcase": "4.3.0",
-    "queue-cb": "^1.4.16",
-    "resolve-bin-sync": "^0.1.12",
+    "mkdirp-classic": "^0.5.3",
+    "queue-cb": "^1.5.0",
+    "resolve-bin-sync": "^0.1.14",
     "rimraf2": "^2.8.2",
-    "rollup": "^4.40.2",
+    "rollup": "^4.41.0",
     "rollup-plugin-node-externals": "^8.0.0",
-    "ts-swc-rollup-plugin": "^1.10.51",
-    "ts-swc-transform": "^1.15.54",
+    "ts-swc-rollup-plugin": "^2.0.4",
+    "ts-swc-transform": "^2.0.5",
     "tsds-lib": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
+    "cross-env": "^7.0.3",
     "rolldown": "*"
   },
   "engines": {

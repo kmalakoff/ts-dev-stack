@@ -19,7 +19,7 @@ export default function command(args, options, callback) {
       const mocha = resolveBin(mochaBin);
 
       const { _ } = getopts(args, { stopEarly: true, alias: {} });
-      const spawnArgs = major < 12 ? [] : ['node'];
+      const spawnArgs = major === 12 ? ['node'] : []; // TODO: troubleshoot node 12 and mocha
       Array.prototype.push.apply(spawnArgs, [mocha, '--watch-extensions', 'ts,tsx']);
       Array.prototype.push.apply(spawnArgs, args);
       if (_.length === 0) Array.prototype.push.apply(spawnArgs, ['test/**/*.test.*']);

@@ -1,1 +1,1 @@
-export { default as installGitRepo } from './lib/installGitRepo';
+export { default as installGitRepo } from './lib/installGitRepo.js';

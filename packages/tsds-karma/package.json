@@ -19,20 +19,27 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": {
+        "default": "./dist/esm/index.js",
+        "types": "./dist/types/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/types/index.d.ts"
+      }
+    },
+    "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "files": [
     "dist",
     "assets",
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.cjs",
+    "build": "cross-env $npm_config_prefix/bin/tsds build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
@@ -41,20 +48,20 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.1.23",
+    "cross-spawn-cb": "^2.1.25",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
-    "link-unlink": "^0.1.24",
-    "queue-cb": "^1.4.16",
+    "link-unlink": "^0.1.25",
+    "queue-cb": "^1.4.17",
     "regenerator-runtime": "^0.14.1",
-    "resolve-bin-sync": "^0.1.12",
+    "resolve-bin-sync": "^0.1.13",
     "ts-loader": "^9.5.2",
-    "ts-swc-loaders": "^1.12.67",
-    "tsds-lib": "^1.15.8",
+    "ts-swc-loaders": "^2.0.1",
+    "tsds-lib": "^1.15.16",
     "webpack": "^5.99.8"
   },
   "devDependencies": {

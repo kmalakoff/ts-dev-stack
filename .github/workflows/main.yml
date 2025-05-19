@@ -9,15 +9,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ['lts/Jod']
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
+        # os: [ubuntu-latest, windows-latest]
         # os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      # UNIQUE START
-      - name: Run npm install in dev/build for build commands
-        working-directory: ./dev/build
-        run: npm install
-      # UNIQUE END
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:

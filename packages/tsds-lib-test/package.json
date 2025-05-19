@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib-test",
-  "version": "1.15.3",
+  "version": "1.15.9",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -16,20 +16,21 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./dist/esm/index.mjs",
-    "require": "./dist/cjs/index.cjs",
-    "types": "./dist/types/index.d.ts"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.cts",
   "files": [
     "dist",
     "assets",
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../dev/build/scripts/build.cjs",
+    "build": "cross-env $npm_config_prefix/bin/tsds build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
@@ -37,15 +38,16 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.1.23",
+    "cross-spawn-cb": "^2.2.2",
     "mkdirp-classic": "^0.5.3",
-    "queue-cb": "^1.4.16",
+    "queue-cb": "^1.5.0",
     "rimraf2": "^2.8.2",
     "tsds-lib": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*"
+    "@types/node": "*",
+    "cross-env": "^7.0.3"
   },
   "engines": {
     "node": ">=0.8"
