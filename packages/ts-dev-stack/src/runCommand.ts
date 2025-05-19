@@ -5,7 +5,7 @@ import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
 import resolve from 'resolve';
 import { loadConfig } from 'tsds-lib';
-import * as constants from './constants';
+import * as constants from './constants.js';
 
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);

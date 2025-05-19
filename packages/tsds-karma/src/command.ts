@@ -7,7 +7,7 @@ import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
-const config = path.join(__dirname, '..', '..', 'assets', 'karma.conf.cjs');
+const config = path.join(__dirname, '..', '..', 'assets', 'karma.conf.js');
 
 export default function karma(args, options, callback) {
   const cwd = options.cwd || process.cwd();
