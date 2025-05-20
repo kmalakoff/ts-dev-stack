@@ -6,11 +6,14 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 import { linkModule, unlinkModule } from 'module-link-unlink';
-import os from 'os-shim';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
 import shortHash from 'short-hash';
 import { installGitRepo } from 'tsds-lib-test';
+
+import os from 'os';
+import osShim from 'os-shim';
+const tmpdir = os.tmpdir || osShim.tmpdir;
 
 // @ts-ignore
 import { hasChanged } from 'tsds-publish';
@@ -22,7 +25,7 @@ const GITS = ['https://github.com/kmalakoff/parser-multipart.git'];
 function addTests(repo) {
   const repoName = path.basename(repo, path.extname(repo));
   describe(repoName, () => {
-    const dest = path.join(os.tmpdir(), 'tsds-publish', shortHash(process.cwd()), repoName);
+    const dest = path.join(tmpdir(), 'tsds-publish', shortHash(process.cwd()), repoName);
     const modulePath = fs.realpathSync(path.join(__dirname, '..', '..'));
     const modulePackage = JSON.parse(fs.readFileSync(path.join(modulePath, 'package.json'), 'utf8'));
     const nodeModules = path.join(dest, 'node_modules');
