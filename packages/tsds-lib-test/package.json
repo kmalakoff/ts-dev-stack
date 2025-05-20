@@ -30,7 +30,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",

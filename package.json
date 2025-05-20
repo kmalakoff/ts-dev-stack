@@ -13,7 +13,8 @@
     "version": "ep -d1 -c100 npm run version"
   },
   "dependencies": {
+    "cross-spawn-cb": "^2.2.3",
     "each-package": "^0.10.96",
-    "tsds": "npm:ts-dev-stack@^1.15.14"
+    "playwright": "^1.52.0"
   }
 }
