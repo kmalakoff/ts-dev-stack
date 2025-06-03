@@ -60,7 +60,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve-bin-sync": "^0.1.13",
     "ts-loader": "^9.5.2",
-    "ts-swc-loaders": "^2.0.1",
+    "ts-swc-loaders": "^2.0.5",
     "tsds-lib": "^1.15.16",
     "webpack": "^5.99.8"
   },
