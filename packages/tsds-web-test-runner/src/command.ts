@@ -15,7 +15,7 @@ const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 const config = path.join(dist, 'esm', 'wtr.config.js');
 
-function worker(args, options, callback) {
+function worker(args: string[], options: CommandOptions, callback: CommandCallback) {
   const cwd = options.cwd || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {

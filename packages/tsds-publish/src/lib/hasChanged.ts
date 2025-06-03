@@ -4,7 +4,7 @@ import Module from 'module';
 import path from 'path';
 import url from 'url';
 import get from 'get-remote';
-import { wrapWorker } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';

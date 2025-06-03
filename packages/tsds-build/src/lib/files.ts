@@ -4,7 +4,7 @@ import Iterator, { type Entry } from 'fs-iterator';
 import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 import { transformDirectory, transformTypes } from 'ts-swc-transform';
-import { loadConfig } from 'tsds-lib';
+import { loadConfig,  type CommandOptions, type CommandCallback  } from 'tsds-lib';
 
 const MAX_FILES = 10;
 const reportFn = (dest, type, cb) => (err, results) => {

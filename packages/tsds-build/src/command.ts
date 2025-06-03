@@ -1,12 +1,12 @@
 import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
-import { loadConfig } from 'tsds-lib';
+import { loadConfig,  type CommandOptions, type CommandCallback  } from 'tsds-lib';
 import { DEFAULT_TARGETS } from './constants.js';
 import files from './lib/files.js';
 import umd from './lib/umd.js';
 
-export default function build(args, options, callback) {
+export default function build(args: string[], options: CommandOptions, callback: CommandCallback) {
   const config = loadConfig(options);
   if (!config) {
     console.log('tsds: no config. Skipping');

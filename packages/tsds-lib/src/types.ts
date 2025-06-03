@@ -1,3 +1,5 @@
+import { type SpawnOptions, type SpawnResult } from 'cross-spawn-cb';
+
 export interface Config {
   source?: string;
   targets?: string[];
@@ -9,3 +11,6 @@ export interface ConfigOptions {
   config?: Config;
   package?: JSON;
 }
+
+export type CommandOptions = ConfigOptions | SpawnOptions;
+export type CommandCallback = CommandCallback;

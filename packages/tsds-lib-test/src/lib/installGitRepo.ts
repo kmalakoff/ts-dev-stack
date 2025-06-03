@@ -5,7 +5,7 @@ import spawn from 'cross-spawn-cb';
 import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
-import { wrapWorker } from 'tsds-lib';
+import { type CommandOptions, type CommandCallback, wrapWorker } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];

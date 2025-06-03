@@ -5,7 +5,7 @@ import { installSync } from 'install-optional';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
-import { wrapWorker } from 'tsds-lib';
+import { type CommandOptions, type CommandCallback, wrapWorker } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
@@ -13,7 +13,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..', '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'umd.js'));
 
-function worker(_args, options, callback) {
+function worker(_args: string[], options: CommandOptions, callback: CommandCallback) {
   const cwd = options.cwd || process.cwd();
   const dest = path.join(cwd, 'dist', 'umd');
   const configRoot = path.join(dist, 'esm', 'rollup');

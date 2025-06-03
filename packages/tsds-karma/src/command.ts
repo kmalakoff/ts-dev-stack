@@ -9,7 +9,7 @@ import { installPath } from 'tsds-lib';
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const config = path.join(__dirname, '..', '..', 'assets', 'karma.conf.js');
 
-export default function karma(args, options, callback) {
+export default function karma(args: string[], options: CommandOptions, callback: CommandCallback) {
   const cwd = options.cwd || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {

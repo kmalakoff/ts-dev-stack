@@ -33,7 +33,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test:engines": "npm test",
@@ -45,12 +45,12 @@
     "queue-cb": "^1.5.0",
     "resolve-bin-sync": "^0.1.14",
     "sort-package-json": "^3.2.1",
-    "tsds-lib": "*"
+    "tsds-lib": "*",
+    "tsds-typedoc": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*",
-    "cross-env": "^7.0.3"
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"

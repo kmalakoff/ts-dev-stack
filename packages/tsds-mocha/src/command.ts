@@ -8,7 +8,7 @@ import { installPath } from 'tsds-lib';
 const major = +process.versions.node.split('.')[0];
 const mochaBin = major < 12 ? 'mocha-compat' : major < 14 ? 'mocha-compat-esm' : 'mocha';
 
-export default function command(args, options, callback) {
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
   const cwd = options.cwd || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {

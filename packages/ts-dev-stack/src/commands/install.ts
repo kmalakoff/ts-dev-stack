@@ -7,7 +7,7 @@ const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;
 const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
 
-export default function command(args, options, callback) {
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
   const cwd = options.cwd || process.cwd();
   const queue = new Queue(1);
   let count = 1;

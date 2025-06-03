@@ -3,7 +3,7 @@ import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import docs from 'tsds-typedoc';
 
-export default function command(args, options, callback) {
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
   try {
     const ghPages = resolveBin('gh-pages');
     const queue = new Queue(1);

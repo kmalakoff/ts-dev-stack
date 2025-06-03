@@ -33,7 +33,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
@@ -53,7 +53,6 @@
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
-    "cross-env": "^7.0.3",
     "module-link-unlink": "*",
     "os-shim": "*",
     "resolve": "*",

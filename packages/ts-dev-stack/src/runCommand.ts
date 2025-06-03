@@ -4,7 +4,7 @@ import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
 import resolve from 'resolve';
-import { loadConfig } from 'tsds-lib';
+import { loadConfig,  type CommandOptions, type CommandCallback  } from 'tsds-lib';
 import * as constants from './constants.js';
 
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
@@ -13,7 +13,7 @@ const dist = path.join(_dirname, '..');
 const nodeModules = path.join(_dirname, '..', '..', 'node_modules');
 const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
 
-function run(specifier, args, options, callback) {
+function run(specifier, args: string[], options: CommandOptions, callback: CommandCallback) {
   try {
     const mod = _require(specifier);
     const fn = mod.default || mod;
@@ -23,7 +23,7 @@ function run(specifier, args, options, callback) {
   }
 }
 
-export default function runCommand(name, args, options, callback) {
+export default function runCommand(name, args: string[], options: CommandOptions, callback: CommandCallback) {
   const config = loadConfig(options);
   const commands = {
     ...constants.commands,
