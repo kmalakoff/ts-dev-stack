@@ -44,7 +44,7 @@
     "resolve-bin-sync": "^0.1.14",
     "rimraf2": "^2.8.2",
     "tsds-lib": "*",
-    "typedoc": "^0.28.4"
+    "typedoc": "^0.28.5"
   },
   "devDependencies": {
     "@types/mocha": "*",
