@@ -23,7 +23,7 @@ interface Registry {
 }
 
 async function worker(options, callback) {
-  const cwd = options.cwd || process.cwd();
+  const cwd: string = (options.cwd as string) || process.cwd();
   options = {
     ...options,
   };

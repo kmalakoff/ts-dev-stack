@@ -7,6 +7,7 @@ import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
 import { installPath } from 'tsds-lib';
+import type { CommandCallback, CommandOptions } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 
@@ -14,8 +15,8 @@ const major = +process.versions.node.split('.')[0];
 const config = path.join(__dirname, '..', '..', '..', 'assets', 'c8rc.json');
 const mochaBin = major < 12 ? ['mocha-compat'] : major < 14 ? ['mocha-compat-esm', 'mocha'] : ['mocha'];
 
-export default function c8(args, options, callback) {
-  const cwd = options.cwd || process.cwd();
+export default function c8(args: string[], options: CommandOptions, callback: CommandCallback) {
+  const cwd: string = (options.cwd as string) || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {
     if (err) return callback(err);

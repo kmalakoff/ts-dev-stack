@@ -5,7 +5,7 @@ import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import format from 'tsds-biome';
 import build from 'tsds-build';
-import { wrapWorker } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 const major = +process.versions.node.split('.')[0];
@@ -14,7 +14,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
-function worker(_args, options, callback) {
+function worker(_args: string[], options: CommandOptions, callback: CommandCallback) {
   try {
     const depcheck = resolveBin('depcheck');
     const sortPackageJSON = resolveBin('sort-package-json');
@@ -32,6 +32,6 @@ function worker(_args, options, callback) {
   }
 }
 
-export default function publish(args, options, callback) {
+export default function publish(args: string[], options: CommandOptions, callback: CommandCallback) {
   version !== 'local' ? workerWrapper(version, args, options, callback) : worker(args, options, callback);
 }
