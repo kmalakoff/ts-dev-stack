@@ -1,6 +1,6 @@
 {
   "name": "tsds-c8",
-  "version": "1.15.11",
+  "version": "1.15.12",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -31,7 +31,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "tsds test:node --no-timeouts",
@@ -41,21 +41,20 @@
   "dependencies": {
     "assert": "1.5.0",
     "c8": "^10.1.3",
-    "cross-spawn-cb": "^2.2.3",
+    "cross-spawn-cb": "^2.2.8",
     "getopts-compat": "^2.2.6",
-    "link-unlink": "^0.1.27",
-    "queue-cb": "^1.5.0",
+    "link-unlink": "^0.1.29",
+    "queue-cb": "^1.5.2",
     "regenerator-runtime": "^0.14.1",
     "resolve-bin-sync": "^0.1.14",
     "rimraf2": "^2.8.2",
-    "ts-swc-loaders": "^2.0.4",
+    "ts-swc-loaders": "^2.0.11",
     "tsds-lib": "*",
     "tsds-mocha": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*",
-    "cross-env": "^7.0.3"
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"
