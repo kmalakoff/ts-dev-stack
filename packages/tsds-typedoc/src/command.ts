@@ -5,7 +5,7 @@ import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
-import { loadConfig, wrapWorker } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig, wrapWorker } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
@@ -13,8 +13,8 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
-function worker(args, options, callback) {
-  const config = loadConfig(options);
+function worker(args: string[], options: CommandOptions, callback: CommandCallback) {
+  const config = loadConfig(options as ConfigOptions);
   if (!config) {
     console.log('tsds: no config. Skipping');
     return callback();
@@ -38,6 +38,6 @@ function worker(args, options, callback) {
   }
 }
 
-export default function docs(args, options, callback) {
+export default function docs(args: string[], options: CommandOptions, callback: CommandCallback) {
   version !== 'local' ? workerWrapper('stable', args, options, callback) : worker(args, options, callback);
 }
