@@ -7,6 +7,7 @@ import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import { installPath, wrapWorker } from 'tsds-lib';
+import type { CommandCallback, CommandOptions } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
@@ -15,8 +16,8 @@ const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 const config = path.join(dist, 'esm', 'wtr.config.js');
 
-function worker(args, options, callback) {
-  const cwd = options.cwd || process.cwd();
+function worker(args: string[], options: CommandOptions, callback: CommandCallback) {
+  const cwd: string = (options.cwd as string) || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {
     if (err) return callback(err);

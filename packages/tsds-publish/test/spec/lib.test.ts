@@ -32,8 +32,11 @@ function addTests(repo) {
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
 
     before((cb) => {
-      installGitRepo(repo, dest, (err) => {
-        if (err) return cb(err);
+      installGitRepo(repo, dest, (err): undefined => {
+        if (err) {
+          cb(err);
+          return;
+        }
 
         const queue = new Queue();
         queue.defer(linkModule.bind(null, modulePath, nodeModules));
