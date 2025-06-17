@@ -31,8 +31,11 @@ function addTests(repo) {
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
 
     before((cb) => {
-      installGitRepo(repo, dest, (err) => {
-        if (err) return cb(err);
+      installGitRepo(repo, dest, (err): undefined => {
+        if (err) {
+          cb(err);
+          return;
+        }
 
         const queue = new Queue();
         queue.defer(linkModule.bind(null, modulePath, nodeModules));
@@ -50,73 +53,109 @@ function addTests(repo) {
     describe('happy path', () => {
       it('build', (done) => {
         spawn(CLI, ['build', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('install', (done) => {
         spawn(CLI, ['install', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('link', (done) => {
         spawn(CLI, ['link', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('unlink', (done) => {
         spawn(CLI, ['unlink', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('format', (done) => {
         spawn(CLI, ['format', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('publish', (done) => {
         spawn(CLI, ['publish', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('test:node', (done) => {
         spawn(CLI, ['test:node', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('test:browser', (done) => {
         spawn(CLI, ['test:browser', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('coverage', (done) => {
         spawn(CLI, ['coverage', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('docs', (done) => {
         spawn(CLI, ['docs', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('validate', (done) => {
         spawn(CLI, ['validate', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('version', (done) => {
         spawn(CLI, ['version', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });

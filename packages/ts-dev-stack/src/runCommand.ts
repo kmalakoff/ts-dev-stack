@@ -1,10 +1,11 @@
+import type { SpawnOptions } from 'child_process';
 import Module from 'module';
 import path from 'path';
 import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
 import resolve from 'resolve';
-import { loadConfig } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig } from 'tsds-lib';
 import * as constants from './constants.js';
 
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
@@ -13,7 +14,7 @@ const dist = path.join(_dirname, '..');
 const nodeModules = path.join(_dirname, '..', '..', 'node_modules');
 const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
 
-function run(specifier, args, options, callback) {
+function run(specifier, args: string[], options: CommandOptions, callback: CommandCallback) {
   try {
     const mod = _require(specifier);
     const fn = mod.default || mod;
@@ -23,8 +24,8 @@ function run(specifier, args, options, callback) {
   }
 }
 
-export default function runCommand(name, args, options, callback) {
-  const config = loadConfig(options);
+export default function runCommand(name, args: string[], options: CommandOptions, callback: CommandCallback) {
+  const config = loadConfig(options as ConfigOptions);
   const commands = {
     ...constants.commands,
     ...((config || {}).commands || {}),
@@ -33,8 +34,8 @@ export default function runCommand(name, args, options, callback) {
   if (!command) return callback(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
   const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
   if (opts['dry-run']) return callback();
-  const cwd = options.cwd || process.cwd();
-  const runOptions = { ...options, cwd, stdio: 'inherit' };
+  const cwd: string = (options.cwd as string) || process.cwd();
+  const runOptions = { ...options, cwd, stdio: 'inherit' } as SpawnOptions;
   if (moduleRegEx.test(command)) {
     try {
       resolve.sync(path.join(command, 'package.json'));

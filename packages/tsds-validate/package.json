@@ -1,6 +1,6 @@
 {
   "name": "tsds-validate",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -33,24 +33,24 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.2.3",
+    "cross-spawn-cb": "^2.2.8",
     "depcheck": "^1.4.7",
-    "queue-cb": "^1.5.0",
+    "queue-cb": "^1.5.2",
     "resolve-bin-sync": "^0.1.14",
     "sort-package-json": "^3.2.1",
-    "tsds-lib": "*"
+    "tsds-lib": "*",
+    "tsds-typedoc": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*",
-    "cross-env": "^7.0.3"
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"

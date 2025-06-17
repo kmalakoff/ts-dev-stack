@@ -6,6 +6,8 @@ import mkdirp from 'mkdirp-classic';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { wrapWorker } from 'tsds-lib';
+import type { CommandCallback, CommandOptions } from 'tsds-lib';
+import type { InstallOptions } from '../types.js';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
@@ -13,10 +15,11 @@ const dist = path.join(__dirname, '..', '..');
 const version = major > 0 ? 'local' : 'stable';
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'installGitRepo.js'));
 
-function worker(repo, dest, options, callback) {
+function worker(repo, dest, options: CommandOptions | InstallOptions, callback: CommandCallback) {
+  const installOptions = options as InstallOptions;
   // options.clean = true;
   function checkOrClean(dest, callback) {
-    options.clean ? rimraf2(dest, { disableGlob: true }, callback.bind(null, new Error('clone'))) : fs.stat(dest, callback);
+    installOptions.clean ? rimraf2(dest, { disableGlob: true }, callback.bind(null, new Error('clone'))) : fs.stat(dest, callback);
   }
 
   checkOrClean(dest, (err) => {
@@ -39,7 +42,7 @@ function worker(repo, dest, options, callback) {
   });
 }
 
-export default function installGitRepo(repo: string, dest: string, options, callback?) {
+export default function installGitRepo(repo: string, dest: string, options: CommandOptions | CommandCallback, callback?: CommandCallback): undefined {
   if (typeof options === 'function') {
     callback = options;
     options = {};

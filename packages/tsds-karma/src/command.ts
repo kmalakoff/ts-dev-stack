@@ -5,12 +5,13 @@ import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import { installPath } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions } from 'tsds-lib';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const config = path.join(__dirname, '..', '..', 'assets', 'karma.conf.js');
 
-export default function karma(args, options, callback) {
-  const cwd = options.cwd || process.cwd();
+export default function karma(args: string[], options: CommandOptions, callback: CommandCallback) {
+  const cwd: string = options.cwd as string || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {
     if (err) return callback(err);

@@ -24,7 +24,7 @@ export default function files(_args, type, options, callback) {
     return callback();
   }
 
-  const cwd = options.cwd || process.cwd();
+  const cwd: string = (options.cwd as string) || process.cwd();
   const src = path.dirname(path.join(cwd, config.source));
   const dest = path.join(cwd, 'dist', type);
 

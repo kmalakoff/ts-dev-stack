@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.15.13",
+  "version": "1.15.14",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -31,7 +31,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/ && biome check --config-path biome.es5.json --write --unsafe scripts/",
     "postinstall": "node ./scripts/postinstall.cjs",
     "test": "",
@@ -41,24 +41,23 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.2.3",
+    "cross-spawn-cb": "^2.2.8",
     "getopts-compat": "^2.2.6",
-    "link-unlink": "^0.1.27",
-    "mocha": "^11.4.0",
+    "link-unlink": "^0.1.29",
+    "mocha": "^11.6.0",
     "mocha-compat": "^3.6.2",
     "mocha-compat-esm": "npm:mocha@11.1.0",
-    "queue-cb": "^1.5.0",
+    "queue-cb": "^1.5.2",
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.14",
-    "ts-swc-loaders": "^2.0.4",
+    "ts-swc-loaders": "^2.0.11",
     "tsds-lib": "*",
     "unixify": "^1.0.0"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*",
-    "cross-env": "^7.0.3"
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"

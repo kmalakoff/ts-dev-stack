@@ -3,12 +3,14 @@ import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
 import concatWritable from '../lib/concatWritable.js';
 
+import type { CommandCallback, CommandOptions } from 'tsds-lib';
+
 const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;
 const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
 
-export default function command(args, options, callback) {
-  const cwd = options.cwd || process.cwd();
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
+  const cwd: string = (options.cwd as string) || process.cwd();
   const queue = new Queue(1);
   let count = 1;
   function install(cb) {

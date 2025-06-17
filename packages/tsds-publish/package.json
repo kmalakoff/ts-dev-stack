@@ -1,6 +1,6 @@
 {
   "name": "tsds-publish",
-  "version": "1.2.11",
+  "version": "1.2.13",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -33,27 +33,26 @@
     "scripts"
   ],
   "scripts": {
-    "build": "cross-env $npm_config_prefix/bin/tsds build",
+    "build": "node ../../scripts/build.cjs",
     "format": "biome check --write --unsafe src/ test/",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
-    "@npmcli/arborist": "^9.1.0",
-    "cross-spawn-cb": "^2.2.3",
-    "get-remote": "^1.4.4",
+    "@npmcli/arborist": "^9.1.2",
+    "cross-spawn-cb": "^2.2.8",
+    "get-remote": "^1.4.12",
     "getopts-compat": "^2.2.6",
     "npm-package-arg": "^12.0.2",
     "pacote": "^21.0.0",
-    "queue-cb": "^1.5.0",
+    "queue-cb": "^1.5.2",
     "rimraf2": "^2.8.2",
     "tsds-lib": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
-    "cross-env": "^7.0.3",
     "module-link-unlink": "*",
     "os-shim": "*",
     "resolve": "*",
