@@ -4,10 +4,11 @@ import url from 'url';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import Queue from 'queue-cb';
-import { wrapWorker } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
 import hasChanged from './lib/hasChanged.js';
 import post from './post.js';
 import pre from './pre.js';
+import type { CommandOptionsPublish } from './types.js';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
@@ -15,19 +16,18 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
-function worker(args, options, callback) {
-  const cwd = options.cwd || process.cwd();
-  options = { ...options };
-  options.package = options.package || JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));
+function worker(args: string[], options_: CommandOptions, callback: CommandCallback) {
+  const cwd = options_.cwd || process.cwd();
+  const options = { ...options_ } as CommandOptionsPublish;
+  options.package = options.package || JSON.parse(fs.readFileSync(path.join(cwd as string, 'package.json'), 'utf8'));
   if (options.package.private) {
     console.log(`Skipping ${options.package.name}. Private`);
     return callback();
   }
 
-  const opts = getopts(args, { alias: { otp: 'o' }, boolean: ['yolo'] });
-
   const queue = new Queue(1);
 
+  const opts = getopts(args, { alias: { otp: 'o' }, boolean: ['yolo'] });
   opts.yolo || queue.defer(pre.bind(null, args, options));
   queue.defer((cb) => {
     hasChanged(options, (err, changed) => {
@@ -42,7 +42,7 @@ function worker(args, options, callback) {
       queue.defer((cb) =>
         spawn('npm', versionArgs, options, (err) => {
           if (err) return cb(err);
-          options.package = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8'));
+          options.package = JSON.parse(fs.readFileSync(path.join(cwd as string, 'package.json'), 'utf8'));
           cb();
         })
       );
@@ -60,6 +60,6 @@ function worker(args, options, callback) {
   queue.await(callback);
 }
 
-export default function publish(args, options, callback) {
+export default function publish(args: string[], options: CommandOptions, callback: CommandCallback) {
   version !== 'local' ? workerWrapper(version, args, options, callback) : worker(args, options, callback);
 }

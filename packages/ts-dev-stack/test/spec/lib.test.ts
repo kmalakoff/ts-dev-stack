@@ -33,8 +33,11 @@ function addTests(repo) {
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
 
     before((cb) => {
-      installGitRepo(repo, dest, (err) => {
-        if (err) return cb(err);
+      installGitRepo(repo, dest, (err?: Error): undefined => {
+        if (err) {
+          cb(err);
+          return;
+        }
 
         const queue = new Queue();
         queue.defer(linkModule.bind(null, modulePath, nodeModules));
@@ -51,68 +54,98 @@ function addTests(repo) {
 
     describe('happy path', () => {
       it('build', (done) => {
-        runCommand('build', [], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('build', [], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('link', (done) => {
-        runCommand('link', [], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('link', [], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('unlink', (done) => {
-        runCommand('unlink', [], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('unlink', [], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('format', (done) => {
-        runCommand('format', [], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('format', [], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('publish', (done) => {
-        runCommand('publish', ['--dry-run'], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('publish', ['--dry-run'], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('test', (done) => {
-        spawn('npm', ['run', 'test'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        spawn('npm', ['run', 'test'], { stdio: 'inherit', cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('test:engines', (done) => {
-        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        spawn('npm', ['run', 'test:engines'], { stdio: 'inherit', cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it.skip('coverage', (done) => {
-        spawn('npm', ['run', 'coverage'], { stdio: 'inherit', cwd: dest }, (err) => {
+        spawn('npm', ['run', 'coverage'], { stdio: 'inherit', cwd: dest }, (err?: Error): undefined => {
           if (err && err.message.indexOf('Missing script"') < 0) assert.ok(err.message);
           done();
         });
       });
       it('docs', (done) => {
-        runCommand('docs', [], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('docs', [], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('validate', (done) => {
-        runCommand('validate', ['--dry-run'], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('validate', ['--dry-run'], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });
       it('version', (done) => {
-        runCommand('version', ['--dry-run'], { cwd: dest }, (err) => {
-          if (err) return done(err.message);
+        runCommand('version', ['--dry-run'], { cwd: dest }, (err?: Error): undefined => {
+          if (err) {
+            done(err.message);
+            return;
+          }
           done();
         });
       });

@@ -1,9 +1,10 @@
 import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
+import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
-export default function command(args, options, callback) {
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
   try {
     const ghPages = resolveBin('gh-pages');
     const queue = new Queue(1);
