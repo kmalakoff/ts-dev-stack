@@ -2,18 +2,18 @@
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
+import fs from 'fs';
 import { linkModule, unlinkModule } from 'module-link-unlink';
+import os from 'os';
+import osShim from 'os-shim';
+import path from 'path';
 import Queue from 'queue-cb';
 import resolve from 'resolve';
 import shortHash from 'short-hash';
 import { installGitRepo } from 'tsds-lib-test';
+import url from 'url';
 
-import os from 'os';
-import osShim from 'os-shim';
 const tmpdir = os.tmpdir || osShim.tmpdir;
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));

@@ -1,7 +1,7 @@
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
+import path from 'path';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
+import url from 'url';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
