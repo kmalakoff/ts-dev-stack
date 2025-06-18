@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
+import fs from 'fs';
 import getopts from 'getopts-compat';
+import path from 'path';
 import Queue from 'queue-cb';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
+import url from 'url';
 import hasChanged from './lib/hasChanged.js';
 import post from './post.js';
 import pre from './pre.js';

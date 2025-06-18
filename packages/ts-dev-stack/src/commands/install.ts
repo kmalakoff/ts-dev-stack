@@ -1,9 +1,8 @@
-import path from 'path';
 import spawn from 'cross-spawn-cb';
+import path from 'path';
 import Queue from 'queue-cb';
-import concatWritable from '../lib/concatWritable.js';
-
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
+import concatWritable from '../lib/concatWritable.js';
 
 const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;

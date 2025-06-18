@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.15.14",
+  "version": "1.15.15",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -44,7 +44,7 @@
     "cross-spawn-cb": "^2.2.8",
     "getopts-compat": "^2.2.6",
     "link-unlink": "^0.1.29",
-    "mocha": "^11.6.0",
+    "mocha": "11.6.0",
     "mocha-compat": "^3.6.2",
     "mocha-compat-esm": "npm:mocha@11.1.0",
     "queue-cb": "^1.5.2",

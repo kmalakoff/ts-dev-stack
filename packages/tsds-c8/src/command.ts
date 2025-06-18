@@ -1,13 +1,13 @@
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
+import path from 'path';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
-import { installPath } from 'tsds-lib';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
+import { installPath } from 'tsds-lib';
+import url from 'url';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 

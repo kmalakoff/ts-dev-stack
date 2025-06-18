@@ -1,7 +1,7 @@
 import fs from 'fs';
-import path from 'path';
 import Iterator, { type Entry } from 'fs-iterator';
 import mkdirp from 'mkdirp-classic';
+import path from 'path';
 import Queue from 'queue-cb';
 import { transformDirectory, transformTypes } from 'ts-swc-transform';
 import { loadConfig } from 'tsds-lib';

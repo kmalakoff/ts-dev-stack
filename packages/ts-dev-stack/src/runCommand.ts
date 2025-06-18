@@ -1,18 +1,18 @@
 import type { SpawnOptions } from 'child_process';
-import Module from 'module';
-import path from 'path';
-import url from 'url';
 import getopts from 'getopts-compat';
 import installModule from 'install-module-linked';
+import Module from 'module';
+import path from 'path';
 import resolve from 'resolve';
 import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig } from 'tsds-lib';
+import url from 'url';
 import * as constants from './constants.js';
 
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(_dirname, '..');
 const nodeModules = path.join(_dirname, '..', '..', 'node_modules');
-const moduleRegEx = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/;
+const moduleRegEx = /^[^./]|^\.[^./]|^\.\.[^/]/;
 
 function run(specifier, args: string[], options: CommandOptions, callback: CommandCallback) {
   try {

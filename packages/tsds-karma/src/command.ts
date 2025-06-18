@@ -1,17 +1,16 @@
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
 import { link, unlink } from 'link-unlink';
+import path from 'path';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
-import { installPath } from 'tsds-lib';
-import { type CommandCallback, type CommandOptions } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, installPath } from 'tsds-lib';
+import url from 'url';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const config = path.join(__dirname, '..', '..', 'assets', 'karma.conf.js');
 
 export default function karma(args: string[], options: CommandOptions, callback: CommandCallback) {
-  const cwd: string = options.cwd as string || process.cwd();
+  const cwd: string = (options.cwd as string) || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {
     if (err) return callback(err);

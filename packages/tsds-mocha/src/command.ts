@@ -3,8 +3,8 @@ import getopts from 'getopts-compat';
 import { link, unlink } from 'link-unlink';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
-import { installPath } from 'tsds-lib';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
+import { installPath } from 'tsds-lib';
 
 const major = +process.versions.node.split('.')[0];
 const mochaBin = major < 12 ? 'mocha-compat' : major < 14 ? 'mocha-compat-esm' : 'mocha';

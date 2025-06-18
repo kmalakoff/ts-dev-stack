@@ -1,9 +1,9 @@
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
+import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
+import url from 'url';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];

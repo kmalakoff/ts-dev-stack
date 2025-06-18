@@ -1,10 +1,10 @@
 import crypto from 'crypto';
 import fs from 'fs';
+import get from 'get-remote';
 import Module from 'module';
 import path from 'path';
-import url from 'url';
-import get from 'get-remote';
 import { wrapWorker } from 'tsds-lib';
+import url from 'url';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';

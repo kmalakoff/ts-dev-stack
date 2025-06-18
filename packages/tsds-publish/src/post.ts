@@ -1,9 +1,9 @@
+import spawn from 'cross-spawn-cb';
 import fs from 'fs';
 import path from 'path';
-import url from 'url';
-import spawn from 'cross-spawn-cb';
 import Queue from 'queue-cb';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
+import url from 'url';
 import type { CommandOptionsPublish } from './types.js';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
