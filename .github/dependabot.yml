@@ -9,6 +9,7 @@ updates:
       - dependency-name: "@types/node"
       - dependency-name: 'assert'
       - dependency-name: 'readable-stream'
+      - dependency-name: 'mocha'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
