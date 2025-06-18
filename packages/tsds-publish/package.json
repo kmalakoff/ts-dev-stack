@@ -1,6 +1,6 @@
 {
   "name": "tsds-publish",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "build": "node ../../scripts/build.cjs",
-    "format": "biome check --write --unsafe src/ test/",
+    "format": "biome check --write --unsafe",
     "test": "tsds test:node --no-timeouts",
     "test:engines": "npm test",
     "version": ""
