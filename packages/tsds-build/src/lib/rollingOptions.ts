@@ -1,7 +1,7 @@
 import fs from 'fs';
-import path from 'path';
 import * as getTS from 'get-tsconfig-compat';
 import camelcase from 'lodash.camelcase';
+import path from 'path';
 
 export const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
 export const source = pkg.tsds ? pkg.tsds.source || 'src/index.ts' : 'src/index.ts';

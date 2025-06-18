@@ -1,12 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
 import spawn from 'cross-spawn-cb';
+import fs from 'fs';
 import mkdirp from 'mkdirp-classic';
+import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
-import { wrapWorker } from 'tsds-lib';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
+import { wrapWorker } from 'tsds-lib';
+import url from 'url';
 import type { InstallOptions } from '../types.js';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
