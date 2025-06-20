@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.15.15",
+  "version": "1.15.17",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -35,23 +35,23 @@
     "format": "biome check --write --unsafe src/ && biome check --config-path biome.es5.json --write --unsafe scripts/",
     "postinstall": "node ./scripts/postinstall.cjs",
     "test": "",
-    "test2": "tsds test:node --no-timeouts",
+    "test2": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.2.8",
+    "cross-spawn-cb": "^2.2.10",
     "getopts-compat": "^2.2.6",
-    "link-unlink": "^0.1.29",
+    "link-unlink": "^0.1.31",
     "mocha": "11.6.0",
     "mocha-compat": "^3.6.2",
     "mocha-compat-esm": "npm:mocha@11.1.0",
-    "queue-cb": "^1.5.2",
+    "queue-cb": "^1.5.4",
     "regenerator-runtime": "^0.14.1",
     "resolve": "^1.22.10",
-    "resolve-bin-sync": "^0.1.14",
-    "ts-swc-loaders": "^2.0.11",
+    "resolve-bin-sync": "^0.1.16",
+    "ts-swc-loaders": "^2.0.16",
     "tsds-lib": "*",
     "unixify": "^1.0.0"
   },
