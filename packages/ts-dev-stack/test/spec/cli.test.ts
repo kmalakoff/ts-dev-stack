@@ -18,7 +18,7 @@ const tmpdir = os.tmpdir || osShim.tmpdir;
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
 
-const CLI = path.join(__dirname, '..', '..', 'bin', 'cli.cjs');
+const CLI = path.join(__dirname, '..', '..', 'bin', 'cli.js');
 const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 
 function addTests(repo) {
