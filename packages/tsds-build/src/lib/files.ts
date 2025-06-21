@@ -2,18 +2,19 @@ import fs from 'fs';
 import Iterator, { type Entry } from 'fs-iterator';
 import mkdirp from 'mkdirp-classic';
 import path from 'path';
-import Queue from 'queue-cb';
-import { transformDirectory, transformTypes } from 'ts-swc-transform';
-import { loadConfig } from 'tsds-lib';
+import Queue, { type DeferCallback } from 'queue-cb';
+import { type ConfigOptions, type TargetType, transformDirectory, transformTypes } from 'ts-swc-transform';
+import { type CommandCallback, type CommandOptions, loadConfig } from 'tsds-lib';
 
 const MAX_FILES = 10;
-const reportFn = (dest, type, cb) => (err, results) => {
+
+const reportFn = (dest: string, type: TargetType, cb: CommandCallback | DeferCallback) => (err?: Error, results?: string[]) => {
   if (err) console.log(`${type} failed: ${err.message}`);
   else console.log(`Created ${results.length < MAX_FILES ? results.map((x) => `dist/${type}/${path.relative(dest, x)}`).join(',') : `${results.length} files in dist/${type}`}`);
   cb(err);
 };
 
-export default function files(_args, type, options, callback) {
+export default function files(_args: string[], type: TargetType, options: CommandOptions, callback: CommandCallback): undefined {
   const config = loadConfig(options);
   if (!config) {
     console.log('tsds: no config. Skipping');
@@ -33,7 +34,7 @@ export default function files(_args, type, options, callback) {
 
     const queue = new Queue();
     queue.defer(fs.writeFile.bind(null, path.join(dest, 'package.json'), `{ "type": "${type === 'cjs' ? 'commonjs' : 'module'}" }`, 'utf8'));
-    queue.defer((cb) => transformDirectory(src, dest, type, { ...options, type, sourceMaps: true }, reportFn(dest, type, cb)));
+    queue.defer((cb) => transformDirectory(src, dest, type, { ...options, sourceMaps: true } as ConfigOptions, reportFn(dest, type, cb)));
     queue.defer((cb) => transformTypes(src, dest, reportFn(dest, type, cb)));
     queue.await((err) => {
       if (err) return callback(err);

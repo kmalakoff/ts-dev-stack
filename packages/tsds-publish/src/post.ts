@@ -4,7 +4,6 @@ import path from 'path';
 import Queue from 'queue-cb';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
 import url from 'url';
-import type { CommandOptionsPublish } from './types.ts';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
@@ -12,9 +11,9 @@ const version = major > 18 ? 'local' : 'stable';
 const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
-function worker(_args: string[], options_: CommandOptions, callback: CommandCallback) {
-  const cwd = options_.cwd || process.cwd();
-  const options = options_ as CommandOptionsPublish;
+function worker(_args: string[], options: CommandOptions, callback: CommandCallback) {
+  const cwd = options.cwd || process.cwd();
+  options = { ...options };
   options.package = JSON.parse(fs.readFileSync(path.join(cwd as string, 'package.json'), 'utf8'));
 
   const queue = new Queue(1);
