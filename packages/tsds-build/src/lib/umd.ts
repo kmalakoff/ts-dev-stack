@@ -13,7 +13,7 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..', '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'umd.js'));
 
-function worker(_args: string[], options: CommandOptions, callback: CommandCallback) {
+function worker(_args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   const cwd: string = (options.cwd as string) || process.cwd();
   const dest = path.join(cwd, 'dist', 'umd');
   const configRoot = path.join(dist, 'esm', 'rollup');
@@ -32,6 +32,6 @@ function worker(_args: string[], options: CommandOptions, callback: CommandCallb
   }
 }
 
-export default function umd(args, options, cb) {
-  version !== 'local' ? workerWrapper('stable', args, options, cb) : worker(args, options, cb);
+export default function umd(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
+  version !== 'local' ? workerWrapper('stable', args, options, callback) : worker(args, options, callback);
 }

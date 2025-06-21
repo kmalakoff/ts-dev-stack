@@ -1,8 +1,7 @@
-import type { SpawnOptions } from 'child_process';
 import getopts from 'getopts-compat';
 import Module from 'module';
 import path from 'path';
-import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, loadConfig } from 'tsds-lib';
 import url from 'url';
 import * as constants from './constants.ts';
 
@@ -12,7 +11,7 @@ const dist = path.join(_dirname, '..');
 const _nodeModules = path.join(_dirname, '..', '..', 'node_modules');
 const moduleRegEx = /^[^./]|^\.[^./]|^\.\.[^/]/;
 
-function run(specifier, args: string[], options: CommandOptions, callback: CommandCallback) {
+function run(specifier: string, args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   try {
     const mod = _require(specifier);
     const fn = mod.default || mod;
@@ -22,8 +21,8 @@ function run(specifier, args: string[], options: CommandOptions, callback: Comma
   }
 }
 
-export default function runCommand(name, args: string[], options: CommandOptions, callback: CommandCallback) {
-  const config = loadConfig(options as ConfigOptions);
+export default function runCommand(name: string, args: string[], options: CommandOptions, callback: CommandCallback): undefined {
+  const config = loadConfig(options);
   const commands = {
     ...constants.commands,
     ...((config || {}).commands || {}),
@@ -33,7 +32,7 @@ export default function runCommand(name, args: string[], options: CommandOptions
   const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
   if (opts['dry-run']) return callback();
   const cwd: string = (options.cwd as string) || process.cwd();
-  const runOptions = { ...options, cwd, stdio: 'inherit' } as SpawnOptions;
+  const runOptions = { ...options, cwd, stdio: 'inherit' } as CommandOptions;
   if (moduleRegEx.test(command)) {
     return run(command, args, runOptions, callback);
     // try {
