@@ -4,7 +4,7 @@ import path from 'path';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
 import rimraf2 from 'rimraf2';
-import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig, wrapWorker } from 'tsds-lib';
+import { type CommandCallback, type CommandOptions, loadConfig, wrapWorker } from 'tsds-lib';
 import url from 'url';
 
 const major = +process.versions.node.split('.')[0];
@@ -14,7 +14,7 @@ const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 
 function worker(args: string[], options: CommandOptions, callback: CommandCallback) {
-  const config = loadConfig(options as ConfigOptions);
+  const config = loadConfig(options);
   if (!config) {
     console.log('tsds: no config. Skipping');
     return callback();

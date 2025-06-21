@@ -8,7 +8,6 @@ import url from 'url';
 import hasChanged from './lib/hasChanged.ts';
 import post from './post.ts';
 import pre from './pre.ts';
-import type { CommandOptionsPublish } from './types.ts';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
@@ -16,9 +15,9 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.ts'));
 
-function worker(args: string[], options_: CommandOptions, callback: CommandCallback) {
+function worker(args: string[], options_: CommandOptions, callback: CommandCallback): undefined {
   const cwd = options_.cwd || process.cwd();
-  const options = { ...options_ } as CommandOptionsPublish;
+  const options = { ...options_ } as CommandOptions;
   options.package = options.package || JSON.parse(fs.readFileSync(path.join(cwd as string, 'package.json'), 'utf8'));
   if (options.package.private) {
     console.log(`Skipping ${options.package.name}. Private`);
@@ -30,11 +29,15 @@ function worker(args: string[], options_: CommandOptions, callback: CommandCallb
   const opts = getopts(args, { alias: { otp: 'o' }, boolean: ['yolo'] });
   opts.yolo || queue.defer(pre.bind(null, args, options));
   queue.defer((cb) => {
-    hasChanged(options, (err, changed) => {
-      if (err) return cb(err);
+    hasChanged(options, (err, changed): undefined => {
+      if (err) {
+        cb(err);
+        return;
+      }
       if (!changed) {
         console.log(`Skipping ${options.package.name}. No changes`);
-        return cb();
+        cb();
+        return;
       }
 
       // update the version
@@ -60,6 +63,6 @@ function worker(args: string[], options_: CommandOptions, callback: CommandCallb
   queue.await(callback);
 }
 
-export default function publish(args: string[], options: CommandOptions, callback: CommandCallback) {
+export default function publish(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   version !== 'local' ? workerWrapper(version, args, options, callback) : worker(args, options, callback);
 }
