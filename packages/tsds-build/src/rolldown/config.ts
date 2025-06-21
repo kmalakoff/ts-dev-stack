@@ -1,6 +1,6 @@
 import camelcase from 'lodash.camelcase';
 import path from 'path';
-import { defineConfig, type Plugin } from 'rolldown';
+import { defineConfig, type RolldownOptions } from 'rolldown';
 import swc from 'ts-swc-rollup-plugin';
 
 import { globals, input, pkg, tsconfig } from '../lib/rollingOptions.ts';
@@ -14,15 +14,15 @@ fs.writeFileSync(`${tsconfig.path}.es5`, JSON.stringify(tsconfig.config), 'utf8'
 export default defineConfig({
   input,
   output: {
-    file: path.join(process.cwd(), 'dist', 'umd', `${pkg.name}.cjs`),
+    file: path.join(process.cwd(), 'dist', 'umd', `${pkg.name}.cjs`) as string,
     format: 'umd',
     sourcemap: true,
-    name: camelcase(pkg.name),
+    name: camelcase(pkg.name) as string,
     globals,
   },
   external: (module) => !!moduleRegEx.test(module),
-  plugins: [swc({ tsconfig }) as unknown as Plugin],
+  plugins: [swc({ tsconfig })],
   resolve: {
     tsconfigFilename: `${tsconfig.path}.es5`,
   },
-});
+}) as RolldownOptions;
