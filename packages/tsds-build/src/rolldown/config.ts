@@ -3,7 +3,7 @@ import path from 'path';
 import { defineConfig, type Plugin } from 'rolldown';
 import swc from 'ts-swc-rollup-plugin';
 
-import { globals, input, pkg, tsconfig } from '../lib/rollingOptions.js';
+import { globals, input, pkg, tsconfig } from '../lib/rollingOptions.ts';
 
 export const moduleRegEx = /^[^./]|^\.[^./]|^\.\.[^/]/;
 

@@ -3,7 +3,7 @@ import fs from 'fs';
 import getopts from 'getopts-compat';
 import path from 'path';
 import url from 'url';
-import runCommand from './runCommand.js';
+import runCommand from './runCommand.ts';
 
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 

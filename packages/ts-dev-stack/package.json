@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.15.25",
+  "version": "1.15.26",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -47,21 +47,20 @@
     "exit": "^0.1.2",
     "getopts-compat": "^2.2.6",
     "gh-pages": "^6.3.0",
-    "install-module-linked": "^1.1.75",
     "link-unlink": "^0.1.31",
     "queue-cb": "^1.5.4",
     "readable-stream": "^2.3.8",
     "resolve": "^1.22.10",
     "resolve-bin-sync": "^0.1.16",
-    "tsds-biome": "^1.15.14",
-    "tsds-build": "^1.15.18",
-    "tsds-c8": "^1.15.15",
+    "tsds-biome": "^1.15.15",
+    "tsds-build": "^1.15.20",
+    "tsds-c8": "^1.15.17",
     "tsds-lib": "*",
-    "tsds-mocha": "^1.15.17",
-    "tsds-publish": "^1.2.16",
-    "tsds-typedoc": "^1.16.14",
-    "tsds-validate": "^1.1.24",
-    "tsds-web-test-runner": "^1.15.16"
+    "tsds-mocha": "^1.15.19",
+    "tsds-publish": "^1.2.17",
+    "tsds-typedoc": "^1.16.15",
+    "tsds-validate": "^1.1.25",
+    "tsds-web-test-runner": "^1.15.17"
   },
   "devDependencies": {
     "@types/mocha": "*",

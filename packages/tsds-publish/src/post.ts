@@ -4,7 +4,7 @@ import path from 'path';
 import Queue from 'queue-cb';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
 import url from 'url';
-import type { CommandOptionsPublish } from './types.js';
+import type { CommandOptionsPublish } from './types.ts';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];

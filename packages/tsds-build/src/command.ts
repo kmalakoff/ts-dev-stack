@@ -2,10 +2,10 @@ import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
 import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig } from 'tsds-lib';
-import { DEFAULT_TARGETS } from './constants.js';
-import files from './lib/files.js';
-import umd from './lib/umd.js';
-import type { BuildOptions } from './types.js';
+import { DEFAULT_TARGETS } from './constants.ts';
+import files from './lib/files.ts';
+import umd from './lib/umd.ts';
+import type { BuildOptions } from './types.ts';
 
 export default function build(args: string[], options: CommandOptions | BuildOptions, callback: CommandCallback) {
   const commandOptions = options as CommandOptions;
