@@ -16,7 +16,7 @@ const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 const config = path.join(dist, 'esm', 'wtr.config.js');
 
-function worker(args: string[], options: CommandOptions, callback: CommandCallback) {
+function worker(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   const cwd: string = (options.cwd as string) || process.cwd();
 
   link(cwd, installPath(options), (err, restore) => {
@@ -43,6 +43,6 @@ function worker(args: string[], options: CommandOptions, callback: CommandCallba
   });
 }
 
-export default function testBrowser(args, options, cb) {
-  version !== 'local' ? workerWrapper('stable', args, options, cb) : worker(args, options, cb);
+export default function testBrowser(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
+  version !== 'local' ? workerWrapper('stable', args, options, callback) : worker(args, options, callback);
 }

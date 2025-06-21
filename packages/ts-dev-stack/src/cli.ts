@@ -9,7 +9,7 @@ const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToP
 
 const ERROR_CODE = 15;
 
-export default function cli(argv, name) {
+export default function cli(argv: string[], name: string): undefined {
   if (argv.length === 0) {
     console.log(`Command missing ${name} ${argv.join(',')}`);
     return exit(ERROR_CODE);
