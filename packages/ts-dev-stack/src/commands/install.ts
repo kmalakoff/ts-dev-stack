@@ -13,7 +13,7 @@ interface WriteableOutput extends Writable {
   output?: string;
 }
 
-export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   const cwd: string = (options.cwd as string) || process.cwd();
   const queue = new Queue(1);
   let count = 1;
