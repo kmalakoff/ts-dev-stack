@@ -5,16 +5,16 @@ import path from 'path';
 import Queue from 'queue-cb';
 import { type CommandCallback, type CommandOptions, wrapWorker } from 'tsds-lib';
 import url from 'url';
-import hasChanged from './lib/hasChanged.js';
-import post from './post.js';
-import pre from './pre.js';
-import type { CommandOptionsPublish } from './types.js';
+import hasChanged from './lib/hasChanged.ts';
+import post from './post.ts';
+import pre from './pre.ts';
+import type { CommandOptionsPublish } from './types.ts';
 
 const major = +process.versions.node.split('.')[0];
 const version = major > 14 ? 'local' : 'stable';
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..');
-const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
+const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.ts'));
 
 function worker(args: string[], options_: CommandOptions, callback: CommandCallback) {
   const cwd = options_.cwd || process.cwd();
