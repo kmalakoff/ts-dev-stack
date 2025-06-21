@@ -1,1 +1,1 @@
-export { default as runCommand } from './runCommand.js';
+export { default as runCommand } from './runCommand.ts';
