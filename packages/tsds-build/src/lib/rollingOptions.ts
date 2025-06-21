@@ -9,7 +9,8 @@ export const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.
 export const source = (pkg.tsds ? pkg.tsds.source || 'src/index.ts' : 'src/index.ts') as string;
 export const input = path.join.apply(null, [process.cwd(), ...source.split('/')]) as string;
 export const name = camelcase(pkg.name) as string;
-export const globals = pkg.tsds ? pkg.tsds.globals || {} : ({} as Record<string, string>);
+const globals_ = pkg.tsds ? pkg.tsds.globals || {} : {};
+export const globals = globals_ as Record<string, string>;
 
 const DEPS = ['dependencies', 'optionalDependencies', 'peerDependencies'];
 DEPS.forEach((x) => {
