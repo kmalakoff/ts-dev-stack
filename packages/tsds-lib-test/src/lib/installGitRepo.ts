@@ -7,7 +7,7 @@ import rimraf2 from 'rimraf2';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import { wrapWorker } from 'tsds-lib';
 import url from 'url';
-import type { InstallOptions } from '../types.js';
+import type { InstallOptions } from '../types.ts';
 
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const major = +process.versions.node.split('.')[0];
