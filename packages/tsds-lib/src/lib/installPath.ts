@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-export default function installPath(options) {
+import type { CommandOptions } from '../types.ts';
+
+export default function installPath(options: CommandOptions): string {
   options = options || {};
   if (options.installPath) return options.installPath;
   const cwd: string = (options.cwd as string) || process.cwd();

@@ -1,23 +1,21 @@
 import path from 'path';
 import Queue from 'queue-cb';
 import rimraf2 from 'rimraf2';
-import { type CommandCallback, type CommandOptions, type ConfigOptions, loadConfig } from 'tsds-lib';
+import { type CommandCallback, loadConfig } from 'tsds-lib';
 import { DEFAULT_TARGETS } from './constants.ts';
 import files from './lib/files.ts';
 import umd from './lib/umd.ts';
 import type { BuildOptions } from './types.ts';
 
-export default function build(args: string[], options: CommandOptions | BuildOptions, callback: CommandCallback) {
-  const commandOptions = options as CommandOptions;
-  const buildOptions = options as BuildOptions;
-  const config = loadConfig(options as ConfigOptions);
+export default function build(args: string[], options: BuildOptions, callback: CommandCallback) {
+  const config = loadConfig(options);
   if (!config) {
     console.log('tsds: no config. Skipping');
     return callback();
   }
-  const cwd: string = (commandOptions.cwd as string) || process.cwd();
+  const cwd: string = (options.cwd as string) || process.cwd();
   const targets = config.targets || DEFAULT_TARGETS;
-  const clean = buildOptions.clean === undefined ? true : buildOptions.clean;
+  const clean = options.clean === undefined ? true : options.clean;
   const dest = path.join(cwd, 'dist');
   const queue = new Queue(1);
   !clean || queue.defer((cb) => rimraf2(dest, { disableGlob: true }, cb.bind(null, null)));

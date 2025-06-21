@@ -1,12 +1,17 @@
 import spawn from 'cross-spawn-cb';
 import path from 'path';
 import Queue from 'queue-cb';
+import type { Writable } from 'stream';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import concatWritable from '../lib/concatWritable.ts';
 
 const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;
 const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
+
+interface WriteableOutput extends Writable {
+  output?: string;
+}
 
 export default function command(args: string[], options: CommandOptions, callback: CommandCallback) {
   const cwd: string = (options.cwd as string) || process.cwd();
@@ -21,7 +26,7 @@ export default function command(args: string[], options: CommandOptions, callbac
       concatWritable((output) => {
         stderr.output = output.toString();
       })
-    );
+    ) as WriteableOutput;
     spawn.worker(cp, { encoding: 'utf8' }, (err) => {
       if (!err) return cb();
       if (!stderr.output.match(RETRY_ERRORS)) return cb(err);
