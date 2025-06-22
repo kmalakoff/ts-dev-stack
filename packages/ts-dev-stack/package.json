@@ -58,7 +58,7 @@
     "tsds-lib": "*",
     "tsds-mocha": "^1.17.3",
     "tsds-publish": "^1.3.2",
-    "tsds-typedoc": "^1.17.2",
+    "tsds-typedoc": "^1.17.4",
     "tsds-validate": "^1.2.2",
     "tsds-web-test-runner": "^1.16.2"
   },
