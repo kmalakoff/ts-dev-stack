@@ -1,6 +1,6 @@
 {
   "name": "tsds-validate",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -40,7 +40,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.3.3",
+    "cross-spawn-cb": "^2.3.4",
     "depcheck": "^1.4.7",
     "queue-cb": "^1.5.5",
     "resolve-bin-sync": "^0.1.16",
