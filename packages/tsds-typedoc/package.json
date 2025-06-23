@@ -38,7 +38,7 @@
     "version": ""
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.3.4",
+    "cross-spawn-cb": "^2.3.5",
     "link-unlink": "^0.1.32",
     "mkdirp-classic": "^0.5.3",
     "queue-cb": "^1.5.5",
