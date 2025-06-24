@@ -48,7 +48,7 @@
     "regenerator-runtime": "^0.14.1",
     "resolve-bin-sync": "^0.1.16",
     "rimraf2": "^2.8.2",
-    "ts-swc-loaders": "^2.1.8",
+    "ts-swc-loaders": "^2.1.9",
     "tsds-lib": "*",
     "tsds-mocha": "*"
   },

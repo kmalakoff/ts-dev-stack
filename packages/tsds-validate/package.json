@@ -44,7 +44,7 @@
     "depcheck": "^1.4.7",
     "queue-cb": "^1.5.5",
     "resolve-bin-sync": "^0.1.16",
-    "sort-package-json": "^3.2.1",
+    "sort-package-json": "^3.3.0",
     "tsds-lib": "*",
     "tsds-typedoc": "*"
   },
