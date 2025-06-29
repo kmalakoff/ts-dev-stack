@@ -2,6 +2,7 @@ import spawn from 'cross-spawn-cb';
 import getopts from 'getopts-compat';
 import { installSync, removeSync } from 'install-optional';
 import { link, unlink } from 'link-unlink';
+import debounce from 'lodash.debounce';
 import path from 'path';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
@@ -16,6 +17,9 @@ const dist = path.join(__dirname, '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'command.js'));
 const config = path.join(dist, 'esm', 'wtr.config.js');
 
+const installSyncRollup = debounce(installSync, 300, { leading: true, trailing: false });
+const installSynESBuild = debounce(installSync, 300, { leading: true, trailing: false });
+
 function worker(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   const cwd: string = (options.cwd as string) || process.cwd();
 
@@ -23,9 +27,9 @@ function worker(args: string[], options: CommandOptions, callback: CommandCallba
     if (err) return callback(err);
 
     try {
-      installSync('rollup', `${process.platform}-${process.arch}`, { cwd });
+      installSyncRollup('rollup', `${process.platform}-${process.arch}`, { cwd });
       removeSync('esbuild', '@esbuild/', { cwd });
-      installSync('esbuild', `${process.platform}-${process.arch}`, { cwd });
+      installSynESBuild('esbuild', `${process.platform}-${process.arch}`, { cwd });
 
       const wtr = resolveBin('@web/test-runner', 'wtr');
       const { _, ...opts } = getopts(args, { stopEarly: true, alias: { config: 'c' } });
