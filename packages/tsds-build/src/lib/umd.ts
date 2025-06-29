@@ -1,5 +1,6 @@
 import spawn from 'cross-spawn-cb';
 import { installSync } from 'install-optional';
+import debounce from 'lodash.debounce';
 import path from 'path';
 import Queue from 'queue-cb';
 import resolveBin from 'resolve-bin-sync';
@@ -13,13 +14,15 @@ const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLTo
 const dist = path.join(__dirname, '..', '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'umd.js'));
 
+const installSyncRollup = debounce(installSync, 300, { leading: true, trailing: false });
+
 function worker(_args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   const cwd: string = (options.cwd as string) || process.cwd();
   const dest = path.join(cwd, 'dist', 'umd');
   const configRoot = path.join(dist, 'esm', 'rollup');
 
   try {
-    installSync('rollup', `${process.platform}-${process.arch}`, { cwd });
+    installSyncRollup('rollup', `${process.platform}-${process.arch}`, { cwd });
     const rollup = resolveBin('rollup');
 
     const queue = new Queue(1);

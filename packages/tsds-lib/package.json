@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib",
-  "version": "1.17.6",
+  "version": "1.17.8",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^2.3.10",
-    "node-version-call": "^1.8.10"
+    "node-version-call": "^1.8.13"
   },
   "devDependencies": {
     "@types/mocha": "*",
