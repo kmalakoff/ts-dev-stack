@@ -48,21 +48,21 @@
   },
   "dependencies": {
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.1.25",
+    "cross-spawn-cb": "^2.3.10",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.4.0",
     "karma-webpack": "^5.0.1",
-    "link-unlink": "^0.1.25",
-    "queue-cb": "^1.4.17",
+    "link-unlink": "^1.0.1",
+    "queue-cb": "^1.5.5",
     "regenerator-runtime": "^0.14.1",
-    "resolve-bin-sync": "^0.1.13",
+    "resolve-bin-sync": "^1.0.1",
     "ts-loader": "^9.5.2",
-    "ts-swc-loaders": "^2.0.1",
-    "tsds-lib": "^1.15.16",
-    "webpack": "^5.99.8"
+    "ts-swc-loaders": "^2.2.4",
+    "tsds-lib": "^1.17.5",
+    "webpack": "^5.99.9"
   },
   "devDependencies": {
     "@types/mocha": "*",
