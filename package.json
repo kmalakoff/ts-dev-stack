@@ -13,8 +13,8 @@
     "version": "ep -d1 -c100 npm run version"
   },
   "dependencies": {
-    "cross-spawn-cb": "^2.2.8",
-    "each-package": "^0.10.109",
-    "playwright": "^1.53.0"
+    "cross-spawn-cb": "^2.3.10",
+    "each-package": "^1.0.1",
+    "playwright": "^1.53.1"
   }
 }

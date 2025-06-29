@@ -9,7 +9,7 @@ const RETRY_MAX = 30;
 const RETRY_DELAY = 2000;
 const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
 
-interface WriteableOutput extends Writable {
+interface WritableOutput extends Writable {
   output?: string;
 }
 
@@ -26,7 +26,7 @@ export default function command(args: string[], options: CommandOptions, callbac
       concatWritable((output) => {
         stderr.output = output.toString();
       })
-    ) as WriteableOutput;
+    ) as WritableOutput;
     spawn.worker(cp, { encoding: 'utf8' }, (err) => {
       if (!err) return cb();
       if (!stderr.output.match(RETRY_ERRORS)) return cb(err);
