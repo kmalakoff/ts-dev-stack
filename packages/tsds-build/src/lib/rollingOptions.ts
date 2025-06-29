@@ -1,7 +1,7 @@
 import fs from 'fs';
-import * as getTS from 'get-tsconfig-compat';
 import camelcase from 'lodash.camelcase';
 import path from 'path';
+import loadConfigSync from 'read-tsconfig-sync';
 
 import type { Package } from 'tsds-lib';
 
@@ -20,5 +20,5 @@ DEPS.forEach((x) => {
   }
 });
 
-export const tsconfig = getTS.getTsconfig();
-tsconfig.config.compilerOptions = { ...tsconfig.config.compilerOptions, target: 'ES5' };
+export const tsconfig = loadConfigSync(process.cwd());
+tsconfig.config.compilerOptions = { ...tsconfig.config.compilerOptions, target: 'es5' };
