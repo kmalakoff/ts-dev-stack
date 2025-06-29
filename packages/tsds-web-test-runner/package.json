@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.16.2",
+  "version": "1.16.6",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -46,12 +46,12 @@
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-playwright": "^0.11.1",
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.3.5",
+    "cross-spawn-cb": "^2.3.10",
     "getopts-compat": "^2.2.6",
-    "install-optional": "^0.1.73",
-    "link-unlink": "^0.1.32",
+    "install-optional": "^1.0.1",
+    "link-unlink": "^1.0.1",
     "queue-cb": "^1.5.5",
-    "resolve-bin-sync": "^0.1.16",
+    "resolve-bin-sync": "^1.0.1",
     "tsds-lib": "*",
     "webpack-merge": "^6.0.1"
   },
