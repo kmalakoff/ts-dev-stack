@@ -1,6 +1,6 @@
 {
   "name": "tsds-c8",
-  "version": "1.18.1",
+  "version": "1.18.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
