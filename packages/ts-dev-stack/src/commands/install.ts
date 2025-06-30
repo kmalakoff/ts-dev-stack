@@ -5,8 +5,8 @@ import type { Writable } from 'stream';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import concatWritable from '../lib/concatWritable.ts';
 
-const RETRY_MAX = 30;
-const RETRY_DELAY = 2000;
+const RETRY_MAX = 40;
+const RETRY_DELAY = 3000;
 const RETRY_ERRORS = /.*(ETARGET|ENOTEMPTY|ENOENT|ECONNRESET).*/;
 
 interface WritableOutput extends Writable {
