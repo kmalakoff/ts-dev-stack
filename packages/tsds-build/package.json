@@ -55,7 +55,7 @@
     "rimraf2": "^2.8.2",
     "rollup": "^4.44.1",
     "rollup-plugin-node-externals": "^8.0.1",
-    "ts-swc-rollup-plugin": "^2.3.2",
+    "ts-swc-rollup-plugin": "^2.3.3",
     "ts-swc-transform": "^2.5.4",
     "tsds-lib": "*"
   },
