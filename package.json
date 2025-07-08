@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "cross-spawn-cb": "^2.4.2",
-    "each-package": "^1.2.7",
+    "each-package": "^1.2.8",
     "playwright": "^1.53.2"
   }
 }
