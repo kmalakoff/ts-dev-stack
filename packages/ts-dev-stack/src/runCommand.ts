@@ -1,14 +1,18 @@
 import getopts from 'getopts-compat';
+import installModule from 'install-module-linked';
 import Module from 'module';
 import path from 'path';
+import * as resolve from 'resolve';
 import { type CommandCallback, type CommandOptions, loadConfig } from 'tsds-lib';
 import url from 'url';
 import * as constants from './constants.ts';
 
+const resolveSync = (resolve.default ?? resolve).sync;
+
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(_dirname, '..');
-const _nodeModules = path.join(_dirname, '..', '..', 'node_modules');
+const nodeModules = path.join(_dirname, '..', '..', 'node_modules');
 const moduleRegEx = /^[^./]|^\.[^./]|^\.\.[^/]/;
 
 function run(specifier: string, args: string[], options: CommandOptions, callback: CommandCallback): undefined {
@@ -34,16 +38,15 @@ export default function runCommand(name: string, args: string[], options: Comman
   const cwd: string = (options.cwd as string) || process.cwd();
   const runOptions = { ...options, cwd, stdio: 'inherit' } as CommandOptions;
   if (moduleRegEx.test(command)) {
-    return run(command, args, runOptions, callback);
-    // try {
-    //   resolve.sync(path.join(command, 'package.json'));
-    //   return run(command, args, runOptions, callback);
-    // } catch (_err) {
-    //   return installModule(command, nodeModules, (err) => {
-    //     console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
-    //     err ? callback(err) : run(command, args, runOptions, callback);
-    //   });
-    // }
+    try {
+      resolveSync(path.join(command, 'package.json'), { basedir: _dirname }); // pass basedir because internally resolveSync doesn't properly handle file://basedir on esm
+      return run(command, args, runOptions, callback);
+    } catch (_err) {
+      installModule(command, nodeModules, (err) => {
+        console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
+        err ? callback(err) : run(command, args, runOptions, callback);
+      });
+    }
   }
   // for relative files, ensure the extension matches
   return run(path.join(dist, 'cjs', command), args, runOptions, callback);

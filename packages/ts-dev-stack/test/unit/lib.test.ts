@@ -9,12 +9,13 @@ import os from 'os';
 import osShim from 'os-shim';
 import path from 'path';
 import Queue from 'queue-cb';
-import resolve from 'resolve';
+import * as resolve from 'resolve';
 import shortHash from 'short-hash';
 import { installGitRepo } from 'tsds-lib-test';
 import url from 'url';
 
 const tmpdir = os.tmpdir || osShim.tmpdir;
+const resolveSync = (resolve.default ?? resolve).sync;
 
 import { runCommand } from 'ts-dev-stack';
 
@@ -41,14 +42,14 @@ function addTests(repo) {
 
         const queue = new Queue();
         queue.defer(linkModule.bind(null, modulePath, nodeModules));
-        for (const dep in deps) queue.defer(linkModule.bind(null, path.dirname(resolve.sync(`${dep}/package.json`)), nodeModules));
+        for (const dep in deps) queue.defer(linkModule.bind(null, path.dirname(resolveSync(`${dep}/package.json`)), nodeModules));
         queue.await(cb);
       });
     });
     after((cb) => {
       const queue = new Queue();
       queue.defer(unlinkModule.bind(null, modulePath, nodeModules));
-      for (const dep in deps) queue.defer(unlinkModule.bind(null, path.dirname(resolve.sync(`${dep}/package.json`)), nodeModules));
+      for (const dep in deps) queue.defer(unlinkModule.bind(null, path.dirname(resolveSync(`${dep}/package.json`)), nodeModules));
       queue.await(cb);
     });
 
