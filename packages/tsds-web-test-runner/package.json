@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.17.1",
+  "version": "1.17.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -41,20 +41,20 @@
     "version": ""
   },
   "dependencies": {
-    "@web/dev-server-esbuild": "^1.0.4",
-    "@web/dev-server-import-maps": "^0.2.1",
-    "@web/test-runner": "^0.20.2",
-    "@web/test-runner-playwright": "^0.11.1",
+    "@web/dev-server-esbuild": "*",
+    "@web/dev-server-import-maps": "*",
+    "@web/test-runner": "*",
+    "@web/test-runner-playwright": "*",
     "assert": "1.5.0",
-    "cross-spawn-cb": "^2.4.2",
-    "getopts-compat": "^2.2.6",
-    "install-optional": "^1.0.7",
-    "link-unlink": "^1.0.1",
-    "lodash.debounce": "^4.0.8",
-    "queue-cb": "^1.5.5",
-    "resolve-bin-sync": "^1.0.1",
+    "cross-spawn-cb": "*",
+    "getopts-compat": "*",
+    "install-optional": "*",
+    "link-unlink": "*",
+    "lodash.debounce": "*",
+    "queue-cb": "*",
+    "resolve-bin-sync": "*",
     "tsds-lib": "*",
-    "webpack-merge": "^6.0.1"
+    "webpack-merge": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
