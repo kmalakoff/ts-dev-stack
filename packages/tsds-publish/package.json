@@ -1,6 +1,6 @@
 {
   "name": "tsds-publish",
-  "version": "1.4.2",
+  "version": "1.4.4",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -40,14 +40,14 @@
     "version": ""
   },
   "dependencies": {
-    "@npmcli/arborist": "^9.1.2",
-    "cross-spawn-cb": "^2.4.2",
-    "get-remote": "^2.1.3",
-    "getopts-compat": "^2.2.6",
-    "npm-package-arg": "^12.0.2",
-    "pacote": "^21.0.0",
-    "queue-cb": "^1.5.5",
-    "rimraf2": "^2.8.2",
+    "@npmcli/arborist": "*",
+    "cross-spawn-cb": "*",
+    "get-remote": "*",
+    "getopts-compat": "*",
+    "npm-package-arg": "*",
+    "pacote": "*",
+    "queue-cb": "*",
+    "rimraf2": "*",
     "tsds-lib": "*"
   },
   "devDependencies": {
