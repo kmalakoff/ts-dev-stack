@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.18.8",
+  "version": "1.18.10",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -47,7 +47,7 @@
     "exit": "*",
     "getopts-compat": "*",
     "gh-pages": "*",
-    "install-module-linked": "^1.2.5",
+    "install-module-linked": "^1.2.6",
     "link-unlink": "*",
     "queue-cb": "*",
     "readable-stream": "^2.3.8",
