@@ -16,7 +16,6 @@ import url from 'url';
 const tmpdir = os.tmpdir || osShim.tmpdir;
 const resolveSync = (resolve.default ?? resolve).sync;
 
-// @ts-ignore
 import { hasChanged } from 'tsds-publish';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
