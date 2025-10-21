@@ -1,6 +1,6 @@
 {
   "name": "tsds-web-test-runner",
-  "version": "1.17.6",
+  "version": "1.17.8",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -26,7 +26,7 @@
     "./createConfig.mjs": "./dist/esm/exports/createConfig.js"
   },
   "main": "dist/cjs/index.js",
-  "types": "dist/cjs/index.d.cts",
+  "types": "dist/cjs/index.d.ts",
   "files": [
     "dist",
     "assets",
