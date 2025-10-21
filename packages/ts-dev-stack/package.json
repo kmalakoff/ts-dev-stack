@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.18.10",
+  "version": "1.18.12",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -26,7 +26,7 @@
     "./package.json": "./package.json"
   },
   "main": "dist/cjs/index.js",
-  "types": "dist/cjs/index.d.cts",
+  "types": "dist/cjs/index.d.ts",
   "bin": {
     "tsds": "bin/cli.js"
   },
