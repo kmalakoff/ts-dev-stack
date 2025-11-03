@@ -47,7 +47,7 @@
     "exit": "*",
     "getopts-compat": "*",
     "gh-pages": "*",
-    "install-module-linked": "^1.2.6",
+    "install-module-linked": "^1.2.7",
     "link-unlink": "*",
     "queue-cb": "*",
     "readable-stream": "^2.3.8",
