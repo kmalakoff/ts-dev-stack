@@ -39,7 +39,7 @@
     "scripts"
   ],
   "scripts": {
-    "build": "node ../../scripts/build.cjs",
+    "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "mocha --no-timeouts test/**/*.test.*",
