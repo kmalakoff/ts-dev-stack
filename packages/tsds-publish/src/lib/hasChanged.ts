@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import fs from 'fs';
-import get from 'get-remote';
 import Module from 'module';
+import type { Packument } from 'pacote';
 import path from 'path';
 import { type CommandOptions, wrapWorker } from 'tsds-lib';
 import url from 'url';
@@ -12,15 +12,6 @@ const _require = typeof require === 'undefined' ? Module.createRequire(import.me
 const __dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const dist = path.join(__dirname, '..', '..');
 const workerWrapper = wrapWorker(path.join(dist, 'cjs', 'lib', 'hasChanged.js'));
-
-interface DistTag {
-  latest: string;
-}
-
-interface Registry {
-  versions: object;
-  'dist-tags': DistTag;
-}
 
 import type { HasChangedCallback } from '../types.ts';
 
@@ -33,8 +24,12 @@ function worker(options: CommandOptions, callback: HasChangedCallback): undefine
       const Arborist = _require('@npmcli/arborist');
       const npa = _require('npm-package-arg');
       const pacote = _require('pacote');
-      const res = await get(`https://registry.npmjs.org/${options.package.name}`).json();
-      const integrity = (res.body as Registry).versions[(res.body['dist-tags'] as DistTag).latest].dist.integrity;
+
+      // Use pacote.packument() which respects npm registry config (including scoped packages)
+      const packument: Packument = await pacote.packument(options.package.name, { Arborist });
+      const latestVersion = packument['dist-tags'].latest;
+      const integrity = packument.versions[latestVersion].dist.integrity;
+
       const spec = npa(cwd);
       const manifest = await pacote.manifest(spec, {
         Arborist,
