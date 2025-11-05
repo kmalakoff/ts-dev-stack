@@ -24,16 +24,18 @@ function worker(args: string[], options_: CommandOptions, callback: CommandCallb
   }
 
   const opts = getopts(args, { alias: { otp: 'o' }, boolean: ['yolo'] });
-  hasChanged(options, (err, changed): undefined => {
+  hasChanged(options, (err, result): undefined => {
     if (err) {
       callback(err);
       return;
     }
-    if (!changed) {
-      console.log(`Skipping ${options.package.name}. No changes`);
+    if (!result.changed) {
+      console.log(`Skipping ${options.package.name}. ${result.reason}`);
       callback();
       return;
     }
+
+    console.log(`Publishing ${options.package.name}. ${result.reason}`);
 
     const queue = new Queue(1);
 
@@ -60,7 +62,7 @@ function worker(args: string[], options_: CommandOptions, callback: CommandCallb
     queue.defer(spawn.bind(null, 'npm', publishArgs, options));
 
     // do post actions
-    if ((options.package.scripts || {}).version) queue.defer(spawn.bind(null, 'npm', ['run', 'version'], { ...options, cwd }));
+    // Note: npm version already runs the "version" script automatically, so no need to run it again
     queue.defer((cb) => spawn('git', ['add', '.'], options, cb.bind(null, null)));
     queue.defer((cb) => spawn('git', ['commit', '-m', `${options.package.version}`], options, cb.bind(null, null)));
     queue.await(callback);
