@@ -49,39 +49,55 @@ function worker(options: CommandOptions, callback: HasChangedCallback): undefine
 
       // Get latest version from registry
       const latestVersion = packument['dist-tags'].latest;
+
+      // FIRST CHECK: Version comparison
+      // If versions differ, assume intentional bump → force publish
+      if (options.package.version !== latestVersion) {
+        callback(null, {
+          changed: true,
+          reason: `Version differs (local: ${options.package.version}, registry: ${latestVersion})`,
+        });
+        return;
+      }
+
+      // SECOND CHECK: Integrity comparison (only if versions match)
       const integrity = packument.versions[latestVersion].dist.integrity;
 
-      // Temporarily modify package.json to match registry latest
-      // This allows us to compare same-version tarballs (only code differs)
-      const pkgPath = path.join(cwd, 'package.json');
-      const originalPkg = fs.readFileSync(pkgPath, 'utf8');
-      const pkg = JSON.parse(originalPkg);
-      pkg.version = latestVersion;
-      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+      // Build tarball with current version (no modification needed)
+      const spec = npa(cwd);
+      const manifest = await pacote.manifest(spec, {
+        Arborist,
+      });
+      const tarball = await pacote.tarball(manifest._resolved, {
+        Arborist,
+        integrity: manifest._integrity,
+      });
 
-      try {
-        // Build tarball with modified version
-        const spec = npa(cwd);
-        const manifest = await pacote.manifest(spec, {
-          Arborist,
-        });
-        const tarball = await pacote.tarball(manifest._resolved, {
-          Arborist,
-          integrity: manifest._integrity,
-        });
+      // Compare hashes
+      const parts = integrity.split('-');
+      const algorithm = parts.shift();
+      const registryHash = parts.join('-');
+      const local = crypto.createHash(algorithm).update(new Uint8Array(tarball)).digest('base64');
 
-        // Compare hashes
-        const parts = integrity.split('-');
-        const algorithm = parts.shift();
-        const registryHash = parts.join('-');
-        const local = crypto.createHash(algorithm).update(new Uint8Array(tarball)).digest('base64');
-        callback(null, registryHash !== local);
-      } finally {
-        // Always restore original package.json
-        fs.writeFileSync(pkgPath, originalPkg);
+      if (registryHash === local) {
+        callback(null, {
+          changed: false,
+          reason: `No changes detected (hash: ${registryHash.substring(0, 16)}...)`,
+        });
+      } else {
+        callback(null, {
+          changed: true,
+          reason: `Code changes detected (registry: ${registryHash.substring(0, 16)}..., local: ${local.substring(0, 16)}...)`,
+        });
       }
     } catch (_err) {
-      callback(null, true);
+      // Package not found in registry (first publish)
+      if (_err.code === 'E404') {
+        callback(null, { changed: true, reason: 'Package not found in registry (first publish)' });
+      } else {
+        // Unknown error - assume changed to be safe
+        callback(null, { changed: true, reason: `Error checking changes: ${_err.message}` });
+      }
     }
   })().catch(callback);
 }
