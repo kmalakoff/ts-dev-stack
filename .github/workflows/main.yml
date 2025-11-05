@@ -19,10 +19,12 @@ jobs:
       - run: git config --global user.name "Github Actions"
       - run: git config --global user.email "actions@users.noreply.github.com"
       - run: npm install ts-dev-stack node-version-use depcheck @biomejs/biome@2.3.3 mocha -g -f
-      - run: depcheck
-      - run: npm ci
-      - run: npx -y playwright install --with-deps
-      - run: npm run build
-      - run: tsds validate
-      - run: npm run test
-      - run: npm run test:engines
+      - name: Plywright
+        working-directory: ./packages/tsds-web-test-runner 
+        run: npx -y playwright install --with-deps
+      - run: ep -t -s -e depcheck
+      - run: ep -t -s -e npm ci
+      - run: ep -t -s -e npm run build
+      - run: ep -t -s -e tsds validate
+      - run: ep -t -s -e npm run test
+      - run: ep -t -s -e npm run test:engines
