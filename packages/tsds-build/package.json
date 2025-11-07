@@ -53,7 +53,7 @@
     "read-tsconfig-sync": "*",
     "resolve-bin-sync": "*",
     "rimraf2": "*",
-    "rollup": "*",
+    "rollup": "4.52.5",
     "rollup-plugin-node-externals": "*",
     "ts-swc-rollup-plugin": "*",
     "ts-swc-transform": "*",
