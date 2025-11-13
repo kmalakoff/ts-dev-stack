@@ -1,6 +1,6 @@
 {
   "name": "tsds-validate",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -35,6 +35,7 @@
   "scripts": {
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "",
     "test:engines": "npm test",
     "version": ""
@@ -45,8 +46,8 @@
     "queue-cb": "*",
     "resolve-bin-sync": "*",
     "sort-package-json": "*",
-    "tsds-biome": "^1.17.8",
-    "tsds-build": "^1.19.0",
+    "tsds-biome": "^1.17.10",
+    "tsds-build": "^1.19.1",
     "tsds-lib": "*",
     "tsds-typedoc": "*"
   },

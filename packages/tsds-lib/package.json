@@ -1,6 +1,6 @@
 {
   "name": "tsds-lib",
-  "version": "1.18.9",
+  "version": "1.18.10",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -33,6 +33,7 @@
   "scripts": {
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "",
     "test2": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",

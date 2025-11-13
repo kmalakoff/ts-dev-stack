@@ -1,6 +1,6 @@
 {
   "name": "tsds-biome",
-  "version": "1.17.8",
+  "version": "1.17.10",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -33,6 +33,7 @@
   "scripts": {
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "",
     "test2": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",
