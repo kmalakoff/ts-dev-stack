@@ -1,6 +1,6 @@
 {
   "name": "tsds-publish",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -35,6 +35,7 @@
   "scripts": {
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",
     "version": ""
