@@ -40,6 +40,7 @@
   ],
   "scripts": {
     "build": "npx ts-dev-stack build",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "format": "biome check --write --unsafe src/",
     "test": "",
     "test2": "mocha --no-timeouts test/**/*.test.*",
