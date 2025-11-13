@@ -1,9 +1,9 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.19.0",
+  "version": "1.19.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
-    "c8",
+    "tsds",
     "dev",
     "development",
     "mocha",
@@ -38,6 +38,7 @@
   "scripts": {
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",
     "version": ""
@@ -47,7 +48,7 @@
     "exit": "*",
     "getopts-compat": "*",
     "gh-pages": "*",
-    "install-module-linked": "^1.2.7",
+    "install-module-linked": "^1.2.8",
     "link-unlink": "*",
     "queue-cb": "*",
     "readable-stream": "^2.3.8",

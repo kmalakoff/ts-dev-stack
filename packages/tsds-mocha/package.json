@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.19.0",
+  "version": "1.19.1",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -34,6 +34,7 @@
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/ && biome check --config-path biome.es5.json --write --unsafe scripts/",
     "postinstall": "node ./scripts/postinstall.cjs",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "",
     "test2": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",

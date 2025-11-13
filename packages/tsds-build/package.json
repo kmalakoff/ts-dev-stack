@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.19.1",
+  "version": "1.19.2",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -35,6 +35,7 @@
   "scripts": {
     "build": "npx ts-dev-stack build",
     "format": "biome check --write --unsafe src/",
+    "prepublishOnly": "npx ts-dev-stack validate",
     "test": "",
     "test2": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",
@@ -53,7 +54,7 @@
     "read-tsconfig-sync": "*",
     "resolve-bin-sync": "*",
     "rimraf2": "*",
-    "rollup": "4.52.5",
+    "rollup": "4.53.2",
     "rollup-plugin-node-externals": "*",
     "ts-swc-rollup-plugin": "*",
     "ts-swc-transform": "*",

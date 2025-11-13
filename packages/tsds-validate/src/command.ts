@@ -20,10 +20,10 @@ function worker(_args: string[], options: CommandOptions, callback: CommandCallb
     const sortPackageJSON = resolveBin('sort-package-json');
 
     const queue = new Queue(1);
-    queue.defer(spawn.bind(null, depcheck, [], options));
     queue.defer(format.bind(null, [], options));
     queue.defer(build.bind(null, [], options));
     queue.defer(spawn.bind(null, sortPackageJSON, [], options));
+    queue.defer(spawn.bind(null, depcheck, [], options));
     queue.defer(docs.bind(null, [], options));
     queue.await(callback);
   } catch (err) {
