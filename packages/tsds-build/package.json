@@ -1,6 +1,6 @@
 {
   "name": "tsds-build",
-  "version": "1.19.2",
+  "version": "1.19.3",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "c8",
@@ -54,7 +54,7 @@
     "read-tsconfig-sync": "*",
     "resolve-bin-sync": "*",
     "rimraf2": "*",
-    "rollup": "4.53.2",
+    "rollup": "*",
     "rollup-plugin-node-externals": "*",
     "ts-swc-rollup-plugin": "*",
     "ts-swc-transform": "*",
