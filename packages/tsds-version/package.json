@@ -1,13 +1,11 @@
 {
-  "name": "ts-dev-stack",
-  "version": "1.19.2",
-  "description": "Development stack for TypeScript libraries",
+  "name": "tsds-version",
+  "version": "1.0.10",
+  "description": "Post publish actions.",
   "keywords": [
-    "tsds",
     "dev",
     "development",
     "mocha",
-    "rollup",
     "stack",
     "test",
     "typescript"
@@ -27,9 +25,6 @@
   },
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
-  "bin": {
-    "tsds": "bin/cli.js"
-  },
   "files": [
     "dist",
     "assets",
@@ -37,28 +32,24 @@
   ],
   "scripts": {
     "build": "npx ts-dev-stack build",
-    "format": "biome check --write --unsafe",
+    "format": "biome check --write --unsafe src/",
     "prepublishOnly": "npx ts-dev-stack validate",
-    "test": "mocha --no-timeouts test/**/*.test.*",
+    "test": "",
+    "test2": "mocha --no-timeouts test/**/*.test.*",
     "test:engines": "npm test",
     "version": ""
   },
   "dependencies": {
     "cross-spawn-cb": "*",
-    "exit": "*",
-    "getopts-compat": "*",
-    "install-module-linked": "*",
+    "gh-pages": "*",
     "queue-cb": "*",
-    "resolve": "*",
-    "tsds-lib": "*"
+    "resolve-bin-sync": "*",
+    "tsds-lib": "*",
+    "tsds-typedoc": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
-    "@types/node": "*",
-    "module-link-unlink": "*",
-    "os-shim": "*",
-    "short-hash": "*",
-    "tsds-lib-test": "*"
+    "@types/node": "*"
   },
   "engines": {
     "node": ">=0.8"
