@@ -1,1 +1,1 @@
-ignores: ["assert", "tsds-c8", "typescript", "tsds-mocha", "regenerator-runtime", "c8", "ts-swc-loaders"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-c8", "assert", "c8", "regenerator-runtime", "ts-swc-loaders", "tsds-mocha", "resolve-bin-sync"]

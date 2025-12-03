@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "tsds-install": "^1.0.1",
+    "tsds-link": "^1.0.1",
+    "tsds-unlink": "^1.0.1",
+    "tsds-version": "^1.0.12"
+  }
+}

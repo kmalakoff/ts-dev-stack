@@ -12,11 +12,13 @@
     "test",
     "typescript"
   ],
+  "homepage": "https://github.com/kmalakoff/ts-dev-stack",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
   },
   "license": "MIT",
+  "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
   "type": "module",
   "exports": {
     ".": {
@@ -32,44 +34,34 @@
   },
   "files": [
     "dist",
-    "assets",
-    "scripts"
+    "bin"
   ],
   "scripts": {
-    "build": "npx ts-dev-stack build",
+    "build": "tsds build",
     "format": "biome check --write --unsafe",
-    "prepublishOnly": "npx ts-dev-stack validate",
-    "test": "mocha --no-timeouts test/**/*.test.*",
-    "test:engines": "npm test",
-    "version": ""
+    "prepublishOnly": "tsds validate",
+    "test": "tsds test:node --no-timeouts",
+    "test:engines": "nvu engines tsds test:node --no-timeouts",
+    "version": "tsds version"
   },
   "dependencies": {
     "cross-spawn-cb": "*",
     "exit": "*",
     "getopts-compat": "*",
-    "gh-pages": "*",
-    "install-module-linked": "^1.2.8",
-    "link-unlink": "*",
+    "install-module-linked": "*",
     "queue-cb": "*",
-    "readable-stream": "^2.3.8",
     "resolve": "*",
-    "resolve-bin-sync": "*",
-    "tsds-biome": "*",
-    "tsds-build": "*",
-    "tsds-c8": "*",
-    "tsds-lib": "*",
-    "tsds-mocha": "*",
-    "tsds-publish": "*",
-    "tsds-typedoc": "*",
-    "tsds-validate": "*",
-    "tsds-web-test-runner": "*"
+    "tsds-lib": "*"
   },
   "devDependencies": {
+    "@biomejs/biome": "*",
     "@types/mocha": "*",
     "@types/node": "*",
     "module-link-unlink": "*",
+    "node-version-use": "*",
     "os-shim": "*",
     "short-hash": "*",
+    "ts-dev-stack": "*",
     "tsds-lib-test": "*"
   },
   "engines": {
