@@ -1,1 +1,1 @@
-ignores: ["each-package", "playwright"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "ts-dev-stack"]
