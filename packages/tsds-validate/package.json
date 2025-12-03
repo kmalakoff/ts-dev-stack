@@ -12,11 +12,13 @@
     "test",
     "typescript"
   ],
+  "homepage": "https://github.com/kmalakoff/ts-dev-stack",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kmalakoff/tsds-validate.git"
+    "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
   },
   "license": "MIT",
+  "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
   "type": "module",
   "exports": {
     ".": {
@@ -28,17 +30,15 @@
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
   "files": [
-    "dist",
-    "assets",
-    "scripts"
+    "dist"
   ],
   "scripts": {
-    "build": "npx ts-dev-stack build",
-    "format": "biome check --write --unsafe src/",
-    "prepublishOnly": "npx ts-dev-stack validate",
-    "test": "",
-    "test:engines": "npm test",
-    "version": ""
+    "build": "tsds build",
+    "format": "biome check --write --unsafe",
+    "prepublishOnly": "tsds validate",
+    "test": "tsds test:node --no-timeouts",
+    "test:engines": "nvu engines tsds test:node --no-timeouts",
+    "version": "tsds version"
   },
   "dependencies": {
     "cross-spawn-cb": "*",
@@ -52,8 +52,11 @@
     "tsds-typedoc": "*"
   },
   "devDependencies": {
+    "@biomejs/biome": "*",
     "@types/mocha": "*",
-    "@types/node": "*"
+    "@types/node": "*",
+    "node-version-use": "*",
+    "ts-dev-stack": "*"
   },
   "engines": {
     "node": ">=0.8"

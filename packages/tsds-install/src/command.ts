@@ -3,7 +3,7 @@ import path from 'path';
 import Queue from 'queue-cb';
 import type { Writable } from 'stream';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
-import concatWritable from '../lib/concatWritable.ts';
+import concatWritable from './lib/concatWritable.ts';
 
 const RETRY_MAX = 40;
 const RETRY_DELAY = 3000;

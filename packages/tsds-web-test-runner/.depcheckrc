@@ -1,1 +1,1 @@
-ignores: ["assert", "tsds-web-test-runner", "typescript", "@web/test-runner"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-web-test-runner", "@web/test-runner", "assert", "resolve-bin-sync"]

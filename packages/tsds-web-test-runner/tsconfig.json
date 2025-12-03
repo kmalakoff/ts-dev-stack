@@ -16,6 +16,6 @@
     "downlevelIteration": true,
     "allowJs": true
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist", "test/data"],
   "include": ["src", "test"]
 }
