@@ -1,2 +1,0 @@
-## ts-dev-stack
-
