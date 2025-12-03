@@ -11,20 +11,3 @@ npm-debug.log*
 AGENTS.md
 .claude/
 CLAUDE.md
-
-# Independent package repos (keep only ts-dev-stack in monorepo)
-packages/tsds-biome/
-packages/tsds-build/
-packages/tsds-c8/
-packages/tsds-install/
-packages/tsds-karma/
-packages/tsds-lib/
-packages/tsds-lib-test/
-packages/tsds-link/
-packages/tsds-mocha/
-packages/tsds-publish/
-packages/tsds-typedoc/
-packages/tsds-unlink/
-packages/tsds-validate/
-packages/tsds-version/
-packages/tsds-web-test-runner/
