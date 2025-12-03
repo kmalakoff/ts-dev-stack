@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-unlink"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-unlink", "mocha", "mocha-compat", "ts-swc-loaders", "tsds-link"]

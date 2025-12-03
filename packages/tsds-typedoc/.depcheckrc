@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-typedoc", "typedoc", "resolve-bin-sync"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-typedoc", "typedoc", "resolve-bin-sync", "mocha", "mocha-compat", "ts-swc-loaders"]
