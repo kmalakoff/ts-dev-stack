@@ -25,11 +25,14 @@ function run(specifier: string, args: string[], options: CommandOptions, callbac
 
 export default function runCommand(name: string, args: string[], options: CommandOptions, callback: CommandCallback): undefined {
   const config = loadConfig(options);
+  const configCommands = (config || {}).commands || {};
   const commands = {
     ...constants.commands,
-    ...((config || {}).commands || {}),
+    ...configCommands,
   };
   const command = commands[name];
+  // Check if command is explicitly disabled (null) vs not found
+  if (command === null) return callback(new Error(`Command disabled: ${name}`));
   if (!command) return callback(new Error(`Unrecognized command: ${name} ${args.join(' ')}`));
   const { _, ...opts } = getopts(args, { stopEarly: true, alias: { 'dry-run': 'dr' }, boolean: ['dry-run'] });
   if (opts['dry-run']) return callback();

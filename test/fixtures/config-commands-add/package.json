@@ -1,0 +1,10 @@
+{
+  "name": "config-commands-add-test",
+  "version": "1.0.0",
+  "tsds": {
+    "source": "src/index.ts",
+    "commands": {
+      "lint": "tsds-eslint"
+    }
+  }
+}
