@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-web-test-runner", "@web/test-runner", "assert", "resolve-bin-sync"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-web-test-runner", "@web/test-runner", "assert", "resolve-bin-sync", "mocha", "mocha-compat", "ts-swc-loaders"]

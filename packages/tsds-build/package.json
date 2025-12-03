@@ -53,7 +53,7 @@
     "read-tsconfig-sync": "*",
     "resolve-bin-sync": "*",
     "rimraf2": "*",
-    "rollup": "4.53.2",
+    "rollup": "4.53.3",
     "rollup-plugin-node-externals": "*",
     "ts-swc-rollup-plugin": "*",
     "ts-swc-transform": "*",
@@ -63,9 +63,18 @@
     "@biomejs/biome": "*",
     "@types/mocha": "*",
     "@types/node": "*",
+    "mocha": "*",
+    "mocha-compat": "*",
+    "module-link-unlink": "*",
     "node-version-use": "*",
+    "os-shim": "*",
+    "queue-cb": "*",
+    "resolve": "*",
     "rolldown": "*",
-    "ts-dev-stack": "*"
+    "short-hash": "*",
+    "ts-dev-stack": "*",
+    "ts-swc-loaders": "*",
+    "tsds-lib-test": "*"
   },
   "engines": {
     "node": ">=0.8"
