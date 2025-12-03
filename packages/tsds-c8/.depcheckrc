@@ -1,1 +1,0 @@
-ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-c8", "assert", "c8", "regenerator-runtime", "ts-swc-loaders", "tsds-mocha", "resolve-bin-sync", "mocha", "mocha-compat", "module-link-unlink", "short-hash", "tsds-lib-test"]
