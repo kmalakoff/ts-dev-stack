@@ -55,8 +55,16 @@
     "@biomejs/biome": "*",
     "@types/mocha": "*",
     "@types/node": "*",
+    "mocha": "*",
+    "mocha-compat": "*",
+    "module-link-unlink": "*",
     "node-version-use": "*",
-    "ts-dev-stack": "*"
+    "os-shim": "*",
+    "resolve": "*",
+    "short-hash": "*",
+    "ts-dev-stack": "*",
+    "ts-swc-loaders": "*",
+    "tsds-lib-test": "*"
   },
   "engines": {
     "node": ">=0.8"
