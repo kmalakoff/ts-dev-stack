@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-version", "gh-pages", "resolve-bin-sync"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "tsds-version", "gh-pages", "resolve-bin-sync", "mocha", "mocha-compat", "ts-swc-loaders", "module-link-unlink", "short-hash", "tsds-lib-test"]
