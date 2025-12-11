@@ -1,4 +1,4 @@
-// remove NODE_OPTIONS from ts-dev-stack
+// remove NODE_OPTIONS to not interfere with tests
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
@@ -55,7 +55,7 @@ function addTests(repo) {
       it('build', (done) => {
         spawn(CLI, ['build', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -64,7 +64,7 @@ function addTests(repo) {
       it('install', (done) => {
         spawn(CLI, ['install', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -73,7 +73,7 @@ function addTests(repo) {
       it('link', (done) => {
         spawn(CLI, ['link', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -82,7 +82,7 @@ function addTests(repo) {
       it('unlink', (done) => {
         spawn(CLI, ['unlink', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -91,7 +91,7 @@ function addTests(repo) {
       it('format', (done) => {
         spawn(CLI, ['format', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -100,7 +100,7 @@ function addTests(repo) {
       it('publish', (done) => {
         spawn(CLI, ['publish', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -109,7 +109,7 @@ function addTests(repo) {
       it('test:node', (done) => {
         spawn(CLI, ['test:node', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -118,7 +118,7 @@ function addTests(repo) {
       it('test:browser', (done) => {
         spawn(CLI, ['test:browser', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -127,7 +127,7 @@ function addTests(repo) {
       it('coverage', (done) => {
         spawn(CLI, ['coverage', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -136,7 +136,7 @@ function addTests(repo) {
       it('docs', (done) => {
         spawn(CLI, ['docs', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -145,7 +145,7 @@ function addTests(repo) {
       it('validate', (done) => {
         spawn(CLI, ['validate', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
@@ -154,7 +154,7 @@ function addTests(repo) {
       it('version', (done) => {
         spawn(CLI, ['version', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
           if (err) {
-            done(err.message);
+            done(err);
             return;
           }
           done();
