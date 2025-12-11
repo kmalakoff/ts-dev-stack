@@ -1,4 +1,4 @@
-// remove NODE_OPTIONS from ts-dev-stack
+// remove NODE_OPTIONS to not interfere with tests
 delete process.env.NODE_OPTIONS;
 
 import assert from 'assert';
@@ -22,7 +22,7 @@ describe('runCommand', () => {
     it('should error for unrecognized command', (done) => {
       runCommand('nonexistent', [], { cwd: fixturesPath }, (err) => {
         assert.ok(err);
-        assert.ok(err.message.includes('Unrecognized command'));
+        assert.ok(err.message.indexOf('Unrecognized command') !== -1);
         done();
       });
     });
@@ -48,8 +48,8 @@ describe('runCommand', () => {
         const fixturePath = path.join(fixturesPath, 'config-commands-disable');
         runCommand('build', [], { cwd: fixturePath }, (err) => {
           assert.ok(err);
-          assert.ok(err.message.includes('Command disabled'));
-          assert.ok(err.message.includes('build'));
+          assert.ok(err.message.indexOf('Command disabled') !== -1);
+          assert.ok(err.message.indexOf('build') !== -1);
           done();
         });
       });
@@ -105,7 +105,7 @@ describe('runCommand', () => {
         };
         runCommand('build', [], { config }, (err) => {
           assert.ok(err);
-          assert.ok(err.message.includes('Command disabled'));
+          assert.ok(err.message.indexOf('Command disabled') !== -1);
           done();
         });
       });
@@ -115,7 +115,8 @@ describe('runCommand', () => {
   describe('constants', () => {
     it('should have all expected default commands', () => {
       const expectedCommands = ['build', 'coverage', 'docs', 'format', 'install', 'link', 'publish', 'test:node', 'test:browser', 'unlink', 'validate', 'version'];
-      for (const cmd of expectedCommands) {
+      for (var i = 0; i < expectedCommands.length; i++) {
+        var cmd = expectedCommands[i];
         assert.ok(constants.commands[cmd], `Expected command "${cmd}" to exist`);
       }
     });
