@@ -115,8 +115,8 @@ describe('runCommand', () => {
   describe('constants', () => {
     it('should have all expected default commands', () => {
       const expectedCommands = ['build', 'coverage', 'docs', 'format', 'install', 'link', 'publish', 'test:node', 'test:browser', 'unlink', 'validate', 'version'];
-      for (var i = 0; i < expectedCommands.length; i++) {
-        var cmd = expectedCommands[i];
+      for (let i = 0; i < expectedCommands.length; i++) {
+        const cmd = expectedCommands[i];
         assert.ok(constants.commands[cmd], `Expected command "${cmd}" to exist`);
       }
     });
