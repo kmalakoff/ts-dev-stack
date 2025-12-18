@@ -1,6 +1,6 @@
 {
   "name": "ts-dev-stack",
-  "version": "1.22.0",
+  "version": "1.22.1",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "tsds",
