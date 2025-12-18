@@ -46,7 +46,7 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "cross-spawn-cb": "^3.0.0",
+    "cross-spawn-cb": "^3.1.0",
     "exit-compat": "^1.0.4",
     "getopts-compat": "^2.2.6",
     "install-module-linked": "^1.5.0",
@@ -63,7 +63,7 @@
     "short-hash": "^1.0.0",
     "ts-dev-stack": "*",
     "tsds-config": "*",
-    "tsds-lib-test": "^1.20.0"
+    "tsds-lib-test": "^1.20.2"
   },
   "engines": {
     "node": ">=0.8"
