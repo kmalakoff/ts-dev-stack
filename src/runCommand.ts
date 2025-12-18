@@ -13,7 +13,7 @@ const _require = typeof require === 'undefined' ? Module.createRequire(import.me
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
 const nodeModules = path.join(_dirname, '..', '..', 'node_modules');
 
-function run(specifier: string, args: string[], options: CommandOptions, callback: CommandCallback): undefined {
+function run(specifier: string, args: string[], options: CommandOptions, callback: CommandCallback) {
   try {
     const mod = _require(specifier);
     const fn = mod.default || mod;
@@ -23,7 +23,7 @@ function run(specifier: string, args: string[], options: CommandOptions, callbac
   }
 }
 
-export default function runCommand(name: string, args: string[], options: CommandOptions, callback: CommandCallback): undefined {
+export default function runCommand(name: string, args: string[], options: CommandOptions, callback: CommandCallback): void {
   const config = loadConfig(options);
   const configCommands = (config || {}).commands || {};
   const commands = {
