@@ -22,7 +22,7 @@ const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : 
 const CLI = path.join(__dirname, '..', '..', 'bin', 'cli.js');
 const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 
-function addTests(repo) {
+function addTests(repo: string) {
   const repoName = path.basename(repo, path.extname(repo));
   describe(repoName, () => {
     const dest = path.join(tmpdir(), 'ts-dev-stack', shortHash(process.cwd()), repoName);
@@ -33,10 +33,7 @@ function addTests(repo) {
 
     before((cb) => {
       installGitRepo(repo, dest, (err): void => {
-        if (err) {
-          cb(err);
-          return;
-        }
+        if (err) return cb(err);
 
         const queue = new Queue();
         queue.defer(linkModule.bind(null, modulePath, nodeModules));
@@ -54,109 +51,85 @@ function addTests(repo) {
     describe('happy path', () => {
       it('build', (done) => {
         spawn(CLI, ['build', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('install', (done) => {
         spawn(CLI, ['install', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('link', (done) => {
         spawn(CLI, ['link', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('unlink', (done) => {
         spawn(CLI, ['unlink', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('format', (done) => {
         spawn(CLI, ['format', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('publish', (done) => {
         spawn(CLI, ['publish', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('test:node', (done) => {
         spawn(CLI, ['test:node', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('test:browser', (done) => {
         spawn(CLI, ['test:browser', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('coverage', (done) => {
         spawn(CLI, ['coverage', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('docs', (done) => {
         spawn(CLI, ['docs', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('validate', (done) => {
         spawn(CLI, ['validate', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });
       it('version', (done) => {
         spawn(CLI, ['version', '--dry-run'], { stdio: 'inherit', cwd: dest }, (err) => {
-          if (err) {
-            done(err);
-            return;
-          }
+          if (err) return done(err);
+
           done();
         });
       });

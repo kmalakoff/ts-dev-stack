@@ -117,7 +117,7 @@ describe('runCommand', () => {
       const expectedCommands = ['build', 'coverage', 'docs', 'format', 'install', 'link', 'publish', 'test:node', 'test:browser', 'unlink', 'validate', 'version'];
       for (let i = 0; i < expectedCommands.length; i++) {
         const cmd = expectedCommands[i];
-        assert.ok(constants.commands[cmd], `Expected command "${cmd}" to exist`);
+        assert.ok((constants.commands as Record<string, string | null | undefined>)[cmd], `Expected command "${cmd}" to exist`);
       }
     });
   });
