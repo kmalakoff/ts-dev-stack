@@ -25,6 +25,7 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./bin/cli.js": "./bin/cli.js",
     "./package.json": "./package.json"
   },
   "main": "dist/cjs/index.js",
@@ -57,6 +58,8 @@
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
+    "@types/resolve": "^1.20.6",
+    "@types/short-hash": "^1.0.3",
     "module-link-unlink": "^1.1.0",
     "node-version-use": "*",
     "os-shim": "^0.1.3",
