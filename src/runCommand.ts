@@ -1,13 +1,9 @@
 import getopts from 'getopts-compat';
-import installModule from 'install-module-linked';
 import Module from 'module';
 import path from 'path';
-import resolve from 'resolve';
-import { type CommandCallback, type CommandOptions, loadConfig } from 'tsds-lib';
+import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import url from 'url';
 import * as constants from './constants.ts';
-
-const resolveSync = resolve.sync;
 
 const _require = typeof require === 'undefined' ? Module.createRequire(import.meta.url) : require;
 const _dirname = path.dirname(typeof __filename === 'undefined' ? url.fileURLToPath(import.meta.url) : __filename);
@@ -24,6 +20,8 @@ function run(specifier: string, args: string[], options: CommandOptions, callbac
 }
 
 export default function runCommand(name: string, args: string[], options: CommandOptions, callback: CommandCallback): void {
+  // deferred: tsds-lib's whole tree is only needed to read project config for a real command
+  const loadConfig = _require('tsds-lib').loadConfig;
   const config = loadConfig(options);
   const configCommands = (config || {}).commands || {};
   const commands = {
@@ -39,10 +37,14 @@ export default function runCommand(name: string, args: string[], options: Comman
   const cwd: string = (options.cwd as string) || process.cwd();
   const runOptions = { ...options, cwd, stdio: 'inherit' } as CommandOptions;
   try {
+    // deferred: resolve is only needed for this existence check, not for the --dry-run path above
+    const resolveSync = _require('resolve').sync;
     resolveSync(path.join(command, 'package.json'), { basedir: _dirname }); // pass basedir because internally resolveSync doesn't properly handle file://basedir on esm
     return run(command, args, runOptions, callback);
   } catch (_err) {
-    installModule(command, nodeModules, (err) => {
+    // deferred: install-module-linked is only needed on this install-fallback path
+    const installModule = _require('install-module-linked');
+    installModule(command, nodeModules, (err?: Error | null) => {
       console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
       err ? callback(err) : run(command, args, runOptions, callback);
     });
