@@ -42,8 +42,8 @@ export default function runCommand(name: string, args: string[], options: Comman
     resolveSync(path.join(command, 'package.json'), { basedir: _dirname }); // pass basedir because internally resolveSync doesn't properly handle file://basedir on esm
     return run(command, args, runOptions, callback);
   } catch (_err) {
-    // deferred: install-module-linked is only needed on this install-fallback path
-    const installModule = _require('install-module-linked');
+    // deferred: install-module-linked-compat is only needed on this install-fallback path
+    const installModule = _require('install-module-linked-compat');
     installModule(command, nodeModules, (err?: Error | null) => {
       console.log(`Module missing: ${command}. ${err ? `Failed install: ${err.message}` : 'Installed'}`);
       err ? callback(err) : run(command, args, runOptions, callback);
