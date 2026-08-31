@@ -49,7 +49,7 @@
     "cross-spawn-cb": "^3.1.0",
     "exit-compat": "^1.0.4",
     "getopts-compat": "^2.2.5",
-    "install-module-linked": "^1.5.0",
+    "install-module-linked-compat": "^0.2.2",
     "queue-cb": "^1.6.3",
     "resolve": "^1.22.11",
     "tsds-lib": "^1.21.1"
@@ -61,7 +61,6 @@
     "@types/short-hash": "^1.0.3",
     "module-link-unlink": "^1.1.0",
     "node-version-use": "*",
-    "os-shim": "^0.1.3",
     "short-hash": "^1.0.0",
     "ts-dev-stack": "*",
     "tsds-config": "*",

@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "ts-dev-stack", "install-module-linked"]
+ignores: ["ts-dev-stack", "node-version-use", "install-module-linked-compat"]
