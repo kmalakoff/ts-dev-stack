@@ -26,7 +26,7 @@ module.exports = function mocha(_args, options, cb) {
         spawn(cmd, spawnParams.args.concat(args), spawnParams.options, cb);
       } else {
         spawn('node', spawnParams.args.concat([cmd]).concat(args), spawnParams.options, cb);
-      }      
+      }
     });
     queue.await((err) => {
       restore((err2) => {
