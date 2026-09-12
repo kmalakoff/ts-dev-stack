@@ -5,9 +5,11 @@ updates:
     schedule:
       interval: daily
     ignore:
+      - dependency-name: '@swc/core'
       - dependency-name: 'assert'
+      - dependency-name: '@swc/core'
       - dependency-name: 'rimraf'
-      - dependency-name: 'mkdirp'
+      - dependency-name: 'rollup-plugin-node-externals'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
