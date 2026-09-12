@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@swc/core": "1.2.205",
+    "@swc/core": "1.2.218",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
