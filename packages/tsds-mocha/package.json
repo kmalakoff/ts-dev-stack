@@ -1,6 +1,6 @@
 {
   "name": "tsds-mocha",
-  "version": "1.18.7",
+  "version": "1.18.9",
   "description": "Development stack for TypeScript libraries",
   "keywords": [
     "dev",
@@ -24,7 +24,7 @@
     "./package.json": "./package.json"
   },
   "main": "dist/cjs/index.js",
-  "types": "dist/cjs/index.d.cts",
+  "types": "dist/cjs/index.d.ts",
   "files": [
     "dist",
     "assets",
