@@ -8,7 +8,6 @@ import { linkModule, unlinkModule } from 'module-link-unlink';
 import path from 'path';
 import Queue from 'queue-cb';
 import * as resolve from 'resolve';
-import shortHash from 'short-hash';
 import { installGitRepo } from 'tsds-lib-test';
 import url from 'url';
 
@@ -23,7 +22,7 @@ const GITS = ['https://github.com/kmalakoff/fetch-http-message.git'];
 function addTests(repo: string) {
   const repoName = path.basename(repo, path.extname(repo));
   describe(repoName, () => {
-    const dest = path.join(packageRoot, '.tmp', 'cache', shortHash(process.cwd()), repoName);
+    const dest = path.join(packageRoot, '.cache', repoName);
     const modulePath = fs.realpathSync(path.join(__dirname, '..', '..'));
     const modulePackage = JSON.parse(fs.readFileSync(path.join(modulePath, 'package.json'), 'utf8'));
     const nodeModules = path.join(dest, 'node_modules');
